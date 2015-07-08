@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -18,26 +17,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ohj-Kb-xxp">
-                                <rect key="frame" x="11" y="0.0" width="579" height="542"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FH2-hd-pcb">
-                                <rect key="frame" x="284" y="550" width="33" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FH2-hd-pcb">
+                                <rect key="frame" x="284" y="560" width="33" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="33" id="2aR-z6-LbA"/>
+                                </constraints>
                                 <state key="normal" title="Start">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2aR-z6-LbA"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="actionStart:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="z4u-bD-IiB"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQI-SQ-SCO">
+                                <rect key="frame" x="344" y="560" width="33" height="30"/>
+                                <state key="normal" title="Stop">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="actionStart:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0ge-kN-swW"/>
+                                    <action selector="actionStop:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="gO5-RV-HGB"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ohj-Kb-xxp">
+                                <rect key="frame" x="11" y="0.0" width="579" height="542"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ohj-Kb-xxp" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" constant="20" id="04G-Ju-emL"/>
+                            <constraint firstItem="FH2-hd-pcb" firstAttribute="bottom" secondItem="TQI-SQ-SCO" secondAttribute="bottom" id="2tZ-Vx-7FO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FH2-hd-pcb" secondAttribute="trailing" constant="267" id="3Ys-wG-R85"/>
+                            <constraint firstItem="TQI-SQ-SCO" firstAttribute="leading" secondItem="FH2-hd-pcb" secondAttribute="trailing" constant="30" id="49t-P1-Igm"/>
+                            <constraint firstItem="FH2-hd-pcb" firstAttribute="top" secondItem="ohj-Kb-xxp" secondAttribute="bottom" constant="8" id="FHr-Sl-kr1"/>
+                            <constraint firstItem="FH2-hd-pcb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="268" id="Jvw-lC-i69"/>
+                            <constraint firstAttribute="centerX" secondItem="FH2-hd-pcb" secondAttribute="centerX" id="LFD-OT-t0m"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ohj-Kb-xxp" secondAttribute="trailing" constant="10" id="T5S-JQ-INF"/>
+                            <constraint firstAttribute="centerX" secondItem="FH2-hd-pcb" secondAttribute="centerX" id="ZBL-2M-QLr"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="FH2-hd-pcb" secondAttribute="bottom" constant="10" id="c4h-aw-VDK"/>
+                            <constraint firstItem="TQI-SQ-SCO" firstAttribute="leading" secondItem="FH2-hd-pcb" secondAttribute="trailing" constant="27" id="lsS-bQ-xk1"/>
                             <constraint firstItem="FH2-hd-pcb" firstAttribute="top" secondItem="ohj-Kb-xxp" secondAttribute="bottom" constant="10" id="pxn-tn-lEJ"/>
-                            <constraint firstItem="ohj-Kb-xxp" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="tYD-Ue-nJL"/>
+                            <constraint firstItem="FH2-hd-pcb" firstAttribute="top" secondItem="ohj-Kb-xxp" secondAttribute="bottom" constant="8" id="t9X-1d-Zms"/>
+                            <constraint firstItem="ohj-Kb-xxp" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" constant="20" id="tYD-Ue-nJL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ohj-Kb-xxp" secondAttribute="trailing" constant="6" id="uNL-n4-wGW"/>
+                            <constraint firstItem="ohj-Kb-xxp" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="un4-In-po3"/>
                             <constraint firstItem="ohj-Kb-xxp" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="5" id="zGj-Kv-hFg"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3Ys-wG-R85"/>
+                                <exclude reference="FHr-Sl-kr1"/>
+                                <exclude reference="Jvw-lC-i69"/>
+                                <exclude reference="LFD-OT-t0m"/>
+                                <exclude reference="pxn-tn-lEJ"/>
+                                <exclude reference="49t-P1-Igm"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="button" destination="FH2-hd-pcb" id="9Kt-81-gME"/>

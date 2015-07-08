@@ -25,6 +25,7 @@
 @property (nonatomic, retain) CvVideoCamera* videoCamera;
 
 - (IBAction)actionStart:(id)sender;
+- (IBAction)actionStop:(id)sender;
 
 @end
 
@@ -33,6 +34,9 @@
 
 - (IBAction)actionStart:(id)sender {
     [self.videoCamera start];
+}
+- (IBAction)actionStop:(id)sender {
+    [self.videoCamera stop];
 }
 
 #pragma mark - Protocol CvVideoCameraDelegate
