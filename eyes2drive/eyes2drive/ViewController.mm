@@ -15,14 +15,16 @@
 
 
 #import "ViewController.h"
+#import "FaceDetectionOpenCV.h"
+
 #import <opencv2/videoio/cap_ios.h>
-#import <opencv2/imgproc/imgproc.hpp>
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UIButton *button;
+    @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+    @property (weak, nonatomic) IBOutlet UIButton *button;
 
-@property (nonatomic, retain) CvVideoCamera* videoCamera;
+    @property (nonatomic, retain) CvVideoCamera* videoCamera;
+    @property (nonatomic, retain) FaceDetectionOpenCV* faceDetection;
 
 - (IBAction)actionStart:(id)sender;
 - (IBAction)actionStop:(id)sender;
@@ -39,29 +41,16 @@
     [self.videoCamera stop];
 }
 
-#pragma mark - Protocol CvVideoCameraDelegate
-
-#ifdef __cplusplus
-// delegate method for processing image frames
-- (void)processImage:(cv::Mat&)image; {
-    // Do some OpenCV stuff with the image
-    cv::Mat image_copy;
-    cvtColor(image, image_copy, CV_BGRA2BGR);
-    
-    // invert image
-    bitwise_not(image_copy, image_copy);
-    cvtColor(image_copy, image, CV_BGR2BGRA);
-}
-#endif
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.videoCamera = [[CvVideoCamera alloc] initWithParentView:self.imageView];
-    self.videoCamera.delegate = self;
+    
+    self.faceDetection = [ [FaceDetectionOpenCV alloc ]init];
+    self.videoCamera.delegate = self.faceDetection;
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
-    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
-    self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
+    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
+    self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationLandscapeLeft;
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
 }

@@ -36,6 +36,7 @@
 		E1A96E9D1B4F242E000EFE18 /* libfsdk-static_64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A96E981B4F242E000EFE18 /* libfsdk-static_64.a */; };
 		E1A96E9E1B4F242E000EFE18 /* libfsdk-static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A96E991B4F242E000EFE18 /* libfsdk-static.a */; };
 		E1A96E9F1B4F242E000EFE18 /* LuxandViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E1A96E9C1B4F242E000EFE18 /* LuxandViewController.mm */; };
+		E1A96EB01B4F2CA3000EFE18 /* FaceDetectionOpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = E1A96EAF1B4F2CA3000EFE18 /* FaceDetectionOpenCV.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,8 @@
 		E1A96E9A1B4F242E000EFE18 /* LuxandFaceSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuxandFaceSDK.h; path = eyes2drive/LuxandFaceSDK.h; sourceTree = "<group>"; };
 		E1A96E9B1B4F242E000EFE18 /* LuxandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuxandViewController.h; sourceTree = "<group>"; };
 		E1A96E9C1B4F242E000EFE18 /* LuxandViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LuxandViewController.mm; sourceTree = "<group>"; };
+		E1A96EAE1B4F2CA3000EFE18 /* FaceDetectionOpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetectionOpenCV.h; sourceTree = "<group>"; };
+		E1A96EAF1B4F2CA3000EFE18 /* FaceDetectionOpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FaceDetectionOpenCV.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,12 +190,10 @@
 		E13D21411B4C06D1006D7EEB /* eyes2drive */ = {
 			isa = PBXGroup;
 			children = (
-				E1A96E9B1B4F242E000EFE18 /* LuxandViewController.h */,
-				E1A96E9C1B4F242E000EFE18 /* LuxandViewController.mm */,
+				E1A96EAD1B4F2B84000EFE18 /* OpenCVRecognize */,
+				E1A96EAC1B4F2A33000EFE18 /* LuxandRecognize */,
 				E13D21461B4C06D1006D7EEB /* AppDelegate.h */,
 				E13D21471B4C06D1006D7EEB /* AppDelegate.mm */,
-				E13D21491B4C06D1006D7EEB /* ViewController.h */,
-				E13D214A1B4C06D1006D7EEB /* ViewController.mm */,
 				E13D214C1B4C06D1006D7EEB /* Main.storyboard */,
 				E13D214F1B4C06D1006D7EEB /* Images.xcassets */,
 				E13D21511B4C06D1006D7EEB /* LaunchScreen.xib */,
@@ -288,6 +289,26 @@
 				E13D21B11B4CDDEB006D7EEB /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E1A96EAC1B4F2A33000EFE18 /* LuxandRecognize */ = {
+			isa = PBXGroup;
+			children = (
+				E1A96E9B1B4F242E000EFE18 /* LuxandViewController.h */,
+				E1A96E9C1B4F242E000EFE18 /* LuxandViewController.mm */,
+			);
+			name = LuxandRecognize;
+			sourceTree = "<group>";
+		};
+		E1A96EAD1B4F2B84000EFE18 /* OpenCVRecognize */ = {
+			isa = PBXGroup;
+			children = (
+				E13D21491B4C06D1006D7EEB /* ViewController.h */,
+				E13D214A1B4C06D1006D7EEB /* ViewController.mm */,
+				E1A96EAE1B4F2CA3000EFE18 /* FaceDetectionOpenCV.h */,
+				E1A96EAF1B4F2CA3000EFE18 /* FaceDetectionOpenCV.mm */,
+			);
+			name = OpenCVRecognize;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -458,6 +479,7 @@
 				E13D21481B4C06D1006D7EEB /* AppDelegate.mm in Sources */,
 				E1A96E9F1B4F242E000EFE18 /* LuxandViewController.mm in Sources */,
 				E13D21451B4C06D1006D7EEB /* main.mm in Sources */,
+				E1A96EB01B4F2CA3000EFE18 /* FaceDetectionOpenCV.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
