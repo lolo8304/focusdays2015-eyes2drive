@@ -76,6 +76,7 @@
 		BC3F7DA712612EFD00987A60 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		BC3F7FC21262976700987A60 /* DirectDisplayShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = DirectDisplayShader.fsh; path = Shaders/DirectDisplayShader.fsh; sourceTree = "<group>"; };
 		BC3F7FC31262976700987A60 /* DirectDisplayShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = DirectDisplayShader.vsh; path = Shaders/DirectDisplayShader.vsh; sourceTree = "<group>"; };
+		E19EF8191B4F1988003EDE3B /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,16 +85,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A1898981A69743E00CDD030 /* Security.framework in Frameworks */,
-				988F3C381721CFEB00325EF5 /* libz.dylib in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				BC3F7BB51260FBAB00987A60 /* OpenGLES.framework in Frameworks */,
 				BC3F7BB71260FBB700987A60 /* QuartzCore.framework in Frameworks */,
-				3A1898941A69740E00CDD030 /* libfsdk-static_64.a in Frameworks */,
 				BC3F7CEC126115C200987A60 /* AVFoundation.framework in Frameworks */,
 				BC3F7DA612612EF500987A60 /* CoreVideo.framework in Frameworks */,
 				BC3F7DA812612EFD00987A60 /* CoreMedia.framework in Frameworks */,
+				988F3C381721CFEB00325EF5 /* libz.dylib in Frameworks */,
+				3A1898941A69740E00CDD030 /* libfsdk-static_64.a in Frameworks */,
 				988F3C351721CEEF00325EF5 /* libfsdk-static.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -168,6 +169,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E19EF8191B4F1988003EDE3B /* libstdc++.dylib */,
 				3A1898971A69743E00CDD030 /* Security.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -228,6 +230,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = W3U24WE3R3;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Luxand Face Recognition" */;
 			compatibilityVersion = "Xcode 3.1";
@@ -290,6 +297,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -297,15 +308,16 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Luxand Face Recognition_Prefix.pch";
 				INFOPLIST_FILE = "Luxand Face Recognition-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/FaceSDK\"",
 					"$(PROJECT_DIR)/FaceSDK",
 				);
 				PRODUCT_NAME = "Luxand Face Recognition";
-				SDKROOT = iphoneos6.1;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = armv7;
 			};
 			name = Debug;
 		};
@@ -313,21 +325,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Luxand Face Recognition_Prefix.pch";
 				INFOPLIST_FILE = "Luxand Face Recognition-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/FaceSDK\"",
 					"$(PROJECT_DIR)/FaceSDK",
 				);
 				PRODUCT_NAME = "Luxand Face Recognition";
-				SDKROOT = iphoneos6.1;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = armv7;
 			};
 			name = Release;
 		};

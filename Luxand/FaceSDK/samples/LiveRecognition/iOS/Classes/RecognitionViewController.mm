@@ -610,8 +610,8 @@ int GetFaceFrame(const FSDK_Features * Features, int * x1, int * y1, int * x2, i
     
     
 	CVPixelBufferLockBaseAddress(cameraFrame, 0);
-	int bufferHeight = CVPixelBufferGetHeight(cameraFrame);
-	int bufferWidth = CVPixelBufferGetWidth(cameraFrame);
+	int bufferHeight = (int)CVPixelBufferGetHeight(cameraFrame);
+	int bufferWidth = (int)CVPixelBufferGetWidth(cameraFrame);
 	
     // Create a new texture from the camera frame data, draw it (calling drawFrame)
     glGenTextures(1, &videoFrameTexture);
@@ -632,7 +632,7 @@ int GetFaceFrame(const FSDK_Features * Features, int * x1, int * y1, int * x2, i
         
         // Copy camera frame to buffer
         
-        int scanline = CVPixelBufferGetBytesPerRow(cameraFrame);
+        int scanline = (int)CVPixelBufferGetBytesPerRow(cameraFrame);
         unsigned char * buffer = (unsigned char *)malloc(scanline * bufferHeight);
         if (buffer) { 
             memcpy(buffer, CVPixelBufferGetBaseAddress(cameraFrame), scanline * bufferHeight);
@@ -721,11 +721,11 @@ int GetFaceFrame(const FSDK_Features * Features, int * x1, int * y1, int * x2, i
         
         NSString * name = [alertView textFieldAtIndex:0].text;
         const char * name_c_str = [name UTF8String];
-        int len = strlen(name_c_str);
+        int len = (int)strlen(name_c_str);
         
         [enteredNameLock lock];
         [idOfTouchedFaceLock lock];
-        namedFaceID = idOfTouchedFace;
+        namedFaceID = (int)idOfTouchedFace;
         [idOfTouchedFaceLock unlock];
         enteredName = new char[len+1];
         if (enteredName) strcpy(enteredName, name_c_str);
