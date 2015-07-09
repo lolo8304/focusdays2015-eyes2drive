@@ -371,6 +371,7 @@
 					};
 					E13D21AA1B4CDDEA006D7EEB = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = W3U24WE3R3;
 					};
 				};
 			};
@@ -675,6 +676,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -683,6 +686,7 @@
 				INFOPLIST_FILE = "eyes2drive WatchKit App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
@@ -693,10 +697,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				IBSC_MODULE = eyes2drive_WatchKit_Extension;
 				INFOPLIST_FILE = "eyes2drive WatchKit App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
 				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
@@ -750,6 +757,7 @@
 				E13D21641B4C06D1006D7EEB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E13D21651B4C06D1006D7EEB /* Build configuration list for PBXNativeTarget "eyes2driveTests" */ = {
 			isa = XCConfigurationList;
@@ -758,6 +766,7 @@
 				E13D21671B4C06D1006D7EEB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E13D21BB1B4CDDEB006D7EEB /* Build configuration list for PBXNativeTarget "eyes2drive WatchKit App" */ = {
 			isa = XCConfigurationList;
@@ -766,6 +775,7 @@
 				E13D21BD1B4CDDEB006D7EEB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E13D21BE1B4CDDEB006D7EEB /* Build configuration list for PBXNativeTarget "eyes2drive WatchKit Extension" */ = {
 			isa = XCConfigurationList;
@@ -774,6 +784,7 @@
 				E13D21C01B4CDDEB006D7EEB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
