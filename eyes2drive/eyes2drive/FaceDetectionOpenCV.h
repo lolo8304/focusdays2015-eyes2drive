@@ -11,4 +11,12 @@
 
 @interface FaceDetectionOpenCV : NSObject<CvVideoCameraDelegate>
 
+@property (nonatomic, readwrite) AVCaptureVideoOrientation orientation;
+
+@property (nonatomic, readwrite) long msSinceLastDetection;
+@property (nonatomic, readwrite) NSDate * timeLastDetection;
+
+- (id) initWith: (AVCaptureVideoOrientation)orientation;
+- (void) faceDetected;
+
 @end

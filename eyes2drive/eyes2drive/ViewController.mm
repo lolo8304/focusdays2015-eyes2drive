@@ -41,16 +41,30 @@
     [self.videoCamera stop];
 }
 
+- (BOOL)isPortraitOrientation {
+    return self.currentOrientation == UIInterfaceOrientationPortrait;
+}
+- (int)currentOrientation {
+    return [UIDevice currentDevice].orientation ;
+}
+- (AVCaptureVideoOrientation)currentVideoOrientation {
+    return (AVCaptureVideoOrientation)self.currentOrientation;
+}
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.videoCamera = [[CvVideoCamera alloc] initWithParentView:self.imageView];
     
-    self.faceDetection = [ [FaceDetectionOpenCV alloc ]init];
+    self.faceDetection = [ [FaceDetectionOpenCV alloc ] initWith: AVCaptureVideoOrientationPortrait];
     self.videoCamera.delegate = self.faceDetection;
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
-    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
-    self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationLandscapeLeft;
+    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPresetMedium;
+
+    self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
+    printf("current video orientation = %i\n", self.currentVideoOrientation);
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
 }
@@ -58,6 +72,18 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillTransitionToSize:(CGSize)size
+       withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
+    if (self.videoCamera) {
+        self.videoCamera.defaultAVCaptureVideoOrientation = self.currentVideoOrientation;
+        self.faceDetection.orientation = self.currentVideoOrientation;
+        printf("current video orientation = %i\n", self.currentVideoOrientation);
+    }
+
 }
 
 @end
