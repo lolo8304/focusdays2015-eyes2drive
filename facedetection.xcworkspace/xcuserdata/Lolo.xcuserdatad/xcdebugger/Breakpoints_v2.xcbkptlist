@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "eyes2drive/eyes2drive/FaceDetectionOpenCV.mm"
-            timestampString = "458188717.277492"
+            filePath = "eyes2drive/eyes2drive/FeatureDetectionTime.mm"
+            timestampString = "458349107.109951"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "-init"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "-featureDetected:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

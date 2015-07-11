@@ -33,6 +33,7 @@
 		E13D21B41B4CDDEB006D7EEB /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E13D21B21B4CDDEB006D7EEB /* Interface.storyboard */; };
 		E13D21B61B4CDDEB006D7EEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E13D21B51B4CDDEB006D7EEB /* Images.xcassets */; };
 		E13D21BA1B4CDDEB006D7EEB /* eyes2drive WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E13D219C1B4CDDEA006D7EEB /* eyes2drive WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E1892B301B505D4D00D7C9DB /* FeatureDetectionTime.mm in Sources */ = {isa = PBXBuildFile; fileRef = E1892B2F1B505D4D00D7C9DB /* FeatureDetectionTime.mm */; };
 		E1A96E9D1B4F242E000EFE18 /* libfsdk-static_64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A96E981B4F242E000EFE18 /* libfsdk-static_64.a */; };
 		E1A96E9E1B4F242E000EFE18 /* libfsdk-static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A96E991B4F242E000EFE18 /* libfsdk-static.a */; };
 		E1A96E9F1B4F242E000EFE18 /* LuxandViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E1A96E9C1B4F242E000EFE18 /* LuxandViewController.mm */; };
@@ -135,6 +136,8 @@
 		E13D21B11B4CDDEB006D7EEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E13D21B31B4CDDEB006D7EEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		E13D21B51B4CDDEB006D7EEB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E1892B2E1B505D4D00D7C9DB /* FeatureDetectionTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeatureDetectionTime.h; sourceTree = "<group>"; };
+		E1892B2F1B505D4D00D7C9DB /* FeatureDetectionTime.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FeatureDetectionTime.mm; sourceTree = "<group>"; };
 		E1A96E981B4F242E000EFE18 /* libfsdk-static_64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libfsdk-static_64.a"; path = "eyes2drive/libfsdk-static_64.a"; sourceTree = "<group>"; };
 		E1A96E991B4F242E000EFE18 /* libfsdk-static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libfsdk-static.a"; path = "eyes2drive/libfsdk-static.a"; sourceTree = "<group>"; };
 		E1A96E9A1B4F242E000EFE18 /* LuxandFaceSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuxandFaceSDK.h; path = eyes2drive/LuxandFaceSDK.h; sourceTree = "<group>"; };
@@ -347,6 +350,8 @@
 				E13D214A1B4C06D1006D7EEB /* ViewController.mm */,
 				E1A96EAE1B4F2CA3000EFE18 /* FaceDetectionOpenCV.h */,
 				E1A96EAF1B4F2CA3000EFE18 /* FaceDetectionOpenCV.mm */,
+				E1892B2E1B505D4D00D7C9DB /* FeatureDetectionTime.h */,
+				E1892B2F1B505D4D00D7C9DB /* FeatureDetectionTime.mm */,
 			);
 			name = OpenCVRecognize;
 			sourceTree = "<group>";
@@ -572,6 +577,7 @@
 				E1A96E9F1B4F242E000EFE18 /* LuxandViewController.mm in Sources */,
 				E13D21451B4C06D1006D7EEB /* main.mm in Sources */,
 				E1A96EB01B4F2CA3000EFE18 /* FaceDetectionOpenCV.mm in Sources */,
+				E1892B301B505D4D00D7C9DB /* FeatureDetectionTime.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,10 +735,9 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Lolo/git/opencv/releases/ios,
-					/Users/Lolo/Dropbox/focusdays2015/1st.apple.watch/openCV/iOS,
-					/Users/Lolo/Dropbox/focusdays2015/1st.apple.watch/openCV/iOS/3.0.release,
-					"/Users/Lolo/git/focusdays2015-facedetection",
+					"$(PROJECT_DIR)/eyes2drive",
+					"$(PROJECT_DIR)/..",
+					/Users/Lolo/git/opencv/releases/ios1111,
 				);
 				INFOPLIST_FILE = eyes2drive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -757,10 +762,9 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Lolo/git/opencv/releases/ios,
-					/Users/Lolo/Dropbox/focusdays2015/1st.apple.watch/openCV/iOS,
-					/Users/Lolo/Dropbox/focusdays2015/1st.apple.watch/openCV/iOS/3.0.release,
-					"/Users/Lolo/git/focusdays2015-facedetection",
+					"$(PROJECT_DIR)/eyes2drive",
+					"$(PROJECT_DIR)/..",
+					/Users/Lolo/git/opencv/releases/ios1111,
 				);
 				INFOPLIST_FILE = eyes2drive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;

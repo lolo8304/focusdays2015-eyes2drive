@@ -8,15 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import <opencv2/videoio/cap_ios.h>
+#import "FeatureDetectionTime.h"
 
-@interface FaceDetectionOpenCV : NSObject<CvVideoCameraDelegate>
+@interface FaceDetectionOpenCV : NSObject<CvVideoCameraDelegate, FeatureDetectionDelegate>
 
-@property (nonatomic, readwrite) AVCaptureVideoOrientation orientation;
+@property (nonatomic) AVCaptureVideoOrientation orientation;
+@property (nonatomic, weak) ViewController * controller;
 
-@property (nonatomic, readwrite) long msSinceLastDetection;
-@property (nonatomic, readwrite) NSDate * timeLastDetection;
+@property (nonatomic, strong) FeatureDetectionTime * faceDetected;
+@property (nonatomic, strong) FeatureDetectionTime * eyesDetected;
+@property (nonatomic, strong) FeatureDetectionTime * twoEyesDetected;
 
-- (id) initWith: (AVCaptureVideoOrientation)orientation;
-- (void) faceDetected;
+- (id) initWith: (AVCaptureVideoOrientation)orientation controller: (ViewController *)controller;
+- (void) faceDetected: (BOOL)detected;
+- (void) eyesDetected: (BOOL)detected;
+- (void) twoEyesDetected: (BOOL)detected;
 
 @end

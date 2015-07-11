@@ -23,8 +23,12 @@
     @property (weak, nonatomic) IBOutlet UIImageView *imageView;
     @property (weak, nonatomic) IBOutlet UIButton *button;
 
-    @property (nonatomic, retain) CvVideoCamera* videoCamera;
-    @property (nonatomic, retain) FaceDetectionOpenCV* faceDetection;
+    @property (weak, nonatomic) IBOutlet UISegmentedControl *UIAlertColor;
+
+    @property (nonatomic, strong) CvVideoCamera* videoCamera;
+    @property (nonatomic, strong) FaceDetectionOpenCV* faceDetection;
+
+    @property (nonatomic, strong) NSThread *thread;
 
 - (IBAction)actionStart:(id)sender;
 - (IBAction)actionStop:(id)sender;
@@ -34,11 +38,47 @@
 
 @implementation ViewController
 
+- (NSThread *) thread
+{
+    if (!_thread) {
+        _thread = [[NSThread alloc]
+                   initWithTarget:self
+                   selector:@selector(longloop)
+                   object:nil];
+    }
+    return _thread;
+}
+
+- (void)longloop
+{
+    while (true) {
+        //change the text in the label on the main thread:
+        [self performSelector:@selector(updateOutput:)
+                     onThread:[NSThread mainThread]
+                   withObject: 0
+                waitUntilDone:NO];
+        sleep(1);
+        if ([self.thread isCancelled]) {
+            //stop the thread:
+            self.thread = nil;
+            break;
+        }
+    }
+}
+
+- (void) updateOutput:(NSNumber *)notUsed {
+    
+}
+
+
+
 - (IBAction)actionStart:(id)sender {
     [self.videoCamera start];
 }
 - (IBAction)actionStop:(id)sender {
     [self.videoCamera stop];
+    NSLog(@"Stopping thread");
+    [self.thread cancel];
 }
 
 - (BOOL)isPortraitOrientation {
@@ -58,10 +98,10 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.videoCamera = [[CvVideoCamera alloc] initWithParentView:self.imageView];
     
-    self.faceDetection = [ [FaceDetectionOpenCV alloc ] initWith: AVCaptureVideoOrientationPortrait];
+    self.faceDetection = [ [FaceDetectionOpenCV alloc ] initWith: AVCaptureVideoOrientationPortrait controller: self];
     self.videoCamera.delegate = self.faceDetection;
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
-    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPresetMedium;
+    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
 
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
     printf("current video orientation = %i\n", self.currentVideoOrientation);
@@ -85,5 +125,13 @@
     }
 
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self.videoCamera start];
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.videoCamera stop];
+}
+
 
 @end
