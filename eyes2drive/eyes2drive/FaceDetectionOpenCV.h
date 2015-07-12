@@ -18,10 +18,21 @@
 @property (nonatomic, strong) FeatureDetectionTime * faceDetected;
 @property (nonatomic, strong) FeatureDetectionTime * eyesDetected;
 @property (nonatomic, strong) FeatureDetectionTime * twoEyesDetected;
+@property (nonatomic) CFTimeInterval tripStartTime;
+@property (nonatomic) CFTimeInterval tripStopTime;
+@property (nonatomic, strong) NSDictionary * events;
 
 - (id) initWith: (AVCaptureVideoOrientation)orientation controller: (ViewController *)controller;
 - (void) faceDetected: (BOOL)detected;
 - (void) eyesDetected: (BOOL)detected;
 - (void) twoEyesDetected: (BOOL)detected;
+
+- (void)startTrip;
+- (void)stopTrip;
+- (CFTimeInterval)tripElapsedTime;
+
+- (State *) getLastState: (FeatureDetection) feature;
+- (FeatureAlertColor)getLastColor: (FeatureDetection)  feature;
+
 
 @end

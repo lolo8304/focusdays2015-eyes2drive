@@ -16,12 +16,16 @@
 
 #import "ViewController.h"
 #import "FaceDetectionOpenCV.h"
+#import "FeatureDetectionTime.h"
+#import "AudioToolbox/AudioServices.h"
 
 #import <opencv2/videoio/cap_ios.h>
 
 @interface ViewController ()
     @property (weak, nonatomic) IBOutlet UIImageView *imageView;
     @property (weak, nonatomic) IBOutlet UIButton *button;
+
+    @property (weak, nonatomic) IBOutlet UIImageView *faceAlertView;
 
     @property (weak, nonatomic) IBOutlet UISegmentedControl *UIAlertColor;
 
@@ -37,6 +41,15 @@
 
 
 @implementation ViewController
+
+NSString * coloredImageName = @"none";
+NSArray * soundFiles;
+
+CFURLRef soundFileURLRef;
+SystemSoundID	soundFileObject;
+
+NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
+
 
 - (NSThread *) thread
 {
@@ -66,19 +79,67 @@
     }
 }
 
-- (void) updateOutput:(NSNumber *)notUsed {
+
+
+- (void) setFaceAlertImage: (FeatureAlertColor) color {
+    NSMutableString *imageName = [NSMutableString stringWithFormat:@"Alert-%@.png", FeatureAlertColor_toString[color]];
+    if (![coloredImageName isEqualToString: imageName]) {
+        coloredImageName = imageName;
+        self.faceAlertView.image = [UIImage imageNamed: coloredImageName];
+        [self playSound: color];
+    }
+}
+
+- (void) playSound: (FeatureAlertColor) color {
+    if (!soundFileURLRef) {
+        NSURL* sound = [self getURLSound: FeatureAlertGreen];
+        soundFileURLRef = (CFURLRef)CFBridgingRetain(sound);
+        AudioServicesCreateSystemSoundID (soundFileURLRef, &soundFileObject);
+    }
+// * vibrate + sound
+//    AudioServicesPlayAlertSound (soundFileObject);
+
+// * sound only
+    AudioServicesPlaySystemSound (soundFileObject);
+
+// * vibrate only
+//        AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
+}
+
+
+- (NSURL *)getURLSound: (FeatureAlertColor) color {
+    return [[NSBundle mainBundle] URLForResource: @"tap"
+                                                withExtension: @"aif"];
     
+}
+
+
+- (void) updateOutput:(NSNumber *)notUsed {
+    FeatureAlertColor lastColor = [self.faceDetection getLastColor: FeatureFaceDetected];
+    [self setFaceAlertImage: lastColor];
 }
 
 
 
 - (IBAction)actionStart:(id)sender {
+    [self.faceDetection startTrip ];
     [self.videoCamera start];
+    [self setFaceAlertImage: FeatureAlertGreen];
+    if ([self.thread isExecuting]) {
+        NSLog(@"Thread is already running");
+    } else {
+        NSLog(@"Starting thread");
+        [self.thread start];
+    }
+
 }
 - (IBAction)actionStop:(id)sender {
+    [self.faceDetection stopTrip ];
     [self.videoCamera stop];
     NSLog(@"Stopping thread");
     [self.thread cancel];
+    [self setFaceAlertImage: FeatureAlertGreen];
+
 }
 
 - (BOOL)isPortraitOrientation {
@@ -90,7 +151,6 @@
 - (AVCaptureVideoOrientation)currentVideoOrientation {
     return (AVCaptureVideoOrientation)self.currentOrientation;
 }
-
 
 
 - (void)viewDidLoad {
@@ -107,6 +167,7 @@
     printf("current video orientation = %i\n", self.currentVideoOrientation);
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -127,10 +188,10 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self.videoCamera start];
+    [self actionStart: nil];
 }
 - (void)viewWillDisappear:(BOOL)animated {
-    [self.videoCamera stop];
+    [self actionStop: nil];
 }
 
 

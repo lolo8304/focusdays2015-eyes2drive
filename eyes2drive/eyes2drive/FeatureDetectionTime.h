@@ -25,17 +25,17 @@ typedef NS_ENUM (NSInteger, FeatureAlertColor) {
 };
 extern NSString * const FeatureAlertColor_toString[];
 
+@interface State : NSObject <NSCopying>
 
-
-@interface State : NSObject
-
+@property (atomic) FeatureDetection feature;
 @property (atomic) FeatureAlertColor color;
+@property (atomic) CFTimeInterval featureTime;
 @property (atomic) CFTimeInterval elapsedTime;
 @property (nonatomic, strong) State * lastState;
 
-- (id) init;
-- (BOOL)push: (FeatureAlertColor) color since: (CFTimeInterval) timeInMs;
-
+- (id) initWith: (FeatureDetection) feature;
+- (BOOL)push: (FeatureAlertColor) color at: (CFTimeInterval) time  since: (CFTimeInterval) timeInMs;
+-(id) copyWithZone: (NSZone *) zone;
 @end
 
 
@@ -45,14 +45,13 @@ extern NSString * const FeatureAlertColor_toString[];
 @end
 
 
-@interface FeatureDetectionTime : NSObject
+@interface FeatureDetectionTime : NSObject 
 
 @property (nonatomic) FeatureDetection feature;
 @property (nonatomic, strong) State * state;
-
-
 @property (nonatomic, weak) id<FeatureDetectionDelegate> delegate;
 
++ (CFTimeInterval) now;
 - (id) initWith: (FeatureDetection)feature;
 
 - (void)start;
@@ -62,5 +61,8 @@ extern NSString * const FeatureAlertColor_toString[];
 
 - (void)featureDetected;
 - (void)featureNotDetected;
+
+- (void)featureDetected: (BOOL) found;
+
 
 @end

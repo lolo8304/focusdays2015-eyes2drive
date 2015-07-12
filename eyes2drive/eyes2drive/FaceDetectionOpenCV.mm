@@ -44,7 +44,14 @@ cv::CascadeClassifier eyes_cascade;
         
         self.twoEyesDetected = [[FeatureDetectionTime alloc] initWith: Feature2EyesDetected ];
         self.twoEyesDetected.delegate = self;
-        [self.eyesDetected setThreshold: false orange: 3000 red: 5000 darkred: 7000];
+        [self.twoEyesDetected setThreshold: false orange: 3000 red: 5000 darkred: 7000];
+        
+        self.events = [[NSDictionary alloc] init];
+        self.events = @{
+                        [NSNumber numberWithInt: FeatureFaceDetected] : [[NSMutableArray alloc] init],
+                        [NSNumber numberWithInt: FeatureEyesDetected] : [[NSMutableArray alloc] init],
+                        [NSNumber numberWithInt: Feature2EyesDetected] : [[NSMutableArray alloc] init]
+                       };
         return self;
     }
     return nil;
@@ -53,11 +60,15 @@ cv::CascadeClassifier eyes_cascade;
 
 
 
+
 - (void)feature:(FeatureDetection)feature changedState:(State *)state {
-    printf("%s : %s was ACTIVE since %i (changed now)\n",
+    NSMutableArray * elements = self.events[ [NSNumber numberWithInt: feature ] ];
+    [elements addObject: state];
+    
+    printf("%s %s since %.0f [ms]\n",
            [(FeatureAlertColor_toString[ [state color] ]) UTF8String],
            [(FeatureDetection_toString[feature]) UTF8String],
-           (int)[state elapsedTime]);
+           [state elapsedTime]);
 }
 
 
@@ -87,26 +98,46 @@ cv::CascadeClassifier eyes_cascade;
 }
 
 - (void) faceDetected: (BOOL)detected {
-    if (detected) {
-        [self.faceDetected featureDetected];
-    } else {
-        [self.faceDetected featureNotDetected];
-    }
+    [self.faceDetected featureDetected: detected];
 }
 - (void) eyesDetected: (BOOL)detected {
-    if (detected) {
-        [self.eyesDetected featureDetected];
-    } else {
-        [self.eyesDetected featureNotDetected];
-    }
+    [self.eyesDetected featureDetected: detected];
 }
 - (void) twoEyesDetected: (BOOL)detected {
-    if (detected) {
-        [self.twoEyesDetected featureDetected];
+    [self.twoEyesDetected featureDetected: detected];
+}
+
+- (void)startTrip {
+    self.tripStartTime = [FeatureDetectionTime now];
+    self.tripStopTime = 0;
+}
+- (void)stopTrip {
+    
+}
+- (CFTimeInterval)tripElapsedTime {
+    if (self.tripStartTime == 0) { return 0; }
+    if (self.tripStopTime == 0) {
+        return [FeatureDetectionTime now] - self.tripStartTime;
     } else {
-        [self.twoEyesDetected featureNotDetected];
+        return self.tripStopTime - self.tripStartTime;
     }
 }
+
+
+
+- (State *) getLastState: (FeatureDetection) feature {
+    NSMutableArray * states =  self.events[ [NSNumber numberWithInt: FeatureFaceDetected] ];
+    if ([states count] > 0 ) {
+        return [states lastObject];
+    }
+    return nil;
+}
+- (FeatureAlertColor)getLastColor: (FeatureDetection)  feature {
+    State * currentState = [self getLastState: feature];
+    if (currentState) { return [currentState color]; }
+    return FeatureAlertGreen;
+}
+
 
 #ifdef __cplusplus
 
