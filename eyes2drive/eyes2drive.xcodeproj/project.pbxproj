@@ -737,7 +737,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/eyes2drive",
 					"$(PROJECT_DIR)/..",
-					/Users/Lolo/git/opencv/releases/ios1111,
 				);
 				INFOPLIST_FILE = eyes2drive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -764,7 +763,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/eyes2drive",
 					"$(PROJECT_DIR)/..",
-					/Users/Lolo/git/opencv/releases/ios1111,
 				);
 				INFOPLIST_FILE = eyes2drive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
