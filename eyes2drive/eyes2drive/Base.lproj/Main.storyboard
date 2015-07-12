@@ -63,6 +63,9 @@
                                     <segment title="R"/>
                                     <segment title="DR"/>
                                 </segments>
+                                <connections>
+                                    <action selector="actionSetControl:" destination="DnJ-wh-6Xl" eventType="valueChanged" id="Y8B-d6-Wnb"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -101,7 +104,7 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="UIAlertColor" destination="mUF-gy-SVT" id="bLy-2a-dkm"/>
+                        <outlet property="faceAlertControl" destination="mUF-gy-SVT" id="f05-iJ-VaJ"/>
                         <outlet property="faceAlertView" destination="jOr-hK-Yz9" id="zJK-OE-BFM"/>
                         <outlet property="imageView" destination="UF8-tT-9pH" id="xHY-zA-aGc"/>
                     </connections>

@@ -27,7 +27,7 @@
 
     @property (weak, nonatomic) IBOutlet UIImageView *faceAlertView;
 
-    @property (weak, nonatomic) IBOutlet UISegmentedControl *UIAlertColor;
+    @property (weak, nonatomic) IBOutlet UISegmentedControl *faceAlertControl;
 
     @property (nonatomic, strong) CvVideoCamera* videoCamera;
     @property (nonatomic, strong) FaceDetectionOpenCV* faceDetection;
@@ -36,7 +36,7 @@
 
 - (IBAction)actionStart:(id)sender;
 - (IBAction)actionStop:(id)sender;
-
+- (IBAction)actionSetControl: (id)sender;
 @end
 
 
@@ -86,6 +86,7 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     if (![coloredImageName isEqualToString: imageName]) {
         coloredImageName = imageName;
         self.faceAlertView.image = [UIImage imageNamed: coloredImageName];
+        [self.faceAlertControl setSelectedSegmentIndex: (int)color];
         [self playSound: color];
     }
 }
@@ -111,6 +112,14 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     return [[NSBundle mainBundle] URLForResource: @"tap"
                                                 withExtension: @"aif"];
     
+}
+
+
+- (IBAction)actionSetControl: (id)sender {
+    FeatureAlertColor color = (FeatureAlertColor)[self.faceAlertControl selectedSegmentIndex];
+    State * newState = [[State alloc] initWith: FeatureFaceDetected];
+    [newState push: color at: 0 since: 0];
+    [self.faceDetection feature: FeatureFaceDetected changedState: newState];
 }
 
 
