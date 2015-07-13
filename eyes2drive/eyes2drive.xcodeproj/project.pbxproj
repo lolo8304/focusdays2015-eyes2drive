@@ -40,9 +40,6 @@
 		E1892B401B5311B000D7C9DB /* Sound-Dark-Red.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1892B3E1B5311B000D7C9DB /* Sound-Dark-Red.mp3 */; };
 		E1892B411B5311B000D7C9DB /* Sound-Orange.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1892B3F1B5311B000D7C9DB /* Sound-Orange.mp3 */; };
 		E1892B431B5320CA00D7C9DB /* tap.aif in Resources */ = {isa = PBXBuildFile; fileRef = E1892B421B5320B100D7C9DB /* tap.aif */; };
-		E1A96E9D1B4F242E000EFE18 /* libfsdk-static_64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A96E981B4F242E000EFE18 /* libfsdk-static_64.a */; };
-		E1A96E9E1B4F242E000EFE18 /* libfsdk-static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A96E991B4F242E000EFE18 /* libfsdk-static.a */; };
-		E1A96E9F1B4F242E000EFE18 /* LuxandViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E1A96E9C1B4F242E000EFE18 /* LuxandViewController.mm */; };
 		E1A96EB01B4F2CA3000EFE18 /* FaceDetectionOpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = E1A96EAF1B4F2CA3000EFE18 /* FaceDetectionOpenCV.mm */; };
 		E1CAB3971B4F336E006F42EA /* haarcascade_eye_tree_eyeglasses.1.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1CAB3951B4F336E006F42EA /* haarcascade_eye_tree_eyeglasses.1.xml */; };
 		E1CAB3981B4F336E006F42EA /* haarcascade_frontalface_alt.1.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1CAB3961B4F336E006F42EA /* haarcascade_frontalface_alt.1.xml */; };
@@ -129,7 +126,7 @@
 		E13D217A1B4CA320006D7EEB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E13D217B1B4CA320006D7EEB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E13D217C1B4CA320006D7EEB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		E13D21941B4CBF96006D7EEB /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = file; name = opencv2.framework; path = ../opencv2.framework; sourceTree = "<group>"; };
+		E13D21941B4CBF96006D7EEB /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../opencv2.framework; sourceTree = "<group>"; };
 		E13D219C1B4CDDEA006D7EEB /* eyes2drive WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "eyes2drive WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E13D219F1B4CDDEA006D7EEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E13D21A01B4CDDEA006D7EEB /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
@@ -150,11 +147,6 @@
 		E1892B3E1B5311B000D7C9DB /* Sound-Dark-Red.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sound-Dark-Red.mp3"; sourceTree = "<group>"; };
 		E1892B3F1B5311B000D7C9DB /* Sound-Orange.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sound-Orange.mp3"; sourceTree = "<group>"; };
 		E1892B421B5320B100D7C9DB /* tap.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = tap.aif; sourceTree = "<group>"; };
-		E1A96E981B4F242E000EFE18 /* libfsdk-static_64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libfsdk-static_64.a"; path = "eyes2drive/libfsdk-static_64.a"; sourceTree = "<group>"; };
-		E1A96E991B4F242E000EFE18 /* libfsdk-static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libfsdk-static.a"; path = "eyes2drive/libfsdk-static.a"; sourceTree = "<group>"; };
-		E1A96E9A1B4F242E000EFE18 /* LuxandFaceSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuxandFaceSDK.h; path = eyes2drive/LuxandFaceSDK.h; sourceTree = "<group>"; };
-		E1A96E9B1B4F242E000EFE18 /* LuxandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuxandViewController.h; sourceTree = "<group>"; };
-		E1A96E9C1B4F242E000EFE18 /* LuxandViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LuxandViewController.mm; sourceTree = "<group>"; };
 		E1A96EAE1B4F2CA3000EFE18 /* FaceDetectionOpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetectionOpenCV.h; sourceTree = "<group>"; };
 		E1A96EAF1B4F2CA3000EFE18 /* FaceDetectionOpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FaceDetectionOpenCV.mm; sourceTree = "<group>"; };
 		E1CAB3951B4F336E006F42EA /* haarcascade_eye_tree_eyeglasses.1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_eye_tree_eyeglasses.1.xml; sourceTree = "<group>"; };
@@ -189,11 +181,9 @@
 				E13D217F1B4CA320006D7EEB /* AVFoundation.framework in Frameworks */,
 				E13D21801B4CA320006D7EEB /* CoreGraphics.framework in Frameworks */,
 				E13D21811B4CA320006D7EEB /* CoreImage.framework in Frameworks */,
-				E1A96E9D1B4F242E000EFE18 /* libfsdk-static_64.a in Frameworks */,
 				E13D21821B4CA320006D7EEB /* CoreMedia.framework in Frameworks */,
 				E13D21831B4CA320006D7EEB /* CoreVideo.framework in Frameworks */,
 				E13D21841B4CA320006D7EEB /* Foundation.framework in Frameworks */,
-				E1A96E9E1B4F242E000EFE18 /* libfsdk-static.a in Frameworks */,
 				E13D21851B4CA320006D7EEB /* QuartzCore.framework in Frameworks */,
 				E13D21861B4CA320006D7EEB /* UIKit.framework in Frameworks */,
 				E13D21951B4CBF96006D7EEB /* opencv2.framework in Frameworks */,
@@ -245,7 +235,6 @@
 			isa = PBXGroup;
 			children = (
 				E1A96EAD1B4F2B84000EFE18 /* OpenCVRecognize */,
-				E1A96EAC1B4F2A33000EFE18 /* LuxandRecognize */,
 				E13D21461B4C06D1006D7EEB /* AppDelegate.h */,
 				E13D21471B4C06D1006D7EEB /* AppDelegate.mm */,
 				E13D214C1B4C06D1006D7EEB /* Main.storyboard */,
@@ -298,9 +287,6 @@
 				E13D217B1B4CA320006D7EEB /* QuartzCore.framework */,
 				E13D217C1B4CA320006D7EEB /* UIKit.framework */,
 				E13D21681B4C07ED006D7EEB /* libstdc++.dylib */,
-				E1A96E9A1B4F242E000EFE18 /* LuxandFaceSDK.h */,
-				E1A96E981B4F242E000EFE18 /* libfsdk-static_64.a */,
-				E1A96E991B4F242E000EFE18 /* libfsdk-static.a */,
 				E13D21941B4CBF96006D7EEB /* opencv2.framework */,
 			);
 			name = Frameworks;
@@ -344,15 +330,6 @@
 				E13D21B11B4CDDEB006D7EEB /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E1A96EAC1B4F2A33000EFE18 /* LuxandRecognize */ = {
-			isa = PBXGroup;
-			children = (
-				E1A96E9B1B4F242E000EFE18 /* LuxandViewController.h */,
-				E1A96E9C1B4F242E000EFE18 /* LuxandViewController.mm */,
-			);
-			name = LuxandRecognize;
 			sourceTree = "<group>";
 		};
 		E1A96EAD1B4F2B84000EFE18 /* OpenCVRecognize */ = {
@@ -598,7 +575,6 @@
 			files = (
 				E13D214B1B4C06D1006D7EEB /* ViewController.mm in Sources */,
 				E13D21481B4C06D1006D7EEB /* AppDelegate.mm in Sources */,
-				E1A96E9F1B4F242E000EFE18 /* LuxandViewController.mm in Sources */,
 				E13D21451B4C06D1006D7EEB /* main.mm in Sources */,
 				E1A96EB01B4F2CA3000EFE18 /* FaceDetectionOpenCV.mm in Sources */,
 				E1892B301B505D4D00D7C9DB /* FeatureDetectionTime.mm in Sources */,
