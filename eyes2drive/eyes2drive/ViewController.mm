@@ -26,6 +26,11 @@
     @property (weak, nonatomic) IBOutlet UIButton *button;
 
     @property (weak, nonatomic) IBOutlet UIImageView *faceAlertView;
+@property (weak, nonatomic) IBOutlet UILabel *nofEvents;
+@property (weak, nonatomic) IBOutlet UILabel *nofGreenEvents;
+@property (weak, nonatomic) IBOutlet UILabel *nofOrangeEvents;
+@property (weak, nonatomic) IBOutlet UILabel *nofRedEvents;
+@property (weak, nonatomic) IBOutlet UILabel *nofDarkRedEvents;
 
     @property (weak, nonatomic) IBOutlet UISegmentedControl *faceAlertControl;
 
@@ -126,11 +131,35 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
 - (void) updateOutput:(NSNumber *)notUsed {
     FeatureAlertColor lastColor = [self.faceDetection getLastColor: FeatureFaceDetected];
     [self setFaceAlertImage: lastColor];
+    NSMutableArray * states = [self.faceDetection getAllStates: FeatureFaceDetected];
+    [self.nofEvents setText:
+        [NSMutableString stringWithFormat:@"%i events", [states count]]];
+    
+    NSMutableArray * colorStates = [self.faceDetection getNofStates: FeatureFaceDetected];
+    NSNumber * nof = colorStates[ (int)FeatureAlertGreen ];
+    [self.nofGreenEvents setText:
+        [NSMutableString stringWithFormat:@"%i Green", nof.intValue ]];
+
+    nof = colorStates[ (int)FeatureAlertOrange ];
+    [self.nofOrangeEvents setText:
+     [NSMutableString stringWithFormat:@"%i Orange", nof.intValue ]];
+
+    nof = colorStates[ (int)FeatureAlertRed ];
+    [self.nofRedEvents setText:
+     [NSMutableString stringWithFormat:@"%i Red", nof.intValue ]];
+
+    nof = colorStates[ (int)FeatureAlertDarkRed ];
+    [self.nofDarkRedEvents setText:
+     [NSMutableString stringWithFormat:@"%i Dark Red", nof.intValue ]];
+
 }
 
 
 
 - (IBAction)actionStart:(id)sender {
+    self.faceDetection = [ [FaceDetectionOpenCV alloc ] initWith: AVCaptureVideoOrientationPortrait controller: self];
+    self.videoCamera.delegate = self.faceDetection;
+
     [self.faceDetection startTrip ];
     [self.videoCamera start];
     [self setFaceAlertImage: FeatureAlertGreen];

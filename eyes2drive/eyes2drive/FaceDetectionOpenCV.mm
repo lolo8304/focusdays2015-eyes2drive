@@ -126,12 +126,31 @@ cv::CascadeClassifier eyes_cascade;
 
 
 - (State *) getLastState: (FeatureDetection) feature {
-    NSMutableArray * states =  self.events[ [NSNumber numberWithInt: FeatureFaceDetected] ];
+    NSMutableArray * states =  [self getAllStates: feature];
     if ([states count] > 0 ) {
         return [states lastObject];
     }
     return nil;
 }
+- (NSMutableArray *) getAllStates: (FeatureDetection) feature {
+    NSMutableArray * states =  [self.events[ [NSNumber numberWithInt: feature] ] copy];
+    return states;
+}
+- (NSMutableArray *) getNofStates: (FeatureDetection)  feature {
+    NSMutableArray * states =  [self getAllStates: feature];
+    NSMutableArray * colorStates = [[NSMutableArray alloc] init];
+    [colorStates addObject: [NSNumber numberWithInt: 0]];
+    [colorStates addObject: [NSNumber numberWithInt: 0]];
+    [colorStates addObject: [NSNumber numberWithInt: 0]];
+    [colorStates addObject: [NSNumber numberWithInt: 0]];
+    for (State * state in states) {
+        NSNumber * nof = colorStates[state.color];
+        colorStates[state.color] = [NSNumber numberWithInt: (nof.intValue + 1)];
+    }
+    return colorStates;
+}
+
+
 - (FeatureAlertColor)getLastColor: (FeatureDetection)  feature {
     State * currentState = [self getLastState: feature];
     if (currentState) { return [currentState color]; }
