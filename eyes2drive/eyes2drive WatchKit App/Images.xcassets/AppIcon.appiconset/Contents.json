@@ -4,7 +4,7 @@
       "size" : "24x24",
       "idiom" : "watch",
       "scale" : "2x",
-      "filename" : "logo-24px.png",
+      "filename" : "logo-24px@2.png",
       "role" : "notificationCenter",
       "subtype" : "38mm"
     },
@@ -12,7 +12,7 @@
       "size" : "27.5x27.5",
       "idiom" : "watch",
       "scale" : "2x",
-      "filename" : "logo-28px.png",
+      "filename" : "logo-27.5px@2.png",
       "role" : "notificationCenter",
       "subtype" : "42mm"
     },
@@ -42,6 +42,7 @@
       "size" : "44x44",
       "idiom" : "watch",
       "scale" : "2x",
+      "filename" : "logo-44px@2.png",
       "role" : "longLook",
       "subtype" : "42mm"
     },
@@ -49,6 +50,7 @@
       "size" : "86x86",
       "idiom" : "watch",
       "scale" : "2x",
+      "filename" : "logo-86px@2.png",
       "role" : "quickLook",
       "subtype" : "38mm"
     },
@@ -56,6 +58,7 @@
       "size" : "98x98",
       "idiom" : "watch",
       "scale" : "2x",
+      "filename" : "logo-98px@2.png",
       "role" : "quickLook",
       "subtype" : "42mm"
     }

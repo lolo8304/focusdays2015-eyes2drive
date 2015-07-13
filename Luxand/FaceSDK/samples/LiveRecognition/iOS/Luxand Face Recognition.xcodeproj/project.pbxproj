@@ -1,0 +1,415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* RecognitionAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* RecognitionAppDelegate.mm */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		28D7ACF80DDB3853001CB0EB /* RecognitionViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* RecognitionViewController.mm */; };
+		3A1898941A69740E00CDD030 /* libfsdk-static_64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A1898931A69740E00CDD030 /* libfsdk-static_64.a */; };
+		3A1898961A69741B00CDD030 /* xcode6_missing_symbols.c in Sources */ = {isa = PBXBuildFile; fileRef = 3A1898951A69741B00CDD030 /* xcode6_missing_symbols.c */; };
+		3A1898981A69743E00CDD030 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A1898971A69743E00CDD030 /* Security.framework */; };
+		988F3C351721CEEF00325EF5 /* libfsdk-static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 988F3C341721CEEF00325EF5 /* libfsdk-static.a */; };
+		988F3C381721CFEB00325EF5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 988F3C371721CFEA00325EF5 /* libz.dylib */; };
+		9895596D177462D10030065C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9895596C177462D10030065C /* Default.png */; };
+		98955970177462D30030065C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9895596F177462D30030065C /* Default@2x.png */; };
+		98955972177462FC0030065C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 98955971177462FC0030065C /* Icon.png */; };
+		98955974177463000030065C /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98955973177463000030065C /* Icon@2x.png */; };
+		98955976177463070030065C /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 98955975177463070030065C /* Icon-72.png */; };
+		98BD051E177A1DC100605B99 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98BD051D177A1DC100605B99 /* Default-568h@2x.png */; };
+		98FB2E821774653A004950BF /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98FB2E811774653A004950BF /* Icon-72@2x.png */; };
+		98FB2E8717746650004950BF /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 98FB2E8617746650004950BF /* Default-Landscape~ipad.png */; };
+		98FB2E8B177466E6004950BF /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 98FB2E8A177466E6004950BF /* Default-Portrait~ipad.png */; };
+		BC3F798A125EC40400987A60 /* RecognitionGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3F7989125EC40400987A60 /* RecognitionGLView.m */; };
+		BC3F7BB51260FBAB00987A60 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3F7BB41260FBAB00987A60 /* OpenGLES.framework */; };
+		BC3F7BB71260FBB700987A60 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3F7BB61260FBB700987A60 /* QuartzCore.framework */; };
+		BC3F7BCE1261013400987A60 /* RecognitionCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = BC3F7BCD1261013400987A60 /* RecognitionCamera.m */; };
+		BC3F7CEC126115C200987A60 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3F7CEB126115C200987A60 /* AVFoundation.framework */; };
+		BC3F7DA612612EF500987A60 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3F7DA512612EF500987A60 /* CoreVideo.framework */; };
+		BC3F7DA812612EFD00987A60 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC3F7DA712612EFD00987A60 /* CoreMedia.framework */; };
+		BC3F7FC41262976700987A60 /* DirectDisplayShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = BC3F7FC21262976700987A60 /* DirectDisplayShader.fsh */; };
+		BC3F7FC51262976700987A60 /* DirectDisplayShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = BC3F7FC31262976700987A60 /* DirectDisplayShader.vsh */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* RecognitionAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecognitionAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* RecognitionAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RecognitionAppDelegate.mm; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* Luxand Face Recognition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Luxand Face Recognition.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		28D7ACF60DDB3853001CB0EB /* RecognitionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecognitionViewController.h; sourceTree = "<group>"; };
+		28D7ACF70DDB3853001CB0EB /* RecognitionViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RecognitionViewController.mm; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* Luxand Face Recognition_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Luxand Face Recognition_Prefix.pch"; sourceTree = "<group>"; };
+		3A1898931A69740E00CDD030 /* libfsdk-static_64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libfsdk-static_64.a"; path = "FaceSDK/libfsdk-static_64.a"; sourceTree = "<group>"; };
+		3A1898951A69741B00CDD030 /* xcode6_missing_symbols.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xcode6_missing_symbols.c; sourceTree = "<group>"; };
+		3A1898971A69743E00CDD030 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		8D1107310486CEB800E47090 /* Luxand Face Recognition-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Luxand Face Recognition-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		988F3C341721CEEF00325EF5 /* libfsdk-static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libfsdk-static.a"; path = "FaceSDK/libfsdk-static.a"; sourceTree = "<group>"; };
+		988F3C361721CEF800325EF5 /* LuxandFaceSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LuxandFaceSDK.h; path = FaceSDK/LuxandFaceSDK.h; sourceTree = "<group>"; };
+		988F3C371721CFEA00325EF5 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		9895596C177462D10030065C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		9895596F177462D30030065C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		98955971177462FC0030065C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		98955973177463000030065C /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		98955975177463070030065C /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		98BD051D177A1DC100605B99 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		98FB2E811774653A004950BF /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		98FB2E8617746650004950BF /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		98FB2E8A177466E6004950BF /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		BC3F7988125EC40400987A60 /* RecognitionGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecognitionGLView.h; sourceTree = "<group>"; };
+		BC3F7989125EC40400987A60 /* RecognitionGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecognitionGLView.m; sourceTree = "<group>"; };
+		BC3F7BB41260FBAB00987A60 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		BC3F7BB61260FBB700987A60 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BC3F7BCC1261013400987A60 /* RecognitionCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecognitionCamera.h; sourceTree = "<group>"; };
+		BC3F7BCD1261013400987A60 /* RecognitionCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecognitionCamera.m; sourceTree = "<group>"; };
+		BC3F7CEB126115C200987A60 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		BC3F7DA512612EF500987A60 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		BC3F7DA712612EFD00987A60 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		BC3F7FC21262976700987A60 /* DirectDisplayShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = DirectDisplayShader.fsh; path = Shaders/DirectDisplayShader.fsh; sourceTree = "<group>"; };
+		BC3F7FC31262976700987A60 /* DirectDisplayShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = DirectDisplayShader.vsh; path = Shaders/DirectDisplayShader.vsh; sourceTree = "<group>"; };
+		E19EF8191B4F1988003EDE3B /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A1898981A69743E00CDD030 /* Security.framework in Frameworks */,
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				BC3F7BB51260FBAB00987A60 /* OpenGLES.framework in Frameworks */,
+				BC3F7BB71260FBB700987A60 /* QuartzCore.framework in Frameworks */,
+				BC3F7CEC126115C200987A60 /* AVFoundation.framework in Frameworks */,
+				BC3F7DA612612EF500987A60 /* CoreVideo.framework in Frameworks */,
+				BC3F7DA812612EFD00987A60 /* CoreMedia.framework in Frameworks */,
+				988F3C381721CFEB00325EF5 /* libz.dylib in Frameworks */,
+				3A1898941A69740E00CDD030 /* libfsdk-static_64.a in Frameworks */,
+				988F3C351721CEEF00325EF5 /* libfsdk-static.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* RecognitionAppDelegate.h */,
+				1D3623250D0F684500981E51 /* RecognitionAppDelegate.mm */,
+				28D7ACF60DDB3853001CB0EB /* RecognitionViewController.h */,
+				28D7ACF70DDB3853001CB0EB /* RecognitionViewController.mm */,
+				BC3F7988125EC40400987A60 /* RecognitionGLView.h */,
+				BC3F7989125EC40400987A60 /* RecognitionGLView.m */,
+				BC3F7BCC1261013400987A60 /* RecognitionCamera.h */,
+				BC3F7BCD1261013400987A60 /* RecognitionCamera.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* Luxand Face Recognition.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				98BD051D177A1DC100605B99 /* Default-568h@2x.png */,
+				98FB2E8A177466E6004950BF /* Default-Portrait~ipad.png */,
+				98FB2E8617746650004950BF /* Default-Landscape~ipad.png */,
+				98FB2E811774653A004950BF /* Icon-72@2x.png */,
+				98955975177463070030065C /* Icon-72.png */,
+				98955973177463000030065C /* Icon@2x.png */,
+				98955971177462FC0030065C /* Icon.png */,
+				9895596F177462D30030065C /* Default@2x.png */,
+				9895596C177462D10030065C /* Default.png */,
+				988F3C321721CEB000325EF5 /* FaceSDK */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				BC3F7FBE126296EF00987A60 /* Shaders */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3A1898951A69741B00CDD030 /* xcode6_missing_symbols.c */,
+				32CA4F630368D1EE00C91783 /* Luxand Face Recognition_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107310486CEB800E47090 /* Luxand Face Recognition-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E19EF8191B4F1988003EDE3B /* libstdc++.dylib */,
+				3A1898971A69743E00CDD030 /* Security.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+				BC3F7BB41260FBAB00987A60 /* OpenGLES.framework */,
+				BC3F7BB61260FBB700987A60 /* QuartzCore.framework */,
+				BC3F7CEB126115C200987A60 /* AVFoundation.framework */,
+				BC3F7DA512612EF500987A60 /* CoreVideo.framework */,
+				BC3F7DA712612EFD00987A60 /* CoreMedia.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		988F3C321721CEB000325EF5 /* FaceSDK */ = {
+			isa = PBXGroup;
+			children = (
+				3A1898931A69740E00CDD030 /* libfsdk-static_64.a */,
+				988F3C371721CFEA00325EF5 /* libz.dylib */,
+				988F3C361721CEF800325EF5 /* LuxandFaceSDK.h */,
+				988F3C341721CEEF00325EF5 /* libfsdk-static.a */,
+			);
+			name = FaceSDK;
+			sourceTree = "<group>";
+		};
+		BC3F7FBE126296EF00987A60 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				BC3F7FC21262976700987A60 /* DirectDisplayShader.fsh */,
+				BC3F7FC31262976700987A60 /* DirectDisplayShader.vsh */,
+			);
+			name = Shaders;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* Luxand Face Recognition */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Luxand Face Recognition" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Luxand Face Recognition";
+			productName = Recognition;
+			productReference = 1D6058910D05DD3D006BFB54 /* Luxand Face Recognition.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = W3U24WE3R3;
+					};
+				};
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Luxand Face Recognition" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* Luxand Face Recognition */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC3F7FC41262976700987A60 /* DirectDisplayShader.fsh in Resources */,
+				BC3F7FC51262976700987A60 /* DirectDisplayShader.vsh in Resources */,
+				9895596D177462D10030065C /* Default.png in Resources */,
+				98955970177462D30030065C /* Default@2x.png in Resources */,
+				98955972177462FC0030065C /* Icon.png in Resources */,
+				98955974177463000030065C /* Icon@2x.png in Resources */,
+				98955976177463070030065C /* Icon-72.png in Resources */,
+				98FB2E821774653A004950BF /* Icon-72@2x.png in Resources */,
+				98FB2E8717746650004950BF /* Default-Landscape~ipad.png in Resources */,
+				98FB2E8B177466E6004950BF /* Default-Portrait~ipad.png in Resources */,
+				98BD051E177A1DC100605B99 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				3A1898961A69741B00CDD030 /* xcode6_missing_symbols.c in Sources */,
+				1D3623260D0F684500981E51 /* RecognitionAppDelegate.mm in Sources */,
+				28D7ACF80DDB3853001CB0EB /* RecognitionViewController.mm in Sources */,
+				BC3F798A125EC40400987A60 /* RecognitionGLView.m in Sources */,
+				BC3F7BCE1261013400987A60 /* RecognitionCamera.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COMPRESS_PNG_FILES = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Luxand Face Recognition_Prefix.pch";
+				INFOPLIST_FILE = "Luxand Face Recognition-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/FaceSDK\"",
+					"$(PROJECT_DIR)/FaceSDK",
+				);
+				PRODUCT_NAME = "Luxand Face Recognition";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = armv7;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COMPRESS_PNG_FILES = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Luxand Face Recognition_Prefix.pch";
+				INFOPLIST_FILE = "Luxand Face Recognition-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/FaceSDK\"",
+					"$(PROJECT_DIR)/FaceSDK",
+				);
+				PRODUCT_NAME = "Luxand Face Recognition";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = armv7;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COMPRESS_PNG_FILES = NO;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PREBINDING = NO;
+				SDKROOT = iphoneos6.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = armv7;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COMPRESS_PNG_FILES = NO;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos6.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = armv7;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Luxand Face Recognition" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Luxand Face Recognition" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

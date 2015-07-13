@@ -15,60 +15,222 @@
 
 
 #import "ViewController.h"
+#import "FaceDetectionOpenCV.h"
+#import "FeatureDetectionTime.h"
+#import "AudioToolbox/AudioServices.h"
+
 #import <opencv2/videoio/cap_ios.h>
-#import <opencv2/imgproc/imgproc.hpp>
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UIButton *button;
+    @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+    @property (weak, nonatomic) IBOutlet UIButton *button;
 
-@property (nonatomic, retain) CvVideoCamera* videoCamera;
+    @property (weak, nonatomic) IBOutlet UIImageView *faceAlertView;
+@property (weak, nonatomic) IBOutlet UILabel *nofEvents;
+@property (weak, nonatomic) IBOutlet UILabel *nofGreenEvents;
+@property (weak, nonatomic) IBOutlet UILabel *nofOrangeEvents;
+@property (weak, nonatomic) IBOutlet UILabel *nofRedEvents;
+@property (weak, nonatomic) IBOutlet UILabel *nofDarkRedEvents;
+
+    @property (weak, nonatomic) IBOutlet UISegmentedControl *faceAlertControl;
+
+    @property (nonatomic, strong) CvVideoCamera* videoCamera;
+    @property (nonatomic, strong) FaceDetectionOpenCV* faceDetection;
+
+    @property (nonatomic, strong) NSThread *thread;
 
 - (IBAction)actionStart:(id)sender;
 - (IBAction)actionStop:(id)sender;
-
+- (IBAction)actionSetControl: (id)sender;
 @end
 
 
 @implementation ViewController
 
+NSString * coloredImageName = @"none";
+NSArray * soundFiles;
+
+CFURLRef soundFileURLRef;
+SystemSoundID	soundFileObject;
+
+NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
+
+
+- (NSThread *) thread
+{
+    if (!_thread) {
+        _thread = [[NSThread alloc]
+                   initWithTarget:self
+                   selector:@selector(longloop)
+                   object:nil];
+    }
+    return _thread;
+}
+
+- (void)longloop
+{
+    while (true) {
+        //change the text in the label on the main thread:
+        [self performSelector:@selector(updateOutput:)
+                     onThread:[NSThread mainThread]
+                   withObject: 0
+                waitUntilDone:NO];
+        sleep(1);
+        if ([self.thread isCancelled]) {
+            //stop the thread:
+            self.thread = nil;
+            break;
+        }
+    }
+}
+
+
+
+- (void) setFaceAlertImage: (FeatureAlertColor) color {
+    NSMutableString *imageName = [NSMutableString stringWithFormat:@"Alert-%@.png", FeatureAlertColor_toString[color]];
+    if (![coloredImageName isEqualToString: imageName]) {
+        coloredImageName = imageName;
+        self.faceAlertView.image = [UIImage imageNamed: coloredImageName];
+        [self.faceAlertControl setSelectedSegmentIndex: (int)color];
+        [self playSound: color];
+    }
+}
+
+- (void) playSound: (FeatureAlertColor) color {
+    if (!soundFileURLRef) {
+        NSURL* sound = [self getURLSound: FeatureAlertGreen];
+        soundFileURLRef = (CFURLRef)CFBridgingRetain(sound);
+        AudioServicesCreateSystemSoundID (soundFileURLRef, &soundFileObject);
+    }
+// * vibrate + sound
+//    AudioServicesPlayAlertSound (soundFileObject);
+
+// * sound only
+    AudioServicesPlaySystemSound (soundFileObject);
+
+// * vibrate only
+//        AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
+}
+
+
+- (NSURL *)getURLSound: (FeatureAlertColor) color {
+    return [[NSBundle mainBundle] URLForResource: @"tap"
+                                                withExtension: @"aif"];
+    
+}
+
+
+- (IBAction)actionSetControl: (id)sender {
+    FeatureAlertColor color = (FeatureAlertColor)[self.faceAlertControl selectedSegmentIndex];
+    State * newState = [[State alloc] initWith: FeatureFaceDetected];
+    [newState push: color at: 0 since: 0];
+    [self.faceDetection feature: FeatureFaceDetected changedState: newState];
+}
+
+
+- (void) updateOutput:(NSNumber *)notUsed {
+    FeatureAlertColor lastColor = [self.faceDetection getLastColor: FeatureFaceDetected];
+    [self setFaceAlertImage: lastColor];
+    NSMutableArray * states = [self.faceDetection getAllStates: FeatureFaceDetected];
+    [self.nofEvents setText:
+        [NSMutableString stringWithFormat:@"%i events", [states count]]];
+    
+    NSMutableArray * colorStates = [self.faceDetection getNofStates: FeatureFaceDetected];
+    NSNumber * nof = colorStates[ (int)FeatureAlertGreen ];
+    [self.nofGreenEvents setText:
+        [NSMutableString stringWithFormat:@"%i Green", nof.intValue ]];
+
+    nof = colorStates[ (int)FeatureAlertOrange ];
+    [self.nofOrangeEvents setText:
+     [NSMutableString stringWithFormat:@"%i Orange", nof.intValue ]];
+
+    nof = colorStates[ (int)FeatureAlertRed ];
+    [self.nofRedEvents setText:
+     [NSMutableString stringWithFormat:@"%i Red", nof.intValue ]];
+
+    nof = colorStates[ (int)FeatureAlertDarkRed ];
+    [self.nofDarkRedEvents setText:
+     [NSMutableString stringWithFormat:@"%i Dark Red", nof.intValue ]];
+
+}
+
+
+
 - (IBAction)actionStart:(id)sender {
+    self.faceDetection = [ [FaceDetectionOpenCV alloc ] initWith: AVCaptureVideoOrientationPortrait controller: self];
+    self.videoCamera.delegate = self.faceDetection;
+
+    [self.faceDetection startTrip ];
     [self.videoCamera start];
+    [self setFaceAlertImage: FeatureAlertGreen];
+    if ([self.thread isExecuting]) {
+        NSLog(@"Thread is already running");
+    } else {
+        NSLog(@"Starting thread");
+        [self.thread start];
+    }
+
 }
 - (IBAction)actionStop:(id)sender {
+    [self.faceDetection stopTrip ];
     [self.videoCamera stop];
+    NSLog(@"Stopping thread");
+    [self.thread cancel];
+    [self setFaceAlertImage: FeatureAlertGreen];
+
 }
 
-#pragma mark - Protocol CvVideoCameraDelegate
-
-#ifdef __cplusplus
-// delegate method for processing image frames
-- (void)processImage:(cv::Mat&)image; {
-    // Do some OpenCV stuff with the image
-    cv::Mat image_copy;
-    cvtColor(image, image_copy, CV_BGRA2BGR);
-    
-    // invert image
-    bitwise_not(image_copy, image_copy);
-    cvtColor(image_copy, image, CV_BGR2BGRA);
+- (BOOL)isPortraitOrientation {
+    return self.currentOrientation == UIInterfaceOrientationPortrait;
 }
-#endif
+- (int)currentOrientation {
+    return [UIDevice currentDevice].orientation ;
+}
+- (AVCaptureVideoOrientation)currentVideoOrientation {
+    return (AVCaptureVideoOrientation)self.currentOrientation;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.videoCamera = [[CvVideoCamera alloc] initWithParentView:self.imageView];
-    self.videoCamera.delegate = self;
+    
+    self.faceDetection = [ [FaceDetectionOpenCV alloc ] initWith: AVCaptureVideoOrientationPortrait controller: self];
+    self.videoCamera.delegate = self.faceDetection;
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
     self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
+
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
+    printf("current video orientation = %i\n", self.currentVideoOrientation);
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)viewWillTransitionToSize:(CGSize)size
+       withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
+    if (self.videoCamera) {
+        self.videoCamera.defaultAVCaptureVideoOrientation = self.currentVideoOrientation;
+        self.faceDetection.orientation = self.currentVideoOrientation;
+        printf("current video orientation = %i\n", self.currentVideoOrientation);
+    }
+
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self actionStart: nil];
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [self actionStop: nil];
+}
+
 
 @end

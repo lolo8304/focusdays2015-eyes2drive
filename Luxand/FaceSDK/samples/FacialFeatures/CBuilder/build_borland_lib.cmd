@@ -1,0 +1,1 @@
+implib -a -c facesdk facesdk.dll
