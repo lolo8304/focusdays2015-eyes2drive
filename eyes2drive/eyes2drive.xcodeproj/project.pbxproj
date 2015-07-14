@@ -41,6 +41,9 @@
 		E1892B411B5311B000D7C9DB /* Sound-Orange.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E1892B3F1B5311B000D7C9DB /* Sound-Orange.mp3 */; };
 		E1892B431B5320CA00D7C9DB /* tap.aif in Resources */ = {isa = PBXBuildFile; fileRef = E1892B421B5320B100D7C9DB /* tap.aif */; };
 		E1A96EB01B4F2CA3000EFE18 /* FaceDetectionOpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = E1A96EAF1B4F2CA3000EFE18 /* FaceDetectionOpenCV.mm */; };
+		E1BB39A31B5459E900511D22 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1BB39A21B5459E900511D22 /* MainStoryboard_iPhone.storyboard */; };
+		E1BB39A61B5459FA00511D22 /* SquareCamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BB39A51B5459FA00511D22 /* SquareCamViewController.m */; };
+		E1BB39A91B545FBC00511D22 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1BB39A81B545FBC00511D22 /* ImageIO.framework */; };
 		E1CAB3971B4F336E006F42EA /* haarcascade_eye_tree_eyeglasses.1.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1CAB3951B4F336E006F42EA /* haarcascade_eye_tree_eyeglasses.1.xml */; };
 		E1CAB3981B4F336E006F42EA /* haarcascade_frontalface_alt.1.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1CAB3961B4F336E006F42EA /* haarcascade_frontalface_alt.1.xml */; };
 		E1CAB3D01B4F463E006F42EA /* haarcascade_eye_tree_eyeglasses.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1CAB3BF1B4F463E006F42EA /* haarcascade_eye_tree_eyeglasses.xml */; };
@@ -149,6 +152,10 @@
 		E1892B421B5320B100D7C9DB /* tap.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = tap.aif; sourceTree = "<group>"; };
 		E1A96EAE1B4F2CA3000EFE18 /* FaceDetectionOpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetectionOpenCV.h; sourceTree = "<group>"; };
 		E1A96EAF1B4F2CA3000EFE18 /* FaceDetectionOpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FaceDetectionOpenCV.mm; sourceTree = "<group>"; };
+		E1BB39A21B5459E900511D22 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		E1BB39A41B5459FA00511D22 /* SquareCamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareCamViewController.h; sourceTree = "<group>"; };
+		E1BB39A51B5459FA00511D22 /* SquareCamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareCamViewController.m; sourceTree = "<group>"; };
+		E1BB39A81B545FBC00511D22 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		E1CAB3951B4F336E006F42EA /* haarcascade_eye_tree_eyeglasses.1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_eye_tree_eyeglasses.1.xml; sourceTree = "<group>"; };
 		E1CAB3961B4F336E006F42EA /* haarcascade_frontalface_alt.1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt.1.xml; sourceTree = "<group>"; };
 		E1CAB3BF1B4F463E006F42EA /* haarcascade_eye_tree_eyeglasses.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_eye_tree_eyeglasses.xml; sourceTree = "<group>"; };
@@ -175,17 +182,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1892B371B5305EC00D7C9DB /* AudioToolbox.framework in Frameworks */,
-				E13D217D1B4CA320006D7EEB /* Accelerate.framework in Frameworks */,
-				E13D217E1B4CA320006D7EEB /* AssetsLibrary.framework in Frameworks */,
-				E13D217F1B4CA320006D7EEB /* AVFoundation.framework in Frameworks */,
+				E1BB39A91B545FBC00511D22 /* ImageIO.framework in Frameworks */,
+				E13D21851B4CA320006D7EEB /* QuartzCore.framework in Frameworks */,
+				E13D21821B4CA320006D7EEB /* CoreMedia.framework in Frameworks */,
 				E13D21801B4CA320006D7EEB /* CoreGraphics.framework in Frameworks */,
 				E13D21811B4CA320006D7EEB /* CoreImage.framework in Frameworks */,
-				E13D21821B4CA320006D7EEB /* CoreMedia.framework in Frameworks */,
 				E13D21831B4CA320006D7EEB /* CoreVideo.framework in Frameworks */,
-				E13D21841B4CA320006D7EEB /* Foundation.framework in Frameworks */,
-				E13D21851B4CA320006D7EEB /* QuartzCore.framework in Frameworks */,
+				E13D217E1B4CA320006D7EEB /* AssetsLibrary.framework in Frameworks */,
+				E13D217F1B4CA320006D7EEB /* AVFoundation.framework in Frameworks */,
 				E13D21861B4CA320006D7EEB /* UIKit.framework in Frameworks */,
+				E13D21841B4CA320006D7EEB /* Foundation.framework in Frameworks */,
+				E1892B371B5305EC00D7C9DB /* AudioToolbox.framework in Frameworks */,
+				E13D217D1B4CA320006D7EEB /* Accelerate.framework in Frameworks */,
 				E13D21951B4CBF96006D7EEB /* opencv2.framework in Frameworks */,
 				E13D21691B4C07ED006D7EEB /* libstdc++.dylib in Frameworks */,
 			);
@@ -238,6 +246,7 @@
 				E13D21461B4C06D1006D7EEB /* AppDelegate.h */,
 				E13D21471B4C06D1006D7EEB /* AppDelegate.mm */,
 				E13D214C1B4C06D1006D7EEB /* Main.storyboard */,
+				E1BB39A21B5459E900511D22 /* MainStoryboard_iPhone.storyboard */,
 				E13D214F1B4C06D1006D7EEB /* Images.xcassets */,
 				E13D21511B4C06D1006D7EEB /* LaunchScreen.xib */,
 				E13D21421B4C06D1006D7EEB /* Supporting Files */,
@@ -275,6 +284,7 @@
 		E13D21971B4CC005006D7EEB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E1BB39A81B545FBC00511D22 /* ImageIO.framework */,
 				E1892B361B5305EC00D7C9DB /* AudioToolbox.framework */,
 				E13D21731B4CA320006D7EEB /* Accelerate.framework */,
 				E13D21741B4CA320006D7EEB /* AssetsLibrary.framework */,
@@ -335,6 +345,7 @@
 		E1A96EAD1B4F2B84000EFE18 /* OpenCVRecognize */ = {
 			isa = PBXGroup;
 			children = (
+				E1BB39A71B5459FF00511D22 /* AppleCam */,
 				E1CAB39C1B4F4562006F42EA /* haarcascades */,
 				E1CAB3991B4F354D006F42EA /* Resources */,
 				E13D21491B4C06D1006D7EEB /* ViewController.h */,
@@ -345,6 +356,15 @@
 				E1892B2F1B505D4D00D7C9DB /* FeatureDetectionTime.mm */,
 			);
 			name = OpenCVRecognize;
+			sourceTree = "<group>";
+		};
+		E1BB39A71B5459FF00511D22 /* AppleCam */ = {
+			isa = PBXGroup;
+			children = (
+				E1BB39A41B5459FA00511D22 /* SquareCamViewController.h */,
+				E1BB39A51B5459FA00511D22 /* SquareCamViewController.m */,
+			);
+			name = AppleCam;
 			sourceTree = "<group>";
 		};
 		E1CAB3991B4F354D006F42EA /* Resources */ = {
@@ -521,6 +541,7 @@
 				E1CAB3D71B4F463E006F42EA /* haarcascade_frontalface_default.xml in Resources */,
 				E13D214E1B4C06D1006D7EEB /* Main.storyboard in Resources */,
 				E1CAB3D51B4F463E006F42EA /* haarcascade_frontalface_alt.xml in Resources */,
+				E1BB39A31B5459E900511D22 /* MainStoryboard_iPhone.storyboard in Resources */,
 				E1CAB3DF1B4F463E006F42EA /* haarcascade_smile.xml in Resources */,
 				E1CAB3D21B4F463E006F42EA /* haarcascade_frontalcatface_extended.xml in Resources */,
 				E1892B3D1B53118300D7C9DB /* Sound-Green.mp3 in Resources */,
@@ -574,6 +595,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E13D214B1B4C06D1006D7EEB /* ViewController.mm in Sources */,
+				E1BB39A61B5459FA00511D22 /* SquareCamViewController.m in Sources */,
 				E13D21481B4C06D1006D7EEB /* AppDelegate.mm in Sources */,
 				E13D21451B4C06D1006D7EEB /* main.mm in Sources */,
 				E1A96EB01B4F2CA3000EFE18 /* FaceDetectionOpenCV.mm in Sources */,

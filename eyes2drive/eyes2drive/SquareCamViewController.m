@@ -149,7 +149,6 @@ static CGContextRef CreateCGBitmapContextForSize(CGSize size)
 	CGAffineTransform t = CGAffineTransformMakeRotation(DegreesToRadians(degrees));
 	rotatedViewBox.transform = t;
 	CGSize rotatedSize = rotatedViewBox.frame.size;
-	[rotatedViewBox release];
 	
 	// Create the bitmap context
 	UIGraphicsBeginImageContext(rotatedSize);
@@ -196,7 +195,7 @@ static CGContextRef CreateCGBitmapContextForSize(CGSize size)
     // Select a video device, make an input
 	AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 	AVCaptureDeviceInput *deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
-	require( error == nil, bail );
+    if (!error) {
 	
     isUsingFrontFacingCamera = NO;
 	if ( [session canAddInput:deviceInput] )
@@ -204,7 +203,7 @@ static CGContextRef CreateCGBitmapContextForSize(CGSize size)
 	
     // Make a still image output
 	stillImageOutput = [AVCaptureStillImageOutput new];
-	[stillImageOutput addObserver:self forKeyPath:@"capturingStillImage" options:NSKeyValueObservingOptionNew context:AVCaptureStillImageIsCapturingStillImageContext];
+	[stillImageOutput addObserver:self forKeyPath:@"capturingStillImage" options:NSKeyValueObservingOptionNew context:CFBridgingRetain(AVCaptureStillImageIsCapturingStillImageContext)];
 	if ( [session canAddOutput:stillImageOutput] )
 		[session addOutput:stillImageOutput];
 	
@@ -236,9 +235,8 @@ static CGContextRef CreateCGBitmapContextForSize(CGSize size)
 	[previewLayer setFrame:[rootLayer bounds]];
 	[rootLayer addSublayer:previewLayer];
 	[session startRunning];
+    }
 
-bail:
-	[session release];
 	if (error) {
 		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Failed with error %d", (int)[error code]]
 															message:[error localizedDescription]
@@ -246,7 +244,6 @@ bail:
 												  cancelButtonTitle:@"Dismiss" 
 												  otherButtonTitles:nil];
 		[alertView show];
-		[alertView release];
 		[self teardownAVCapture];
 	}
 }
@@ -254,19 +251,14 @@ bail:
 // clean up capture setup
 - (void)teardownAVCapture
 {
-	[videoDataOutput release];
-	if (videoDataOutputQueue)
-		dispatch_release(videoDataOutputQueue);
 	[stillImageOutput removeObserver:self forKeyPath:@"isCapturingStillImage"];
-	[stillImageOutput release];
 	[previewLayer removeFromSuperlayer];
-	[previewLayer release];
 }
 
 // perform a flash bulb animation using KVO to monitor the value of the capturingStillImage property of the AVCaptureStillImageOutput class
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	if ( context == AVCaptureStillImageIsCapturingStillImageContext ) {
+	if ( context == CFBridgingRetain(AVCaptureStillImageIsCapturingStillImageContext) ) {
 		BOOL isCapturingStillImage = [[change objectForKey:NSKeyValueChangeNewKey] boolValue];
 		
 		if ( isCapturingStillImage ) {
@@ -289,7 +281,6 @@ bail:
 							 }
 							 completion:^(BOOL finished){
 								 [flashView removeFromSuperview];
-								 [flashView release];
 								 flashView = nil;
 							 }
 			 ];
@@ -364,7 +355,7 @@ bail:
 																		 1, 
 																		 NULL);
 	BOOL success = (destination != NULL);
-	require(success, bail);
+    if (success) {
 
 	const float JPEGCompQuality = 0.85f; // JPEGHigherQuality
 	CFMutableDictionaryRef optionsDict = NULL;
@@ -384,18 +375,18 @@ bail:
 	if ( optionsDict )
 		CFRelease(optionsDict);
 	
-	require(success, bail);
+        if (success) {
 	
-	CFRetain(destinationData);
-	ALAssetsLibrary *library = [ALAssetsLibrary new];
-	[library writeImageDataToSavedPhotosAlbum:(id)destinationData metadata:metadata completionBlock:^(NSURL *assetURL, NSError *error) {
-		if (destinationData)
-			CFRelease(destinationData);
-	}];
-	[library release];
+            CFRetain(destinationData);
+            ALAssetsLibrary *library = [ALAssetsLibrary new];
+            [library writeImageDataToSavedPhotosAlbum:(id)CFBridgingRelease(destinationData)        metadata:metadata completionBlock:^(NSURL *assetURL, NSError *error) {
+            if (destinationData)
+                CFRelease(destinationData);
+            }];
+        }
+    }
 
 
-bail:
 	if (destinationData)
 		CFRelease(destinationData);
 	if (destination)
@@ -413,7 +404,6 @@ bail:
 												  cancelButtonTitle:@"Dismiss" 
 												  otherButtonTitles:nil];
 		[alertView show];
-		[alertView release];
 	});
 }
 
@@ -449,12 +439,12 @@ bail:
 					// Got an image.
 					CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(imageDataSampleBuffer);
 					CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, imageDataSampleBuffer, kCMAttachmentMode_ShouldPropagate);
-					CIImage *ciImage = [[CIImage alloc] initWithCVPixelBuffer:pixelBuffer options:(NSDictionary *)attachments];
+					CIImage *ciImage = [[CIImage alloc] initWithCVPixelBuffer:pixelBuffer options:(NSDictionary *)CFBridgingRelease(attachments)];
 					if (attachments)
 						CFRelease(attachments);
 					
 					NSDictionary *imageOptions = nil;
-					NSNumber *orientation = CMGetAttachment(imageDataSampleBuffer, kCGImagePropertyOrientation, NULL);
+					NSNumber *orientation = CFBridgingRelease(CMGetAttachment(imageDataSampleBuffer, kCGImagePropertyOrientation, NULL));
 					if (orientation) {
 						imageOptions = [NSDictionary dictionaryWithObject:orientation forKey:CIDetectorImageOrientation];
 					}
@@ -482,7 +472,7 @@ bail:
 						CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, 
 																					imageDataSampleBuffer, 
 																					kCMAttachmentMode_ShouldPropagate);
-						[self writeCGImageToCameraRoll:cgImageResult withMetadata:(id)attachments];
+						[self writeCGImageToCameraRoll:cgImageResult withMetadata:(id)CFBridgingRelease(attachments)];
 						if (attachments)
 							CFRelease(attachments);
 						if (cgImageResult)
@@ -490,7 +480,6 @@ bail:
 						
 					});
 					
-					[ciImage release];
 				}
 				else {
 					// trivial simple JPEG case
@@ -499,7 +488,7 @@ bail:
 																				imageDataSampleBuffer, 
 																				kCMAttachmentMode_ShouldPropagate);
 					ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-					[library writeImageDataToSavedPhotosAlbum:jpegData metadata:(id)attachments completionBlock:^(NSURL *assetURL, NSError *error) {
+					[library writeImageDataToSavedPhotosAlbum:jpegData metadata:(id)CFBridgingRelease(attachments) completionBlock:^(NSURL *assetURL, NSError *error) {
 						if (error) {
 							[self displayErrorOnMainQueue:error withMessage:@"Save to camera roll failed"];
 						}
@@ -507,7 +496,6 @@ bail:
 					
 					if (attachments)
 						CFRelease(attachments);
-					[library release];
 				}
 			}
 		}
@@ -642,7 +630,7 @@ bail:
 			[featureLayer setContents:(id)[square CGImage]];
 			[featureLayer setName:@"FaceLayer"];
 			[previewLayer addSublayer:featureLayer];
-			[featureLayer release];
+
 		}
 		[featureLayer setFrame:faceRect];
 		
@@ -675,7 +663,7 @@ bail:
 	// got an image
 	CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
 	CFDictionaryRef attachments = CMCopyDictionaryOfAttachments(kCFAllocatorDefault, sampleBuffer, kCMAttachmentMode_ShouldPropagate);
-	CIImage *ciImage = [[CIImage alloc] initWithCVPixelBuffer:pixelBuffer options:(NSDictionary *)attachments];
+	CIImage *ciImage = [[CIImage alloc] initWithCVPixelBuffer:pixelBuffer options:(NSDictionary *)CFBridgingRelease(attachments)];
 	if (attachments)
 		CFRelease(attachments);
 	NSDictionary *imageOptions = nil;
@@ -725,7 +713,7 @@ bail:
 
 	imageOptions = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:exifOrientation] forKey:CIDetectorImageOrientation];
 	NSArray *features = [faceDetector featuresInImage:ciImage options:imageOptions];
-	[ciImage release];
+
 	
     // get the clean aperture
     // the clean aperture is a rectangle that defines the portion of the encoded pixel dimensions
@@ -741,9 +729,6 @@ bail:
 - (void)dealloc
 {
 	[self teardownAVCapture];
-	[faceDetector release];
-	[square release];
-	[super dealloc];
 }
 
 // use front/back camera
@@ -783,10 +768,10 @@ bail:
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	[self setupAVCapture];
-	square = [[UIImage imageNamed:@"squarePNG"] retain];
+	square = [UIImage imageNamed:@"squarePNG"];
 	NSDictionary *detectorOptions = [[NSDictionary alloc] initWithObjectsAndKeys:CIDetectorAccuracyLow, CIDetectorAccuracy, nil];
-	faceDetector = [[CIDetector detectorOfType:CIDetectorTypeFace context:nil options:detectorOptions] retain];
-	[detectorOptions release];
+	faceDetector = [CIDetector detectorOfType:CIDetectorTypeFace context:nil options:detectorOptions];
+
 }
 
 - (void)viewDidUnload

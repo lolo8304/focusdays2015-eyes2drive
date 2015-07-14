@@ -38,6 +38,8 @@
     @property (nonatomic, strong) FaceDetectionOpenCV* faceDetection;
 
     @property (nonatomic, strong) NSThread *thread;
+- (IBAction)valueChangedNeighbours:(UIStepper *)sender;
+- (IBAction)valueChangedOptions:(UIStepper *)sender;
 
 - (IBAction)actionStart:(id)sender;
 - (IBAction)actionStop:(id)sender;
@@ -54,6 +56,14 @@ CFURLRef soundFileURLRef;
 SystemSoundID	soundFileObject;
 
 NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
+
+
+- (IBAction)valueChangedNeighbours:(UIStepper *)sender {
+    self.neighboursLabel.text = [NSString stringWithFormat:@"%1.0lf", sender.value];
+}
+- (IBAction)valueChangedOptions:(UIStepper *)sender {
+    self.optionsLabel.text = [NSString stringWithFormat:@"%2.0lf", sender.value];
+}
 
 
 - (NSThread *) thread

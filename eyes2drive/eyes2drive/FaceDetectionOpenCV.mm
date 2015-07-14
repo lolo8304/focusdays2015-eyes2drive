@@ -168,36 +168,44 @@ cv::CascadeClassifier eyes_cascade;
     cv::split(image, rgbChannels);
     cv::Mat frame_gray = rgbChannels[2];
 
-//    [self goodFeaturesToTrack: image gray: frame_gray ];
+    if ([self.controller.goodFeaturesSwitch isOn]) {
+        [self goodFeaturesToTrack: image gray: frame_gray ];
+    }
     
     //cvtColor( frame, frame_gray, CV_BGR2GRAY );
     //equalizeHist( frame_gray, frame_gray );
     //cv::pow(frame_gray, CV_64F, frame_gray);
     //-- Detect faces
-    cv::Size minSize = cv::Size(30, 30);
-    cv::Size maxSize = cv::Size(150, 150);
+    cv::Size minSize = cv::Size(
+            self.controller.minSizeSlider.value , self.controller.minSizeSlider.value);
+    cv::Size maxSize = cv::Size(
+            self.controller.maxSizeSlider.value , self.controller.maxSizeSlider.value);
     
-    face_cascade.detectMultiScale( frame_gray, faces, 1.1, 3, 0|CV_HAAR_SCALE_IMAGE , minSize );
+    face_cascade.detectMultiScale( frame_gray, faces, 1.1, self.controller.minNeighboursStepper.value, self.controller.optionsStepper.value , minSize, maxSize );
     
     if (faces.size() > 0) {
         for( int i = 0; i < faces.size(); i++ )
         {
             cv::Rect face = faces[i];
             rectangle(image, face, 1234);
-        
-            cv::Rect minRect(
+
+            if ([self.controller.debugSwitch isOn]) {
+                cv::Rect minRect(
                              face.x + face.width/2 - minSize.width / 2,
                              face.y + face.height/2 - minSize.height / 2,
                              minSize.width, minSize.height);
-            cv::Rect maxRect(
+                cv::Rect maxRect(
                              MAX(face.x + face.width/2 - maxSize.width / 2, 0),
                              MAX(face.y + face.height/2 - maxSize.height / 2, 0),
                              maxSize.width, maxSize.height);
 
-//          rectangle(image, minRect, 1234);
+                rectangle(image, minRect, 1234);
+            }
 
             [self faceDetected: true];
-//            [self detectEyes: image gray: frame_gray face: face ];
+            if ([self.controller.eyesSwitch isOn]) {
+                [self detectEyes: image gray: frame_gray face: face ];
+            }
         }
     } else {
         [self faceDetected: false];
@@ -261,7 +269,7 @@ cv::CascadeClassifier eyes_cascade;
     cv::Mat faceROI = frame_gray( eyeRegion );
     std::vector<cv::Rect> eyes;
     
-    cv::Size minSize = cv::Size(20, 20);
+    cv::Size minSize = cv::Size(self.controller.minSizeSlider.value / 2, self.controller.minSizeSlider.value / 2);
 
     eyes_cascade.detectMultiScale( faceROI, eyes, 1.1, 2, 0 | CV_HAAR_SCALE_IMAGE, minSize );
 
@@ -273,22 +281,29 @@ cv::CascadeClassifier eyes_cascade;
             //circle( image, center, radius, cv::Scalar( 255, 0, 0 ), 4, 8, 0 );
             int radius = 5;
             circle( image, center, radius, cv::Scalar( 255, 0, 0 ));
-            cv::Rect minRect(
+            
+            if ([self.controller.debugSwitch isOn]) {
+                cv::Rect minRect(
                          eyeRegion.x + eye.x + eye.width/2 - minSize.width / 2,
                          eyeRegion.y + eye.y + eye.height/2 - minSize.height / 2,
                          minSize.width, minSize.height);
-            rectangle(image, minRect, 1234);
-            rectangle(image, eyeRegion, 100);
+                rectangle(image, minRect, 1234);
+                rectangle(image, eyeRegion, 100);
+            }
         }
+        /*
         [self eyesDetected: true];
         if (eyes.size() == 2) {
             [self twoEyesDetected: true];
         } else {
             [self twoEyesDetected: false];
         }
+         */
     } else {
+        /*
         [self eyesDetected: false];
         [self twoEyesDetected: false];
+         */
     }
     
 }
