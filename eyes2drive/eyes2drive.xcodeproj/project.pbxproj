@@ -142,6 +142,7 @@
 		E13D21B11B4CDDEB006D7EEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E13D21B31B4CDDEB006D7EEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		E13D21B51B4CDDEB006D7EEB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E182F8701B56F55C00AC1B93 /* eyes2drive.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = eyes2drive.entitlements; sourceTree = "<group>"; };
 		E1892B2E1B505D4D00D7C9DB /* FeatureDetectionTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeatureDetectionTime.h; sourceTree = "<group>"; };
 		E1892B2F1B505D4D00D7C9DB /* FeatureDetectionTime.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FeatureDetectionTime.mm; sourceTree = "<group>"; };
 		E1892B361B5305EC00D7C9DB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -242,6 +243,7 @@
 		E13D21411B4C06D1006D7EEB /* eyes2drive */ = {
 			isa = PBXGroup;
 			children = (
+				E182F8701B56F55C00AC1B93 /* eyes2drive.entitlements */,
 				E1A96EAD1B4F2B84000EFE18 /* OpenCVRecognize */,
 				E13D21461B4C06D1006D7EEB /* AppDelegate.h */,
 				E13D21471B4C06D1006D7EEB /* AppDelegate.mm */,
@@ -490,6 +492,11 @@
 					E13D213E1B4C06D1006D7EEB = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = W3U24WE3R3;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					E13D21571B4C06D1006D7EEB = {
 						CreatedOnToolsVersion = 6.4;
@@ -685,7 +692,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lorenz Hanggi (W3U24WE3R3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lorenz Hanggi (W3U24WE3R3)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -728,7 +736,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Lorenz Hanggi (W3U24WE3R3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lorenz Hanggi (S9NABF596K)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -753,6 +762,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = eyes2drive/eyes2drive.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -779,6 +789,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = eyes2drive/eyes2drive.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
