@@ -191,8 +191,8 @@ cv::CascadeClassifier eyes_cascade;
 
             if ([self.controller.debugSwitch isOn]) {
                 cv::Rect minRect(
-                             face.x + face.width/2 - minSize.width / 2,
-                             face.y + face.height/2 - minSize.height / 2,
+                             MAX(face.x + face.width/2 - minSize.width / 2, 0),
+                             MAX(face.y + face.height/2 - minSize.height / 2, 0),
                              minSize.width, minSize.height);
                 cv::Rect maxRect(
                              MAX(face.x + face.width/2 - maxSize.width / 2, 0),
@@ -200,6 +200,7 @@ cv::CascadeClassifier eyes_cascade;
                              maxSize.width, maxSize.height);
 
                 rectangle(image, minRect, 1234);
+                rectangle(image, maxRect, 1234);
             }
 
             [self faceDetected: true];
