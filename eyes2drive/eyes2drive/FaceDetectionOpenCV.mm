@@ -19,9 +19,10 @@
 
 @implementation FaceDetectionOpenCV
 
-
-NSString * const C_face_cascade_name = @"haarcascade_frontalface_alt_tree";
-NSString * const C_eyes_cascade_name = @"haarcascade_eye_tree_eyeglasses.1";
+//do NOT change haar-classifier, these are the best right now
+NSString * const C_face_cascade_name = @"haarcascade_frontalface_alt";
+NSString * const C_eyes_cascade_name = @"haarcascade_mcs_lefteye";
+NSString * const C_nose_cascade_name = @"haarcascade_mcs_nose";
 
 cv::CascadeClassifier face_cascade;
 cv::CascadeClassifier eyes_cascade;
