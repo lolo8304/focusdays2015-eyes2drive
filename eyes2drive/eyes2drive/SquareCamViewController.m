@@ -582,7 +582,10 @@ static CGContextRef CreateCGBitmapContextForSize(CGSize size)
 		
 	CGSize parentFrameSize = [previewView frame].size;
 	NSString *gravity = [previewLayer videoGravity];
+    /*
 	BOOL isMirrored = [previewLayer isMirrored];
+     */
+    
 	CGRect previewBox = [SquareCamViewController videoPreviewBoxForGravity:gravity 
 															   frameSize:parentFrameSize 
 															apertureSize:clap.size];
@@ -607,12 +610,12 @@ static CGContextRef CreateCGBitmapContextForSize(CGSize size)
 		faceRect.size.height *= heightScaleBy;
 		faceRect.origin.x *= widthScaleBy;
 		faceRect.origin.y *= heightScaleBy;
-
+/* mirroring is deprecated
 		if ( isMirrored )
 			faceRect = CGRectOffset(faceRect, previewBox.origin.x + previewBox.size.width - faceRect.size.width - (faceRect.origin.x * 2), previewBox.origin.y);
 		else
 			faceRect = CGRectOffset(faceRect, previewBox.origin.x, previewBox.origin.y);
-		
+*/
 		CALayer *featureLayer = nil;
 		
 		// re-use an existing layer if possible
