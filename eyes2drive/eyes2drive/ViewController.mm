@@ -20,6 +20,7 @@
 #import "AudioToolbox/AudioServices.h"
 
 #import <opencv2/videoio/cap_ios.h>
+#include <opencv2/objdetect/objdetect.hpp>
 
 @interface ViewController ()
     @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -38,8 +39,11 @@
     @property (nonatomic, strong) FaceDetectionOpenCV* faceDetection;
 
     @property (nonatomic, strong) NSThread *thread;
+
 - (IBAction)valueChangedNeighbours:(UIStepper *)sender;
-- (IBAction)valueChangedOptions:(UIStepper *)sender;
+- (IBAction)valueChangedOptions:(UISegmentedControl *)sender;
+- (IBAction)valueChangedMinSize:(UISlider *)sender;
+- (IBAction)valueChangedMaxSize:(UISlider *)sender;
 
 - (IBAction)actionStart:(id)sender;
 - (IBAction)actionStop:(id)sender;
@@ -61,9 +65,16 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
 - (IBAction)valueChangedNeighbours:(UIStepper *)sender {
     self.neighboursLabel.text = [NSString stringWithFormat:@"%1.0lf", sender.value];
 }
-- (IBAction)valueChangedOptions:(UIStepper *)sender {
-    self.optionsLabel.text = [NSString stringWithFormat:@"%2.0lf", sender.value];
+- (IBAction)valueChangedOptions:(UISegmentedControl *)sender {
+    self.optionsLabel.text = [sender titleForSegmentAtIndex: sender.selectedSegmentIndex];
 }
+- (IBAction)valueChangedMinSize:(UISlider *)sender; {
+    self.minSizeLabel.text = [NSString stringWithFormat:@"%3.0lf", sender.value];
+}
+- (IBAction)valueChangedMaxSize:(UISlider *)sender {
+    self.maxSizeLabel.text = [NSString stringWithFormat:@"%3.0lf", sender.value];
+}
+
 
 
 - (NSThread *) thread
@@ -216,6 +227,25 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
     
+    [self valueChangedMaxSize: self.maxSizeSlider];
+    [self valueChangedMinSize: self.minSizeSlider];
+    
+    // do not change, best option for all: 2
+    [self.minNeighboursStepper setValue: 2.0];
+    [self valueChangedNeighbours: self.minNeighboursStepper];
+
+    /*
+        CASCADE_DO_CANNY_PRUNING    = 1,    index = 0
+        CASCADE_SCALE_IMAGE         = 2,    index = 1
+        CASCADE_FIND_BIGGEST_OBJECT = 4,    index = 2
+        CASCADE_DO_ROUGH_SEARCH     = 8     index = 3
+     */
+    // do not change, best option for all: CASCADE_SCALE_IMAGE
+    [self.optionsSegment setSelectedSegmentIndex: 1];
+    [self valueChangedOptions: self.optionsSegment];
+    
+    [self.eyesSwitch setOn: true];
+    [self.noseSwitch setOn: true];
 }
 
 - (void)didReceiveMemoryWarning {
