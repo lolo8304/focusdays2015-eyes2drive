@@ -154,7 +154,7 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     [self setFaceAlertImage: lastColor];
     NSMutableArray * states = [self.faceDetection getAllStates: FeatureFaceDetected];
     [self.nofEvents setText:
-        [NSMutableString stringWithFormat:@"%i events", [states count]]];
+        [NSMutableString stringWithFormat:@"%ui events", (unsigned int)[states count]]];
     
     NSMutableArray * colorStates = [self.faceDetection getNofStates: FeatureFaceDetected];
     NSNumber * nof = colorStates[ (int)FeatureAlertGreen ];
@@ -223,7 +223,7 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
 
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
-    printf("current video orientation = %i\n", self.currentVideoOrientation);
+    printf("current video orientation = %li\n", (long)self.currentVideoOrientation);
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
     
@@ -260,7 +260,7 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     if (self.videoCamera) {
         self.videoCamera.defaultAVCaptureVideoOrientation = self.currentVideoOrientation;
         self.faceDetection.orientation = self.currentVideoOrientation;
-        printf("current video orientation = %i\n", self.currentVideoOrientation);
+        printf("current video orientation = %ui\n", (unsigned int)self.currentVideoOrientation);
     }
 
 }
