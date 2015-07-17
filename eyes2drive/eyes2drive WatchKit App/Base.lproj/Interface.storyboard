@@ -30,20 +30,50 @@
             </objects>
             <point key="canvasLocation" x="7" y="499"/>
         </scene>
-        <!--Static Notification Interface Controller-->
+        <!--Alert-Dark-Red-->
         <scene sceneID="AEw-b0-oYE">
             <objects>
-                <notificationController id="YCC-NB-fut">
+                <notificationController backgroundImage="Alert-Dark-Red" contentMode="scaleAspectFill" animationDuration="1" id="YCC-NB-fut">
                     <items>
-                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                        <label height="20" alignment="left" text="RED ALERT" id="4Ke-Mf-1Eo">
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
+                        <label alignment="left" text="Watch the street - you're distracted. Make a pause ..." numberOfLines="4" id="IdU-wH-bcW"/>
+                        <label alignment="left" text="Label" id="Qvp-un-cEF">
+                            <variation key="device=watch38mm" text="ALERT"/>
+                        </label>
                     </items>
-                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <notificationCategory key="notificationCategory" identifier="redAlertWarning" id="JfB-70-Muf"/>
+                    <color key="backgroundColor" red="1" green="0.17253561410000001" blue="0.083959094509999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <variation key="default">
+                        <mask key="items">
+                            <exclude reference="Qvp-un-cEF"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
                     </connections>
                 </notificationController>
             </objects>
             <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Alert-Orange-->
+        <scene sceneID="clE-5z-0zB">
+            <objects>
+                <notificationController backgroundImage="Alert-Orange" animationDuration="1" id="0gD-ff-L8k">
+                    <items>
+                        <label alignment="left" text="ORANGE ALERT" id="GKJ-zy-PYK">
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
+                        <label alignment="left" text="Watch out ... keep your eyes on the street." numberOfLines="4" id="Lcs-Al-s1h"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="orangeAlertWarning" id="SKj-ED-Ms9"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="Lcs-Al-s1h" id="uHf-HS-NHw"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="467" y="489"/>
         </scene>
     </scenes>
 </document>

@@ -198,6 +198,7 @@
 		E1CAB3CD1B4F463E006F42EA /* haarcascade_russian_plate_number.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_russian_plate_number.xml; sourceTree = "<group>"; };
 		E1CAB3CE1B4F463E006F42EA /* haarcascade_smile.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_smile.xml; sourceTree = "<group>"; };
 		E1CAB3CF1B4F463E006F42EA /* haarcascade_upperbody.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_upperbody.xml; sourceTree = "<group>"; };
+		E1DA29501B5857E2008D8509 /* OrangeNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = OrangeNotificationPayload.apns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,6 +348,7 @@
 			children = (
 				E13D219F1B4CDDEA006D7EEB /* Info.plist */,
 				E13D21A01B4CDDEA006D7EEB /* PushNotificationPayload.apns */,
+				E1DA29501B5857E2008D8509 /* OrangeNotificationPayload.apns */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

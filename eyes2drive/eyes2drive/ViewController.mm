@@ -114,6 +114,46 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
         self.faceAlertView.image = [UIImage imageNamed: coloredImageName];
         [self.faceAlertControl setSelectedSegmentIndex: (int)color];
         [self playSound: color];
+        [self createLocalNotification: color];
+        
+    }
+}
+
+- (NSString *) getLocalNotificationAlertCategory: (FeatureAlertColor) color {
+    if (color == FeatureAlertOrange) {
+        return @"orangeAlertWarning";
+    } else if (color == FeatureAlertRed) {
+        return nil;
+    } else if (color == FeatureAlertDarkRed) {
+        return @"redAlertWarning";
+    }
+    return nil;
+}
+- (NSString *) getLocalNotificationAlertText: (FeatureAlertColor) color {
+    if (color == FeatureAlertOrange) {
+        return @"Watch out ... keep eyes on the street";
+    } else if (color == FeatureAlertRed) {
+        return nil;
+    } else if (color == FeatureAlertDarkRed) {
+        return @"Watch the street - you're distracted. Make a pause ...";
+    }
+    return nil;
+}
+
+- (void) createLocalNotification: (FeatureAlertColor) color {
+    NSString * text = [self getLocalNotificationAlertText: color];
+    if (text) {
+    
+        // Schedule the notification
+        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+        localNotification.alertBody = text;
+        localNotification.alertAction = @"whatch out";
+        localNotification.alertTitle = text;
+        localNotification.category = [self getLocalNotificationAlertCategory: color];
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    
+        [[UIApplication sharedApplication] presentLocalNotificationNow: localNotification];
     }
 }
 

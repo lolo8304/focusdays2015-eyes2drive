@@ -4,7 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Notification - eyes2drive WatchKit App.xcscheme</key>
+		<key>Orange Notification - eyes2drive WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>Red Notification - eyes2drive WatchKit App.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
