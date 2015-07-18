@@ -1,0 +1,686 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E1FDF30D1B5A19E700DCC037 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF30C1B5A19E700DCC037 /* AppDelegate.swift */; };
+		E1FDF30F1B5A19E700DCC037 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF30E1B5A19E700DCC037 /* FirstViewController.swift */; };
+		E1FDF3111B5A19E700DCC037 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF3101B5A19E700DCC037 /* SecondViewController.swift */; };
+		E1FDF3141B5A19E700DCC037 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3121B5A19E700DCC037 /* Main.storyboard */; };
+		E1FDF3161B5A19E700DCC037 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3151B5A19E700DCC037 /* Images.xcassets */; };
+		E1FDF3191B5A19E700DCC037 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3171B5A19E700DCC037 /* LaunchScreen.xib */; };
+		E1FDF3251B5A19E700DCC037 /* eyes2drive_viewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF3241B5A19E700DCC037 /* eyes2drive_viewerTests.swift */; };
+		E1FDF3381B5A1A3100DCC037 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF3371B5A1A3100DCC037 /* InterfaceController.swift */; };
+		E1FDF33A1B5A1A3100DCC037 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF3391B5A1A3100DCC037 /* NotificationController.swift */; };
+		E1FDF33C1B5A1A3100DCC037 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF33B1B5A1A3100DCC037 /* Images.xcassets */; };
+		E1FDF3401B5A1A3100DCC037 /* eyes2drive viewer WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF33F1B5A1A3100DCC037 /* eyes2drive viewer WatchKit App.app */; };
+		E1FDF3481B5A1A3100DCC037 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3461B5A1A3100DCC037 /* Interface.storyboard */; };
+		E1FDF34A1B5A1A3100DCC037 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3491B5A1A3100DCC037 /* Images.xcassets */; };
+		E1FDF34D1B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E1FDF3321B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E1FDF3561B5A1CD000DCC037 /* OrangeNotificationPayload.apns in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3551B5A1CD000DCC037 /* OrangeNotificationPayload.apns */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E1FDF31F1B5A19E700DCC037 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1FDF2FF1B5A19E700DCC037 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1FDF3061B5A19E700DCC037;
+			remoteInfo = "eyes2drive viewer";
+		};
+		E1FDF3411B5A1A3100DCC037 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1FDF2FF1B5A19E700DCC037 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1FDF33E1B5A1A3100DCC037;
+			remoteInfo = "eyes2drive viewer WatchKit App";
+		};
+		E1FDF34B1B5A1A3100DCC037 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1FDF2FF1B5A19E700DCC037 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1FDF3311B5A1A3100DCC037;
+			remoteInfo = "eyes2drive viewer WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E1FDF3541B5A1A3100DCC037 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E1FDF34D1B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		E1FDF3071B5A19E700DCC037 /* eyes2drive viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eyes2drive viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1FDF30B1B5A19E700DCC037 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1FDF30C1B5A19E700DCC037 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E1FDF30E1B5A19E700DCC037 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		E1FDF3101B5A19E700DCC037 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		E1FDF3131B5A19E700DCC037 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E1FDF3151B5A19E700DCC037 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E1FDF3181B5A19E700DCC037 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		E1FDF31E1B5A19E700DCC037 /* eyes2drive viewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "eyes2drive viewerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1FDF3231B5A19E700DCC037 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1FDF3241B5A19E700DCC037 /* eyes2drive_viewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eyes2drive_viewerTests.swift; sourceTree = "<group>"; };
+		E1FDF3321B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "eyes2drive viewer WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1FDF3351B5A1A3100DCC037 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1FDF3361B5A1A3100DCC037 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		E1FDF3371B5A1A3100DCC037 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		E1FDF3391B5A1A3100DCC037 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		E1FDF33B1B5A1A3100DCC037 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E1FDF33F1B5A1A3100DCC037 /* eyes2drive viewer WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eyes2drive viewer WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1FDF3451B5A1A3100DCC037 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1FDF3471B5A1A3100DCC037 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		E1FDF3491B5A1A3100DCC037 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E1FDF3551B5A1CD000DCC037 /* OrangeNotificationPayload.apns */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OrangeNotificationPayload.apns; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E1FDF3041B5A19E700DCC037 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1FDF31B1B5A19E700DCC037 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1FDF32F1B5A1A3100DCC037 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E1FDF2FE1B5A19E700DCC037 = {
+			isa = PBXGroup;
+			children = (
+				E1FDF3091B5A19E700DCC037 /* eyes2drive viewer */,
+				E1FDF3211B5A19E700DCC037 /* eyes2drive viewerTests */,
+				E1FDF3331B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension */,
+				E1FDF3431B5A1A3100DCC037 /* eyes2drive viewer WatchKit App */,
+				E1FDF3081B5A19E700DCC037 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E1FDF3081B5A19E700DCC037 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E1FDF3071B5A19E700DCC037 /* eyes2drive viewer.app */,
+				E1FDF31E1B5A19E700DCC037 /* eyes2drive viewerTests.xctest */,
+				E1FDF3321B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension.appex */,
+				E1FDF33F1B5A1A3100DCC037 /* eyes2drive viewer WatchKit App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E1FDF3091B5A19E700DCC037 /* eyes2drive viewer */ = {
+			isa = PBXGroup;
+			children = (
+				E1FDF30C1B5A19E700DCC037 /* AppDelegate.swift */,
+				E1FDF30E1B5A19E700DCC037 /* FirstViewController.swift */,
+				E1FDF3101B5A19E700DCC037 /* SecondViewController.swift */,
+				E1FDF3121B5A19E700DCC037 /* Main.storyboard */,
+				E1FDF3151B5A19E700DCC037 /* Images.xcassets */,
+				E1FDF3171B5A19E700DCC037 /* LaunchScreen.xib */,
+				E1FDF30A1B5A19E700DCC037 /* Supporting Files */,
+			);
+			path = "eyes2drive viewer";
+			sourceTree = "<group>";
+		};
+		E1FDF30A1B5A19E700DCC037 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1FDF30B1B5A19E700DCC037 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E1FDF3211B5A19E700DCC037 /* eyes2drive viewerTests */ = {
+			isa = PBXGroup;
+			children = (
+				E1FDF3241B5A19E700DCC037 /* eyes2drive_viewerTests.swift */,
+				E1FDF3221B5A19E700DCC037 /* Supporting Files */,
+			);
+			path = "eyes2drive viewerTests";
+			sourceTree = "<group>";
+		};
+		E1FDF3221B5A19E700DCC037 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1FDF3231B5A19E700DCC037 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E1FDF3331B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E1FDF3371B5A1A3100DCC037 /* InterfaceController.swift */,
+				E1FDF3391B5A1A3100DCC037 /* NotificationController.swift */,
+				E1FDF33B1B5A1A3100DCC037 /* Images.xcassets */,
+				E1FDF3341B5A1A3100DCC037 /* Supporting Files */,
+			);
+			path = "eyes2drive viewer WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		E1FDF3341B5A1A3100DCC037 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1FDF3351B5A1A3100DCC037 /* Info.plist */,
+				E1FDF3361B5A1A3100DCC037 /* PushNotificationPayload.apns */,
+				E1FDF3551B5A1CD000DCC037 /* OrangeNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E1FDF3431B5A1A3100DCC037 /* eyes2drive viewer WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				E1FDF3461B5A1A3100DCC037 /* Interface.storyboard */,
+				E1FDF3491B5A1A3100DCC037 /* Images.xcassets */,
+				E1FDF3441B5A1A3100DCC037 /* Supporting Files */,
+			);
+			path = "eyes2drive viewer WatchKit App";
+			sourceTree = "<group>";
+		};
+		E1FDF3441B5A1A3100DCC037 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1FDF3451B5A1A3100DCC037 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E1FDF3061B5A19E700DCC037 /* eyes2drive viewer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1FDF3281B5A19E700DCC037 /* Build configuration list for PBXNativeTarget "eyes2drive viewer" */;
+			buildPhases = (
+				E1FDF3031B5A19E700DCC037 /* Sources */,
+				E1FDF3041B5A19E700DCC037 /* Frameworks */,
+				E1FDF3051B5A19E700DCC037 /* Resources */,
+				E1FDF3541B5A1A3100DCC037 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E1FDF34C1B5A1A3100DCC037 /* PBXTargetDependency */,
+			);
+			name = "eyes2drive viewer";
+			productName = "eyes2drive viewer";
+			productReference = E1FDF3071B5A19E700DCC037 /* eyes2drive viewer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E1FDF31D1B5A19E700DCC037 /* eyes2drive viewerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1FDF32B1B5A19E700DCC037 /* Build configuration list for PBXNativeTarget "eyes2drive viewerTests" */;
+			buildPhases = (
+				E1FDF31A1B5A19E700DCC037 /* Sources */,
+				E1FDF31B1B5A19E700DCC037 /* Frameworks */,
+				E1FDF31C1B5A19E700DCC037 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E1FDF3201B5A19E700DCC037 /* PBXTargetDependency */,
+			);
+			name = "eyes2drive viewerTests";
+			productName = "eyes2drive viewerTests";
+			productReference = E1FDF31E1B5A19E700DCC037 /* eyes2drive viewerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E1FDF3311B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1FDF3511B5A1A3100DCC037 /* Build configuration list for PBXNativeTarget "eyes2drive viewer WatchKit Extension" */;
+			buildPhases = (
+				E1FDF32E1B5A1A3100DCC037 /* Sources */,
+				E1FDF32F1B5A1A3100DCC037 /* Frameworks */,
+				E1FDF3301B5A1A3100DCC037 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E1FDF3421B5A1A3100DCC037 /* PBXTargetDependency */,
+			);
+			name = "eyes2drive viewer WatchKit Extension";
+			productName = "eyes2drive viewer WatchKit Extension";
+			productReference = E1FDF3321B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		E1FDF33E1B5A1A3100DCC037 /* eyes2drive viewer WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1FDF34E1B5A1A3100DCC037 /* Build configuration list for PBXNativeTarget "eyes2drive viewer WatchKit App" */;
+			buildPhases = (
+				E1FDF33D1B5A1A3100DCC037 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "eyes2drive viewer WatchKit App";
+			productName = "eyes2drive viewer WatchKit App";
+			productReference = E1FDF33F1B5A1A3100DCC037 /* eyes2drive viewer WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E1FDF2FF1B5A19E700DCC037 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = Focusdays2015;
+				TargetAttributes = {
+					E1FDF3061B5A19E700DCC037 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					E1FDF31D1B5A19E700DCC037 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = E1FDF3061B5A19E700DCC037;
+					};
+					E1FDF3311B5A1A3100DCC037 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					E1FDF33E1B5A1A3100DCC037 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+				};
+			};
+			buildConfigurationList = E1FDF3021B5A19E700DCC037 /* Build configuration list for PBXProject "eyes2drive viewer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E1FDF2FE1B5A19E700DCC037;
+			productRefGroup = E1FDF3081B5A19E700DCC037 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E1FDF3061B5A19E700DCC037 /* eyes2drive viewer */,
+				E1FDF31D1B5A19E700DCC037 /* eyes2drive viewerTests */,
+				E1FDF3311B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension */,
+				E1FDF33E1B5A1A3100DCC037 /* eyes2drive viewer WatchKit App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E1FDF3051B5A19E700DCC037 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1FDF3141B5A19E700DCC037 /* Main.storyboard in Resources */,
+				E1FDF3191B5A19E700DCC037 /* LaunchScreen.xib in Resources */,
+				E1FDF3161B5A19E700DCC037 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1FDF31C1B5A19E700DCC037 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1FDF3301B5A1A3100DCC037 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1FDF33C1B5A1A3100DCC037 /* Images.xcassets in Resources */,
+				E1FDF3401B5A1A3100DCC037 /* eyes2drive viewer WatchKit App.app in Resources */,
+				E1FDF3561B5A1CD000DCC037 /* OrangeNotificationPayload.apns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1FDF33D1B5A1A3100DCC037 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1FDF3481B5A1A3100DCC037 /* Interface.storyboard in Resources */,
+				E1FDF34A1B5A1A3100DCC037 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E1FDF3031B5A19E700DCC037 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1FDF3111B5A19E700DCC037 /* SecondViewController.swift in Sources */,
+				E1FDF30D1B5A19E700DCC037 /* AppDelegate.swift in Sources */,
+				E1FDF30F1B5A19E700DCC037 /* FirstViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1FDF31A1B5A19E700DCC037 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1FDF3251B5A19E700DCC037 /* eyes2drive_viewerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1FDF32E1B5A1A3100DCC037 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1FDF33A1B5A1A3100DCC037 /* NotificationController.swift in Sources */,
+				E1FDF3381B5A1A3100DCC037 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E1FDF3201B5A19E700DCC037 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E1FDF3061B5A19E700DCC037 /* eyes2drive viewer */;
+			targetProxy = E1FDF31F1B5A19E700DCC037 /* PBXContainerItemProxy */;
+		};
+		E1FDF3421B5A1A3100DCC037 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E1FDF33E1B5A1A3100DCC037 /* eyes2drive viewer WatchKit App */;
+			targetProxy = E1FDF3411B5A1A3100DCC037 /* PBXContainerItemProxy */;
+		};
+		E1FDF34C1B5A1A3100DCC037 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E1FDF3311B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension */;
+			targetProxy = E1FDF34B1B5A1A3100DCC037 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E1FDF3121B5A19E700DCC037 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1FDF3131B5A19E700DCC037 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E1FDF3171B5A19E700DCC037 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1FDF3181B5A19E700DCC037 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		E1FDF3461B5A1A3100DCC037 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1FDF3471B5A1A3100DCC037 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E1FDF3261B5A19E700DCC037 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E1FDF3271B5A19E700DCC037 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E1FDF3291B5A19E700DCC037 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "eyes2drive viewer/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E1FDF32A1B5A19E700DCC037 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "eyes2drive viewer/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E1FDF32C1B5A19E700DCC037 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "eyes2drive viewerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eyes2drive viewer.app/eyes2drive viewer";
+			};
+			name = Debug;
+		};
+		E1FDF32D1B5A19E700DCC037 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "eyes2drive viewerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eyes2drive viewer.app/eyes2drive viewer";
+			};
+			name = Release;
+		};
+		E1FDF34F1B5A1A3100DCC037 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IBSC_MODULE = eyes2drive_viewer_WatchKit_Extension;
+				INFOPLIST_FILE = "eyes2drive viewer WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		E1FDF3501B5A1A3100DCC037 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				IBSC_MODULE = eyes2drive_viewer_WatchKit_Extension;
+				INFOPLIST_FILE = "eyes2drive viewer WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
+		E1FDF3521B5A1A3100DCC037 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "eyes2drive viewer WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E1FDF3531B5A1A3100DCC037 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "eyes2drive viewer WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E1FDF3021B5A19E700DCC037 /* Build configuration list for PBXProject "eyes2drive viewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1FDF3261B5A19E700DCC037 /* Debug */,
+				E1FDF3271B5A19E700DCC037 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E1FDF3281B5A19E700DCC037 /* Build configuration list for PBXNativeTarget "eyes2drive viewer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1FDF3291B5A19E700DCC037 /* Debug */,
+				E1FDF32A1B5A19E700DCC037 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E1FDF32B1B5A19E700DCC037 /* Build configuration list for PBXNativeTarget "eyes2drive viewerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1FDF32C1B5A19E700DCC037 /* Debug */,
+				E1FDF32D1B5A19E700DCC037 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E1FDF34E1B5A1A3100DCC037 /* Build configuration list for PBXNativeTarget "eyes2drive viewer WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1FDF34F1B5A1A3100DCC037 /* Debug */,
+				E1FDF3501B5A1A3100DCC037 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E1FDF3511B5A1A3100DCC037 /* Build configuration list for PBXNativeTarget "eyes2drive viewer WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1FDF3521B5A1A3100DCC037 /* Debug */,
+				E1FDF3531B5A1A3100DCC037 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E1FDF2FF1B5A19E700DCC037 /* Project object */;
+}

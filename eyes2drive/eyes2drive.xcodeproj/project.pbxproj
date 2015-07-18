@@ -26,13 +26,6 @@
 		E13D21851B4CA320006D7EEB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E13D217B1B4CA320006D7EEB /* QuartzCore.framework */; };
 		E13D21861B4CA320006D7EEB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E13D217C1B4CA320006D7EEB /* UIKit.framework */; };
 		E13D21951B4CBF96006D7EEB /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E13D21941B4CBF96006D7EEB /* opencv2.framework */; };
-		E13D21A31B4CDDEA006D7EEB /* InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = E13D21A21B4CDDEA006D7EEB /* InterfaceController.m */; };
-		E13D21A61B4CDDEA006D7EEB /* NotificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E13D21A51B4CDDEA006D7EEB /* NotificationController.m */; };
-		E13D21A81B4CDDEA006D7EEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E13D21A71B4CDDEA006D7EEB /* Images.xcassets */; };
-		E13D21AC1B4CDDEB006D7EEB /* eyes2drive WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = E13D21AB1B4CDDEA006D7EEB /* eyes2drive WatchKit App.app */; };
-		E13D21B41B4CDDEB006D7EEB /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E13D21B21B4CDDEB006D7EEB /* Interface.storyboard */; };
-		E13D21B61B4CDDEB006D7EEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E13D21B51B4CDDEB006D7EEB /* Images.xcassets */; };
-		E13D21BA1B4CDDEB006D7EEB /* eyes2drive WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E13D219C1B4CDDEA006D7EEB /* eyes2drive WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E182F87A1B577B0F00AC1B93 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E182F8791B577B0F00AC1B93 /* MapKit.framework */; };
 		E182F87C1B578A5100AC1B93 /* geographic-coverage-file-Swiss-border.geojson in Resources */ = {isa = PBXBuildFile; fileRef = E182F87B1B578A5100AC1B93 /* geographic-coverage-file-Swiss-border.geojson */; };
 		E182F8921B57ABF500AC1B93 /* haarcascade_mcs_eyepair_big.xml in Resources */ = {isa = PBXBuildFile; fileRef = E182F8891B57ABF500AC1B93 /* haarcascade_mcs_eyepair_big.xml */; };
@@ -84,20 +77,6 @@
 			remoteGlobalIDString = E13D213E1B4C06D1006D7EEB;
 			remoteInfo = eyes2drive;
 		};
-		E13D21AD1B4CDDEB006D7EEB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E13D21371B4C06D1006D7EEB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E13D21AA1B4CDDEA006D7EEB;
-			remoteInfo = "eyes2drive WatchKit App";
-		};
-		E13D21B71B4CDDEB006D7EEB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E13D21371B4C06D1006D7EEB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E13D219B1B4CDDEA006D7EEB;
-			remoteInfo = "eyes2drive WatchKit Extension";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -107,7 +86,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				E13D21BA1B4CDDEB006D7EEB /* eyes2drive WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,18 +119,6 @@
 		E13D217B1B4CA320006D7EEB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E13D217C1B4CA320006D7EEB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E13D21941B4CBF96006D7EEB /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../opencv2.framework; sourceTree = "<group>"; };
-		E13D219C1B4CDDEA006D7EEB /* eyes2drive WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "eyes2drive WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E13D219F1B4CDDEA006D7EEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E13D21A01B4CDDEA006D7EEB /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		E13D21A11B4CDDEA006D7EEB /* InterfaceController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterfaceController.h; sourceTree = "<group>"; };
-		E13D21A21B4CDDEA006D7EEB /* InterfaceController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterfaceController.m; sourceTree = "<group>"; };
-		E13D21A41B4CDDEA006D7EEB /* NotificationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
-		E13D21A51B4CDDEA006D7EEB /* NotificationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationController.m; sourceTree = "<group>"; };
-		E13D21A71B4CDDEA006D7EEB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		E13D21AB1B4CDDEA006D7EEB /* eyes2drive WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eyes2drive WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E13D21B11B4CDDEB006D7EEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E13D21B31B4CDDEB006D7EEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
-		E13D21B51B4CDDEB006D7EEB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E182F8701B56F55C00AC1B93 /* eyes2drive.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = eyes2drive.entitlements; sourceTree = "<group>"; };
 		E182F8791B577B0F00AC1B93 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E182F87B1B578A5100AC1B93 /* geographic-coverage-file-Swiss-border.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "geographic-coverage-file-Swiss-border.geojson"; sourceTree = "<group>"; };
@@ -198,7 +164,6 @@
 		E1CAB3CD1B4F463E006F42EA /* haarcascade_russian_plate_number.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_russian_plate_number.xml; sourceTree = "<group>"; };
 		E1CAB3CE1B4F463E006F42EA /* haarcascade_smile.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_smile.xml; sourceTree = "<group>"; };
 		E1CAB3CF1B4F463E006F42EA /* haarcascade_upperbody.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_upperbody.xml; sourceTree = "<group>"; };
-		E1DA29501B5857E2008D8509 /* OrangeNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = OrangeNotificationPayload.apns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,21 +196,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E13D21991B4CDDEA006D7EEB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		E13D21361B4C06D1006D7EEB = {
 			isa = PBXGroup;
 			children = (
-				E13D219D1B4CDDEA006D7EEB /* eyes2drive WatchKit Extension */,
-				E13D21AF1B4CDDEB006D7EEB /* eyes2drive WatchKit App */,
 				E13D21971B4CC005006D7EEB /* Frameworks */,
 				E13D21411B4C06D1006D7EEB /* eyes2drive */,
 				E13D215B1B4C06D1006D7EEB /* eyes2driveTests */,
@@ -258,8 +214,6 @@
 			children = (
 				E13D213F1B4C06D1006D7EEB /* eyes2drive.app */,
 				E13D21581B4C06D1006D7EEB /* eyes2driveTests.xctest */,
-				E13D219C1B4CDDEA006D7EEB /* eyes2drive WatchKit Extension.appex */,
-				E13D21AB1B4CDDEA006D7EEB /* eyes2drive WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -328,47 +282,6 @@
 				E13D21941B4CBF96006D7EEB /* opencv2.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E13D219D1B4CDDEA006D7EEB /* eyes2drive WatchKit Extension */ = {
-			isa = PBXGroup;
-			children = (
-				E13D21A11B4CDDEA006D7EEB /* InterfaceController.h */,
-				E13D21A21B4CDDEA006D7EEB /* InterfaceController.m */,
-				E13D21A41B4CDDEA006D7EEB /* NotificationController.h */,
-				E13D21A51B4CDDEA006D7EEB /* NotificationController.m */,
-				E13D21A71B4CDDEA006D7EEB /* Images.xcassets */,
-				E13D219E1B4CDDEA006D7EEB /* Supporting Files */,
-			);
-			path = "eyes2drive WatchKit Extension";
-			sourceTree = "<group>";
-		};
-		E13D219E1B4CDDEA006D7EEB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E13D219F1B4CDDEA006D7EEB /* Info.plist */,
-				E13D21A01B4CDDEA006D7EEB /* PushNotificationPayload.apns */,
-				E1DA29501B5857E2008D8509 /* OrangeNotificationPayload.apns */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E13D21AF1B4CDDEB006D7EEB /* eyes2drive WatchKit App */ = {
-			isa = PBXGroup;
-			children = (
-				E13D21B21B4CDDEB006D7EEB /* Interface.storyboard */,
-				E13D21B51B4CDDEB006D7EEB /* Images.xcassets */,
-				E13D21B01B4CDDEB006D7EEB /* Supporting Files */,
-			);
-			path = "eyes2drive WatchKit App";
-			sourceTree = "<group>";
-		};
-		E13D21B01B4CDDEB006D7EEB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E13D21B11B4CDDEB006D7EEB /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		E1A96EAD1B4F2B84000EFE18 /* OpenCVRecognize */ = {
@@ -458,7 +371,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				E13D21B81B4CDDEB006D7EEB /* PBXTargetDependency */,
 			);
 			name = eyes2drive;
 			productName = eyes2drive;
@@ -482,39 +394,6 @@
 			productName = eyes2driveTests;
 			productReference = E13D21581B4C06D1006D7EEB /* eyes2driveTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		E13D219B1B4CDDEA006D7EEB /* eyes2drive WatchKit Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E13D21BE1B4CDDEB006D7EEB /* Build configuration list for PBXNativeTarget "eyes2drive WatchKit Extension" */;
-			buildPhases = (
-				E13D21981B4CDDEA006D7EEB /* Sources */,
-				E13D21991B4CDDEA006D7EEB /* Frameworks */,
-				E13D219A1B4CDDEA006D7EEB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E13D21AE1B4CDDEB006D7EEB /* PBXTargetDependency */,
-			);
-			name = "eyes2drive WatchKit Extension";
-			productName = "eyes2drive WatchKit Extension";
-			productReference = E13D219C1B4CDDEA006D7EEB /* eyes2drive WatchKit Extension.appex */;
-			productType = "com.apple.product-type.watchkit-extension";
-		};
-		E13D21AA1B4CDDEA006D7EEB /* eyes2drive WatchKit App */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E13D21BB1B4CDDEB006D7EEB /* Build configuration list for PBXNativeTarget "eyes2drive WatchKit App" */;
-			buildPhases = (
-				E13D21A91B4CDDEA006D7EEB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "eyes2drive WatchKit App";
-			productName = "eyes2drive WatchKit App";
-			productReference = E13D21AB1B4CDDEA006D7EEB /* eyes2drive WatchKit App.app */;
-			productType = "com.apple.product-type.application.watchapp";
 		};
 /* End PBXNativeTarget section */
 
@@ -553,14 +432,6 @@
 						CreatedOnToolsVersion = 6.4;
 						TestTargetID = E13D213E1B4C06D1006D7EEB;
 					};
-					E13D219B1B4CDDEA006D7EEB = {
-						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = W3U24WE3R3;
-					};
-					E13D21AA1B4CDDEA006D7EEB = {
-						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = W3U24WE3R3;
-					};
 				};
 			};
 			buildConfigurationList = E13D213A1B4C06D1006D7EEB /* Build configuration list for PBXProject "eyes2drive" */;
@@ -578,8 +449,6 @@
 			targets = (
 				E13D213E1B4C06D1006D7EEB /* eyes2drive */,
 				E13D21571B4C06D1006D7EEB /* eyes2driveTests */,
-				E13D219B1B4CDDEA006D7EEB /* eyes2drive WatchKit Extension */,
-				E13D21AA1B4CDDEA006D7EEB /* eyes2drive WatchKit App */,
 			);
 		};
 /* End PBXProject section */
@@ -637,24 +506,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E13D219A1B4CDDEA006D7EEB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E13D21AC1B4CDDEB006D7EEB /* eyes2drive WatchKit App.app in Resources */,
-				E13D21A81B4CDDEA006D7EEB /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E13D21A91B4CDDEA006D7EEB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E13D21B41B4CDDEB006D7EEB /* Interface.storyboard in Resources */,
-				E13D21B61B4CDDEB006D7EEB /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -679,15 +530,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E13D21981B4CDDEA006D7EEB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E13D21A61B4CDDEA006D7EEB /* NotificationController.m in Sources */,
-				E13D21A31B4CDDEA006D7EEB /* InterfaceController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -695,16 +537,6 @@
 			isa = PBXTargetDependency;
 			target = E13D213E1B4C06D1006D7EEB /* eyes2drive */;
 			targetProxy = E13D21591B4C06D1006D7EEB /* PBXContainerItemProxy */;
-		};
-		E13D21AE1B4CDDEB006D7EEB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E13D21AA1B4CDDEA006D7EEB /* eyes2drive WatchKit App */;
-			targetProxy = E13D21AD1B4CDDEB006D7EEB /* PBXContainerItemProxy */;
-		};
-		E13D21B81B4CDDEB006D7EEB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E13D219B1B4CDDEA006D7EEB /* eyes2drive WatchKit Extension */;
-			targetProxy = E13D21B71B4CDDEB006D7EEB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -723,14 +555,6 @@
 				E13D21521B4C06D1006D7EEB /* Base */,
 			);
 			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-		E13D21B21B4CDDEB006D7EEB /* Interface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E13D21B31B4CDDEB006D7EEB /* Base */,
-			);
-			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -906,72 +730,6 @@
 			};
 			name = Release;
 		};
-		E13D21BC1B4CDDEB006D7EEB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				IBSC_MODULE = eyes2drive_WatchKit_Extension;
-				INFOPLIST_FILE = "eyes2drive WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
-			};
-			name = Debug;
-		};
-		E13D21BD1B4CDDEB006D7EEB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				IBSC_MODULE = eyes2drive_WatchKit_Extension;
-				INFOPLIST_FILE = "eyes2drive WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = 4;
-				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
-			};
-			name = Release;
-		};
-		E13D21BF1B4CDDEB006D7EEB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "eyes2drive WatchKit Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		E13D21C01B4CDDEB006D7EEB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = "eyes2drive WatchKit Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -998,24 +756,6 @@
 			buildConfigurations = (
 				E13D21661B4C06D1006D7EEB /* Debug */,
 				E13D21671B4C06D1006D7EEB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E13D21BB1B4CDDEB006D7EEB /* Build configuration list for PBXNativeTarget "eyes2drive WatchKit App" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E13D21BC1B4CDDEB006D7EEB /* Debug */,
-				E13D21BD1B4CDDEB006D7EEB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E13D21BE1B4CDDEB006D7EEB /* Build configuration list for PBXNativeTarget "eyes2drive WatchKit Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E13D21BF1B4CDDEB006D7EEB /* Debug */,
-				E13D21C01B4CDDEB006D7EEB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
