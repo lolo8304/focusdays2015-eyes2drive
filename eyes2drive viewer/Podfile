@@ -2,3 +2,11 @@ platform :ios, '8.4'
 workspace '../facedetection'
 use_frameworks!
 pod 'Async', :git => 'https://github.com/duemunk/Async.git'
+
+
+#important
+# adapt Podfile first
+# close workspace
+# goto eyes2drive viewer project  (location of Podfile) with terminal window
+# execute: pod update
+#  to build new pods
