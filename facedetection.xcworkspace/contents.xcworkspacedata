@@ -7,4 +7,7 @@
    <FileRef
       location = "group:eyes2drive/eyes2drive.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:eyes2drive viewer/Pods/Pods.xcodeproj">
+   </FileRef>
 </Workspace>

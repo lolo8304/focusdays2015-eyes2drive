@@ -1,0 +1,4 @@
+platform :ios, '8.4'
+workspace '../facedetection'
+use_frameworks!
+pod 'Async', :git => 'https://github.com/duemunk/Async.git'
