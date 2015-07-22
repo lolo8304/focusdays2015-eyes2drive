@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.updateEventsRunning = true;
             NSLog("process 'updateEvents' reserved")
             
-            let url = NSURL(string: "http://tomcat7-focusdays2015.rhcloud.com/rest/store/objects")
+            let url = NSURL(string: "http://tomcat7-focusdays2015.rhcloud.com/rest/devices")
             let request = NSURLRequest(URL: url!)
             NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {(response, data, error) in
 
@@ -42,8 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 //use SwiftyJSON
                 let json = JSON(data: data)
-                if let userName = json[0]["name"].string {
-                    println(userName)
+                if let device = json[0]["device-id"].string {
+                    println(device)
                 }
                 
                 self.updateEventsRunning = false
@@ -60,6 +60,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         self.updateEvents = NSTimer.scheduledTimerWithTimeInterval(6.0, target: self, selector: Selector("updateEventsFromServer"), userInfo: nil, repeats: true)
         
+        /* tip
+            https://thatthinginswift.com/remote-notifications/
+        */
+        let settings = UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         return true
     }
 
@@ -85,7 +90,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         updateEvents?.invalidate()
     }
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        application.registerForRemoteNotifications()
+    }
+    
+    /* tip
+    http://stackoverflow.com/questions/9372815/how-can-i-convert-my-device-token-nsdata-into-an-nsstring
+    */
+    func deviceIdAsString(deviceToken: NSData) -> NSString {
+        let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
+        var tokenString = ""
+        
+        for var i = 0; i < deviceToken.length; i++ {
+            tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
+        }
+        return tokenString
+    }
 
+    /* tip
+        https://thatthinginswift.com/remote-notifications/
+        save device-id on server: https://blog.serverdensity.com/how-to-build-an-apple-push-notification-provider-server-tutorial/
+    */
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        
+        let deviceTokenString = self.deviceIdAsString(deviceToken)
+        NSLog("My token is: %@", deviceTokenString);
+        
+        // http://tomcat7-focusdays2015.rhcloud.com/rest/device/%@"
+        let url = String(format:"http://tomcat7-focusdays2015.rhcloud.com/rest/device/%@", deviceTokenString)
+        
+        let req = Agent.put(url)
+        req.end({ (response: NSHTTPURLResponse?, data: AnyObject?, error: NSError?) -> Void in
+            NSLog("device registered with id %@", deviceTokenString);
+        })
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        NSLog("Couldn't register: \(error)")
+    }
 
 }
 

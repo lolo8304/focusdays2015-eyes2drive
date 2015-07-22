@@ -192,7 +192,7 @@ cv::CascadeClassifier nose_cascade;
     //-- Detect faces
     
 
-    if ([self.controller.goodFeaturesSwitch isOn]) {
+    if (false) {
         [self goodFeaturesToTrack: image gray: frame_gray ];
     }
 

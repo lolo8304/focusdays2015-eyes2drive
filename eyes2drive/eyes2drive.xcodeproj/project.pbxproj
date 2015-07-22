@@ -67,6 +67,15 @@
 		E1CAB3DE1B4F463E006F42EA /* haarcascade_russian_plate_number.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1CAB3CD1B4F463E006F42EA /* haarcascade_russian_plate_number.xml */; };
 		E1CAB3DF1B4F463E006F42EA /* haarcascade_smile.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1CAB3CE1B4F463E006F42EA /* haarcascade_smile.xml */; };
 		E1CAB3E01B4F463E006F42EA /* haarcascade_upperbody.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1CAB3CF1B4F463E006F42EA /* haarcascade_upperbody.xml */; };
+		E1FAD54D1B5EEC1A003592B0 /* ioSock.c in Sources */ = {isa = PBXBuildFile; fileRef = E1FAD53D1B5EEC1A003592B0 /* ioSock.c */; };
+		E1FAD54E1B5EEC1A003592B0 /* NWHub.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FAD5401B5EEC1A003592B0 /* NWHub.m */; };
+		E1FAD54F1B5EEC1A003592B0 /* NWNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FAD5421B5EEC1A003592B0 /* NWNotification.m */; };
+		E1FAD5501B5EEC1A003592B0 /* NWPusher.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FAD5441B5EEC1A003592B0 /* NWPusher.m */; };
+		E1FAD5511B5EEC1A003592B0 /* NWPushFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FAD5461B5EEC1A003592B0 /* NWPushFeedback.m */; };
+		E1FAD5521B5EEC1A003592B0 /* NWSecTools.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FAD5481B5EEC1A003592B0 /* NWSecTools.m */; };
+		E1FAD5531B5EEC1A003592B0 /* NWSSLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FAD54A1B5EEC1A003592B0 /* NWSSLConnection.m */; };
+		E1FAD5541B5EEC1A003592B0 /* NWType.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FAD54C1B5EEC1A003592B0 /* NWType.m */; };
+		E1FAD55F1B600EAC003592B0 /* apns-dev-cert.p12 in Resources */ = {isa = PBXBuildFile; fileRef = E1FAD55E1B600E54003592B0 /* apns-dev-cert.p12 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +173,25 @@
 		E1CAB3CD1B4F463E006F42EA /* haarcascade_russian_plate_number.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_russian_plate_number.xml; sourceTree = "<group>"; };
 		E1CAB3CE1B4F463E006F42EA /* haarcascade_smile.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_smile.xml; sourceTree = "<group>"; };
 		E1CAB3CF1B4F463E006F42EA /* haarcascade_upperbody.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_upperbody.xml; sourceTree = "<group>"; };
+		E1FAD53D1B5EEC1A003592B0 /* ioSock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioSock.c; sourceTree = "<group>"; };
+		E1FAD53E1B5EEC1A003592B0 /* ioSock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioSock.h; sourceTree = "<group>"; };
+		E1FAD53F1B5EEC1A003592B0 /* NWHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWHub.h; sourceTree = "<group>"; };
+		E1FAD5401B5EEC1A003592B0 /* NWHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWHub.m; sourceTree = "<group>"; };
+		E1FAD5411B5EEC1A003592B0 /* NWNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWNotification.h; sourceTree = "<group>"; };
+		E1FAD5421B5EEC1A003592B0 /* NWNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWNotification.m; sourceTree = "<group>"; };
+		E1FAD5431B5EEC1A003592B0 /* NWPusher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWPusher.h; sourceTree = "<group>"; };
+		E1FAD5441B5EEC1A003592B0 /* NWPusher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWPusher.m; sourceTree = "<group>"; };
+		E1FAD5451B5EEC1A003592B0 /* NWPushFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWPushFeedback.h; sourceTree = "<group>"; };
+		E1FAD5461B5EEC1A003592B0 /* NWPushFeedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWPushFeedback.m; sourceTree = "<group>"; };
+		E1FAD5471B5EEC1A003592B0 /* NWSecTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWSecTools.h; sourceTree = "<group>"; };
+		E1FAD5481B5EEC1A003592B0 /* NWSecTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWSecTools.m; sourceTree = "<group>"; };
+		E1FAD5491B5EEC1A003592B0 /* NWSSLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWSSLConnection.h; sourceTree = "<group>"; };
+		E1FAD54A1B5EEC1A003592B0 /* NWSSLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWSSLConnection.m; sourceTree = "<group>"; };
+		E1FAD54B1B5EEC1A003592B0 /* NWType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWType.h; sourceTree = "<group>"; };
+		E1FAD54C1B5EEC1A003592B0 /* NWType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWType.m; sourceTree = "<group>"; };
+		E1FAD5591B5EF1FC003592B0 /* MacErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacErrors.h; sourceTree = "<group>"; };
+		E1FAD55A1B5EF1FC003592B0 /* MacTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacTypes.h; sourceTree = "<group>"; };
+		E1FAD55E1B600E54003592B0 /* apns-dev-cert.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "apns-dev-cert.p12"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +249,7 @@
 		E13D21411B4C06D1006D7EEB /* eyes2drive */ = {
 			isa = PBXGroup;
 			children = (
+				E1FAD5551B5EEC20003592B0 /* NWPush */,
 				E182F8701B56F55C00AC1B93 /* eyes2drive.entitlements */,
 				E1A96EAD1B4F2B84000EFE18 /* OpenCVRecognize */,
 				E13D21461B4C06D1006D7EEB /* AppDelegate.h */,
@@ -312,6 +341,7 @@
 		E1CAB3991B4F354D006F42EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E1FAD55E1B600E54003592B0 /* apns-dev-cert.p12 */,
 				E1892B421B5320B100D7C9DB /* tap.aif */,
 				E1892B3E1B5311B000D7C9DB /* Sound-Dark-Red.mp3 */,
 				E1892B3F1B5311B000D7C9DB /* Sound-Orange.mp3 */,
@@ -354,6 +384,31 @@
 				E1CAB3CF1B4F463E006F42EA /* haarcascade_upperbody.xml */,
 			);
 			name = haarcascades;
+			sourceTree = "<group>";
+		};
+		E1FAD5551B5EEC20003592B0 /* NWPush */ = {
+			isa = PBXGroup;
+			children = (
+				E1FAD5591B5EF1FC003592B0 /* MacErrors.h */,
+				E1FAD55A1B5EF1FC003592B0 /* MacTypes.h */,
+				E1FAD53D1B5EEC1A003592B0 /* ioSock.c */,
+				E1FAD53E1B5EEC1A003592B0 /* ioSock.h */,
+				E1FAD53F1B5EEC1A003592B0 /* NWHub.h */,
+				E1FAD5401B5EEC1A003592B0 /* NWHub.m */,
+				E1FAD5411B5EEC1A003592B0 /* NWNotification.h */,
+				E1FAD5421B5EEC1A003592B0 /* NWNotification.m */,
+				E1FAD5431B5EEC1A003592B0 /* NWPusher.h */,
+				E1FAD5441B5EEC1A003592B0 /* NWPusher.m */,
+				E1FAD5451B5EEC1A003592B0 /* NWPushFeedback.h */,
+				E1FAD5461B5EEC1A003592B0 /* NWPushFeedback.m */,
+				E1FAD5471B5EEC1A003592B0 /* NWSecTools.h */,
+				E1FAD5481B5EEC1A003592B0 /* NWSecTools.m */,
+				E1FAD5491B5EEC1A003592B0 /* NWSSLConnection.h */,
+				E1FAD54A1B5EEC1A003592B0 /* NWSSLConnection.m */,
+				E1FAD54B1B5EEC1A003592B0 /* NWType.h */,
+				E1FAD54C1B5EEC1A003592B0 /* NWType.m */,
+			);
+			name = NWPush;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -458,6 +513,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1FAD55F1B600EAC003592B0 /* apns-dev-cert.p12 in Resources */,
 				E1892B431B5320CA00D7C9DB /* tap.aif in Resources */,
 				E1CAB3DB1B4F463E006F42EA /* haarcascade_lowerbody.xml in Resources */,
 				E1CAB3DD1B4F463E006F42EA /* haarcascade_righteye_2splits.xml in Resources */,
@@ -513,11 +569,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1FAD5521B5EEC1A003592B0 /* NWSecTools.m in Sources */,
 				E13D214B1B4C06D1006D7EEB /* ViewController.mm in Sources */,
+				E1FAD54F1B5EEC1A003592B0 /* NWNotification.m in Sources */,
 				E1BB39A61B5459FA00511D22 /* SquareCamViewController.m in Sources */,
 				E13D21481B4C06D1006D7EEB /* AppDelegate.mm in Sources */,
 				E13D21451B4C06D1006D7EEB /* main.mm in Sources */,
+				E1FAD5501B5EEC1A003592B0 /* NWPusher.m in Sources */,
+				E1FAD54D1B5EEC1A003592B0 /* ioSock.c in Sources */,
 				E1A96EB01B4F2CA3000EFE18 /* FaceDetectionOpenCV.mm in Sources */,
+				E1FAD5511B5EEC1A003592B0 /* NWPushFeedback.m in Sources */,
+				E1FAD54E1B5EEC1A003592B0 /* NWHub.m in Sources */,
+				E1FAD5531B5EEC1A003592B0 /* NWSSLConnection.m in Sources */,
+				E1FAD5541B5EEC1A003592B0 /* NWType.m in Sources */,
 				E1892B301B505D4D00D7C9DB /* FeatureDetectionTime.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7237A4DBD70F0F72FD8F7A51 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD6427CE41B98FE54DBF125 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E1342C101B5B14C1006AD354 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E1342C0F1B5B14C1006AD354 /* Podfile */; };
+		E19FCD341B5D90860000E1DA /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19FCD331B5D90860000E1DA /* Agent.swift */; };
 		E1C7A6601B5B2300002756B0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C7A65F1B5B2300002756B0 /* Security.framework */; };
 		E1C7A6661B5B3270002756B0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C7A6651B5B3270002756B0 /* SwiftyJSON.swift */; };
 		E1FDF30D1B5A19E700DCC037 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF30C1B5A19E700DCC037 /* AppDelegate.swift */; };
@@ -70,6 +71,7 @@
 		47F6EB6ECF2D88DB5D8E8649 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6F712075F1D9575764A40723 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E1342C0F1B5B14C1006AD354 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		E19FCD331B5D90860000E1DA /* Agent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
 		E1C7A65F1B5B2300002756B0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E1C7A6611B5B278B002756B0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E1C7A6651B5B3270002756B0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = "eyes2drive viewer/SwiftyJSON.swift"; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 		E1FDF3091B5A19E700DCC037 /* eyes2drive viewer */ = {
 			isa = PBXGroup;
 			children = (
+				E19FCD331B5D90860000E1DA /* Agent.swift */,
 				E1FDF30C1B5A19E700DCC037 /* AppDelegate.swift */,
 				E1FDF30E1B5A19E700DCC037 /* FirstViewController.swift */,
 				E1FDF3101B5A19E700DCC037 /* SecondViewController.swift */,
@@ -469,6 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1FDF3111B5A19E700DCC037 /* SecondViewController.swift in Sources */,
+				E19FCD341B5D90860000E1DA /* Agent.swift in Sources */,
 				E1FDF30D1B5A19E700DCC037 /* AppDelegate.swift in Sources */,
 				E1FDF30F1B5A19E700DCC037 /* FirstViewController.swift in Sources */,
 				E1C7A6661B5B3270002756B0 /* SwiftyJSON.swift in Sources */,

@@ -18,6 +18,9 @@
 #import "FaceDetectionOpenCV.h"
 #import "FeatureDetectionTime.h"
 #import "AudioToolbox/AudioServices.h"
+#import "NWPusher.h"
+
+
 
 #import <opencv2/videoio/cap_ios.h>
 #include <opencv2/objdetect/objdetect.hpp>
@@ -114,8 +117,10 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
         self.faceAlertView.image = [UIImage imageNamed: coloredImageName];
         [self.faceAlertControl setSelectedSegmentIndex: (int)color];
         [self playSound: color];
-        [self createLocalNotification: color];
-        
+        if ([self.notificationSwitch isOn]) {
+//          [self createLocalNotification: color];
+            [self createPushNotification: color];
+        }
     }
 }
 
@@ -129,19 +134,19 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     }
     return nil;
 }
-- (NSString *) getLocalNotificationAlertText: (FeatureAlertColor) color {
+- (NSString *) getNotificationAlertText: (FeatureAlertColor) color {
     if (color == FeatureAlertOrange) {
-        return @"Watch out ... keep eyes on the street";
+        return @"ORANGE - Watch out ... keep eyes on the street";
     } else if (color == FeatureAlertRed) {
         return nil;
     } else if (color == FeatureAlertDarkRed) {
-        return @"Watch the street - you're distracted. Make a pause ...";
+        return @"DARK RED - Watch the street - you're distracted. Make a pause ...";
     }
     return nil;
 }
 
 - (void) createLocalNotification: (FeatureAlertColor) color {
-    NSString * text = [self getLocalNotificationAlertText: color];
+    NSString * text = [self getNotificationAlertText: color];
     if (text) {
     
         // Schedule the notification
@@ -156,6 +161,59 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     
         [[UIApplication sharedApplication] presentLocalNotificationNow: localNotification];
     }
+}
+
+
+/* https://blog.serverdensity.com/how-to-build-an-apple-push-notification-provider-server-tutorial/ 
+    tutorial in objective-c
+    http://stackoverflow.com/questions/15140557/how-to-receive-data-from-apns-feedback-server-in-objective-c
+    + code https://github.com/noodlewerk/NWPusher
+ 
+ */
+- (void) createPushNotification: (FeatureAlertColor) color {
+
+    
+    NSString * text = [self getNotificationAlertText: color];
+    if (text) {
+        NSURL *url = [NSBundle.mainBundle URLForResource:@"apns-dev-cert.p12" withExtension: nil];
+        NSData *pkcs12 = [NSData dataWithContentsOfURL:url];
+        NSError *error = nil;
+        NWPusher *pusher = [NWPusher connectWithPKCS12Data:pkcs12 password:@"pa$$wort" error:&error];
+        if (pusher) {
+            NSLog(@"Connected to APNs");
+        } else {
+            NSLog(@"Unable to connect: %@", error);
+            return;
+        }
+    
+    
+        NSString * payload = [ NSString stringWithFormat: @"{\
+        \"aps\" : { \"alert\" : \"%@\", \"badge\" : 1, \"sound\" : \"default\" }, \
+        \"server\" : { \"serverId\" : 1, \"name\" : \"Server name\"} }", text ];
+
+        NSString *token = @"b8a30a5fb0679e4f8d4a9ecc81075465543cf2af849cfb0313d97b02b880d207";
+        BOOL pushed = [pusher pushPayload:payload token:token identifier:rand() error:&error];
+        if (pushed) {
+            NSLog(@"Pushed to APNs");
+        } else {
+            NSLog(@"Unable to push: %@", error);
+        }
+    
+        sleep(1);
+    
+        NSUInteger identifier = 0;
+        NSError *apnError = nil;
+        BOOL read = [pusher readFailedIdentifier:&identifier apnError:&apnError error:&error];
+        if (read && apnError) {
+            NSLog(@"Notification with identifier %i rejected: %@", (int)identifier, apnError);
+        } else if (read) {
+            NSLog(@"Read and none failed");
+        } else {
+            NSLog(@"Unable to read failed: %@", error);
+        }
+    }
+    
+    
 }
 
 - (void) playSound: (FeatureAlertColor) color {
@@ -287,6 +345,9 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     
     [self.eyesSwitch setOn: true];
     [self.noseSwitch setOn: true];
+    [self.debugSwitch setOn: false];
+    [self.notificationSwitch setOn: false];
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *eyesSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *noseSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *debugSwitch;
-@property (weak, nonatomic) IBOutlet UISwitch *goodFeaturesSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *notificationSwitch;
 
 
 
