@@ -286,20 +286,22 @@ cv::CascadeClassifier mouth_cascade;
 - (void)showEyes: (std::vector<cv::Rect>&) eyes region: (cv::Rect&) eyeRegion image: (cv::Mat&)image gray: (cv::Mat&)frame_gray minSize: (cv::Size&) minSize maxSize: (cv::Size) maxSize{
     
     if (eyes.size() > 0) {
-        for( size_t j = 0; j < MIN(eyes.size(), 2); j++ ) {
+        for( size_t j = 0; j < eyes.size(); j++ ) {
             cv::Rect eye = eyes[j];
             cv::Point center( eyeRegion.x + eye.x + eye.width*0.5, eyeRegion.y + eye.y + eye.height*0.5 );
-            
-            cv::Rect previewRect(
+
+            // detect if eyes are too high and its propably eye-browse
+            if (center.y > eyeRegion.y + eyeRegion.height / 4) {
+                cv::Rect previewRect(
                                  MAX(center.x - 20, 0),
                                  MAX(center.y - 10, 0),
                                  40, 20);
-            cv::Mat eyesROI = frame_gray( previewRect ).clone();
-            /*
-            std::vector<cv::Rect> eyesOpened;
-            eyes_opened_cascade.detectMultiScale( eyesROI, eyesOpened, 1.1, MAX([self haarClassifierMinNeighbours], 1), [self haarClassifierOption]);
-            if (eyesOpened.size() > 0) {
-             */
+                cv::Mat eyesROI = frame_gray( previewRect ).clone();
+                /*
+                 std::vector<cv::Rect> eyesOpened;
+                 eyes_opened_cascade.detectMultiScale( eyesROI, eyesOpened, 1.1, MAX([self  haarClassifierMinNeighbours], 1), [self haarClassifierOption]);
+                 if (eyesOpened.size() > 0) {
+                 */
                 int radius = 2;
                 circle( image, center, radius, cv::Scalar( 255, 0, 0 ));
                 
@@ -329,23 +331,7 @@ cv::CascadeClassifier mouth_cascade;
                         [self.controller.rightEyeImageView setImage: eyesImage];
                     }
                 });
-            /*
-            } else {
-                cv::Point start( center.x - eye.width*0.5, center.y);
-                cv::Point stop( center.x + eye.width*0.5, center.y);
-                line( image, start, stop, cv::Scalar( 255, 0, 0 ));
-                
-                NSLog(@"eyes closed");
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    if (eye.x < eyeRegion.width/2) {
-                        [self.controller.leftEyeImageView setImage: [UIImage imageNamed: @"eyes-closed.png"]];
-                    } else {
-                        [self.controller.rightEyeImageView setImage: [UIImage imageNamed: @"eyes-closed.png"]];
-                    }
-                });
             }
-             */
-            
         }
         /*
          [self eyesDetected: true];
@@ -367,7 +353,8 @@ cv::CascadeClassifier mouth_cascade;
 
 
 - (void)threshold: (cv::Mat&) srcImage dest:(cv::Mat&) destImage threshold: (double) threshold type: (int) threshold_type {
-    cv::threshold( srcImage, destImage, threshold , 255, threshold_type );
+    cv::equalizeHist(srcImage, destImage);
+    //cv::threshold( srcImage, destImage, threshold , 255, threshold_type );
 }
 
 
