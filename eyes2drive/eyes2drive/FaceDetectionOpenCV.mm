@@ -35,29 +35,33 @@ NSString * const C_eyes_opened_cascade_name = @"haarcascade_eye_tree_eyeglasses"
 
 NSString * const C_nose_cascade_name = @"haarcascade_mcs_nose";
 
+NSString * const C_mouth_cascade_name = @"haarcascade_mcs_mouth";
+
 cv::CascadeClassifier face_cascade;
 cv::CascadeClassifier eyes_cascade;
 cv::CascadeClassifier left_eyes_cascade;
 cv::CascadeClassifier right_eyes_cascade;
 cv::CascadeClassifier eyes_opened_cascade;
 cv::CascadeClassifier nose_cascade;
+cv::CascadeClassifier mouth_cascade;
 
 - (id) initWith: (AVCaptureVideoOrientation)orientation controller: (ViewController *)controller {
     self = [self init];
     if (self) {
         self.orientation = orientation;
         
-        [self loadFaceClassifier: C_face_cascade_name];
-        [self loadEyesClassifier: C_eyes_cascade_name];
-        [self loadLeftEyesClassifier: C_left_eyes_cascade_name];
-        [self loadRightEyesClassifier: C_right_eyes_cascade_name];
-        [self loadEyesOpenedClassifier: C_eyes_opened_cascade_name];
-        [self loadNoseClassifier: C_nose_cascade_name];
+        [self loadClassifier: face_cascade named: C_face_cascade_name title: @"face"];
+        [self loadClassifier: eyes_cascade named: C_eyes_cascade_name title: @"eyes"];
+        [self loadClassifier: left_eyes_cascade named: C_left_eyes_cascade_name title: @"left eyes"];
+        [self loadClassifier: right_eyes_cascade named: C_right_eyes_cascade_name title: @"right eyes"];
+        [self loadClassifier: eyes_opened_cascade named: C_eyes_opened_cascade_name title: @"eyes opened"];
+        [self loadClassifier: nose_cascade named: C_nose_cascade_name title: @"nose"];
+        [self loadClassifier: mouth_cascade named: C_mouth_cascade_name title: @"mouth"];
         
         self.controller = controller;
         self.faceDetected = [[FeatureDetectionTime alloc] initWith: FeatureFaceDetected ];
         self.faceDetected.delegate = self;
-        [self.faceDetected setThreshold: false orange:1000 red:3000 darkred: 4000];
+        [self.faceDetected setThreshold: false orange:1000 red:3000 darkred: 5000];
         
         self.eyesDetected = [[FeatureDetectionTime alloc] initWith: FeatureEyesDetected ];
         self.eyesDetected.delegate = self;
@@ -79,9 +83,6 @@ cv::CascadeClassifier nose_cascade;
 }
 
 
-
-
-
 - (void)feature:(FeatureDetection)feature changedState:(State *)state {
     NSMutableArray * elements = self.events[ [NSNumber numberWithInt: feature ] ];
     [elements addObject: state];
@@ -92,55 +93,11 @@ cv::CascadeClassifier nose_cascade;
            [state elapsedTime]);
 }
 
-
-
--(void)loadFaceClassifier: (NSString *) face_cascade_name {
+-(void)loadClassifier: (cv::CascadeClassifier&) cascade named: (NSString *) cascade_name title: (NSString *) title {
     // Load the cascades
-    NSURL *resourceURL = [[NSBundle mainBundle] URLForResource: face_cascade_name withExtension: @"xml"];
-    printf("load face cascade classifier from %s.\n", [[resourceURL path] UTF8String]);
-    if( !resourceURL || !face_cascade.load( [[resourceURL path] UTF8String] ) ){ printf("--(!)Error loading face cascade, please change face_cascade_name in source code.\n");
-    }
-}
-
--(void)loadEyesClassifier: (NSString *) eyes_cascade_name {
-    // Load the cascades
-    NSURL *resourceURL_eyes = [[NSBundle mainBundle] URLForResource: eyes_cascade_name withExtension: @"xml"];
-    printf("load eyes cascade classifier from %s.\n", [[resourceURL_eyes path] UTF8String]);
-    if( !resourceURL_eyes || !eyes_cascade.load( [[resourceURL_eyes path] UTF8String] ) ){ printf("--(!)Error loading eyes cascade, please change face_cascade_name in source code.\n");
-    }
-}
-
-
--(void)loadRightEyesClassifier: (NSString *) eyes_cascade_name {
-    // Load the cascades
-    NSURL *resourceURL_eyes = [[NSBundle mainBundle] URLForResource: eyes_cascade_name withExtension: @"xml"];
-    printf("load right eyes cascade classifier from %s.\n", [[resourceURL_eyes path] UTF8String]);
-    if( !resourceURL_eyes || !right_eyes_cascade.load( [[resourceURL_eyes path] UTF8String] ) ){ printf("--(!)Error loading right eyes cascade, please change face_cascade_name in source code.\n");
-    }
-}
-
-
--(void)loadLeftEyesClassifier: (NSString *) eyes_cascade_name {
-    // Load the cascades
-    NSURL *resourceURL_eyes = [[NSBundle mainBundle] URLForResource: eyes_cascade_name withExtension: @"xml"];
-    printf("load left eyes cascade classifier from %s.\n", [[resourceURL_eyes path] UTF8String]);
-    if( !resourceURL_eyes || !left_eyes_cascade.load( [[resourceURL_eyes path] UTF8String] ) ){ printf("--(!)Error loading left eyes cascade, please change face_cascade_name in source code.\n");
-    }
-}
-
--(void)loadEyesOpenedClassifier: (NSString *) eyes_cascade_name {
-    // Load the cascades
-    NSURL *resourceURL_eyes = [[NSBundle mainBundle] URLForResource: eyes_cascade_name withExtension: @"xml"];
-    printf("load eyes opened cascade classifier from %s.\n", [[resourceURL_eyes path] UTF8String]);
-    if( !resourceURL_eyes || !eyes_opened_cascade.load( [[resourceURL_eyes path] UTF8String] ) ){ printf("--(!)Error loading eyes opened cascade, please change face_cascade_name in source code.\n");
-    }
-}
-
--(void)loadNoseClassifier: (NSString *) nose_cascade_name {
-    // Load the cascades
-    NSURL *resourceURL_eyes = [[NSBundle mainBundle] URLForResource: nose_cascade_name withExtension: @"xml"];
-    printf("load eyes cascade classifier from %s.\n", [[resourceURL_eyes path] UTF8String]);
-    if( !resourceURL_eyes || !nose_cascade.load( [[resourceURL_eyes path] UTF8String] ) ){ printf("--(!)Error loading nose cascade, please change face_cascade_name in source code.\n");
+    NSURL *resourceURL_eyes = [[NSBundle mainBundle] URLForResource: cascade_name withExtension: @"xml"];
+    printf("load %s cascade classifier from %s.\n", [title UTF8String], [[resourceURL_eyes path] UTF8String]);
+    if( !resourceURL_eyes || !cascade.load( [[resourceURL_eyes path] UTF8String] ) ){ printf("--(!)Error loading %s cascade, please change face_cascade_name in source code.\n", [title UTF8String]);
     }
 }
 
@@ -167,7 +124,7 @@ cv::CascadeClassifier nose_cascade;
     self.tripStopTime = 0;
 }
 - (void)stopTrip {
-    
+    self.tripStopTime = [FeatureDetectionTime now];
 }
 - (CFTimeInterval)tripElapsedTime {
     if (self.tripStartTime == 0) { return 0; }
@@ -218,6 +175,15 @@ cv::CascadeClassifier nose_cascade;
 }
 - (int) haarClassifierMinNeighbours {
     return (int)self.controller.minNeighboursStepper.value;
+}
+
+- (cv::Size)getMinSize {
+    return cv::Size(
+                    self.controller.minSizeSlider.value , self.controller.minSizeSlider.value);
+}
+- (cv::Size)getMaxSize {
+    return cv::Size(
+                    self.controller.maxSizeSlider.value , self.controller.maxSizeSlider.value);
 }
 
 #ifdef __cplusplus
@@ -437,7 +403,7 @@ cv::CascadeClassifier nose_cascade;
             cv::Point center( noseRegion.x + nose.x + nose.width*0.5, noseRegion.y + nose.y + nose.height*0.5 );
             //int radius = cvRound( (eye.width + eye.height)*0.25 );
             //circle( image, center, radius, cv::Scalar( 255, 0, 0 ), 4, 8, 0 );
-            int radius = 5;
+            int radius = 2;
             circle( image, center, radius, CvScalar( 0, 0, 255 ));
             if ([self.controller.debugSwitch isOn]) {
                 cv::Rect minRect(
