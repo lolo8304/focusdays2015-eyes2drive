@@ -313,6 +313,9 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    
     // Do any additional setup after loading the view, typically from a nib.
     self.videoCamera = [[CvVideoCamera alloc] initWithParentView:self.imageView];
     
@@ -366,6 +369,12 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     }
 
 }
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // We support only Portrait.
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
 
 - (void)viewDidAppear:(BOOL)animated {
     [self actionStart: nil];

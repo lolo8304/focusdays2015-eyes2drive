@@ -27,6 +27,8 @@
 @property (weak, nonatomic) IBOutlet UISwitch *debugSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *notificationSwitch;
 
+@property (weak, nonatomic) IBOutlet UIImageView *leftEyeImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *rightEyeImageView;
 
 
 @end

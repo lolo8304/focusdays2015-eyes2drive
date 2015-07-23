@@ -17,6 +17,7 @@
 
 
 
+
 @implementation FaceDetectionOpenCV
 
 //do NOT change haar-classifier, these are the best right now
@@ -272,17 +273,35 @@ cv::CascadeClassifier nose_cascade;
             int radius = 5;
             circle( image, center, radius, cv::Scalar( 255, 0, 0 ));
             
+
             if ([self.controller.debugSwitch isOn]) {
                 cv::Rect minRect(
-                                 eyeRegion.x + eye.x + eye.width/2 - minSize.width / 2,
-                                 eyeRegion.y + eye.y + eye.height/2 - minSize.height / 2,
+                                 MAX(eyeRegion.x + eye.x + eye.width/2 - minSize.width / 2, 0),
+                                 MAX(eyeRegion.y + eye.y + eye.height/2 - minSize.height / 2, 0),
                                  minSize.width, minSize.height);
                 cv::Rect maxRect(
-                                 eyeRegion.x + eye.x + eye.width/2 - maxSize.width / 2,
-                                 eyeRegion.y + eye.y + eye.height/2 - maxSize.height / 2,
+                                 MAX(eyeRegion.x + eye.x + eye.width/2 - maxSize.width / 2, 0),
+                                 MAX(eyeRegion.y + eye.y + eye.height/2 - maxSize.height / 2, 0),
                                  maxSize.width, maxSize.height);
                 rectangle(image, minRect, cv::Scalar(255,255,255));
+                rectangle(image, maxRect, cv::Scalar(255,255,255));
             }
+            
+            cv::Rect previewRect(
+                             MAX(eyeRegion.x + eye.x - eye.width , 0),
+                             MAX(eyeRegion.y + eye.y - eye.height, 0),
+                             eye.width*2, eye.height*2);
+            cv::Mat eyesROI = frame_gray( previewRect );
+            UIImage* eyesImage = [self MatToUIImage: eyesROI];
+            
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                if (eye.x < eyeRegion.width/2) {
+                    [self.controller.leftEyeImageView setImage: eyesImage];
+                } else {
+                    [self.controller.rightEyeImageView setImage: eyesImage];
+                }
+            });
+
         }
         /*
         [self eyesDetected: true];
@@ -365,6 +384,42 @@ cv::CascadeClassifier nose_cascade;
     }
     
 }
+
+
+- (UIImage *)MatToUIImage:(const cv::Mat&)cvMat {
+    NSData *data = [NSData dataWithBytes:cvMat.data length:cvMat.elemSize() * cvMat.total()];
+    
+    CGColorSpaceRef colorSpace;
+    
+    if (cvMat.elemSize() == 1) {
+        colorSpace = CGColorSpaceCreateDeviceGray();
+    } else {
+        colorSpace = CGColorSpaceCreateDeviceRGB();
+    }
+    
+    CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
+    
+    CGImageRef imageRef = CGImageCreate(cvMat.cols,                      // Width
+                                        cvMat.rows,                      // Height
+                                        8,                               // Bits per component
+                                        8 * cvMat.elemSize(),            // Bits per pixel
+                                        cvMat.step[0],                   // Bytes per row
+                                        colorSpace,                      // Colorspace
+                                        kCGImageAlphaNone | kCGBitmapByteOrderDefault,
+                                                                         // Bitmap info flags
+                                        provider,                        // CGDataProviderRef
+                                        NULL,                            // Decode
+                                        false,                           // Should interpolate
+                                        kCGRenderingIntentDefault);      // Intent
+    
+    UIImage *image = [[UIImage alloc] initWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    CGDataProviderRelease(provider);
+    CGColorSpaceRelease(colorSpace);
+    
+    return image;
+}
+
 
 
 - (void)goodFeaturesToTrack: (cv::Mat&)image gray: (cv::Mat&)frame_gray {
