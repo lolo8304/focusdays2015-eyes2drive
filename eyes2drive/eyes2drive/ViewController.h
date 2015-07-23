@@ -29,6 +29,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *leftEyeImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *rightEyeImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *faceImageView;
 
 
 @end

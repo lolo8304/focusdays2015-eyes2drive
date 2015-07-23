@@ -22,11 +22,24 @@
 
 //do NOT change haar-classifier, these are the best right now
 NSString * const C_face_cascade_name = @"haarcascade_frontalface_alt";
-NSString * const C_eyes_cascade_name = @"haarcascade_mcs_lefteye";
+
+NSString * const C_eyes_cascade_name = @"haarcascade_eye";
+
+//NSString * const C_right_eyes_cascade_name = @"haarcascade_righteye_2splits";
+NSString * const C_right_eyes_cascade_name = @"haarcascade_mcs_righteye";
+
+//NSString * const C_left_eyes_cascade_name = @"haarcascade_lefteye_2splits";
+NSString * const C_left_eyes_cascade_name = @"haarcascade_mcs_lefteye";
+
+NSString * const C_eyes_opened_cascade_name = @"haarcascade_eye_tree_eyeglasses";
+
 NSString * const C_nose_cascade_name = @"haarcascade_mcs_nose";
 
 cv::CascadeClassifier face_cascade;
 cv::CascadeClassifier eyes_cascade;
+cv::CascadeClassifier left_eyes_cascade;
+cv::CascadeClassifier right_eyes_cascade;
+cv::CascadeClassifier eyes_opened_cascade;
 cv::CascadeClassifier nose_cascade;
 
 - (id) initWith: (AVCaptureVideoOrientation)orientation controller: (ViewController *)controller {
@@ -36,6 +49,9 @@ cv::CascadeClassifier nose_cascade;
         
         [self loadFaceClassifier: C_face_cascade_name];
         [self loadEyesClassifier: C_eyes_cascade_name];
+        [self loadLeftEyesClassifier: C_left_eyes_cascade_name];
+        [self loadRightEyesClassifier: C_right_eyes_cascade_name];
+        [self loadEyesOpenedClassifier: C_eyes_opened_cascade_name];
         [self loadNoseClassifier: C_nose_cascade_name];
         
         self.controller = controller;
@@ -93,6 +109,33 @@ cv::CascadeClassifier nose_cascade;
     if( !resourceURL_eyes || !eyes_cascade.load( [[resourceURL_eyes path] UTF8String] ) ){ printf("--(!)Error loading eyes cascade, please change face_cascade_name in source code.\n");
     }
 }
+
+
+-(void)loadRightEyesClassifier: (NSString *) eyes_cascade_name {
+    // Load the cascades
+    NSURL *resourceURL_eyes = [[NSBundle mainBundle] URLForResource: eyes_cascade_name withExtension: @"xml"];
+    printf("load right eyes cascade classifier from %s.\n", [[resourceURL_eyes path] UTF8String]);
+    if( !resourceURL_eyes || !right_eyes_cascade.load( [[resourceURL_eyes path] UTF8String] ) ){ printf("--(!)Error loading right eyes cascade, please change face_cascade_name in source code.\n");
+    }
+}
+
+
+-(void)loadLeftEyesClassifier: (NSString *) eyes_cascade_name {
+    // Load the cascades
+    NSURL *resourceURL_eyes = [[NSBundle mainBundle] URLForResource: eyes_cascade_name withExtension: @"xml"];
+    printf("load left eyes cascade classifier from %s.\n", [[resourceURL_eyes path] UTF8String]);
+    if( !resourceURL_eyes || !left_eyes_cascade.load( [[resourceURL_eyes path] UTF8String] ) ){ printf("--(!)Error loading left eyes cascade, please change face_cascade_name in source code.\n");
+    }
+}
+
+-(void)loadEyesOpenedClassifier: (NSString *) eyes_cascade_name {
+    // Load the cascades
+    NSURL *resourceURL_eyes = [[NSBundle mainBundle] URLForResource: eyes_cascade_name withExtension: @"xml"];
+    printf("load eyes opened cascade classifier from %s.\n", [[resourceURL_eyes path] UTF8String]);
+    if( !resourceURL_eyes || !eyes_opened_cascade.load( [[resourceURL_eyes path] UTF8String] ) ){ printf("--(!)Error loading eyes opened cascade, please change face_cascade_name in source code.\n");
+    }
+}
+
 -(void)loadNoseClassifier: (NSString *) nose_cascade_name {
     // Load the cascades
     NSURL *resourceURL_eyes = [[NSBundle mainBundle] URLForResource: nose_cascade_name withExtension: @"xml"];
@@ -186,22 +229,14 @@ cv::CascadeClassifier nose_cascade;
     cv::split(image, rgbChannels);
     cv::Mat frame_gray = rgbChannels[2];
 
-    //cv::Mat frame_gray;
-    //cvtColor( frame, frame_gray, CV_BGR2GRAY );
-    //equalizeHist( frame_gray, frame_gray );
-    //cv::pow(frame_gray, CV_64F, frame_gray);
-    //-- Detect faces
-    
-
     if (false) {
         [self goodFeaturesToTrack: image gray: frame_gray ];
     }
 
     cv::Size minSize = cv::Size(50, 50);
     cv::Size maxSize = cv::Size(200,200);
-
     
-    face_cascade.detectMultiScale( frame_gray, faces, 1.1, [self haarClassifierMinNeighbours], [self haarClassifierOption], minSize );;
+    face_cascade.detectMultiScale( frame_gray, faces, 1.1, MAX([self haarClassifierMinNeighbours], 1), [self haarClassifierOption], minSize );;
     
     BOOL debug =[self.controller.debugSwitch isOn] && ![self.controller.eyesSwitch isOn] && ![self.controller.noseSwitch isOn];
     
@@ -224,6 +259,12 @@ cv::CascadeClassifier nose_cascade;
                 rectangle(image, minRect, cvScalar(255,255,255));
                 rectangle(image, maxRect, cvScalar(255,255,255));
             }
+            
+            UIImage* eyesImage = [self MatToUIImage: frame_gray(face).clone() ];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self.controller.faceImageView setImage: eyesImage];
+            });
+
 
             [self faceDetected: true];
             if ([self.controller.eyesSwitch isOn]) {
@@ -235,14 +276,17 @@ cv::CascadeClassifier nose_cascade;
         }
     } else {
         [self faceDetected: false];
-//        [self eyesDetected: false];
-//        [self twoEyesDetected: false];
     }
 
 }
 
 
-- (void)detectEyes:(cv::Mat&)image gray: (cv::Mat&)frame_gray face: (cv::Rect)face; {
+// new tricks: https://sites.google.com/site/learningopencv1/eye-dimensions
+// new trick with 3 haar-classifiers: https://github.com/affromero/OpenCV-Projects/tree/master/VisionProject
+// wow: https://www.youtube.com/watch?v=J0SlmOuNW8A&feature=iv&src_vid=NCtYdUEMotg&annotation_id=annotation_63398
+//     and his paper: http://www.tomheyman.be/wp-content/uploads/2012/01/Paper_POCA_GazeEstimation_HeymanTom.pdf
+
+- (void)detectEyes:(cv::Mat&)image gray: (cv::Mat&)imageGray face: (cv::Rect)face; {
 
     int eye_region_top = face.height * 0.2;
     int eye_region_bottom = face.height * 0.6;
@@ -250,74 +294,114 @@ cv::CascadeClassifier nose_cascade;
                     face.x, face.y+eye_region_top,
                     face.width, eye_region_bottom-eye_region_top);
     
-    cv::Mat faceROI = frame_gray( eyeRegion );
+    cv::Mat eyesROI = imageGray( eyeRegion );
     std::vector<cv::Rect> eyes;
+    std::vector<cv::Rect> leftEyes;
+    std::vector<cv::Rect> rightEyes;
     
     cv::Size minSize = cv::Size(
                                 self.controller.minSizeSlider.value , self.controller.minSizeSlider.value);
     cv::Size maxSize = cv::Size(
                                 self.controller.maxSizeSlider.value , self.controller.maxSizeSlider.value);
-   
-    eyes_cascade.detectMultiScale( faceROI, eyes, 1.2, [self haarClassifierMinNeighbours], [self haarClassifierOption], minSize );
+//    eyes_cascade.detectMultiScale( eyesROI, eyes, 1.2, MAX([self haarClassifierMinNeighbours], 1), [self haarClassifierOption], minSize );
+    right_eyes_cascade.detectMultiScale( eyesROI, rightEyes, 1.2, MAX([self haarClassifierMinNeighbours], 1), [self haarClassifierOption], minSize );
+    left_eyes_cascade.detectMultiScale( eyesROI, leftEyes, 1.2, MAX([self haarClassifierMinNeighbours], 1), [self haarClassifierOption], minSize );
 
     if ([self.controller.debugSwitch isOn]) {
         rectangle(image, eyeRegion, cv::Scalar(255,255,255));
     }
+    
+    //[self showEyes: eyes region: eyeRegion image: image gray: imageGray minSize: minSize maxSize: maxSize];
+    [self showEyes: rightEyes region: eyeRegion image: image gray: imageGray minSize: minSize maxSize: maxSize];
+    [self showEyes: leftEyes region: eyeRegion image: image gray: imageGray minSize: minSize maxSize: maxSize];
 
+}
+
+- (void)showEyes: (std::vector<cv::Rect>&) eyes region: (cv::Rect&) eyeRegion image: (cv::Mat&)image gray: (cv::Mat&)frame_gray minSize: (cv::Size&) minSize maxSize: (cv::Size) maxSize{
+    
     if (eyes.size() > 0) {
-        for( size_t j = 0; j < eyes.size(); j++ ) {
+        for( size_t j = 0; j < MIN(eyes.size(), 2); j++ ) {
             cv::Rect eye = eyes[j];
             cv::Point center( eyeRegion.x + eye.x + eye.width*0.5, eyeRegion.y + eye.y + eye.height*0.5 );
-            //int radius = cvRound( (eye.width + eye.height)*0.25 );
-            //circle( image, center, radius, cv::Scalar( 255, 0, 0 ), 4, 8, 0 );
-            int radius = 5;
-            circle( image, center, radius, cv::Scalar( 255, 0, 0 ));
-            
-
-            if ([self.controller.debugSwitch isOn]) {
-                cv::Rect minRect(
-                                 MAX(eyeRegion.x + eye.x + eye.width/2 - minSize.width / 2, 0),
-                                 MAX(eyeRegion.y + eye.y + eye.height/2 - minSize.height / 2, 0),
-                                 minSize.width, minSize.height);
-                cv::Rect maxRect(
-                                 MAX(eyeRegion.x + eye.x + eye.width/2 - maxSize.width / 2, 0),
-                                 MAX(eyeRegion.y + eye.y + eye.height/2 - maxSize.height / 2, 0),
-                                 maxSize.width, maxSize.height);
-                rectangle(image, minRect, cv::Scalar(255,255,255));
-                rectangle(image, maxRect, cv::Scalar(255,255,255));
-            }
             
             cv::Rect previewRect(
-                             MAX(eyeRegion.x + eye.x - eye.width , 0),
-                             MAX(eyeRegion.y + eye.y - eye.height, 0),
-                             eye.width*2, eye.height*2);
-            cv::Mat eyesROI = frame_gray( previewRect );
-            UIImage* eyesImage = [self MatToUIImage: eyesROI];
-            
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                if (eye.x < eyeRegion.width/2) {
-                    [self.controller.leftEyeImageView setImage: eyesImage];
-                } else {
-                    [self.controller.rightEyeImageView setImage: eyesImage];
+                                 MAX(center.x - 20, 0),
+                                 MAX(center.y - 10, 0),
+                                 40, 20);
+            cv::Mat eyesROI = frame_gray( previewRect ).clone();
+            /*
+            std::vector<cv::Rect> eyesOpened;
+            eyes_opened_cascade.detectMultiScale( eyesROI, eyesOpened, 1.1, MAX([self haarClassifierMinNeighbours], 1), [self haarClassifierOption]);
+            if (eyesOpened.size() > 0) {
+             */
+                int radius = 2;
+                circle( image, center, radius, cv::Scalar( 255, 0, 0 ));
+                
+                if ([self.controller.debugSwitch isOn]) {
+                    cv::Rect minRect(
+                                     MAX(center.x - minSize.width / 2, 0),
+                                     MAX(center.y - minSize.height / 2, 0),
+                                     minSize.width, minSize.height);
+                    cv::Rect maxRect(
+                                     MAX(center.x - maxSize.width / 2, 0),
+                                     MAX(center.y - maxSize.height / 2, 0),
+                                     maxSize.width, maxSize.height);
+                    rectangle(image, minRect, cv::Scalar(255,255,255));
+                    rectangle(image, maxRect, cv::Scalar(255,255,255));
                 }
-            });
-
+                
+                
+                [self threshold: eyesROI dest: eyesROI
+                      threshold: self.controller.maxSizeSlider.value*2.55
+                           type: [self haarClassifierMinNeighbours]];
+                UIImage* eyesImage = [self MatToUIImage: eyesROI];
+                
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    if (eye.x < eyeRegion.width/2) {
+                        [self.controller.leftEyeImageView setImage: eyesImage];
+                    } else {
+                        [self.controller.rightEyeImageView setImage: eyesImage];
+                    }
+                });
+            /*
+            } else {
+                cv::Point start( center.x - eye.width*0.5, center.y);
+                cv::Point stop( center.x + eye.width*0.5, center.y);
+                line( image, start, stop, cv::Scalar( 255, 0, 0 ));
+                
+                NSLog(@"eyes closed");
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    if (eye.x < eyeRegion.width/2) {
+                        [self.controller.leftEyeImageView setImage: [UIImage imageNamed: @"eyes-closed.png"]];
+                    } else {
+                        [self.controller.rightEyeImageView setImage: [UIImage imageNamed: @"eyes-closed.png"]];
+                    }
+                });
+            }
+             */
+            
         }
         /*
-        [self eyesDetected: true];
-        if (eyes.size() == 2) {
-            [self twoEyesDetected: true];
-        } else {
-            [self twoEyesDetected: false];
-        }
+         [self eyesDetected: true];
+         if (eyes.size() == 2) {
+         [self twoEyesDetected: true];
+         } else {
+         [self twoEyesDetected: false];
+         }
          */
     } else {
         /*
-        [self eyesDetected: false];
-        [self twoEyesDetected: false];
+         [self eyesDetected: false];
+         [self twoEyesDetected: false];
          */
     }
     
+    
+}
+
+
+- (void)threshold: (cv::Mat&) srcImage dest:(cv::Mat&) destImage threshold: (double) threshold type: (int) threshold_type {
+    cv::threshold( srcImage, destImage, threshold , 255, threshold_type );
 }
 
 
@@ -342,7 +426,7 @@ cv::CascadeClassifier nose_cascade;
     cv::Size maxSize = cv::Size(
                                 self.controller.maxSizeSlider.value , self.controller.maxSizeSlider.value);
 
-    nose_cascade.detectMultiScale( noseROI, noses, 1.2, [self haarClassifierMinNeighbours], [self haarClassifierOption], minSize );
+    nose_cascade.detectMultiScale( noseROI, noses, 1.2, MAX([self haarClassifierMinNeighbours], 1), [self haarClassifierOption], minSize );
     if ([self.controller.debugSwitch isOn]) {
         rectangle(image, noseRegion, CvScalar(255,255,255));
     }
