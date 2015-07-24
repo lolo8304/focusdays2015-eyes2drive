@@ -384,7 +384,7 @@ cv::CascadeClassifier mouth_cascade;
     /* must be ODD number */
     int threshold = (int)self.controller.minSizeSlider.value;
     if (threshold % 2 == 0) { threshold++; }
-    threshold = 15;
+    threshold = 11;
     cv::adaptiveThreshold(srcImage, destImage, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C,
                           cv::THRESH_BINARY, threshold, 8);
 }
