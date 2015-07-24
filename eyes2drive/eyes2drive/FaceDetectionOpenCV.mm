@@ -294,8 +294,8 @@ cv::CascadeClassifier mouth_cascade;
             if (center.y > eyeRegion.y + eyeRegion.height / 4) {
                 cv::Rect previewRect(
                                  MAX(center.x - 20, 0),
-                                 MAX(center.y - 10, 0),
-                                 40, 20);
+                                 MAX(center.y - 8, 0),
+                                 40, 16);
                 cv::Mat eyesROI = frame_gray( previewRect ).clone();
                 /*
                  std::vector<cv::Rect> eyesOpened;
@@ -314,15 +314,18 @@ cv::CascadeClassifier mouth_cascade;
                                      MAX(center.x - maxSize.width / 2, 0),
                                      MAX(center.y - maxSize.height / 2, 0),
                                      maxSize.width, maxSize.height);
-                    rectangle(image, minRect, cv::Scalar(255,255,255));
-                    rectangle(image, maxRect, cv::Scalar(255,255,255));
+                    cv::Rect eyeRect(
+                                     MAX(center.x - eye.width / 2, 0),
+                                     MAX(center.y - eye.height / 2, 0),
+                                     eye.width, eye.height);
+//                    rectangle(image, minRect, cv::Scalar(255,255,255));
+//                    rectangle(image, maxRect, cv::Scalar(255,255,255));
+                    rectangle(image, eyeRect, cv::Scalar(255,255,255));
                 }
                 
-                
-                [self threshold: eyesROI dest: eyesROI
-                      threshold: self.controller.maxSizeSlider.value*2.55
-                           type: [self haarClassifierMinNeighbours]];
-                UIImage* eyesImage = [self MatToUIImage: eyesROI];
+                cv::Mat destEyesROI = cv::Mat::zeros( eyesROI.size(), CV_8UC1 );
+                [self threshold: eyesROI dest: destEyesROI];
+                UIImage* eyesImage = [self MatToUIImage: destEyesROI];
                 
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     if (eye.x < eyeRegion.width/2) {
@@ -351,12 +354,91 @@ cv::CascadeClassifier mouth_cascade;
     
 }
 
-
-- (void)threshold: (cv::Mat&) srcImage dest:(cv::Mat&) destImage threshold: (double) threshold type: (int) threshold_type {
-    cv::equalizeHist(srcImage, destImage);
-    //cv::threshold( srcImage, destImage, threshold , 255, threshold_type );
+- (void)threshold: (cv::Mat&) srcImage dest:(cv::Mat&) destImage {
+    int option = [self haarClassifierOption];
+    if (option == 1) {
+        [self adaptiveThreshold: srcImage dest: destImage];
+    } else if (option == 2) {
+        [self otsuThreshold: srcImage dest: destImage];
+    } else if (option == 4) {
+        [self cannyEdgeDetect: srcImage dest: destImage];
+    } else if (option == 8) {
+        [self findContour: srcImage dest: destImage];
+    }
 }
 
+// http://docs.opencv.org/master/d7/d4d/tutorial_py_thresholding.html
+- (void)simpleThreshold: (cv::Mat&) srcImage dest:(cv::Mat&) destImage  {
+    
+    cv::equalizeHist(srcImage, destImage);
+    // 2.55 because maxSize range is 0..100
+    int threshold = self.controller.maxSizeSlider.value * 2.55;
+    int threshold_type = [self haarClassifierMinNeighbours];
+    cv::threshold( srcImage, destImage, threshold , 255, threshold_type );
+}
+
+
+// http://docs.opencv.org/master/d7/d4d/tutorial_py_thresholding.html
+- (void)adaptiveThreshold: (cv::Mat&) srcImage dest:(cv::Mat&) destImage {
+    [self gaussianBlur:srcImage dest:destImage size:5];
+    /* must be ODD number */
+    int threshold = (int)self.controller.minSizeSlider.value;
+    if (threshold % 2 == 0) { threshold++; }
+    threshold = 15;
+    cv::adaptiveThreshold(srcImage, destImage, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C,
+                          cv::THRESH_BINARY, threshold, 8);
+}
+
+
+// http://docs.opencv.org/master/d7/d4d/tutorial_py_thresholding.html
+- (void)otsuThreshold: (cv::Mat&) srcImage dest:(cv::Mat&) destImage {
+    //cv::equalizeHist(srcImage, destImage);
+    [self gaussianBlur:srcImage dest:destImage size:5];
+    int threshold = self.controller.maxSizeSlider.value * 2.55;
+    cv::threshold( srcImage, destImage, threshold , 255, cv::THRESH_OTSU | cv::THRESH_BINARY );
+}
+
+// http://docs.opencv.org/doc/tutorials/imgproc/imgtrans/canny_detector/canny_detector.html
+- (void)blur: (cv::Mat&) srcImage dest:(cv::Mat&) destImage size: (int) size{
+    cv::blur(srcImage, destImage, cv::Size(size, size));
+}
+// http://docs.opencv.org/master/d7/d4d/tutorial_py_thresholding.html
+- (void)gaussianBlur: (cv::Mat&) srcImage dest:(cv::Mat&) destImage size: (int) size{
+    cv::GaussianBlur(srcImage, destImage, cv::Size(size, size), 0, 0);
+}
+
+// http://docs.opencv.org/doc/tutorials/imgproc/imgtrans/canny_detector/canny_detector.html
+- (void)cannyEdgeDetect: (cv::Mat&) srcImage dest:(cv::Mat&) destImage {
+    
+//    [self adaptiveThreshold: srcImage dest: destImage];
+    
+    int ratio = 3;
+    int kernel_size = 3;
+    // 2.55 because maxSize range is 0..100
+    int lowThreshold = self.controller.maxSizeSlider.value;
+
+    [self blur: srcImage dest: destImage size: 3];
+    cv::Canny( srcImage, destImage, lowThreshold , lowThreshold * ratio, kernel_size );
+}
+
+
+// http://docs.opencv.org/doc/tutorials/imgproc/imgtrans/canny_detector/canny_detector.html
+- (void)findContour: (cv::Mat&) srcImage dest:(cv::Mat&) destImage {
+
+    [self adaptiveThreshold: srcImage dest: srcImage];
+//    [self blur: srcImage dest: srcImage size: 3];
+    
+    std::vector<std::vector<cv::Point>> contours;
+    //    std::vector<cv::Vec4i> hierarchy;
+    //    cv::blur(srcImage, destImage, cv::Size(kernel_size,kernel_size));
+    cv::findContours(srcImage, contours, CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE);
+    
+    cv::Scalar color = cv::Scalar( 255, 0, 0 );
+    for( int i = 0; i< contours.size(); i++ ) {
+        cv::drawContours( destImage, contours, i, color);
+    }
+
+}
 
 
 - (void)detectNose:(cv::Mat&)image gray: (cv::Mat&)frame_gray face: (cv::Rect)face; {
