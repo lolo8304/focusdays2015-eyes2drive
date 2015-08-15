@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<CBCentralManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UISlider *minSizeSlider;
 @property (weak, nonatomic) IBOutlet UILabel *minSizeLabel;

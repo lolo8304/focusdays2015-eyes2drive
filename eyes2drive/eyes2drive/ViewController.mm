@@ -325,6 +325,7 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
 
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
+    //self.videoCamera.defaultAVCaptureVideoOrientation = self.currentVideoOrientation;
     printf("current video orientation = %li\n", (long)self.currentVideoOrientation);
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
@@ -343,7 +344,7 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
         CASCADE_DO_ROUGH_SEARCH     = 8     index = 3
      */
     // do not change, best option for all: CASCADE_SCALE_IMAGE
-    [self.optionsSegment setSelectedSegmentIndex: 1];
+    [self.optionsSegment setSelectedSegmentIndex: 0];
     [self valueChangedOptions: self.optionsSegment];
     
     [self.eyesSwitch setOn: true];
@@ -382,6 +383,40 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
 - (void)viewWillDisappear:(BOOL)animated {
     [self actionStop: nil];
 }
+
+
+
+#pragma mark - CBCentralManagerDelegate Methods
+
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central {
+    
+    switch (central.state) {
+        case CBCentralManagerStatePoweredOn:
+            break;
+        case CBCentralManagerStatePoweredOff:
+            break;
+            
+        case CBCentralManagerStateUnsupported: {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dang."
+                                                            message:@"Unfortunately this device can not talk to Bluetooth Smart (Low Energy) Devices"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Dismiss"
+                                                  otherButtonTitles:nil];
+            
+            [alert show];
+            break;
+        }
+            
+            
+        default:
+            break;
+    }
+    
+    
+    
+}
+
+
 
 
 @end
