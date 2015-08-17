@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
+#import <MapKit/MapKit.h>
+#import <MapKit/MKAnnotation.h>
 
-@interface ViewController : UIViewController<CBCentralManagerDelegate>
+@interface ViewController : UIViewController<MKMapViewDelegate,  CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UISlider *minSizeSlider;
 @property (weak, nonatomic) IBOutlet UILabel *minSizeLabel;
@@ -31,6 +33,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *leftEyeImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *rightEyeImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *faceImageView;
+
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property(nonatomic, strong) CLLocationManager *locationManager;
 
 
 @end

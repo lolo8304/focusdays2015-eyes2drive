@@ -19,7 +19,8 @@
 #import "FeatureDetectionTime.h"
 #import "AudioToolbox/AudioServices.h"
 #import "NWPusher.h"
-
+#import <MapKit/MapKit.h>
+#import <MapKit/MKAnnotation.h>
 
 
 #import <opencv2/videoio/cap_ios.h>
@@ -37,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nofDarkRedEvents;
 
     @property (weak, nonatomic) IBOutlet UISegmentedControl *faceAlertControl;
+
 
     @property (nonatomic, strong) CvVideoCamera* videoCamera;
     @property (nonatomic, strong) FaceDetectionOpenCV* faceDetection;
@@ -352,6 +354,21 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     [self.debugSwitch setOn: false];
     [self.notificationSwitch setOn: false];
     
+    /* map view initialisation */
+    self.mapView.delegate = self;
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager requestAlwaysAuthorization];
+    [self.locationManager startUpdatingLocation];
+    
+    self.mapView.showsUserLocation = YES;
+    [self.mapView setMapType:MKMapTypeHybrid];
+    [self.mapView setZoomEnabled:YES];
+    [self.mapView setScrollEnabled:YES];
+    [self.mapView setUserInteractionEnabled: NO];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -378,7 +395,26 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
 
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:YES];
+
     [self actionStart: nil];
+
+    /* important http://matthewfecher.com/app-developement/getting-gps-location-using-core-location-in-ios-8-vs-ios-7/ */
+    
+    [self.locationManager requestWhenInUseAuthorization];
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager startUpdatingLocation];
+    NSLog(@"%@", [self deviceLocation]);
+    
+    //View Area
+    MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
+    region.center.latitude = self.locationManager.location.coordinate.latitude;
+    region.center.longitude = self.locationManager.location.coordinate.longitude;
+    region.span.longitudeDelta = 0.005f;
+    region.span.latitudeDelta = 0.005f;
+    [self.mapView setRegion:region animated:YES];
+    
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [self actionStop: nil];
@@ -386,37 +422,42 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
 
 
 
-#pragma mark - CBCentralManagerDelegate Methods
 
-- (void)centralManagerDidUpdateState:(CBCentralManager *)central {
-    
-    switch (central.state) {
-        case CBCentralManagerStatePoweredOn:
-            break;
-        case CBCentralManagerStatePoweredOff:
-            break;
-            
-        case CBCentralManagerStateUnsupported: {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dang."
-                                                            message:@"Unfortunately this device can not talk to Bluetooth Smart (Low Energy) Devices"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Dismiss"
-                                                  otherButtonTitles:nil];
-            
-            [alert show];
-            break;
-        }
-            
-            
-        default:
-            break;
-    }
-    
-    
-    
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
+    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
 }
 
+- (NSString *)deviceLocation {
+    return [NSString stringWithFormat:@"latitude: %f longitude: %f", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude];
+}
+/*
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    
+    static NSString* AnnotationIdentifier = @"Annotation";
+    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationIdentifier];
+    
+    if (!pinView) {
+        
+        MKPinAnnotationView *customPinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier] ;
+        if (annotation == mapView.userLocation){
+            customPinView.image = [UIImage imageNamed:@"car"];
+        }
+        else{
+            customPinView.image = [UIImage imageNamed:@"car"];
+        }
+        customPinView.animatesDrop = NO;
+        customPinView.canShowCallout = YES;
+        return customPinView;
+        
+    } else {
+        
+        pinView.annotation = annotation;
+    }
+    
+    return pinView;
+}
 
-
-
+*/
 @end

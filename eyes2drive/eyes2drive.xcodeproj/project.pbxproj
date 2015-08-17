@@ -26,6 +26,7 @@
 		E13D21851B4CA320006D7EEB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E13D217B1B4CA320006D7EEB /* QuartzCore.framework */; };
 		E13D21861B4CA320006D7EEB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E13D217C1B4CA320006D7EEB /* UIKit.framework */; };
 		E13D21951B4CBF96006D7EEB /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E13D21941B4CBF96006D7EEB /* opencv2.framework */; };
+		E176AA261B8196DB00D8E783 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E176AA251B8196DB00D8E783 /* CoreLocation.framework */; };
 		E182F87A1B577B0F00AC1B93 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E182F8791B577B0F00AC1B93 /* MapKit.framework */; };
 		E182F87C1B578A5100AC1B93 /* geographic-coverage-file-Swiss-border.geojson in Resources */ = {isa = PBXBuildFile; fileRef = E182F87B1B578A5100AC1B93 /* geographic-coverage-file-Swiss-border.geojson */; };
 		E182F8921B57ABF500AC1B93 /* haarcascade_mcs_eyepair_big.xml in Resources */ = {isa = PBXBuildFile; fileRef = E182F8891B57ABF500AC1B93 /* haarcascade_mcs_eyepair_big.xml */; };
@@ -126,6 +127,7 @@
 		E13D217B1B4CA320006D7EEB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E13D217C1B4CA320006D7EEB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E13D21941B4CBF96006D7EEB /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../opencv2.framework; sourceTree = "<group>"; };
+		E176AA251B8196DB00D8E783 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E182F8701B56F55C00AC1B93 /* eyes2drive.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = eyes2drive.entitlements; sourceTree = "<group>"; };
 		E182F8791B577B0F00AC1B93 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E182F87B1B578A5100AC1B93 /* geographic-coverage-file-Swiss-border.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "geographic-coverage-file-Swiss-border.geojson"; sourceTree = "<group>"; };
@@ -194,6 +196,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E182F87A1B577B0F00AC1B93 /* MapKit.framework in Frameworks */,
+				E176AA261B8196DB00D8E783 /* CoreLocation.framework in Frameworks */,
 				E1BB39A91B545FBC00511D22 /* ImageIO.framework in Frameworks */,
 				E13D21851B4CA320006D7EEB /* QuartzCore.framework in Frameworks */,
 				E13D21821B4CA320006D7EEB /* CoreMedia.framework in Frameworks */,
@@ -201,7 +205,6 @@
 				E13D21811B4CA320006D7EEB /* CoreImage.framework in Frameworks */,
 				E13D21831B4CA320006D7EEB /* CoreVideo.framework in Frameworks */,
 				E13D217E1B4CA320006D7EEB /* AssetsLibrary.framework in Frameworks */,
-				E182F87A1B577B0F00AC1B93 /* MapKit.framework in Frameworks */,
 				E13D217F1B4CA320006D7EEB /* AVFoundation.framework in Frameworks */,
 				E13D21861B4CA320006D7EEB /* UIKit.framework in Frameworks */,
 				E13D21841B4CA320006D7EEB /* Foundation.framework in Frameworks */,
@@ -288,6 +291,7 @@
 		E13D21971B4CC005006D7EEB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E176AA251B8196DB00D8E783 /* CoreLocation.framework */,
 				E182F8791B577B0F00AC1B93 /* MapKit.framework */,
 				E1BB39A81B545FBC00511D22 /* ImageIO.framework */,
 				E1892B361B5305EC00D7C9DB /* AudioToolbox.framework */,
