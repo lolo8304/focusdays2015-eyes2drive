@@ -37,6 +37,8 @@
 	<array>
 		<string>MKDirectionsModeCar</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Please allow us to see your location</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
@@ -54,7 +56,5 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Please allow us to see your location</string>
-    </dict>
+</dict>
 </plist>

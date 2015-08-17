@@ -42,7 +42,9 @@
 
     @property (nonatomic, strong) CvVideoCamera* videoCamera;
     @property (nonatomic, strong) FaceDetectionOpenCV* faceDetection;
+@property (weak, nonatomic) IBOutlet UISwitch *showMapSwitch;
 
+- (IBAction)showMapChanged:(id)sender;
     @property (nonatomic, strong) NSThread *thread;
 
 - (IBAction)valueChangedNeighbours:(UIStepper *)sender;
@@ -81,6 +83,14 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
 }
 
 
+
+- (IBAction)showMapChanged:(id)sender {
+    if ([sender isOn]) {
+        [self.mapView setHidden: false];
+    } else {
+        [self.mapView setHidden: true];
+    }
+}
 
 - (NSThread *) thread
 {
