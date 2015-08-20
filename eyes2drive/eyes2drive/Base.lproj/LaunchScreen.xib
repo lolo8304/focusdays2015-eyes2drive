@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -23,9 +23,10 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="FocusDays" translatesAutoresizingMaskIntoConstraints="NO" id="D0s-jA-vM8">
-                    <rect key="frame" x="160" y="206" width="160" height="105"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FocusDays" translatesAutoresizingMaskIntoConstraints="NO" id="D0s-jA-vM8">
+                    <rect key="frame" x="160" y="199" width="160" height="105"/>
                     <constraints>
+                        <constraint firstAttribute="height" constant="105" id="6ng-Ok-EfN"/>
                         <constraint firstAttribute="width" constant="160" id="Ygy-j8-Oxk"/>
                     </constraints>
                 </imageView>
@@ -38,7 +39,7 @@
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
                 <constraint firstAttribute="centerX" secondItem="D0s-jA-vM8" secondAttribute="centerX" id="Pq6-Nj-xde"/>
                 <constraint firstItem="kId-c2-rCX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="140" id="UpQ-i5-yyN"/>
-                <constraint firstItem="D0s-jA-vM8" firstAttribute="top" relation="lessThanOrEqual" secondItem="kId-c2-rCX" secondAttribute="bottom" constant="16" id="XE7-t0-yaE"/>
+                <constraint firstItem="D0s-jA-vM8" firstAttribute="top" secondItem="kId-c2-rCX" secondAttribute="bottom" constant="16" id="XE7-t0-yaE"/>
                 <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
                 <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="fvb-Df-36g"/>
             </constraints>
