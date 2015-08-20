@@ -309,6 +309,8 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     NSLog(@"Stopping thread");
     [self.thread cancel];
     [self setFaceAlertImage: FeatureAlertGreen];
+    [self.locationManager stopUpdatingLocation];
+    [self.locationManager stopUpdatingHeading];
 
 }
 
@@ -334,13 +336,18 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     self.faceDetection = [ [FaceDetectionOpenCV alloc ] initWith: AVCaptureVideoOrientationPortrait controller: self];
     self.videoCamera.delegate = self.faceDetection;
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
-    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
+    //self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
+    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
 
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
     //self.videoCamera.defaultAVCaptureVideoOrientation = self.currentVideoOrientation;
     printf("current video orientation = %li\n", (long)self.currentVideoOrientation);
     self.videoCamera.defaultFPS = 30;
     self.videoCamera.grayscaleMode = NO;
+    [self.videoCamera lockFocus];
+    [self.videoCamera lockExposure];
+    [self.videoCamera lockBalance];
+    [self.videoCamera rotateVideo];
     
     [self valueChangedMaxSize: self.maxSizeSlider];
     [self valueChangedMinSize: self.minSizeSlider];
@@ -371,12 +378,15 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     [self.locationManager requestWhenInUseAuthorization];
     [self.locationManager requestAlwaysAuthorization];
     [self.locationManager startUpdatingLocation];
+    [self.locationManager startUpdatingHeading];
     
     self.mapView.showsUserLocation = YES;
     [self.mapView setMapType:MKMapTypeHybrid];
     [self.mapView setZoomEnabled:YES];
     [self.mapView setScrollEnabled:YES];
-    [self.mapView setUserInteractionEnabled: NO];
+    [self.mapView setRotateEnabled: YES];
+    [self.mapView setUserInteractionEnabled: YES];
+    [self.mapView setUserTrackingMode: MKUserTrackingModeFollowWithHeading];
     
     
 }
@@ -424,50 +434,23 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     region.span.longitudeDelta = 0.005f;
     region.span.latitudeDelta = 0.005f;
     [self.mapView setRegion:region animated:YES];
+
     
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [self actionStop: nil];
+    
 }
-
-
 
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
     [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
+    
 }
 
 - (NSString *)deviceLocation {
     return [NSString stringWithFormat:@"latitude: %f longitude: %f", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude];
 }
-/*
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-    
-    static NSString* AnnotationIdentifier = @"Annotation";
-    MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationIdentifier];
-    
-    if (!pinView) {
-        
-        MKPinAnnotationView *customPinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier] ;
-        if (annotation == mapView.userLocation){
-            customPinView.image = [UIImage imageNamed:@"car"];
-        }
-        else{
-            customPinView.image = [UIImage imageNamed:@"car"];
-        }
-        customPinView.animatesDrop = NO;
-        customPinView.canShowCallout = YES;
-        return customPinView;
-        
-    } else {
-        
-        pinView.annotation = annotation;
-    }
-    
-    return pinView;
-}
-
-*/
 @end
