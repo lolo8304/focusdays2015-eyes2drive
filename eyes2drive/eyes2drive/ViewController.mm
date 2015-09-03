@@ -40,7 +40,6 @@
     @property (weak, nonatomic) IBOutlet UISegmentedControl *faceAlertControl;
 
 
-    @property (nonatomic, strong) CvVideoCamera* videoCamera;
     @property (nonatomic, strong) FaceDetectionOpenCV* faceDetection;
 @property (weak, nonatomic) IBOutlet UISwitch *showMapSwitch;
 
@@ -310,7 +309,7 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     [self.thread cancel];
     [self setFaceAlertImage: FeatureAlertGreen];
     [self.locationManager stopUpdatingLocation];
-    [self.locationManager stopUpdatingHeading];
+   // [self.locationManager stopUpdatingHeading];
 
 }
 
@@ -348,7 +347,7 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     [self.videoCamera lockExposure];
     [self.videoCamera lockBalance];
     [self.videoCamera rotateVideo];
-    
+        
     [self valueChangedMaxSize: self.maxSizeSlider];
     [self valueChangedMinSize: self.minSizeSlider];
     
@@ -376,9 +375,9 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     [self.locationManager requestWhenInUseAuthorization];
-    [self.locationManager requestAlwaysAuthorization];
+    //[self.locationManager requestAlwaysAuthorization];
     [self.locationManager startUpdatingLocation];
-    [self.locationManager startUpdatingHeading];
+   // [self.locationManager startUpdatingHeading];
     
     self.mapView.showsUserLocation = YES;
     [self.mapView setMapType:MKMapTypeHybrid];
@@ -386,10 +385,22 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     [self.mapView setScrollEnabled:YES];
     [self.mapView setRotateEnabled: YES];
     [self.mapView setUserInteractionEnabled: YES];
-    [self.mapView setUserTrackingMode: MKUserTrackingModeFollowWithHeading];
+   // [self.mapView setUserTrackingMode: MKUserTrackingModeFollowWithHeading animated: YES];
     
     
 }
+
+- (void) zoomVideoCamera: (float) zoomLevel {
+    
+    AVCaptureDevice *device = [[AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+    if ([device respondsToSelector:@selector(setVideoZoomFactor:)]
+        && device.activeFormat.videoMaxZoomFactor >= zoomLevel) {
+        // iOS 7.x with compatible hardware
+        if ([device lockForConfiguration:nil]) {
+            [device setVideoZoomFactor:zoomLevel];
+            [device unlockForConfiguration];
+        }
+    }}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -442,6 +453,9 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     
 }
 
+- (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView {
+   // [self.mapView setUserTrackingMode:MKUserTrackingModeFollowWithHeading animated:YES];
+}
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {

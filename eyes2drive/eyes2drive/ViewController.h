@@ -11,6 +11,10 @@
 #import <MapKit/MapKit.h>
 #import <MapKit/MKAnnotation.h>
 
+#import <opencv2/videoio/cap_ios.h>
+#include <opencv2/objdetect/objdetect.hpp>
+
+
 @interface ViewController : UIViewController<MKMapViewDelegate,  CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UISlider *minSizeSlider;
@@ -34,8 +38,11 @@
 @property (weak, nonatomic) IBOutlet UIImageView *rightEyeImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *faceImageView;
 
+@property (nonatomic, strong) CvVideoCamera* videoCamera;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property(nonatomic, strong) CLLocationManager *locationManager;
+
+- (void) zoomVideoCamera: (float) zoomLevel;
 
 
 @end
