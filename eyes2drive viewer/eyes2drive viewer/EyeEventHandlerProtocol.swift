@@ -8,10 +8,12 @@
 
 import Foundation
 
-protocol EyeEventHandlerProtocol{
-    
+protocol EyeEventHandlerProtocol {
+
     func addEvent(type: EventType)
+
     func startTrip()
+
     func endTrip()
-    
-   }
+
+}

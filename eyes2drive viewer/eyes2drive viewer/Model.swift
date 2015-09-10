@@ -10,18 +10,13 @@ import Foundation
 
 
 class Trips {
-
-    var trips = [Trip]();
-
-
+    var trips = [Trip]()
 }
 
-
-
 class Trip {
-    let events = [Event]();
-    let start = NSDate();
-    var end = NSDate();
+    let events = [Event]()
+    let start = NSDate()
+    var end = NSDate()
     
     func stopTrip(){
         end = NSDate()
@@ -29,18 +24,11 @@ class Trip {
     
 }
 
-
-
-
 class Event {
     var typ: EventType = EventType.green;
     let timestamp = NSDate();
-    
 }
 
-
 enum EventType {
-    
     case green, orange, red
-    
 }
