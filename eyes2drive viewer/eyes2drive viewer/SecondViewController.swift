@@ -18,16 +18,34 @@ class SecondViewController: UIViewController{
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    @IBAction func fireGreen(sender: AnyObject) {
-        /*switch sender.selectedSegmentIndex{
-            case 0:
-            
+    @IBAction func fireEvent(sender: AnyObject) {
+        switch sender.selectedSegmentIndex{
+        case 0:
+            eyeHandler.addEvent(EventType.green)
+        case 1:
+            eyeHandler.addEvent(EventType.orange)
+        case 2:
+            eyeHandler.addEvent(EventType.red)
         default:
-            
-        };*/
-        eyeHandler.addEvent(EventType.green)
+            eyeHandler.addEvent(EventType.green)
+        };
         
     }
+    
+    
+    @IBAction func fireStartStop(sender: AnyObject) {
+        switch sender.selectedSegmentIndex{
+        case 0:
+            eyeHandler.startTrip()
+        case 1:
+            eyeHandler.endTrip()
+        default:
+            eyeHandler.startTrip()
+        };
+        
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

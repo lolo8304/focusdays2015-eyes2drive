@@ -14,10 +14,10 @@ let eyeHandler = EyeEventHandler()
 
 class EyeEventHandler : EyeEventHandlerProtocol {
     
-    var trips = Trips()
+    var tripsRepo:Trips = Trips()
     
     func addEvent(type: EventType){
-UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil))
+        UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil))
         var notification = UILocalNotification()
         notification.alertBody = "Hallo Welt" // text that will be displayed in the notification
         notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
@@ -31,10 +31,12 @@ UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotific
     }
     
     func startTrip(){
+        tripsRepo.startAndAddNewTrip()
         
     }
     
     func endTrip(){
+        tripsRepo.stopCurrentTrip()
         
     }
 }

@@ -10,7 +10,21 @@ import Foundation
 
 
 class Trips {
-    var trips = [Trip]()
+    var trips: [Trip] = [Trip]();
+    
+    func startAndAddNewTrip(){
+        var neuerTrip = Trip();
+        trips.append(neuerTrip);
+    }
+    
+    func stopCurrentTrip(){
+        getCurrentTrip().stopTrip()
+    }
+    
+    func getCurrentTrip() -> Trip{
+        return trips[trips.count]
+    }
+    
 }
 
 class Trip {
