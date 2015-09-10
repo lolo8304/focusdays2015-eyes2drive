@@ -10,7 +10,7 @@ import UIKit
 
 class SecondViewController: UIViewController{
     
-    var delay: Int = 0;
+    var delay: Bool = false;
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,13 +20,13 @@ class SecondViewController: UIViewController{
     @IBAction func fireEvent(sender: AnyObject) {
         switch sender.selectedSegmentIndex{
         case 0:
-            eyeHandler.addEvent(EventGreen())
+            eyeHandler.addEvent(EventGreen(),delay: delay)
         case 1:
-            eyeHandler.addEvent(EventOrange())
+            eyeHandler.addEvent(EventOrange(),delay: delay)
         case 2:
-            eyeHandler.addEvent(EventRed())
+            eyeHandler.addEvent(EventRed(),delay: delay)
         default:
-            eyeHandler.addEvent(EventGreen())
+            eyeHandler.addEvent(EventGreen(),delay:delay)
         };
         
     }
@@ -56,9 +56,9 @@ class SecondViewController: UIViewController{
 
     @IBAction func changeDelay(sender: AnyObject) {
         if delaySwitch.on {
-            delay = 30
+            delay = true
         } else {
-            delay = 0
+            delay = false
         }
     }
     
