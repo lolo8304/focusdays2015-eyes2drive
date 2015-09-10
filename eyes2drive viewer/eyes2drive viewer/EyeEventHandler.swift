@@ -27,7 +27,7 @@ class EyeEventHandler : EyeEventHandlerProtocol {
             offsetSec = 10;
         }
         var now = NSDate().dateByAddingTimeInterval(NSTimeInterval(offsetSec))
-        notification.fireDate = NSDate() // todo item due date (when notification will be fired)
+        notification.fireDate = now // todo item due date (when notification will be fired)
         
         
         notification.soundName = UILocalNotificationDefaultSoundName // play default sound
