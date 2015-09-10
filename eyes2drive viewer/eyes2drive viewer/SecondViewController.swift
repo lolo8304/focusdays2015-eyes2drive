@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Darwin
 
 class SecondViewController: UIViewController{
     
@@ -31,6 +30,10 @@ class SecondViewController: UIViewController{
         };
         
     }
+    
+    
+
+    
     
     
     @IBAction func fireStartStop(sender: AnyObject) {
