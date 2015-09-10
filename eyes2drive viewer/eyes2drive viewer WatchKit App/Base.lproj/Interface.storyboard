@@ -19,36 +19,38 @@
             <point key="canvasLocation" x="-125" y="194"/>
         </scene>
         <!--Glance Interface Controller-->
-        <scene sceneID="CN3-yQ-kQR">
+        <scene sceneID="Iuv-Yq-M7N">
             <objects>
-                <glanceController topTemplateType="body1Large" bottomTemplateType="body1Group" id="Qwj-sU-gGv" customClass="GlanceController" customModule="eyes2drive_viewer_WatchKit_Extension">
+                <glanceController topTemplateType="body1Large" id="wd4-6C-ra0" customClass="GlanceController" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
-                        <label alignment="left" text="eyes2drive" id="ARk-39-mkc"/>
-                        <label alignment="left" text="66%" id="jmw-eO-Sgb"/>
-                        <label alignment="left" text="Summary:" id="6As-ij-Ysz"/>
-                        <group alignment="left" layout="vertical" id="JTW-sB-xiW">
+                        <label alignment="left" text="eyes2drive" id="Om2-ua-lDW"/>
+                        <label alignment="left" text="66%" id="SzL-BW-uUe"/>
+                        <group alignment="left" layout="vertical" id="cIw-sT-lEJ">
                             <items>
-                                <label alignment="left" text="Green: 80%" id="MPm-yn-h6P">
+                                <label alignment="left" text="Summary:" id="JW4-Q9-JbK">
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                </label>
+                                <label alignment="left" text="Green: ...%" id="Kxe-kv-2Ls">
                                     <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                 </label>
-                                <label alignment="left" text="Orange: 15%" id="AXI-iv-6og">
+                                <label alignment="left" text="Orange: ...%" id="sHe-Id-5Jk">
                                     <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                 </label>
-                                <label alignment="left" text="Red: 5%" id="pVT-GX-jNC">
+                                <label height="17" alignment="left" text="Red: ...%" id="NNV-De-bRY">
                                     <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                 </label>
                             </items>
                         </group>
                     </items>
                     <connections>
-                        <outlet property="lblGreenDurationInPercent" destination="MPm-yn-h6P" id="urU-7n-lRC"/>
-                        <outlet property="lblOrangeDurationInPercent" destination="AXI-iv-6og" id="oql-ne-Gdp"/>
-                        <outlet property="lblRedDurationInPercent" destination="pVT-GX-jNC" id="A43-6z-07e"/>
-                        <outlet property="lblScoreInPercent" destination="jmw-eO-Sgb" id="rb0-tO-ihD"/>
+                        <outlet property="lblGreenDurationInPercent" destination="Kxe-kv-2Ls" id="9Lz-X7-4dq"/>
+                        <outlet property="lblOrangeDurationInPercent" destination="sHe-Id-5Jk" id="s1o-p3-18u"/>
+                        <outlet property="lblRedDurationInPercent" destination="NNV-De-bRY" id="xuN-3P-yb9"/>
+                        <outlet property="lblScoreInPercent" destination="SzL-BW-uUe" id="qRY-SP-NcJ"/>
                     </connections>
                 </glanceController>
             </objects>
-            <point key="canvasLocation" x="145" y="193"/>
+            <point key="canvasLocation" x="171" y="202"/>
         </scene>
         <!--Alert-Orange-->
         <scene sceneID="AEw-b0-oYE">
