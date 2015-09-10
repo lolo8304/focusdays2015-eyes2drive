@@ -18,8 +18,8 @@
 @property (nonatomic, strong) FeatureDetectionTime * faceDetected;
 @property (nonatomic, strong) FeatureDetectionTime * eyesDetected;
 @property (nonatomic, strong) FeatureDetectionTime * twoEyesDetected;
-@property (nonatomic) CFTimeInterval tripStartTime;
-@property (nonatomic) CFTimeInterval tripStopTime;
+@property (nonatomic, strong) FeatureDetectionTime * trip;
+
 @property (atomic, strong) NSDictionary * events;
 
 - (id) initWith: (AVCaptureVideoOrientation)orientation controller: (ViewController *)controller;

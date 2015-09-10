@@ -39,6 +39,9 @@
         return true;
     }
 }
+- (BOOL)push: (FeatureAlertColor) color{
+    return [self push:color at: [FeatureDetectionTime now] since: 0];
+}
 
 -(id) copyWithZone: (NSZone *) zone {
     State *stateCopy = [State allocWithZone: zone];

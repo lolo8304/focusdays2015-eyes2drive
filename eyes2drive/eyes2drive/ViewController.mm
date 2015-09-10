@@ -286,12 +286,20 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
 }
 
 
-
 - (IBAction)actionStart:(id)sender {
+    [self.faceDetection startTrip ];
+    
+}
+
+- (IBAction)actionStop:(id)sender {
+    [self.faceDetection stopTrip ];
+}
+
+
+- (void)initStart {
     self.faceDetection = [ [FaceDetectionOpenCV alloc ] initWith: AVCaptureVideoOrientationPortrait controller: self];
     self.videoCamera.delegate = self.faceDetection;
 
-    [self.faceDetection startTrip ];
     [self.videoCamera start];
     [self setFaceAlertImage: FeatureAlertGreen];
     if ([self.thread isExecuting]) {
@@ -302,8 +310,7 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     }
 
 }
-- (IBAction)actionStop:(id)sender {
-    [self.faceDetection stopTrip ];
+- (void)exitStop {
     [self.videoCamera stop];
     NSLog(@"Stopping thread");
     [self.thread cancel];
@@ -428,7 +435,7 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
 
-    [self actionStart: nil];
+    [self initStart];
 
     /* important http://matthewfecher.com/app-developement/getting-gps-location-using-core-location-in-ios-8-vs-ios-7/ */
     
@@ -449,7 +456,7 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     
 }
 - (void)viewWillDisappear:(BOOL)animated {
-    [self actionStop: nil];
+    [self exitStop];
     
 }
 
