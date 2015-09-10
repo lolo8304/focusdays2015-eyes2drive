@@ -66,7 +66,7 @@ class Dashboard {
         orangeDurationInPercent = orangeDurationInMs / totalMs * 100
         redDurationInPercent = redDurationInMs / totalMs * 100
         
-        scoreInPercent = 95
+        scoreInPercent = greenDurationInPercent + orangeDurationInPercent / 2 + redDurationInPercent / 4
     }
 }
 
