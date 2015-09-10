@@ -13,6 +13,8 @@
 		4CBF9EAE1BA1EA8200907F87 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF9EAC1BA1EA8200907F87 /* Model.swift */; };
 		7237A4DBD70F0F72FD8F7A51 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD6427CE41B98FE54DBF125 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		82BBBC741BA1CB9C004CEE32 /* BluetoothReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BBBC731BA1CB9C004CEE32 /* BluetoothReceiver.swift */; };
+		82C963B91BA232D000990F2A /* BTLECentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C963B61BA232D000990F2A /* BTLECentral.m */; };
+		82C963BA1BA232D000990F2A /* TransferService.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C963B81BA232D000990F2A /* TransferService.m */; };
 		E1342C101B5B14C1006AD354 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E1342C0F1B5B14C1006AD354 /* Podfile */; };
 		E19FCD341B5D90860000E1DA /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19FCD331B5D90860000E1DA /* Agent.swift */; };
 		E1C7A6601B5B2300002756B0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C7A65F1B5B2300002756B0 /* Security.framework */; };
@@ -72,6 +74,11 @@
 		4CBF9EAC1BA1EA8200907F87 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		6F712075F1D9575764A40723 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		82BBBC731BA1CB9C004CEE32 /* BluetoothReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothReceiver.swift; sourceTree = "<group>"; };
+		82C963B41BA232D000990F2A /* eyes2drive viewer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "eyes2drive viewer-Bridging-Header.h"; sourceTree = "<group>"; };
+		82C963B51BA232D000990F2A /* BTLECentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLECentral.h; sourceTree = "<group>"; };
+		82C963B61BA232D000990F2A /* BTLECentral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLECentral.m; sourceTree = "<group>"; };
+		82C963B71BA232D000990F2A /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
+		82C963B81BA232D000990F2A /* TransferService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferService.m; sourceTree = "<group>"; };
 		E1342C0F1B5B14C1006AD354 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E19FCD331B5D90860000E1DA /* Agent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
 		E1C7A65F1B5B2300002756B0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -167,6 +174,11 @@
 		E1FDF3091B5A19E700DCC037 /* eyes2drive viewer */ = {
 			isa = PBXGroup;
 			children = (
+				82C963B41BA232D000990F2A /* eyes2drive viewer-Bridging-Header.h */,
+				82C963B51BA232D000990F2A /* BTLECentral.h */,
+				82C963B61BA232D000990F2A /* BTLECentral.m */,
+				82C963B71BA232D000990F2A /* TransferService.h */,
+				82C963B81BA232D000990F2A /* TransferService.m */,
 				4CBF9EAC1BA1EA8200907F87 /* Model.swift */,
 				4C21D7571BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift */,
 				E19FCD331B5D90860000E1DA /* Agent.swift */,
@@ -442,9 +454,11 @@
 				4CBF9EAD1BA1EA8200907F87 /* Model.swift in Sources */,
 				E1FDF3111B5A19E700DCC037 /* SecondViewController.swift in Sources */,
 				E19FCD341B5D90860000E1DA /* Agent.swift in Sources */,
+				82C963BA1BA232D000990F2A /* TransferService.m in Sources */,
 				4C21D7581BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift in Sources */,
 				4C21D75A1BA1AD3700CE31FB /* EyeEventHandler.swift in Sources */,
 				82BBBC741BA1CB9C004CEE32 /* BluetoothReceiver.swift in Sources */,
+				82C963B91BA232D000990F2A /* BTLECentral.m in Sources */,
 				E1FDF30D1B5A19E700DCC037 /* AppDelegate.swift in Sources */,
 				E1FDF30F1B5A19E700DCC037 /* FirstViewController.swift in Sources */,
 				E1C7A6661B5B3270002756B0 /* SwiftyJSON.swift in Sources */,
@@ -590,6 +604,7 @@
 			baseConfigurationReference = 47F6EB6ECF2D88DB5D8E8649 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "eyes2drive viewer/Info.plist";
@@ -597,6 +612,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "eyes2drive viewer/eyes2drive viewer-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -605,6 +622,7 @@
 			baseConfigurationReference = 6F712075F1D9575764A40723 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "eyes2drive viewer/Info.plist";
@@ -612,6 +630,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "eyes2drive viewer/eyes2drive viewer-Bridging-Header.h";
 			};
 			name = Release;
 		};
