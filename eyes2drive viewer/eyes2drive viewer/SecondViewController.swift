@@ -42,6 +42,7 @@ class SecondViewController: UIViewController{
     
     @IBAction func fireStartStop(sender: AnyObject) {
         var logText = ""
+        
         switch sender.selectedSegmentIndex{
         case 0:
             eyeHandler.startTrip()
@@ -53,6 +54,7 @@ class SecondViewController: UIViewController{
             eyeHandler.startTrip()
             logText = "Error, default Case"
         };
+        NSLog(logText); 
         
     }
     
