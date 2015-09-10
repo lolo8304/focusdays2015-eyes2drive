@@ -32,6 +32,10 @@ class SecondViewController: UIViewController{
     }
     
     
+
+    
+    
+    
     @IBAction func fireStartStop(sender: AnyObject) {
         switch sender.selectedSegmentIndex{
         case 0:
