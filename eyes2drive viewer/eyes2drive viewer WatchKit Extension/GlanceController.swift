@@ -26,11 +26,19 @@ class GlanceController: WKInterfaceController {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        /*
+        var dashboard = Dashboard(trip: Trip());
+        var score = dashboard.scoreInPercent
+        var green = dashboard.greenDurationInPercent
+        var orange = dashboard.orangeDurationInPercent
+        var red = dashboard.redDurationInPercent
+        */
         
-        var score = 68
+        
+        var score = 77
         var green = 85
-        var orange = 4
-        var red = 11
+        var orange = 14
+        var red = 1
         
         lblScoreInPercent.setText("\(score)%")
         lblGreenDurationInPercent.setText("Green: \(green)%")

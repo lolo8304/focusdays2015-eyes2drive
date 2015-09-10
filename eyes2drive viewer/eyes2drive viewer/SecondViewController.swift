@@ -18,33 +18,43 @@ class SecondViewController: UIViewController{
     }
 
     @IBAction func fireEvent(sender: AnyObject) {
+        var logText = ""
         switch sender.selectedSegmentIndex{
         case 0:
-            eyeHandler.addEvent(EventGreen(),delay: delay)
+            logText = eyeHandler.addEvent(EventGreen(),delay: delay)
         case 1:
-            eyeHandler.addEvent(EventOrange(),delay: delay)
+            logText = eyeHandler.addEvent(EventOrange(),delay: delay)
         case 2:
-            eyeHandler.addEvent(EventRed(),delay: delay)
+            logText = eyeHandler.addEvent(EventRed(),delay: delay)
         default:
-            eyeHandler.addEvent(EventGreen(),delay:delay)
+            logText = eyeHandler.addEvent(EventGreen(),delay:delay)
         };
-        
+        NSLog(logText)
     }
     
     
+    @IBOutlet weak var logUI: UITextView!
 
-    
+    func addLogText(text:String){
+        logUI.text = text + logUI.text
+    }
     
     
     @IBAction func fireStartStop(sender: AnyObject) {
+        var logText = ""
+        
         switch sender.selectedSegmentIndex{
         case 0:
             eyeHandler.startTrip()
+            logText = "App started"
         case 1:
             eyeHandler.endTrip()
+            logText = "App stopped"
         default:
             eyeHandler.startTrip()
+            logText = "Error, default Case"
         };
+        NSLog(logText); 
         
     }
     
