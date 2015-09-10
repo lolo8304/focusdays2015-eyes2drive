@@ -68,7 +68,7 @@
                             </segmentedControl>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbv-IH-jrT">
                                 <rect key="frame" x="0.0" y="151" width="600" height="392"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" red="0.030356831500681025" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
@@ -83,7 +83,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6a-7N-PQQ">
                                 <rect key="frame" x="226" y="117" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="126" y="117" width="42" height="20.5"/>
@@ -137,8 +137,6 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="iXc-fg-pxA"/>
-                                <exclude reference="ul0-p0-OXo"/>
                                 <exclude reference="A1L-aY-m12"/>
                                 <exclude reference="H6q-lO-Tih"/>
                                 <exclude reference="NZL-e2-hwI"/>
@@ -148,6 +146,8 @@
                                 <exclude reference="g3p-3p-1YZ"/>
                                 <exclude reference="khA-Sb-VGh"/>
                                 <exclude reference="pS7-Hi-KBE"/>
+                                <exclude reference="iXc-fg-pxA"/>
+                                <exclude reference="ul0-p0-OXo"/>
                                 <exclude reference="paV-oS-haK"/>
                                 <exclude reference="2lH-2e-DUt"/>
                                 <exclude reference="KTY-XE-IGC"/>
@@ -196,6 +196,7 @@
                     <tabBarItem key="tabBarItem" title="Status" image="second" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="delaySwitch" destination="BS5-FV-cD4" id="I3P-nx-HIJ"/>
+                        <outlet property="logUI" destination="cbv-IH-jrT" id="tOI-lP-PKC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>

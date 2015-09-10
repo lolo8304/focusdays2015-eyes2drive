@@ -22,7 +22,7 @@ class Trips {
     }
     
     func getCurrentTrip() -> Trip{
-        return trips[trips.count]
+        return trips[trips.count-1]
     }
     
 }

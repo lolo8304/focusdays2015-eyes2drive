@@ -33,8 +33,11 @@ class SecondViewController: UIViewController{
     }
     
     
+    @IBOutlet weak var logUI: UITextView!
 
-    
+    func addLogText(text:String){
+        logUI.text = text + logUI.text
+    }
     
     
     @IBAction func fireStartStop(sender: AnyObject) {
