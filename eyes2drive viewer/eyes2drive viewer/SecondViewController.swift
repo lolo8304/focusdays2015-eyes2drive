@@ -20,13 +20,13 @@ class SecondViewController: UIViewController{
     @IBAction func fireEvent(sender: AnyObject) {
         switch sender.selectedSegmentIndex{
         case 0:
-            eyeHandler.addEvent(EventType.green)
+            eyeHandler.addEvent(EventGreen())
         case 1:
-            eyeHandler.addEvent(EventType.orange)
+            eyeHandler.addEvent(EventOrange())
         case 2:
-            eyeHandler.addEvent(EventType.red)
+            eyeHandler.addEvent(EventRed())
         default:
-            eyeHandler.addEvent(EventType.green)
+            eyeHandler.addEvent(EventGreen())
         };
         
     }

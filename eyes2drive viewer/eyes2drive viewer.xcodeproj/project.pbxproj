@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4C21D7581BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21D7571BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift */; };
 		4C21D75A1BA1AD3700CE31FB /* EyeEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21D7591BA1AD3700CE31FB /* EyeEventHandler.swift */; };
+		4CBF9EAD1BA1EA8200907F87 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF9EAC1BA1EA8200907F87 /* Model.swift */; };
+		4CBF9EAE1BA1EA8200907F87 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF9EAC1BA1EA8200907F87 /* Model.swift */; };
 		7237A4DBD70F0F72FD8F7A51 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD6427CE41B98FE54DBF125 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		82BBBC741BA1CB9C004CEE32 /* BluetoothReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BBBC731BA1CB9C004CEE32 /* BluetoothReceiver.swift */; };
 		E1342C101B5B14C1006AD354 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E1342C0F1B5B14C1006AD354 /* Podfile */; };
@@ -67,8 +69,8 @@
 		47F6EB6ECF2D88DB5D8E8649 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4C21D7571BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EyeEventHandlerProtocol.swift; sourceTree = "<group>"; };
 		4C21D7591BA1AD3700CE31FB /* EyeEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EyeEventHandler.swift; sourceTree = "<group>"; };
+		4CBF9EAC1BA1EA8200907F87 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		6F712075F1D9575764A40723 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		8245C00D1BA18CFA00DFD9DA /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		82BBBC731BA1CB9C004CEE32 /* BluetoothReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothReceiver.swift; sourceTree = "<group>"; };
 		E1342C0F1B5B14C1006AD354 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E19FCD331B5D90860000E1DA /* Agent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 		E1FDF3091B5A19E700DCC037 /* eyes2drive viewer */ = {
 			isa = PBXGroup;
 			children = (
+				4CBF9EAC1BA1EA8200907F87 /* Model.swift */,
 				4C21D7571BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift */,
 				E19FCD331B5D90860000E1DA /* Agent.swift */,
 				E1FDF30C1B5A19E700DCC037 /* AppDelegate.swift */,
@@ -174,7 +177,6 @@
 				E1FDF3151B5A19E700DCC037 /* Images.xcassets */,
 				E1FDF3171B5A19E700DCC037 /* LaunchScreen.xib */,
 				E1FDF30A1B5A19E700DCC037 /* Supporting Files */,
-				8245C00D1BA18CFA00DFD9DA /* Model.swift */,
 				4C21D7591BA1AD3700CE31FB /* EyeEventHandler.swift */,
 				82BBBC731BA1CB9C004CEE32 /* BluetoothReceiver.swift */,
 			);
@@ -437,6 +439,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CBF9EAD1BA1EA8200907F87 /* Model.swift in Sources */,
 				E1FDF3111B5A19E700DCC037 /* SecondViewController.swift in Sources */,
 				E19FCD341B5D90860000E1DA /* Agent.swift in Sources */,
 				4C21D7581BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift in Sources */,
@@ -452,6 +455,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CBF9EAE1BA1EA8200907F87 /* Model.swift in Sources */,
 				E1FDF33A1B5A1A3100DCC037 /* NotificationController.swift in Sources */,
 				E1FDF3381B5A1A3100DCC037 /* InterfaceController.swift in Sources */,
 			);
