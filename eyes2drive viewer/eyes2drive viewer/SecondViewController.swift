@@ -8,18 +8,57 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController{
+    
+    var delay: Int = 0;
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
+    @IBAction func fireEvent(sender: AnyObject) {
+        switch sender.selectedSegmentIndex{
+        case 0:
+            eyeHandler.addEvent(EventType.green)
+        case 1:
+            eyeHandler.addEvent(EventType.orange)
+        case 2:
+            eyeHandler.addEvent(EventType.red)
+        default:
+            eyeHandler.addEvent(EventType.green)
+        };
+        
+    }
+    
+    
+    @IBAction func fireStartStop(sender: AnyObject) {
+        switch sender.selectedSegmentIndex{
+        case 0:
+            eyeHandler.startTrip()
+        case 1:
+            eyeHandler.endTrip()
+        default:
+            eyeHandler.startTrip()
+        };
+        
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func changeDelay(sender: AnyObject) {
+        if delaySwitch.on {
+            delay = 30
+        } else {
+            delay = 0
+        }
+    }
+    
+    @IBOutlet weak var delaySwitch: UISwitch!
 
 }
 
