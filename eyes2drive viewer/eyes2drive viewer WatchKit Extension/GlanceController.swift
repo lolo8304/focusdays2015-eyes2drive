@@ -29,10 +29,12 @@ class GlanceController: WKInterfaceController {
         /*
         var dashboard = Dashboard(trip: Trip());
         var score = dashboard.scoreInPercent
-        var green = greenDurationInPercent
-        var orange = orangeDurationInPercent
-        var red = redDurationInPercent
+        var green = dashboard.greenDurationInPercent
+        var orange = dashboard.orangeDurationInPercent
+        var red = dashboard.redDurationInPercent
         */
+        
+        
         var score = 77
         var green = 85
         var orange = 14

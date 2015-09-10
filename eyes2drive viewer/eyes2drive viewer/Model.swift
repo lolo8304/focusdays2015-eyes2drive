@@ -43,17 +43,17 @@ class Trip {
 }
 
 class Dashboard {
-    let scoreInPercent:Int
-    let greenDurationInPercent:Int
-    let orangeDurationInPercent:Int
-    let redDurationInPercent:Int
+    var scoreInPercent = 0
+    var greenDurationInPercent = 0
+    var orangeDurationInPercent = 0
+    var redDurationInPercent = 0
     
     init(trip:Trip){
-        var greenDurationInMs:Int=0
-        var orangeDurationInMs:Int=0
-        var redDurationInMs:Int=0
-        var lastEventTs:NSDate=trip.start
-        var totalMs:Int
+        var greenDurationInMs = 0
+        var orangeDurationInMs = 0
+        var redDurationInMs = 0
+        var lastEventTs = trip.start
+        var totalMs = 0
         
         for event in trip.events {
             var durationInMs:Int = Int(event.timestamp.timeIntervalSinceDate(lastEventTs))
@@ -62,11 +62,12 @@ class Dashboard {
         }
         
         totalMs = greenDurationInMs + orangeDurationInMs + redDurationInMs
-        greenDurationInPercent = greenDurationInMs / totalMs * 100
-        orangeDurationInPercent = orangeDurationInMs / totalMs * 100
-        redDurationInPercent = redDurationInMs / totalMs * 100
-        
-        scoreInPercent = greenDurationInPercent + orangeDurationInPercent / 2 + redDurationInPercent / 4
+        if (totalMs > 0) {
+            greenDurationInPercent = greenDurationInMs / totalMs * 100
+            orangeDurationInPercent = orangeDurationInMs / totalMs * 100
+            redDurationInPercent = redDurationInMs / totalMs * 100
+            scoreInPercent = greenDurationInPercent + orangeDurationInPercent / 2 + redDurationInPercent / 4
+        }
     }
 }
 
