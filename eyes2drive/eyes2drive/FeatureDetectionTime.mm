@@ -67,7 +67,8 @@ NSString * const FeatureAlertColor_toString[] = {
 NSString * const FeatureDetection_toString[] = {
     [FeatureEyesDetected] = @"FeatureEyesDetected",
     [Feature2EyesDetected] = @"Feature2EyesDetected",
-    [FeatureFaceDetected] = @"FeatureFaceDetected"
+    [FeatureFaceDetected] = @"FeatureFaceDetected",
+    [FeatureTrip] = @"FeatureTrip"
 };
 
 

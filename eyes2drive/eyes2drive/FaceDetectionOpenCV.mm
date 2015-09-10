@@ -61,7 +61,7 @@ cv::CascadeClassifier mouth_cascade;
         self.controller = controller;
         self.faceDetected = [[FeatureDetectionTime alloc] initWith: FeatureFaceDetected ];
         self.faceDetected.delegate = self;
-        [self.faceDetected setThreshold: false orange:1000 red:3000 darkred: 5000];
+        [self.faceDetected setThreshold: false orange:2000 red:4000 darkred: 6000];
         
         self.eyesDetected = [[FeatureDetectionTime alloc] initWith: FeatureEyesDetected ];
         self.eyesDetected.delegate = self;
@@ -83,9 +83,20 @@ cv::CascadeClassifier mouth_cascade;
 }
 
 
+- (void)sendEvent:(FeatureDetection)feature changedState:(State *)state {
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        
+        
+    });
+
+}
+
+
 - (void)feature:(FeatureDetection)feature changedState:(State *)state {
     NSMutableArray * elements = self.events[ [NSNumber numberWithInt: feature ] ];
     [elements addObject: state];
+    
+    [self sendEvent:(FeatureDetection)feature changedState:(State *)state];
     
     printf("%s %s since %.0f [ms]\n",
            [(FeatureAlertColor_toString[ [state color] ]) UTF8String],
