@@ -59,9 +59,10 @@ cv::CascadeClassifier mouth_cascade;
         [self loadClassifier: mouth_cascade named: C_mouth_cascade_name title: @"mouth"];
         
         self.controller = controller;
+        
         self.faceDetected = [[FeatureDetectionTime alloc] initWith: FeatureFaceDetected ];
         self.faceDetected.delegate = self;
-        [self.faceDetected setThreshold: false orange:1000 red:3000 darkred: 5000];
+        [self.faceDetected setThreshold: false orange:2000 red:4000 darkred: 6000];
         
         self.eyesDetected = [[FeatureDetectionTime alloc] initWith: FeatureEyesDetected ];
         self.eyesDetected.delegate = self;
@@ -70,12 +71,19 @@ cv::CascadeClassifier mouth_cascade;
         self.twoEyesDetected = [[FeatureDetectionTime alloc] initWith: Feature2EyesDetected ];
         self.twoEyesDetected.delegate = self;
         [self.twoEyesDetected setThreshold: false orange: 3000 red: 5000 darkred: 7000];
+
+        self.trip = [[FeatureDetectionTime alloc] initWith: FeatureTrip ];
+        self.trip.delegate = self;
+        [self.trip setThreshold: false orange:1 red:0 darkred: 0];
+        [[self.trip state] push: FeatureAlertRed]; //initialize with detecte -> start means not-detected, stop means detected
+        
         
         self.events = [[NSDictionary alloc] init];
         self.events = @{
                         [NSNumber numberWithInt: FeatureFaceDetected] : [[NSMutableArray alloc] init],
                         [NSNumber numberWithInt: FeatureEyesDetected] : [[NSMutableArray alloc] init],
-                        [NSNumber numberWithInt: Feature2EyesDetected] : [[NSMutableArray alloc] init]
+                        [NSNumber numberWithInt: Feature2EyesDetected] : [[NSMutableArray alloc] init],
+                        [NSNumber numberWithInt: FeatureTrip] : [[NSMutableArray alloc] init]
                        };
         return self;
     }
@@ -83,9 +91,23 @@ cv::CascadeClassifier mouth_cascade;
 }
 
 
+- (void)sendEvent:(FeatureDetection)feature changedState:(State *)state {
+//    dispatch_sync(dispatch_get_main_queue(), ^{
+        
+        NSString * stateEvent = [state toSendEventString];
+        printf("send event now %s.\n", [stateEvent UTF8String]);
+
+        
+//    });
+
+}
+
+
 - (void)feature:(FeatureDetection)feature changedState:(State *)state {
     NSMutableArray * elements = self.events[ [NSNumber numberWithInt: feature ] ];
     [elements addObject: state];
+    
+    [self sendEvent:(FeatureDetection)feature changedState:(State *)state];
     
     printf("%s %s since %.0f [ms]\n",
            [(FeatureAlertColor_toString[ [state color] ]) UTF8String],
@@ -120,21 +142,14 @@ cv::CascadeClassifier mouth_cascade;
 }
 
 - (void)startTrip {
-    self.tripStartTime = [FeatureDetectionTime now];
-    self.tripStopTime = 0;
+//    [self.trip featureDetected: true];
+    [[self.trip state] push: FeatureAlertGreen];
+    [self.trip triggerChangedEvent];
 }
 - (void)stopTrip {
-    self.tripStopTime = [FeatureDetectionTime now];
+    [[self.trip state] push: FeatureAlertRed];
+    [self.trip triggerChangedEvent];
 }
-- (CFTimeInterval)tripElapsedTime {
-    if (self.tripStartTime == 0) { return 0; }
-    if (self.tripStopTime == 0) {
-        return [FeatureDetectionTime now] - self.tripStartTime;
-    } else {
-        return self.tripStopTime - self.tripStartTime;
-    }
-}
-
 
 
 - (State *) getLastState: (FeatureDetection) feature {

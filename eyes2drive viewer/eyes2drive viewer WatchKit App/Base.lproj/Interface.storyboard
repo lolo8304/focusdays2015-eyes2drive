@@ -55,30 +55,30 @@
             <objects>
                 <notificationController backgroundImage="Alert-Orange" id="YCC-NB-fut">
                     <items>
-                        <label alignment="left" text="Alert Label - bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla " numberOfLines="4" id="IdU-wH-bcW"/>
+                        <label alignment="left" text="Orange alert has occured! Take care!" numberOfLines="4" id="IdU-wH-bcW"/>
                     </items>
-                    <notificationCategory key="notificationCategory" identifier="redAlertWarning" id="JfB-70-Muf"/>
+                    <notificationCategory key="notificationCategory" identifier="orangeAlertWarning" id="JfB-70-Muf"/>
                     <connections>
                         <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
                     </connections>
                 </notificationController>
             </objects>
-            <point key="canvasLocation" x="-54" y="481"/>
+            <point key="canvasLocation" x="-61" y="450"/>
         </scene>
         <!--Alert-Dark-Red-->
         <scene sceneID="elx-KH-2SE">
             <objects>
                 <notificationController backgroundImage="Alert-Dark-Red" id="nhQ-hI-wtY">
                     <items>
-                        <label alignment="left" text="Alert Label - bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla " numberOfLines="4" id="hRy-z2-Fa8"/>
+                        <label alignment="left" text="Red alert has occured! Put your eyes to the street!!!" numberOfLines="4" id="hRy-z2-Fa8"/>
                     </items>
-                    <notificationCategory key="notificationCategory" identifier="orangeAlertWarning" id="3hd-v1-Ils"/>
+                    <notificationCategory key="notificationCategory" identifier="redAlertWarning" id="3hd-v1-Ils"/>
                     <connections>
                         <outlet property="notificationAlertLabel" destination="hRy-z2-Fa8" id="zd3-yz-IfD"/>
                     </connections>
                 </notificationController>
             </objects>
-            <point key="canvasLocation" x="235" y="481"/>
+            <point key="canvasLocation" x="204" y="450"/>
         </scene>
     </scenes>
 </document>
