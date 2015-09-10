@@ -32,7 +32,7 @@ class SecondViewController: UIViewController{
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func setDelay(sender: AnyObject) {
+    @IBAction func changeDelay(sender: AnyObject) {
         if delaySwitch.on {
             delay = 30
         } else {

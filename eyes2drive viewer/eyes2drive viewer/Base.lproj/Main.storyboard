@@ -80,7 +80,7 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BS5-FV-cD4">
                                 <rect key="frame" x="296" y="120" width="51" height="31"/>
                                 <connections>
-                                    <action selector="setDelay:" destination="8rJ-Kc-sve" eventType="valueChanged" id="v6s-vd-m2J"/>
+                                    <action selector="changeDelay:" destination="8rJ-Kc-sve" eventType="valueChanged" id="Kk3-FI-U4d"/>
                                 </connections>
                             </switch>
                         </subviews>
@@ -111,7 +111,6 @@
                     <tabBarItem key="tabBarItem" title="Status" image="second" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="delaySwitch" destination="BS5-FV-cD4" id="I3P-nx-HIJ"/>
-                        <outlet property="setDelay" destination="BS5-FV-cD4" id="oMF-p7-S9Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
