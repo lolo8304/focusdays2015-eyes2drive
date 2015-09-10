@@ -12,16 +12,17 @@
 typedef NS_ENUM (NSInteger, FeatureDetection) {
     FeatureFaceDetected       = 1,
     FeatureEyesDetected       = 10,
-    Feature2EyesDetected       = 20
+    Feature2EyesDetected       = 20,
+    FeatureTrip             = 42
 };
 extern NSString * const FeatureDetection_toString[];
 
 
 typedef NS_ENUM (NSInteger, FeatureAlertColor) {
-    FeatureAlertGreen     = 0,
-    FeatureAlertOrange    = 1,
-    FeatureAlertRed       = 2,
-    FeatureAlertDarkRed   = 3,
+    FeatureAlertGreen     = 0, // used for start trip, too
+    FeatureAlertOrange    = 1, // used for pause
+    FeatureAlertRed       = 2, // used for stop trip
+    FeatureAlertDarkRed   = 3
 };
 extern NSString * const FeatureAlertColor_toString[];
 
@@ -35,7 +36,9 @@ extern NSString * const FeatureAlertColor_toString[];
 
 - (id) initWith: (FeatureDetection) feature;
 - (BOOL)push: (FeatureAlertColor) color at: (CFTimeInterval) time  since: (CFTimeInterval) timeInMs;
+- (BOOL)push: (FeatureAlertColor) color;
 -(id) copyWithZone: (NSZone *) zone;
+-(NSString*) toSendEventString;
 @end
 
 
@@ -63,6 +66,7 @@ extern NSString * const FeatureAlertColor_toString[];
 - (void)featureNotDetected;
 
 - (void)featureDetected: (BOOL) found;
+- (void)triggerChangedEvent;
 
 
 @end

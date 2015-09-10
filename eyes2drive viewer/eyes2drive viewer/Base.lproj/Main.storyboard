@@ -59,6 +59,9 @@
                                     <segment title="Orange"/>
                                     <segment title="Red"/>
                                 </segments>
+                                <connections>
+                                    <action selector="fireGreen:" destination="8rJ-Kc-sve" eventType="valueChanged" id="SyZ-qk-8XB"/>
+                                </connections>
                             </segmentedControl>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbv-IH-jrT">
                                 <rect key="frame" x="0.0" y="132" width="600" height="411"/>

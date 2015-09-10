@@ -39,6 +39,9 @@
         return true;
     }
 }
+- (BOOL)push: (FeatureAlertColor) color{
+    return [self push:color at: [FeatureDetectionTime now] since: 0];
+}
 
 -(id) copyWithZone: (NSZone *) zone {
     State *stateCopy = [State allocWithZone: zone];
@@ -51,6 +54,11 @@
     }
     return stateCopy;
 }
+
+-(NSString*) toSendEventString {
+    return [NSMutableString stringWithFormat:@"%li-%li", (long)self.feature, (long)self.color];
+}
+
 
 @end
 
@@ -67,7 +75,8 @@ NSString * const FeatureAlertColor_toString[] = {
 NSString * const FeatureDetection_toString[] = {
     [FeatureEyesDetected] = @"FeatureEyesDetected",
     [Feature2EyesDetected] = @"Feature2EyesDetected",
-    [FeatureFaceDetected] = @"FeatureFaceDetected"
+    [FeatureFaceDetected] = @"FeatureFaceDetected",
+    [FeatureTrip] = @"FeatureTrip"
 };
 
 
