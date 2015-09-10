@@ -25,7 +25,7 @@ class EyeEventHandler : EyeEventHandlerProtocol {
         
         var offsetSec = 0;
         if delay {
-            offsetSec = 3000;
+            offsetSec = 10;
         }
         var now = NSDate().dateByAddingTimeInterval(NSTimeInterval(offsetSec))
         notification.fireDate = now // todo item due date (when notification will be fired)
@@ -34,7 +34,6 @@ class EyeEventHandler : EyeEventHandlerProtocol {
         notification.userInfo = ["UUID": 12345, ] // assign a unique identifier to the notification so that we can retrieve it later
         //notification.category = "TODO_CATEGORY"
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
-        
     }
     
     func startTrip(){
