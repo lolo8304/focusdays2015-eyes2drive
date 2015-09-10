@@ -210,10 +210,15 @@ cv::CascadeClassifier mouth_cascade;
 
 - (void)detectFace:(cv::Mat&)imageMat; {
     std::vector<cv::Rect> facesRect;
-    
-    std::vector<cv::Mat> rgbChannels(3);
-    cv::split(imageMat, rgbChannels);
-    cv::Mat imageGrayMat = rgbChannels[2];
+
+    cv::Mat imageGrayMat;
+    if (self.controller.videoCamera.grayscaleMode) {
+        imageGrayMat = imageMat.clone();
+    } else {
+        std::vector<cv::Mat> rgbChannels(3);
+        cv::split(imageMat, rgbChannels);
+        imageGrayMat = rgbChannels[2];
+    }
 
     cv::Size minSize = cv::Size(50, 50);
     cv::Size maxSize = cv::Size(200,200);
@@ -341,9 +346,9 @@ cv::CascadeClassifier mouth_cascade;
                 }
                 
                 cv::Rect previewRect(
-                    MAX(center.x - 25, 0),
-                    MAX(center.y - 15, 0),
-                    50, 30);
+                    MAX(center.x - 20, 0),
+                    MAX(center.y - 10, 0),
+                    40, 20);
                 cv::Mat previewEyeSourceMat = imageGrayMat( previewRect ).clone();
                 cv::Mat previewEyeDestMat = cv::Mat::zeros( previewEyeSourceMat.size(), CV_8UC1 );
                 [self threshold: previewEyeSourceMat dest: previewEyeDestMat];
@@ -619,11 +624,32 @@ cv::CascadeClassifier mouth_cascade;
     }
 }
 
+- (NSURL *)applicationDocumentsDirectory {
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
+                                                   inDomains:NSUserDomainMask] lastObject];
+}
 
+- (void) writeToTraceLog: (NSString *)content header: (NSArray *) header {
+    content = [NSString stringWithFormat:@"%@\n",content];
+    NSString *fileName = [[self applicationDocumentsDirectory].path
+                          stringByAppendingPathComponent:@"tracelog.txt"];
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:fileName];
+    if (fileHandle){
+        [fileHandle seekToEndOfFile];
+        [fileHandle writeData:[content dataUsingEncoding:NSUTF8StringEncoding]];
+        [fileHandle closeFile];
+    } else{
+        [content writeToFile:fileName
+                  atomically:NO
+                    encoding:NSUTF8StringEncoding
+                       error:nil];
+    }
+
+}
 
 // delegate method for processing image frames
 - (void)processImage:(cv::Mat&)image; {
-    [self detectFace: image];
+        [self detectFace: image];
 }
 
 
