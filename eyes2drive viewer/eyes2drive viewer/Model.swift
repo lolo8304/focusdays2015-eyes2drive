@@ -19,11 +19,13 @@ class Trips {
 
 
 class Trip {
-    var events = [Event]();
+    let events = [Event]();
     let start = NSDate();
-    let end = NSDate();
+    var end = NSDate();
     
-    
+    func stopTrip(){
+        end = NSDate()
+    }
     
 }
 
@@ -32,6 +34,7 @@ class Trip {
 
 class Event {
     var typ: EventType = EventType.green;
+    let timestamp = NSDate();
     
 }
 
