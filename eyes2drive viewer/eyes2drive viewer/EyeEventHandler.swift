@@ -24,17 +24,16 @@ class EyeEventHandler : EyeEventHandlerProtocol {
         
         var offsetSec = 0;
         if delay {
-            offsetSec = 10;
+            offsetSec = 3000;
         }
         var now = NSDate().dateByAddingTimeInterval(NSTimeInterval(offsetSec))
-        notification.fireDate = NSDate() // todo item due date (when notification will be fired)
+        notification.fireDate = now // todo item due date (when notification will be fired)
         
         
         notification.soundName = UILocalNotificationDefaultSoundName // play default sound
         notification.userInfo = ["UUID": 12345, ] // assign a unique identifier to the notification so that we can retrieve it later
         //notification.category = "TODO_CATEGORY"
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-        
         
     }
     
