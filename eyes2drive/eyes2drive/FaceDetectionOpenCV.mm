@@ -86,6 +86,9 @@ cv::CascadeClassifier mouth_cascade;
 - (void)sendEvent:(FeatureDetection)feature changedState:(State *)state {
     dispatch_sync(dispatch_get_main_queue(), ^{
         
+        NSString * stateEvent = [state toSendEventString];
+        printf("send event now %s.\n", stateEvent);
+
         
     });
 

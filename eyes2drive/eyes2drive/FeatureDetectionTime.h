@@ -37,6 +37,7 @@ extern NSString * const FeatureAlertColor_toString[];
 - (id) initWith: (FeatureDetection) feature;
 - (BOOL)push: (FeatureAlertColor) color at: (CFTimeInterval) time  since: (CFTimeInterval) timeInMs;
 -(id) copyWithZone: (NSZone *) zone;
+-(NSString*) toSendEventString;
 @end
 
 

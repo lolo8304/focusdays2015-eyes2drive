@@ -52,6 +52,11 @@
     return stateCopy;
 }
 
+-(NSString*) toSendEventString {
+    return [NSMutableString stringWithFormat:@"%li-%li", (long)self.feature, (long)self.color];
+}
+
+
 @end
 
 
