@@ -24,7 +24,7 @@ class EyeEventHandler : EyeEventHandlerProtocol {
         
         var offsetSec = 0;
         if delay {
-            offsetSec = 30;
+            offsetSec = 10;
         }
         var now = NSDate().dateByAddingTimeInterval(NSTimeInterval(offsetSec))
         notification.fireDate = NSDate() // todo item due date (when notification will be fired)
