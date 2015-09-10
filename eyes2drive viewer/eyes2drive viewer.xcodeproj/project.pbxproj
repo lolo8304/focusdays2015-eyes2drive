@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C21D7561BA1A79200CE31FB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21D7551BA1A79200CE31FB /* Model.swift */; };
 		4C21D7581BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21D7571BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift */; };
 		4C21D75A1BA1AD3700CE31FB /* EyeEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21D7591BA1AD3700CE31FB /* EyeEventHandler.swift */; };
 		7237A4DBD70F0F72FD8F7A51 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD6427CE41B98FE54DBF125 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -66,7 +65,6 @@
 /* Begin PBXFileReference section */
 		026C6E2E1BA183CD00176301 /* GlanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
 		47F6EB6ECF2D88DB5D8E8649 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		4C21D7551BA1A79200CE31FB /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		4C21D7571BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EyeEventHandlerProtocol.swift; sourceTree = "<group>"; };
 		4C21D7591BA1AD3700CE31FB /* EyeEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EyeEventHandler.swift; sourceTree = "<group>"; };
 		6F712075F1D9575764A40723 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,7 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				4C21D7571BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift */,
-				4C21D7551BA1A79200CE31FB /* Model.swift */,
 				E19FCD331B5D90860000E1DA /* Agent.swift */,
 				E1FDF30C1B5A19E700DCC037 /* AppDelegate.swift */,
 				E1FDF30E1B5A19E700DCC037 /* FirstViewController.swift */,
@@ -446,7 +443,6 @@
 				4C21D75A1BA1AD3700CE31FB /* EyeEventHandler.swift in Sources */,
 				82BBBC741BA1CB9C004CEE32 /* BluetoothReceiver.swift in Sources */,
 				E1FDF30D1B5A19E700DCC037 /* AppDelegate.swift in Sources */,
-				4C21D7561BA1A79200CE31FB /* Model.swift in Sources */,
 				E1FDF30F1B5A19E700DCC037 /* FirstViewController.swift in Sources */,
 				E1C7A6661B5B3270002756B0 /* SwiftyJSON.swift in Sources */,
 			);
