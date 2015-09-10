@@ -17,6 +17,7 @@ class EyeEventHandler : EyeEventHandlerProtocol {
     var tripsRepo:Trips = Trips()
     
     func addEvent(type: Event, delay: Bool){
+        NSLog("Event geschickt: "); 
         UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil))
         var notification = UILocalNotification()
         notification.alertBody = "Hallo Welt" // text that will be displayed in the notification
