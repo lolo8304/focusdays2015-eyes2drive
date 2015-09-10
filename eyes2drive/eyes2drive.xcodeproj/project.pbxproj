@@ -26,6 +26,8 @@
 		E13D21851B4CA320006D7EEB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E13D217B1B4CA320006D7EEB /* QuartzCore.framework */; };
 		E13D21861B4CA320006D7EEB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E13D217C1B4CA320006D7EEB /* UIKit.framework */; };
 		E13D21951B4CBF96006D7EEB /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E13D21941B4CBF96006D7EEB /* opencv2.framework */; };
+		E1742C751BA2097E00AE470B /* BTLEPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = E1742C721BA2097E00AE470B /* BTLEPeripheral.m */; };
+		E1742C761BA2097E00AE470B /* TransferService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1742C741BA2097E00AE470B /* TransferService.m */; };
 		E176AA261B8196DB00D8E783 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E176AA251B8196DB00D8E783 /* CoreLocation.framework */; };
 		E182F87A1B577B0F00AC1B93 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E182F8791B577B0F00AC1B93 /* MapKit.framework */; };
 		E182F87C1B578A5100AC1B93 /* geographic-coverage-file-Swiss-border.geojson in Resources */ = {isa = PBXBuildFile; fileRef = E182F87B1B578A5100AC1B93 /* geographic-coverage-file-Swiss-border.geojson */; };
@@ -127,6 +129,10 @@
 		E13D217B1B4CA320006D7EEB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E13D217C1B4CA320006D7EEB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E13D21941B4CBF96006D7EEB /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../opencv2.framework; sourceTree = "<group>"; };
+		E1742C711BA2097E00AE470B /* BTLEPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEPeripheral.h; sourceTree = "<group>"; };
+		E1742C721BA2097E00AE470B /* BTLEPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEPeripheral.m; sourceTree = "<group>"; };
+		E1742C731BA2097E00AE470B /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
+		E1742C741BA2097E00AE470B /* TransferService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferService.m; sourceTree = "<group>"; };
 		E176AA251B8196DB00D8E783 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E182F8701B56F55C00AC1B93 /* eyes2drive.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = eyes2drive.entitlements; sourceTree = "<group>"; };
 		E182F8791B577B0F00AC1B93 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -247,6 +253,7 @@
 		E13D21411B4C06D1006D7EEB /* eyes2drive */ = {
 			isa = PBXGroup;
 			children = (
+				E1742C771BA2099200AE470B /* BTLE */,
 				E1FAD5551B5EEC20003592B0 /* NWPush */,
 				E182F8701B56F55C00AC1B93 /* eyes2drive.entitlements */,
 				E1A96EAD1B4F2B84000EFE18 /* OpenCVRecognize */,
@@ -309,6 +316,17 @@
 				E13D21941B4CBF96006D7EEB /* opencv2.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E1742C771BA2099200AE470B /* BTLE */ = {
+			isa = PBXGroup;
+			children = (
+				E1742C711BA2097E00AE470B /* BTLEPeripheral.h */,
+				E1742C721BA2097E00AE470B /* BTLEPeripheral.m */,
+				E1742C731BA2097E00AE470B /* TransferService.h */,
+				E1742C741BA2097E00AE470B /* TransferService.m */,
+			);
+			name = BTLE;
 			sourceTree = "<group>";
 		};
 		E1A96EAD1B4F2B84000EFE18 /* OpenCVRecognize */ = {
@@ -564,10 +582,12 @@
 				E1FAD5501B5EEC1A003592B0 /* NWPusher.m in Sources */,
 				E1FAD54D1B5EEC1A003592B0 /* ioSock.c in Sources */,
 				E1A96EB01B4F2CA3000EFE18 /* FaceDetectionOpenCV.mm in Sources */,
+				E1742C751BA2097E00AE470B /* BTLEPeripheral.m in Sources */,
 				E1FAD5511B5EEC1A003592B0 /* NWPushFeedback.m in Sources */,
 				E1FAD54E1B5EEC1A003592B0 /* NWHub.m in Sources */,
 				E1FAD5531B5EEC1A003592B0 /* NWSSLConnection.m in Sources */,
 				E1FAD5541B5EEC1A003592B0 /* NWType.m in Sources */,
+				E1742C761BA2097E00AE470B /* TransferService.m in Sources */,
 				E1892B301B505D4D00D7C9DB /* FeatureDetectionTime.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

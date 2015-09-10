@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <opencv2/videoio/cap_ios.h>
 #import "FeatureDetectionTime.h"
+#import "BTLEPeripheral.h"
 
-@interface FaceDetectionOpenCV : NSObject<CvVideoCameraDelegate, FeatureDetectionDelegate>
+@interface FaceDetectionOpenCV : NSObject<CvVideoCameraDelegate, FeatureDetectionDelegate, SenderDelegate>
 
 @property (nonatomic) AVCaptureVideoOrientation orientation;
 @property (nonatomic, weak) ViewController * controller;
@@ -20,7 +21,10 @@
 @property (nonatomic, strong) FeatureDetectionTime * twoEyesDetected;
 @property (nonatomic, strong) FeatureDetectionTime * trip;
 
-@property (atomic, strong) NSDictionary * events;
+@property (atomic, strong) NSDictionary *events;
+@property (atomic, strong) NSMutableArray *eventsToSend;
+@property (nonatomic, strong) BTLEPeripheral* peripheral;
+
 
 - (id) initWith: (AVCaptureVideoOrientation)orientation controller: (ViewController *)controller;
 - (void) faceDetected: (BOOL)detected;
