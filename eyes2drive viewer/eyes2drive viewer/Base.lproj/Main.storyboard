@@ -60,7 +60,7 @@
                                     <segment title="Red"/>
                                 </segments>
                                 <connections>
-                                    <action selector="fireGreen:" destination="8rJ-Kc-sve" eventType="valueChanged" id="SyZ-qk-8XB"/>
+                                    <action selector="fireEvent:" destination="8rJ-Kc-sve" eventType="valueChanged" id="zvH-hF-SaY"/>
                                 </connections>
                             </segmentedControl>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cbv-IH-jrT">
