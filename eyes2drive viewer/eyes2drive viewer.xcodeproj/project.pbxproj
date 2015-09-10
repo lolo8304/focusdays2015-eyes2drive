@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		026C6E2F1BA183CD00176301 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026C6E2E1BA183CD00176301 /* GlanceController.swift */; };
 		7237A4DBD70F0F72FD8F7A51 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD6427CE41B98FE54DBF125 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8245C00E1BA18CFA00DFD9DA /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8245C00D1BA18CFA00DFD9DA /* Model.swift */; };
 		E1342C101B5B14C1006AD354 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E1342C0F1B5B14C1006AD354 /* Podfile */; };
 		E19FCD341B5D90860000E1DA /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19FCD331B5D90860000E1DA /* Agent.swift */; };
 		E1C7A6601B5B2300002756B0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C7A65F1B5B2300002756B0 /* Security.framework */; };
@@ -68,8 +70,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		026C6E2E1BA183CD00176301 /* GlanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
 		47F6EB6ECF2D88DB5D8E8649 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6F712075F1D9575764A40723 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		8245C00D1BA18CFA00DFD9DA /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E1342C0F1B5B14C1006AD354 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E19FCD331B5D90860000E1DA /* Agent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
 		E1C7A65F1B5B2300002756B0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -182,6 +186,7 @@
 				E1FDF3151B5A19E700DCC037 /* Images.xcassets */,
 				E1FDF3171B5A19E700DCC037 /* LaunchScreen.xib */,
 				E1FDF30A1B5A19E700DCC037 /* Supporting Files */,
+				8245C00D1BA18CFA00DFD9DA /* Model.swift */,
 			);
 			path = "eyes2drive viewer";
 			sourceTree = "<group>";
@@ -216,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				E1FDF3371B5A1A3100DCC037 /* InterfaceController.swift */,
+				026C6E2E1BA183CD00176301 /* GlanceController.swift */,
 				E1FDF3391B5A1A3100DCC037 /* NotificationController.swift */,
 				E1FDF33B1B5A1A3100DCC037 /* Images.xcassets */,
 				E1FDF3341B5A1A3100DCC037 /* Supporting Files */,
@@ -338,7 +344,7 @@
 				TargetAttributes = {
 					E1FDF3061B5A19E700DCC037 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = W3U24WE3R3;
+						DevelopmentTeam = 8PCL78N9TX;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
 								enabled = 1;
@@ -474,6 +480,7 @@
 				E1FDF3111B5A19E700DCC037 /* SecondViewController.swift in Sources */,
 				E19FCD341B5D90860000E1DA /* Agent.swift in Sources */,
 				E1FDF30D1B5A19E700DCC037 /* AppDelegate.swift in Sources */,
+				8245C00E1BA18CFA00DFD9DA /* Model.swift in Sources */,
 				E1FDF30F1B5A19E700DCC037 /* FirstViewController.swift in Sources */,
 				E1C7A6661B5B3270002756B0 /* SwiftyJSON.swift in Sources */,
 			);
@@ -493,6 +500,7 @@
 			files = (
 				E1FDF33A1B5A1A3100DCC037 /* NotificationController.swift in Sources */,
 				E1FDF3381B5A1A3100DCC037 /* InterfaceController.swift in Sources */,
+				026C6E2F1BA183CD00176301 /* GlanceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
