@@ -51,6 +51,9 @@
                                     <segment title="Start"/>
                                     <segment title="Stop"/>
                                 </segments>
+                                <connections>
+                                    <action selector="fireStartStop:" destination="8rJ-Kc-sve" eventType="valueChanged" id="2Qk-L7-0Up"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Jsw-qI-0OT">
                                 <rect key="frame" x="211" y="76" width="179" height="29"/>
