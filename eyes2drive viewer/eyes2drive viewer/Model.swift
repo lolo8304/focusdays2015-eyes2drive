@@ -10,13 +10,8 @@ import Foundation
 
 
 class Trips {
-
     var trips = [Trip]()
-
-
 }
-
-
 
 class Trip {
     var events = [Event]()
