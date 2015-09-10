@@ -10,7 +10,7 @@ import Foundation
 
 protocol EyeEventHandlerProtocol {
 
-    func addEvent(type: EventType)
+    func addEvent(type: Event)
 
     func startTrip()
 

@@ -93,7 +93,3 @@ class EventRed:Event{
         r += delta
     }
 }
-
-enum EventType {
-    case green, orange, red
-}
