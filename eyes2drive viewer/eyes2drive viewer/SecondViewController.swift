@@ -9,6 +9,8 @@
 import UIKit
 
 class SecondViewController: UIViewController{
+    
+    var delay: Int = 0;
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +49,16 @@ class SecondViewController: UIViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    @IBAction func changeDelay(sender: AnyObject) {
+        if delaySwitch.on {
+            delay = 30
+        } else {
+            delay = 0
+        }
+    }
+    
+    @IBOutlet weak var delaySwitch: UISwitch!
 
 }
 

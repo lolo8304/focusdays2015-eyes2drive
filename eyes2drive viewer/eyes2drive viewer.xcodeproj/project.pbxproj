@@ -22,7 +22,6 @@
 		E1FDF3141B5A19E700DCC037 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3121B5A19E700DCC037 /* Main.storyboard */; };
 		E1FDF3161B5A19E700DCC037 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3151B5A19E700DCC037 /* Images.xcassets */; };
 		E1FDF3191B5A19E700DCC037 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3171B5A19E700DCC037 /* LaunchScreen.xib */; };
-		E1FDF3251B5A19E700DCC037 /* eyes2drive_viewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF3241B5A19E700DCC037 /* eyes2drive_viewerTests.swift */; };
 		E1FDF3381B5A1A3100DCC037 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF3371B5A1A3100DCC037 /* InterfaceController.swift */; };
 		E1FDF33A1B5A1A3100DCC037 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF3391B5A1A3100DCC037 /* NotificationController.swift */; };
 		E1FDF33C1B5A1A3100DCC037 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF33B1B5A1A3100DCC037 /* Images.xcassets */; };
@@ -34,13 +33,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E1FDF31F1B5A19E700DCC037 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E1FDF2FF1B5A19E700DCC037 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E1FDF3061B5A19E700DCC037;
-			remoteInfo = "eyes2drive viewer";
-		};
 		E1FDF3411B5A1A3100DCC037 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E1FDF2FF1B5A19E700DCC037 /* Project object */;
@@ -93,7 +85,6 @@
 		E1FDF3131B5A19E700DCC037 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E1FDF3151B5A19E700DCC037 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E1FDF3181B5A19E700DCC037 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		E1FDF31E1B5A19E700DCC037 /* eyes2drive viewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "eyes2drive viewerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1FDF3231B5A19E700DCC037 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1FDF3241B5A19E700DCC037 /* eyes2drive_viewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eyes2drive_viewerTests.swift; sourceTree = "<group>"; };
 		E1FDF3321B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "eyes2drive viewer WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,13 +108,6 @@
 			files = (
 				E1C7A6601B5B2300002756B0 /* Security.framework in Frameworks */,
 				7237A4DBD70F0F72FD8F7A51 /* Pods.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E1FDF31B1B5A19E700DCC037 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,7 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				E1FDF3071B5A19E700DCC037 /* eyes2drive viewer.app */,
-				E1FDF31E1B5A19E700DCC037 /* eyes2drive viewerTests.xctest */,
 				E1FDF3321B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension.appex */,
 				E1FDF33F1B5A1A3100DCC037 /* eyes2drive viewer WatchKit App.app */,
 			);
@@ -292,24 +275,6 @@
 			productReference = E1FDF3071B5A19E700DCC037 /* eyes2drive viewer.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E1FDF31D1B5A19E700DCC037 /* eyes2drive viewerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E1FDF32B1B5A19E700DCC037 /* Build configuration list for PBXNativeTarget "eyes2drive viewerTests" */;
-			buildPhases = (
-				E1FDF31A1B5A19E700DCC037 /* Sources */,
-				E1FDF31B1B5A19E700DCC037 /* Frameworks */,
-				E1FDF31C1B5A19E700DCC037 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E1FDF3201B5A19E700DCC037 /* PBXTargetDependency */,
-			);
-			name = "eyes2drive viewerTests";
-			productName = "eyes2drive viewerTests";
-			productReference = E1FDF31E1B5A19E700DCC037 /* eyes2drive viewerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		E1FDF3311B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E1FDF3511B5A1A3100DCC037 /* Build configuration list for PBXNativeTarget "eyes2drive viewer WatchKit Extension" */;
@@ -361,10 +326,6 @@
 							};
 						};
 					};
-					E1FDF31D1B5A19E700DCC037 = {
-						CreatedOnToolsVersion = 6.4;
-						TestTargetID = E1FDF3061B5A19E700DCC037;
-					};
 					E1FDF3311B5A1A3100DCC037 = {
 						CreatedOnToolsVersion = 6.4;
 					};
@@ -387,7 +348,6 @@
 			projectRoot = "";
 			targets = (
 				E1FDF3061B5A19E700DCC037 /* eyes2drive viewer */,
-				E1FDF31D1B5A19E700DCC037 /* eyes2drive viewerTests */,
 				E1FDF3311B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension */,
 				E1FDF33E1B5A1A3100DCC037 /* eyes2drive viewer WatchKit App */,
 			);
@@ -403,13 +363,6 @@
 				E1FDF3191B5A19E700DCC037 /* LaunchScreen.xib in Resources */,
 				E1342C101B5B14C1006AD354 /* Podfile in Resources */,
 				E1FDF3161B5A19E700DCC037 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E1FDF31C1B5A19E700DCC037 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,14 +452,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1FDF31A1B5A19E700DCC037 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E1FDF3251B5A19E700DCC037 /* eyes2drive_viewerTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E1FDF32E1B5A1A3100DCC037 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -519,11 +464,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E1FDF3201B5A19E700DCC037 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E1FDF3061B5A19E700DCC037 /* eyes2drive viewer */;
-			targetProxy = E1FDF31F1B5A19E700DCC037 /* PBXContainerItemProxy */;
-		};
 		E1FDF3421B5A1A3100DCC037 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E1FDF33E1B5A1A3100DCC037 /* eyes2drive viewer WatchKit App */;
@@ -675,40 +615,6 @@
 			};
 			name = Release;
 		};
-		E1FDF32C1B5A19E700DCC037 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "eyes2drive viewerTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eyes2drive viewer.app/eyes2drive viewer";
-			};
-			name = Debug;
-		};
-		E1FDF32D1B5A19E700DCC037 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "eyes2drive viewerTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eyes2drive viewer.app/eyes2drive viewer";
-			};
-			name = Release;
-		};
 		E1FDF34F1B5A1A3100DCC037 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -782,15 +688,6 @@
 			buildConfigurations = (
 				E1FDF3291B5A19E700DCC037 /* Debug */,
 				E1FDF32A1B5A19E700DCC037 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E1FDF32B1B5A19E700DCC037 /* Build configuration list for PBXNativeTarget "eyes2drive viewerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E1FDF32C1B5A19E700DCC037 /* Debug */,
-				E1FDF32D1B5A19E700DCC037 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
