@@ -17,6 +17,7 @@ class EyeEventHandler : EyeEventHandlerProtocol {
     var tripsRepo:Trips = Trips()
     
     func addEvent(type: Event, delay: Bool){
+        NSLog("Event geschickt: "); 
         UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil))
         var notification = UILocalNotification()
         notification.alertBody = "Hallo Welt" // text that will be displayed in the notification
@@ -24,7 +25,7 @@ class EyeEventHandler : EyeEventHandlerProtocol {
         
         var offsetSec = 0;
         if delay {
-            offsetSec = 10;
+            offsetSec = 3000;
         }
         var now = NSDate().dateByAddingTimeInterval(NSTimeInterval(offsetSec))
         notification.fireDate = now // todo item due date (when notification will be fired)
@@ -34,7 +35,6 @@ class EyeEventHandler : EyeEventHandlerProtocol {
         notification.userInfo = ["UUID": 12345, ] // assign a unique identifier to the notification so that we can retrieve it later
         //notification.category = "TODO_CATEGORY"
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-        
         
     }
     
