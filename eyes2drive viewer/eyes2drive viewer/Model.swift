@@ -72,23 +72,35 @@ class Dashboard {
 
 class Event {
     let timestamp = NSDate()
+    func getColor()->String{
+        return "white"
+    }
     func setMs(inout g:Int, inout _ o:Int, inout _ r:Int, _ delta:Int){
     }
 }
 
 class EventGreen:Event{
+    override func getColor() -> String {
+        return "green"
+    }
     override func setMs(inout g:Int, inout _ o:Int, inout _ r:Int, _ delta:Int){
         g += delta
     }
 }
 
 class EventOrange:Event{
+    override func getColor() -> String {
+        return "orange"
+    }
     override func setMs(inout g:Int, inout _ o:Int, inout _ r:Int, _ delta:Int){
         o += delta
     }
 }
 
 class EventRed:Event{
+    override func getColor() -> String {
+        return "red"
+    }
     override func setMs(inout g:Int, inout _ o:Int, inout _ r:Int, _ delta:Int){
         r += delta
     }
