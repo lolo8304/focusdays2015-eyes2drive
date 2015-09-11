@@ -73,7 +73,7 @@ class Dashboard {
 }
 
 class Event {
-    let timestamp = NSDate()
+    var timestamp = NSDate()
     func getColor()->String{
         return "white"
     }
