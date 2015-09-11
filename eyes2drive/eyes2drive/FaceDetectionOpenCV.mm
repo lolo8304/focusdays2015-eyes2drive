@@ -20,6 +20,7 @@
 
 @implementation FaceDetectionOpenCV
 
+
 //do NOT change haar-classifier, these are the best right now
 NSString * const C_face_cascade_name = @"haarcascade_frontalface_alt";
 
@@ -79,12 +80,17 @@ cv::CascadeClassifier mouth_cascade;
         
         
         self.events = [[NSDictionary alloc] init];
+        self.eventsToSend = [[NSMutableArray alloc] init];
         self.events = @{
                         [NSNumber numberWithInt: FeatureFaceDetected] : [[NSMutableArray alloc] init],
                         [NSNumber numberWithInt: FeatureEyesDetected] : [[NSMutableArray alloc] init],
                         [NSNumber numberWithInt: Feature2EyesDetected] : [[NSMutableArray alloc] init],
                         [NSNumber numberWithInt: FeatureTrip] : [[NSMutableArray alloc] init]
                        };
+        
+        self.peripheral = [[BTLEPeripheral alloc] initWith: self];
+        [self.peripheral startBluetooth];
+        
         return self;
     }
     return nil;
@@ -92,15 +98,21 @@ cv::CascadeClassifier mouth_cascade;
 
 
 - (void)sendEvent:(FeatureDetection)feature changedState:(State *)state {
-//    dispatch_sync(dispatch_get_main_queue(), ^{
-        
         NSString * stateEvent = [state toSendEventString];
         printf("send event now %s.\n", [stateEvent UTF8String]);
-
-        
-//    });
-
+    [self.eventsToSend addObject: stateEvent];
 }
+
+
+- (NSData *)dataToSend {
+    if ([self.eventsToSend count] > 0) {
+        NSString * statusData = self.eventsToSend[0];
+        [self.eventsToSend removeObjectAtIndex:0];
+        return [statusData dataUsingEncoding:NSUTF8StringEncoding];
+    }
+    return nil;
+}
+
 
 
 - (void)feature:(FeatureDetection)feature changedState:(State *)state {

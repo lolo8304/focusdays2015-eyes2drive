@@ -45,14 +45,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Kj0-kn-czc">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Kj0-kn-czc">
                                 <rect key="frame" x="257" y="33" width="87" height="29"/>
                                 <segments>
                                     <segment title="Start"/>
                                     <segment title="Stop"/>
                                 </segments>
                                 <connections>
-                                    <action selector="fireStartStop:" destination="8rJ-Kc-sve" eventType="valueChanged" id="2Qk-L7-0Up"/>
+                                    <action selector="fireStartStop:" destination="8rJ-Kc-sve" eventType="valueChanged" id="p5m-P8-Hs9"/>
                                 </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Jsw-qI-0OT">

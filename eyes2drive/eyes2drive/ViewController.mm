@@ -37,10 +37,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *nofRedEvents;
 @property (weak, nonatomic) IBOutlet UILabel *nofDarkRedEvents;
 
-    @property (weak, nonatomic) IBOutlet UISegmentedControl *faceAlertControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *faceAlertControl;
 
 
-    @property (nonatomic, strong) FaceDetectionOpenCV* faceDetection;
+@property (nonatomic, strong) FaceDetectionOpenCV* faceDetection;
+
 @property (weak, nonatomic) IBOutlet UISwitch *showMapSwitch;
 
 - (IBAction)showMapChanged:(id)sender;
