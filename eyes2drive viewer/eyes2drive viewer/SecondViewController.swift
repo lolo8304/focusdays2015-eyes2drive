@@ -37,7 +37,9 @@ class SecondViewController: UIViewController{
     @IBOutlet weak var logUI: UITextView!
 
     func addLogText(text:String){
-        logUI.text = text + "\n" + logUI.text
+        if ((logUI) != nil) {
+            logUI.text = text + "\n" + logUI.text
+        }
     }
     
     
