@@ -41,6 +41,9 @@ class Trip {
     func stopTrip(){
         end = NSDate()
     }
+    func addEvent(event:Event) {
+        self.events.append(event)
+    }
     func generateDashboard()->Dashboard{
         return Dashboard(trip:self)
     }
@@ -53,60 +56,76 @@ class Dashboard {
     var redDurationInPercent = 0
     
     init(trip:Trip){
-        var greenDurationInMs = 0
-        var orangeDurationInMs = 0
-        var redDurationInMs = 0
-        var lastEventTs = trip.start
-        var totalMs = 0
+        var greenDurationInMs = 0.0
+        var orangeDurationInMs = 0.0
+        var redDurationInMs = 0.0
+        var totalMs = 0.0
+        var lastEvent:Event
+        var currentEvent:Event?
+        var durationInMs:Double
         
-        for event in trip.events {
-            var durationInMs:Int = Int(event.timestamp.timeIntervalSinceDate(lastEventTs))
-            event.setMs(&greenDurationInMs, &orangeDurationInMs, &redDurationInMs, durationInMs)
-            lastEventTs = event.timestamp
+        for i in 1..<trip.events.count {
+            lastEvent = trip.events[i-1]
+            currentEvent = trip.events[i]
+            durationInMs = (currentEvent!.timestamp.timeIntervalSinceDate(lastEvent.timestamp)*1000)
+            lastEvent.setMs(&greenDurationInMs, &orangeDurationInMs, &redDurationInMs, durationInMs)
+        }
+        if trip.events.count > 1 {
+            durationInMs = (NSDate().timeIntervalSinceDate(currentEvent!.timestamp)*1000)
+            currentEvent!.setMs(&greenDurationInMs, &orangeDurationInMs, &redDurationInMs, durationInMs)
         }
         
         totalMs = greenDurationInMs + orangeDurationInMs + redDurationInMs
         if (totalMs > 0) {
-            greenDurationInPercent = greenDurationInMs / totalMs * 100
-            orangeDurationInPercent = orangeDurationInMs / totalMs * 100
-            redDurationInPercent = redDurationInMs / totalMs * 100
+            greenDurationInPercent = Int(greenDurationInMs / totalMs * 100)
+            orangeDurationInPercent = Int(orangeDurationInMs / totalMs * 100)
+            redDurationInPercent = Int(redDurationInMs / totalMs * 100)
             scoreInPercent = greenDurationInPercent + orangeDurationInPercent / 2 + redDurationInPercent / 4
+            //greenDurationInPercent=Int(greenDurationInMs)
+            //orangeDurationInPercent=Int(orangeDurationInMs)
+            //redDurationInPercent=Int(redDurationInMs)
         }
     }
 }
 
 class Event {
     var timestamp = NSDate()
-    func getColor()->String{
-        return "white"
+    func getNotifcationBodyText()->String{
+        return "This is a transparent message"
     }
-    func setMs(inout g:Int, inout _ o:Int, inout _ r:Int, _ delta:Int){
+    func shouldThrowNotification() -> Bool {
+        return true;
+    }
+    func setMs(inout g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
     }
 }
 
 class EventGreen:Event{
-    override func getColor() -> String {
-        return "green"
+    override func getNotifcationBodyText() -> String {
+        return "Need some weeds - if you see this there is a bug!"
     }
-    override func setMs(inout g:Int, inout _ o:Int, inout _ r:Int, _ delta:Int){
+    override func shouldThrowNotification() -> Bool {
+        return false;
+    }
+    override func setMs(inout g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
         g += delta
     }
 }
 
 class EventOrange:Event{
-    override func getColor() -> String {
-        return "orange"
+    override func getNotifcationBodyText() -> String {
+        return "huhu - are you alive? but don't look at the Watch while driving"
     }
-    override func setMs(inout g:Int, inout _ o:Int, inout _ r:Int, _ delta:Int){
+    override func setMs(inout g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
         o += delta
     }
 }
 
 class EventRed:Event{
-    override func getColor() -> String {
-        return "red"
+    override func getNotifcationBodyText() -> String {
+        return "HEY !!! What's up? eyes 2 drive please"
     }
-    override func setMs(inout g:Int, inout _ o:Int, inout _ r:Int, _ delta:Int){
+    override func setMs(inout g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
         r += delta
     }
 }

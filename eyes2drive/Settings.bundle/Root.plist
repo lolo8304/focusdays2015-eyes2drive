@@ -24,12 +24,12 @@
 			<string>btleChannelIndex</string>
 			<key>Titles</key>
 			<array>
+				<string>Default Channel</string>
 				<string>Lolo</string>
 				<string>Bernhard</string>
 				<string>Michael</string>
 				<string>Anton</string>
 				<string>Rémy</string>
-				<string>Dirk</string>
 				<string>Andy</string>
 				<string>Christian</string>
 			</array>
