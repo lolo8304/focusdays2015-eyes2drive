@@ -14,7 +14,6 @@ class FirstViewController: UIViewController, ReceiverDelegate {
 
     var appDelegate: AppDelegate?
     var central = BTLECentral()
-    var secView:SecondViewController = SecondViewController(nibName: nil, bundle: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +31,11 @@ class FirstViewController: UIViewController, ReceiverDelegate {
           // Signalstärke
     }
     
+    func sendNotification(text:String){
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("LogEvent", object: text)
+    }
+    
     
     func dataReceived(data: String) {
         var dataStringArr=split(data){$0=="-"}
@@ -45,7 +49,7 @@ class FirstViewController: UIViewController, ReceiverDelegate {
 
             }
             var logText = eyeHandler.addEvent(event, delay:false)
-            secView.addLogText(logText)
+            sendNotification(logText)
             NSLog(logText)
 
         }else if dataStringArr[0]=="42" {
@@ -58,7 +62,7 @@ class FirstViewController: UIViewController, ReceiverDelegate {
             default:  eyeHandler.endTrip()
                         logText = "EndTrip"
             }
-            secView.addLogText(logText)
+           sendNotification(logText)
             NSLog(logText)
         }
     }

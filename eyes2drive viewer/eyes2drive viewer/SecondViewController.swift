@@ -15,6 +15,18 @@ class SecondViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "onLogEvent:",
+            name: "EventLog",
+            object: nil)
+        
+    }
+    
+    func onLogEvent(notification: NSNotification){
+        var text = notification.object as! String
+        addLogText(text)
     }
 
     @IBAction func fireEvent(sender: AnyObject) {
