@@ -24,7 +24,7 @@ class GlanceController: WKInterfaceController {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        updateGlanceTimer = NSTimer.scheduledTimerWithTimeInterval(5.0 ,
+        updateGlanceTimer = NSTimer.scheduledTimerWithTimeInterval(1.0 ,
             target: self,
             selector: "willActivate",
             userInfo: nil,

@@ -145,9 +145,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let dashboard = trip.generateDashboard()
                 
                 score = NSNumber(integer: dashboard.scoreInPercent)
-                green = NSNumber(integer: dashboard.orangeDurationInPercent)
+                green = NSNumber(integer: dashboard.greenDurationInPercent)
                 orange = NSNumber(integer: dashboard.orangeDurationInPercent)
-                red = NSNumber(integer: dashboard.orangeDurationInPercent)
+                red = NSNumber(integer: dashboard.redDurationInPercent)
             }
             
             reply(["score":score, "green":green, "orange":orange, "red":red])

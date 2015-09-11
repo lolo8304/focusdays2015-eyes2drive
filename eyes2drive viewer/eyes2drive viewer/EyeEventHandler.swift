@@ -22,6 +22,8 @@ class EyeEventHandler : EyeEventHandlerProtocol {
         var notification = UILocalNotification()
         notification.alertBody = type.getColor()// text that will be displayed in the notification
         notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
+        tripsRepo.getCurrentTrip().events.append(type)
+        
         var offsetSec = 0;
         if delay {
             offsetSec = 10;
