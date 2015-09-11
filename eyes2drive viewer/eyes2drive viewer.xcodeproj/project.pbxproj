@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02AC93DC1BA2A28500F63BAD /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026C6E2E1BA183CD00176301 /* GlanceController.swift */; };
 		4C21D7581BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21D7571BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift */; };
 		4C21D75A1BA1AD3700CE31FB /* EyeEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21D7591BA1AD3700CE31FB /* EyeEventHandler.swift */; };
 		4CBF9EAD1BA1EA8200907F87 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF9EAC1BA1EA8200907F87 /* Model.swift */; };
@@ -472,6 +473,7 @@
 				4CBF9EAE1BA1EA8200907F87 /* Model.swift in Sources */,
 				E1FDF33A1B5A1A3100DCC037 /* NotificationController.swift in Sources */,
 				E1FDF3381B5A1A3100DCC037 /* InterfaceController.swift in Sources */,
+				02AC93DC1BA2A28500F63BAD /* GlanceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

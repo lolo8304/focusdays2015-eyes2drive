@@ -8,7 +8,7 @@
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="eyes2drive_viewer_WatchKit_App" customModuleProvider="target">
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
                         <label alignment="left" text="eyes2drive" id="Exs-Of-XWs"/>
                         <button width="1" alignment="left" title="start" id="W4f-1y-BM8"/>
