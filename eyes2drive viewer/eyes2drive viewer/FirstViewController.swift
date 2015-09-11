@@ -14,17 +14,12 @@ class FirstViewController: UIViewController, ReceiverDelegate {
 
     var appDelegate: AppDelegate?
     var central = BTLECentral()
-<<<<<<< HEAD
-=======
-    var secView:SecondViewController?
->>>>>>> fea53e86916b90fad83b728e9f153a78b566ae44
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
         self.central.assignDataDelegate(self)
         self.central.startBluetooth()
-        secView = SecondViewController(nibName: nil, bundle: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,11 +49,7 @@ class FirstViewController: UIViewController, ReceiverDelegate {
 
             }
             var logText = eyeHandler.addEvent(event, delay:false)
-<<<<<<< HEAD
             sendNotification(logText)
-=======
-            secView!.addLogText(logText)
->>>>>>> fea53e86916b90fad83b728e9f153a78b566ae44
             NSLog(logText)
 
         }else if dataStringArr[0]=="42" {
@@ -73,11 +64,7 @@ class FirstViewController: UIViewController, ReceiverDelegate {
             default:
                 NSLog("logText default")
             }
-<<<<<<< HEAD
            sendNotification(logText)
-=======
-            secView!.addLogText(logText)
->>>>>>> fea53e86916b90fad83b728e9f153a78b566ae44
             NSLog(logText)
         }
     }
