@@ -21,8 +21,9 @@ static NSString *valueString = @"0";
 }
 + (void) setValue:(int)val {
     @synchronized(self) {
-        value = val;
-        valueString = [NSString stringWithFormat:@"%d",val];
+            value = val;
+            valueString = [NSString stringWithFormat:@"%d",val];
+            NSLog(@"BTLE Channel: %i (%@)", value, [self getTRANSFER_SERVICE_UUID]);
     }
 }
 
