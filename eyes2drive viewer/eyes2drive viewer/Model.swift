@@ -42,7 +42,7 @@ class Trip {
         end = NSDate()
     }
     func addEvent(event:Event) {
-        self.events.append(type)
+        self.events.append(event)
     }
     func generateDashboard()->Dashboard{
         return Dashboard(trip:self)
