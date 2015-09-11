@@ -186,8 +186,8 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
         return [[NSBundle mainBundle] URLForResource: @"tap"
                                                 withExtension: @"aif"];
     } else {
-        return [[NSBundle mainBundle] URLForResource: @"tap"
-                                       withExtension: @"aif"];
+        return [[NSBundle mainBundle] URLForResource: @"Sound-Red"
+                                       withExtension: @"aiff"];
     }
 }
 
