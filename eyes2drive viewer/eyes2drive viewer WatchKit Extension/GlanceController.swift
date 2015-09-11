@@ -39,6 +39,8 @@ class GlanceController: WKInterfaceController {
         super.willActivate()
         NSLog("Glance willActivate *********");
         
+        //Holt von der Parent-App neue Daten - wird vom obigen NSTimer getriggert. 
+        //Siehe AppDelegate func application(application: UIApplication, handleWatchKitExtensionRequest.... 
         WKInterfaceController.openParentApplication(["glanceValues":"yes"],
             reply: {(reply, error) -> Void in
                 

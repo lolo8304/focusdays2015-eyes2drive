@@ -132,6 +132,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSLog("Couldn't register: \(error)")
     }
 
+    
+    //Aus dem Delegate der WatchKit-App: antwortet auf einen Request von der WatchKit App
+    //siehe GlanceController willActivate
     func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?,
         reply: (([NSObject : AnyObject]!) -> Void)!) {
             
