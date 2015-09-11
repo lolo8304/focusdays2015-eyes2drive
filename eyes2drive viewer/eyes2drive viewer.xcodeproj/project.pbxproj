@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0250DA511BA3112000B3B583 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0250DA501BA3112000B3B583 /* Images.xcassets */; };
 		02AC93DC1BA2A28500F63BAD /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026C6E2E1BA183CD00176301 /* GlanceController.swift */; };
 		4C21D7581BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21D7571BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift */; };
 		4C21D75A1BA1AD3700CE31FB /* EyeEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C21D7591BA1AD3700CE31FB /* EyeEventHandler.swift */; };
@@ -31,7 +32,6 @@
 		E1FDF3191B5A19E700DCC037 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3171B5A19E700DCC037 /* LaunchScreen.xib */; };
 		E1FDF3381B5A1A3100DCC037 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF3371B5A1A3100DCC037 /* InterfaceController.swift */; };
 		E1FDF33A1B5A1A3100DCC037 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF3391B5A1A3100DCC037 /* NotificationController.swift */; };
-		E1FDF33C1B5A1A3100DCC037 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF33B1B5A1A3100DCC037 /* Images.xcassets */; };
 		E1FDF3401B5A1A3100DCC037 /* eyes2drive viewer WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF33F1B5A1A3100DCC037 /* eyes2drive viewer WatchKit App.app */; };
 		E1FDF3481B5A1A3100DCC037 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3461B5A1A3100DCC037 /* Interface.storyboard */; };
 		E1FDF34A1B5A1A3100DCC037 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3491B5A1A3100DCC037 /* Images.xcassets */; };
@@ -71,6 +71,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0250DA501BA3112000B3B583 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		026C6E2E1BA183CD00176301 /* GlanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
 		47F6EB6ECF2D88DB5D8E8649 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4C21D7571BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EyeEventHandlerProtocol.swift; sourceTree = "<group>"; };
@@ -106,7 +107,6 @@
 		E1FDF3361B5A1A3100DCC037 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		E1FDF3371B5A1A3100DCC037 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		E1FDF3391B5A1A3100DCC037 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		E1FDF33B1B5A1A3100DCC037 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E1FDF33F1B5A1A3100DCC037 /* eyes2drive viewer WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eyes2drive viewer WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1FDF3451B5A1A3100DCC037 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1FDF3471B5A1A3100DCC037 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -237,8 +237,8 @@
 				827D85471BA2F1B50087922D /* Interface3Controller.swift */,
 				026C6E2E1BA183CD00176301 /* GlanceController.swift */,
 				E1FDF3391B5A1A3100DCC037 /* NotificationController.swift */,
-				E1FDF33B1B5A1A3100DCC037 /* Images.xcassets */,
 				E1FDF3341B5A1A3100DCC037 /* Supporting Files */,
+				0250DA501BA3112000B3B583 /* Images.xcassets */,
 			);
 			path = "eyes2drive viewer WatchKit Extension";
 			sourceTree = "<group>";
@@ -392,7 +392,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1FDF33C1B5A1A3100DCC037 /* Images.xcassets in Resources */,
+				0250DA511BA3112000B3B583 /* Images.xcassets in Resources */,
 				E1FDF3401B5A1A3100DCC037 /* eyes2drive viewer WatchKit App.app in Resources */,
 				E1FDF3561B5A1CD000DCC037 /* OrangeNotificationPayload.apns in Resources */,
 			);

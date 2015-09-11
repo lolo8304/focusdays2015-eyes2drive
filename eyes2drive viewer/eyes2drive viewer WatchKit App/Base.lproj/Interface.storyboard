@@ -10,7 +10,7 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
-                        <imageView alignment="left" image="logo-230x230" id="Amz-rE-HXA"/>
+                        <imageView alignment="left" image="logo-230x230" id="e2W-RX-esw"/>
                     </items>
                     <connections>
                         <segue destination="aDC-7c-TUn" kind="relationship" relationship="nextPage" id="frG-x0-YLD"/>
@@ -24,7 +24,7 @@
             <objects>
                 <controller id="aDC-7c-TUn" customClass="Interface2Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
-                        <imageView alignment="left" image="IMG_4274" id="hrz-8A-5vm"/>
+                        <imageView alignment="left" image="team1" id="OQY-Kg-kyl"/>
                     </items>
                     <connections>
                         <segue destination="y6U-8O-GYf" kind="relationship" relationship="nextPage" id="Jzv-HG-M7S"/>
@@ -37,6 +37,9 @@
         <scene sceneID="r3r-nk-BLD">
             <objects>
                 <controller id="y6U-8O-GYf" customClass="Interface3Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
+                    <items>
+                        <imageView alignment="left" image="team2" id="ghB-yl-GOR"/>
+                    </items>
                     <connections>
                         <segue destination="VsJ-aT-WFi" kind="relationship" relationship="nextPage" id="v7D-bM-RBK"/>
                     </connections>
@@ -47,7 +50,11 @@
         <!--Interface3 Controller-->
         <scene sceneID="jek-c0-u94">
             <objects>
-                <controller id="VsJ-aT-WFi" customClass="Interface3Controller" customModule="eyes2drive_viewer_WatchKit_Extension"/>
+                <controller id="VsJ-aT-WFi" customClass="Interface3Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
+                    <items>
+                        <imageView alignment="left" image="team3" id="3Wu-YP-u0O"/>
+                    </items>
+                </controller>
             </objects>
             <point key="canvasLocation" x="635" y="194"/>
         </scene>
