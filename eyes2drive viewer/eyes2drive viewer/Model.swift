@@ -41,6 +41,9 @@ class Trip {
     func stopTrip(){
         end = NSDate()
     }
+    func addEvent(event:Event) {
+        self.events.append(type)
+    }
     func generateDashboard()->Dashboard{
         return Dashboard(trip:self)
     }

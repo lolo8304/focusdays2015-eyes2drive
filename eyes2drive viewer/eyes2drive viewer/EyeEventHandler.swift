@@ -18,11 +18,12 @@ class EyeEventHandler : EyeEventHandlerProtocol {
     
     func addEvent(type: Event, delay: Bool)->String{
         NSLog("Event geschickt: "); 
+        tripsRepo.getCurrentTrip().addEvent(type)
+
         UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil))
         var notification = UILocalNotification()
         notification.alertBody = type.getColor()// text that will be displayed in the notification
         notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
-        tripsRepo.getCurrentTrip().events.append(type)
         
         var offsetSec = 0;
         if delay {
