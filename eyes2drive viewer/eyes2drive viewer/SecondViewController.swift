@@ -19,7 +19,7 @@ class SecondViewController: UIViewController{
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "onLogEvent:",
-            name: "EventLog",
+            name: "LogEvent",
             object: nil)
         
     }
