@@ -60,10 +60,16 @@ cv::CascadeClassifier mouth_cascade;
         [self loadClassifier: mouth_cascade named: C_mouth_cascade_name title: @"mouth"];
         
         self.controller = controller;
+        [self clearEvents];
         
+        self.trip = [[FeatureDetectionTime alloc] initWith: FeatureTrip ];
+        self.trip.delegate = self;
+        [self.trip setThreshold: false orange:1 red:0 darkred: 0];
+        [[self.trip state] push: FeatureAlertRed]; //initialize with detecte -> start means not-detected, stop means detected
+
         self.faceDetected = [[FeatureDetectionTime alloc] initWith: FeatureFaceDetected ];
         self.faceDetected.delegate = self;
-        [self.faceDetected setThreshold: false orange:2000 red:4000 darkred: 6000];
+        [self.faceDetected setThreshold: false orange:2000 red:3000 darkred: 5000];
         
         self.eyesDetected = [[FeatureDetectionTime alloc] initWith: FeatureEyesDetected ];
         self.eyesDetected.delegate = self;
@@ -73,12 +79,7 @@ cv::CascadeClassifier mouth_cascade;
         self.twoEyesDetected.delegate = self;
         [self.twoEyesDetected setThreshold: false orange: 3000 red: 5000 darkred: 7000];
 
-        self.trip = [[FeatureDetectionTime alloc] initWith: FeatureTrip ];
-        self.trip.delegate = self;
-        [self.trip setThreshold: false orange:1 red:0 darkred: 0];
-        [[self.trip state] push: FeatureAlertRed]; //initialize with detecte -> start means not-detected, stop means detected
         
-        [self clearEvents];
         
         self.peripheral = [[BTLEPeripheral alloc] initWith: self];
         [self.peripheral startBluetooth];
@@ -89,7 +90,6 @@ cv::CascadeClassifier mouth_cascade;
 }
 
 - (void)clearEvents {
-    self.events = [[NSDictionary alloc] init];
     self.events = @{
                 [NSNumber numberWithInt: FeatureFaceDetected] : [[NSMutableArray alloc] init],
                 [NSNumber numberWithInt: FeatureEyesDetected] : [[NSMutableArray alloc] init],
@@ -159,8 +159,8 @@ cv::CascadeClassifier mouth_cascade;
 
 - (void)startTrip {
     self.started = true;
-    [self clearEvents];
-//    [self.trip featureDetected: true];
+   // [self clearEvents];
+    [self.trip featureDetected: true];
     [[self.trip state] push: FeatureAlertGreen];
     [self.trip triggerChangedEvent];
     

@@ -95,11 +95,11 @@
  */
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
-    if (![self.dataDelegate isRSSIAllowed: RSSI]) {
+    if (![self.dataDelegate isRSSIAllowed: RSSI.intValue]) {
         return;
     }
 
-    [self.dataDelegate strengthRSSI: RSSI];
+    [self.dataDelegate strengthRSSI: RSSI.intValue];
     
     //NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
     

@@ -186,8 +186,8 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
         return [[NSBundle mainBundle] URLForResource: @"tap"
                                                 withExtension: @"aif"];
     } else {
-        return [[NSBundle mainBundle] URLForResource: @"tap"
-                                       withExtension: @"aif"];
+        return [[NSBundle mainBundle] URLForResource: @"Sound-Red"
+                                       withExtension: @"aiff"];
     }
 }
 
@@ -204,7 +204,7 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     [self setFaceAlertImage: lastColor];
     NSMutableArray * states = [self.faceDetection getAllStates: FeatureFaceDetected];
     [self.nofEvents setText:
-        [NSMutableString stringWithFormat:@"%ui events", (unsigned int)[states count]]];
+        [NSMutableString stringWithFormat:@"%i events", (int)[states count]]];
     
     NSMutableArray * colorStates = [self.faceDetection getNofStates: FeatureFaceDetected];
     NSNumber * nof = colorStates[ (int)FeatureAlertGreen ];
