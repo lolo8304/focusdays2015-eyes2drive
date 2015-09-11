@@ -26,7 +26,7 @@ class GlanceController: WKInterfaceController {
         
         updateGlanceTimer = NSTimer.scheduledTimerWithTimeInterval(5.0 ,
             target: self,
-            selector: "willActivate:",
+            selector: "willActivate",
             userInfo: nil,
             repeats: true)
         
