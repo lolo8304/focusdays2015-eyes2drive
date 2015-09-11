@@ -294,8 +294,8 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     self.faceDetection = [ [FaceDetectionOpenCV alloc ] initWith: AVCaptureVideoOrientationPortrait controller: self];
     self.videoCamera.delegate = self.faceDetection;
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
-    //self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
-    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
+    self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset352x288;
+    //self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
 
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
     //self.videoCamera.defaultAVCaptureVideoOrientation = self.currentVideoOrientation;

@@ -90,16 +90,22 @@ class Dashboard {
 
 class Event {
     var timestamp = NSDate()
-    func getColor()->String{
+    func getNotifcationBodyText()->String{
         return "white"
+    }
+    func shouldThrowNotification() -> Bool {
+        return true;
     }
     func setMs(inout g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
     }
 }
 
 class EventGreen:Event{
-    override func getColor() -> String {
+    override func getNotifcationBodyText() -> String {
         return "green"
+    }
+    override func shouldThrowNotification() -> Bool {
+        return false;
     }
     override func setMs(inout g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
         g += delta
@@ -107,7 +113,7 @@ class EventGreen:Event{
 }
 
 class EventOrange:Event{
-    override func getColor() -> String {
+    override func getNotifcationBodyText() -> String {
         return "orange"
     }
     override func setMs(inout g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
@@ -116,7 +122,7 @@ class EventOrange:Event{
 }
 
 class EventRed:Event{
-    override func getColor() -> String {
+    override func getNotifcationBodyText() -> String {
         return "red"
     }
     override func setMs(inout g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
