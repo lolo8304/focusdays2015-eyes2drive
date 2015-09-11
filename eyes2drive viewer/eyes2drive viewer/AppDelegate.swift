@@ -65,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         */
         let settings = UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        initBTLE()
         return true
     }
 
@@ -84,6 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        initBTLE()
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -149,6 +151,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let red = NSNumber(integer: 5)
 
         reply(["score":score, "green":green, "orange":orange, "red":red])
+    }
+    
+    
+    
+    func initBTLE(){
+        var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        var channelIndex: Int = defaults.integerForKey("btleChannelIndex")
+        var chan32: Int32 = Int32(channelIndex)
+        TransferService.setValue(chan32);
     }
 }
 
