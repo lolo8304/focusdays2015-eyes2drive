@@ -30,13 +30,14 @@ class SecondViewController: UIViewController{
             logText = eyeHandler.addEvent(EventGreen(),delay:delay)
         };
         NSLog(logText)
+        addLogText(logText)
     }
     
     
     @IBOutlet weak var logUI: UITextView!
 
     func addLogText(text:String){
-        logUI.text = text + logUI.text
+        logUI.text = text + "\n" + logUI.text
     }
     
     
@@ -55,7 +56,7 @@ class SecondViewController: UIViewController{
             logText = "Error, default Case"
         };
         NSLog(logText); 
-        
+        addLogText(logText)
     }
     
     
@@ -65,11 +66,16 @@ class SecondViewController: UIViewController{
     }
 
     @IBAction func changeDelay(sender: AnyObject) {
+        var logText = ""
         if delaySwitch.on {
             delay = true
+           logText = "Set Delay : true "
         } else {
             delay = false
+            logText="Set Delay : false"
         }
+        NSLog(logText)
+        addLogText(logText)
     }
     
     @IBOutlet weak var delaySwitch: UISwitch!
