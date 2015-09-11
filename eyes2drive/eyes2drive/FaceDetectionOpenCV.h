@@ -20,6 +20,7 @@
 @property (nonatomic, strong) FeatureDetectionTime * eyesDetected;
 @property (nonatomic, strong) FeatureDetectionTime * twoEyesDetected;
 @property (nonatomic, strong) FeatureDetectionTime * trip;
+@property (nonatomic) BOOL started;
 
 @property (atomic, strong) NSDictionary *events;
 @property (atomic, strong) NSMutableArray *eventsToSend;
@@ -33,6 +34,7 @@
 
 - (void)startTrip;
 - (void)stopTrip;
+- (BOOL)isStarted;
 - (CFTimeInterval)tripElapsedTime;
 
 - (State *) getLastState: (FeatureDetection) feature;
