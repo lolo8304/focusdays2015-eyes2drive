@@ -29,6 +29,7 @@ class GlanceController: WKInterfaceController {
             selector: "willActivate",
             userInfo: nil,
             repeats: true)
+    
         
         // Configure interface objects here.
     }
@@ -36,6 +37,7 @@ class GlanceController: WKInterfaceController {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        NSLog("Glance willActivate *********");
         
         WKInterfaceController.openParentApplication(["glanceValues":"yes"],
             reply: {(reply, error) -> Void in
