@@ -11,6 +11,7 @@ import Foundation
 
 class Trips {
     var trips: [Trip] = [Trip]();
+
     
     func startAndAddNewTrip(){
         var neuerTrip = Trip();
