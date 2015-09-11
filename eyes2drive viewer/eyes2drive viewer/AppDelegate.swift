@@ -130,5 +130,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSLog("Couldn't register: \(error)")
     }
 
+    func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?,
+        reply: (([NSObject : AnyObject]!) -> Void)!) {
+            
+        NSLog("*** AppDelegate -- handleWatchKitExtensionRequest")
+            /*
+        let trip = eyeHandler.tripsRepo.getCurrentTrip()
+        let dashboard = trip.generateDashboard()
+            
+        let score = dashboard.scoreInPercent
+        let green = dashboard.orangeDurationInPercent
+        let orange = dashboard.orangeDurationInPercent
+        let red = dashboard.orangeDurationInPercent
+*/
+        let score = NSNumber(integer: 1)
+        let green = NSNumber(integer: 2)
+        let orange = NSNumber(integer: 3)
+        let red = NSNumber(integer: 5)
+
+        reply(["score":score, "green":green, "orange":orange, "red":red])
+    }
 }
 
