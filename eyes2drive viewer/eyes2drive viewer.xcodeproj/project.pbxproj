@@ -14,6 +14,8 @@
 		4CBF9EAE1BA1EA8200907F87 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF9EAC1BA1EA8200907F87 /* Model.swift */; };
 		7237A4DBD70F0F72FD8F7A51 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD6427CE41B98FE54DBF125 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		827D85351BA2BE240087922D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 827D85341BA2BE240087922D /* Settings.bundle */; };
+		827D85461BA2F18F0087922D /* Interface2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827D85451BA2F18F0087922D /* Interface2Controller.swift */; };
+		827D85481BA2F1B50087922D /* Interface3Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827D85471BA2F1B50087922D /* Interface3Controller.swift */; };
 		82BBBC741BA1CB9C004CEE32 /* BluetoothReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BBBC731BA1CB9C004CEE32 /* BluetoothReceiver.swift */; };
 		82C963B91BA232D000990F2A /* BTLECentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C963B61BA232D000990F2A /* BTLECentral.m */; };
 		82C963BA1BA232D000990F2A /* TransferService.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C963B81BA232D000990F2A /* TransferService.m */; };
@@ -76,6 +78,8 @@
 		4CBF9EAC1BA1EA8200907F87 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		6F712075F1D9575764A40723 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		827D85341BA2BE240087922D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		827D85451BA2F18F0087922D /* Interface2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interface2Controller.swift; sourceTree = "<group>"; };
+		827D85471BA2F1B50087922D /* Interface3Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interface3Controller.swift; sourceTree = "<group>"; };
 		82BBBC731BA1CB9C004CEE32 /* BluetoothReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothReceiver.swift; sourceTree = "<group>"; };
 		82C963B41BA232D000990F2A /* eyes2drive viewer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "eyes2drive viewer-Bridging-Header.h"; sourceTree = "<group>"; };
 		82C963B51BA232D000990F2A /* BTLECentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLECentral.h; sourceTree = "<group>"; };
@@ -229,6 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				E1FDF3371B5A1A3100DCC037 /* InterfaceController.swift */,
+				827D85451BA2F18F0087922D /* Interface2Controller.swift */,
+				827D85471BA2F1B50087922D /* Interface3Controller.swift */,
 				026C6E2E1BA183CD00176301 /* GlanceController.swift */,
 				E1FDF3391B5A1A3100DCC037 /* NotificationController.swift */,
 				E1FDF33B1B5A1A3100DCC037 /* Images.xcassets */,
@@ -474,6 +480,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				827D85461BA2F18F0087922D /* Interface2Controller.swift in Sources */,
+				827D85481BA2F1B50087922D /* Interface3Controller.swift in Sources */,
 				4CBF9EAE1BA1EA8200907F87 /* Model.swift in Sources */,
 				E1FDF33A1B5A1A3100DCC037 /* NotificationController.swift in Sources */,
 				E1FDF3381B5A1A3100DCC037 /* InterfaceController.swift in Sources */,

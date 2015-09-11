@@ -14,9 +14,30 @@
                         <button width="1" alignment="left" title="start" id="W4f-1y-BM8"/>
                         <button width="1" alignment="left" title="stop" id="PQp-Xg-4j9"/>
                     </items>
+                    <connections>
+                        <segue destination="aDC-7c-TUn" kind="relationship" relationship="nextPage" id="frG-x0-YLD"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="-125" y="194"/>
+        </scene>
+        <!--Interface2 Controller-->
+        <scene sceneID="AQu-9l-GMm">
+            <objects>
+                <controller id="aDC-7c-TUn" customClass="Interface2Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
+                    <connections>
+                        <segue destination="y6U-8O-GYf" kind="relationship" relationship="nextPage" id="Jzv-HG-M7S"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="128" y="194"/>
+        </scene>
+        <!--Interface3 Controller-->
+        <scene sceneID="r3r-nk-BLD">
+            <objects>
+                <controller id="y6U-8O-GYf" customClass="Interface3Controller" customModule="eyes2drive_viewer_WatchKit_Extension"/>
+            </objects>
+            <point key="canvasLocation" x="408" y="194"/>
         </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="Iuv-Yq-M7N">
@@ -50,7 +71,7 @@
                     </connections>
                 </glanceController>
             </objects>
-            <point key="canvasLocation" x="171" y="202"/>
+            <point key="canvasLocation" x="527" y="538"/>
         </scene>
         <!--Alert-Orange-->
         <scene sceneID="AEw-b0-oYE">
@@ -65,7 +86,7 @@
                     </connections>
                 </notificationController>
             </objects>
-            <point key="canvasLocation" x="-61" y="450"/>
+            <point key="canvasLocation" x="1" y="695"/>
         </scene>
         <!--Alert-Dark-Red-->
         <scene sceneID="elx-KH-2SE">
@@ -80,7 +101,7 @@
                     </connections>
                 </notificationController>
             </objects>
-            <point key="canvasLocation" x="204" y="450"/>
+            <point key="canvasLocation" x="212" y="780"/>
         </scene>
     </scenes>
 </document>
