@@ -78,15 +78,7 @@ cv::CascadeClassifier mouth_cascade;
         [self.trip setThreshold: false orange:1 red:0 darkred: 0];
         [[self.trip state] push: FeatureAlertRed]; //initialize with detecte -> start means not-detected, stop means detected
         
-        
-        self.events = [[NSDictionary alloc] init];
-        self.eventsToSend = [[NSMutableArray alloc] init];
-        self.events = @{
-                        [NSNumber numberWithInt: FeatureFaceDetected] : [[NSMutableArray alloc] init],
-                        [NSNumber numberWithInt: FeatureEyesDetected] : [[NSMutableArray alloc] init],
-                        [NSNumber numberWithInt: Feature2EyesDetected] : [[NSMutableArray alloc] init],
-                        [NSNumber numberWithInt: FeatureTrip] : [[NSMutableArray alloc] init]
-                       };
+        [self clearEvents];
         
         self.peripheral = [[BTLEPeripheral alloc] initWith: self];
         [self.peripheral startBluetooth];
@@ -94,6 +86,18 @@ cv::CascadeClassifier mouth_cascade;
         return self;
     }
     return nil;
+}
+
+- (void)clearEvents {
+    self.events = [[NSDictionary alloc] init];
+    self.events = @{
+                [NSNumber numberWithInt: FeatureFaceDetected] : [[NSMutableArray alloc] init],
+                [NSNumber numberWithInt: FeatureEyesDetected] : [[NSMutableArray alloc] init],
+                [NSNumber numberWithInt: Feature2EyesDetected] : [[NSMutableArray alloc] init],
+                [NSNumber numberWithInt: FeatureTrip] : [[NSMutableArray alloc] init]
+                };
+    self.eventsToSend = [[NSMutableArray alloc] init];
+
 }
 
 
@@ -154,13 +158,22 @@ cv::CascadeClassifier mouth_cascade;
 }
 
 - (void)startTrip {
+    self.started = true;
+    [self clearEvents];
 //    [self.trip featureDetected: true];
     [[self.trip state] push: FeatureAlertGreen];
     [self.trip triggerChangedEvent];
+    
+    
 }
 - (void)stopTrip {
+    self.started = false;
     [[self.trip state] push: FeatureAlertRed];
     [self.trip triggerChangedEvent];
+}
+
+- (BOOL)isStarted {
+    return self.started;
 }
 
 

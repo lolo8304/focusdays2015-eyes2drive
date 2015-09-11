@@ -23,6 +23,7 @@ static NSString *valueString = @"0";
     @synchronized(self) {
         value = val;
         valueString = [NSString stringWithFormat:@"%d",val];
+        NSLog(@"BTLE Channel: %i (%@)", value, [self getTRANSFER_SERVICE_UUID]);
     }
 }
 

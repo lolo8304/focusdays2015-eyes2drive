@@ -55,6 +55,7 @@
 - (IBAction)actionStart:(id)sender;
 - (IBAction)actionStop:(id)sender;
 - (IBAction)actionSetControl: (id)sender;
+- (IBAction)toggleTrip:(id)sender;
 @end
 
 
@@ -63,8 +64,10 @@
 NSString * coloredImageName = @"none";
 NSArray * soundFiles;
 
-CFURLRef soundFileURLRef;
-SystemSoundID	soundFileObject;
+CFURLRef soundFileURLRefGreen;
+SystemSoundID	soundFileObjectGreen;
+CFURLRef soundFileURLRefOther;
+SystemSoundID	soundFileObjectOther;
 
 NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
 
@@ -123,16 +126,17 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
 
 
 - (void) setFaceAlertImage: (FeatureAlertColor) color {
-    NSMutableString *imageName = [NSMutableString stringWithFormat:@"Alert-%@.png", FeatureAlertColor_toString[color]];
-    if (![coloredImageName isEqualToString: imageName]) {
-        coloredImageName = imageName;
-        self.faceAlertView.image = [UIImage imageNamed: coloredImageName];
-        [self.faceAlertControl setSelectedSegmentIndex: (int)color];
-        [self playSound: color];
-        if ([self.notificationSwitch isOn]) {
-//          [self createLocalNotification: color];
-            [self createPushNotification: color];
+    if ([self.faceDetection isStarted]) {
+        NSMutableString *imageName = [NSMutableString stringWithFormat:@"Alert-%@.png", FeatureAlertColor_toString[color]];
+        if (![coloredImageName isEqualToString: imageName]) {
+            coloredImageName = imageName;
+            self.faceAlertView.image = [UIImage imageNamed: coloredImageName];
+            [self.faceAlertControl setSelectedSegmentIndex: (int)color];
+            [self playSound: color];
         }
+    } else {
+        coloredImageName = @"Image";
+        self.faceAlertView.image = [UIImage imageNamed: coloredImageName];
     }
 }
 
@@ -157,98 +161,34 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     return nil;
 }
 
-- (void) createLocalNotification: (FeatureAlertColor) color {
-    NSString * text = [self getNotificationAlertText: color];
-    if (text) {
-    
-        // Schedule the notification
-        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-        localNotification.alertBody = text;
-        localNotification.alertAction = @"whatch out";
-        localNotification.alertTitle = text;
-        localNotification.category = [self getLocalNotificationAlertCategory: color];
-        localNotification.timeZone = [NSTimeZone defaultTimeZone];
-        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-        localNotification.soundName = UILocalNotificationDefaultSoundName;
-    
-        [[UIApplication sharedApplication] presentLocalNotificationNow: localNotification];
-    }
-}
-
-
-/* https://blog.serverdensity.com/how-to-build-an-apple-push-notification-provider-server-tutorial/ 
-    tutorial in objective-c
-    http://stackoverflow.com/questions/15140557/how-to-receive-data-from-apns-feedback-server-in-objective-c
-    + code https://github.com/noodlewerk/NWPusher
- 
- */
-- (void) createPushNotification: (FeatureAlertColor) color {
-
-    
-    NSString * text = [self getNotificationAlertText: color];
-    if (text) {
-        NSURL *url = [NSBundle.mainBundle URLForResource:@"apns-dev-cert.p12" withExtension: nil];
-        NSData *pkcs12 = [NSData dataWithContentsOfURL:url];
-        NSError *error = nil;
-        NWPusher *pusher = [NWPusher connectWithPKCS12Data:pkcs12 password:@"pa$$wort" error:&error];
-        if (pusher) {
-            NSLog(@"Connected to APNs");
-        } else {
-            NSLog(@"Unable to connect: %@", error);
-            return;
-        }
-    
-    
-        NSString * payload = [ NSString stringWithFormat: @"{\
-        \"aps\" : { \"alert\" : \"%@\", \"badge\" : 1, \"sound\" : \"default\" }, \
-        \"server\" : { \"serverId\" : 1, \"name\" : \"Server name\"} }", text ];
-
-        NSString *token = @"b8a30a5fb0679e4f8d4a9ecc81075465543cf2af849cfb0313d97b02b880d207";
-        BOOL pushed = [pusher pushPayload:payload token:token identifier:rand() error:&error];
-        if (pushed) {
-            NSLog(@"Pushed to APNs");
-        } else {
-            NSLog(@"Unable to push: %@", error);
-        }
-    
-        sleep(1);
-    
-        NSUInteger identifier = 0;
-        NSError *apnError = nil;
-        BOOL read = [pusher readFailedIdentifier:&identifier apnError:&apnError error:&error];
-        if (read && apnError) {
-            NSLog(@"Notification with identifier %i rejected: %@", (int)identifier, apnError);
-        } else if (read) {
-            NSLog(@"Read and none failed");
-        } else {
-            NSLog(@"Unable to read failed: %@", error);
-        }
-    }
-    
-    
-}
 
 - (void) playSound: (FeatureAlertColor) color {
-    if (!soundFileURLRef) {
-        NSURL* sound = [self getURLSound: FeatureAlertGreen];
-        soundFileURLRef = (CFURLRef)CFBridgingRetain(sound);
-        AudioServicesCreateSystemSoundID (soundFileURLRef, &soundFileObject);
+    if (color == FeatureAlertGreen) {
+        if (!soundFileURLRefGreen) {
+            NSURL* sound = [self getURLSound: color];
+            soundFileURLRefGreen = (CFURLRef)CFBridgingRetain(sound);
+            AudioServicesCreateSystemSoundID (soundFileURLRefGreen, &soundFileObjectGreen);
+        }
+        AudioServicesPlaySystemSound (soundFileObjectGreen);
+    } else {
+        if (!soundFileURLRefOther) {
+            NSURL* sound = [self getURLSound: color];
+            soundFileURLRefOther = (CFURLRef)CFBridgingRetain(sound);
+            AudioServicesCreateSystemSoundID (soundFileURLRefOther, &soundFileObjectOther);
+        }
+        AudioServicesPlaySystemSound (soundFileObjectOther);
     }
-// * vibrate + sound
-//    AudioServicesPlayAlertSound (soundFileObject);
-
-// * sound only
-    AudioServicesPlaySystemSound (soundFileObject);
-
-// * vibrate only
-//        AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
 }
 
 
 - (NSURL *)getURLSound: (FeatureAlertColor) color {
-    return [[NSBundle mainBundle] URLForResource: @"tap"
+    if (color == FeatureAlertGreen) {
+        return [[NSBundle mainBundle] URLForResource: @"tap"
                                                 withExtension: @"aif"];
-    
+    } else {
+        return [[NSBundle mainBundle] URLForResource: @"tap"
+                                       withExtension: @"aif"];
+    }
 }
 
 
@@ -258,7 +198,6 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     [newState push: color at: 0 since: 0];
     [self.faceDetection feature: FeatureFaceDetected changedState: newState];
 }
-
 
 - (void) updateOutput:(NSNumber *)notUsed {
     FeatureAlertColor lastColor = [self.faceDetection getLastColor: FeatureFaceDetected];
@@ -286,14 +225,26 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
 
 }
 
+- (IBAction)toggleTrip:(id)sender {
+    if ([self.faceDetection isStarted]) {
+        [self actionStop:sender];
+    } else {
+        [self actionStart:sender];
+    }
+}
+
+
 
 - (IBAction)actionStart:(id)sender {
     [self.faceDetection startTrip ];
+    [[self toggleTripButton] setTitle: @"Stop" forState: UIControlStateNormal];
+    [self setFaceAlertImage: FeatureAlertGreen];
     
 }
 
 - (IBAction)actionStop:(id)sender {
     [self.faceDetection stopTrip ];
+    [[self toggleTripButton] setTitle: @"Start" forState: UIControlStateNormal];
 }
 
 
