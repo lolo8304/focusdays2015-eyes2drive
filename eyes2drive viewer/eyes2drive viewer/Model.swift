@@ -91,7 +91,7 @@ class Dashboard {
 class Event {
     var timestamp = NSDate()
     func getNotifcationBodyText()->String{
-        return "white"
+        return "This is a transparent message"
     }
     func shouldThrowNotification() -> Bool {
         return true;
@@ -102,7 +102,7 @@ class Event {
 
 class EventGreen:Event{
     override func getNotifcationBodyText() -> String {
-        return "green"
+        return "Need some weeds - if you see this there is a bug!"
     }
     override func shouldThrowNotification() -> Bool {
         return false;
@@ -114,7 +114,7 @@ class EventGreen:Event{
 
 class EventOrange:Event{
     override func getNotifcationBodyText() -> String {
-        return "orange"
+        return "huhu - are you alive? but don't look at the Watch while driving"
     }
     override func setMs(inout g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
         o += delta
@@ -123,7 +123,7 @@ class EventOrange:Event{
 
 class EventRed:Event{
     override func getNotifcationBodyText() -> String {
-        return "red"
+        return "HEY !!! What's up? eyes 2 drive please"
     }
     override func setMs(inout g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
         r += delta
