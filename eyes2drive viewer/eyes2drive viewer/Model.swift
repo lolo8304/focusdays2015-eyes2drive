@@ -23,6 +23,9 @@ class Trips {
     }
     
     func getCurrentTrip() -> Trip{
+        if (trips.count == 0) {
+            startAndAddNewTrip()
+        }
         return trips[trips.count-1]
     }
     
