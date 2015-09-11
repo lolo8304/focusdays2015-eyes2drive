@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83E606B91BA2B02E0030AE2E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 83E606B81BA2B02E0030AE2E /* Settings.bundle */; };
 		E13D21451B4C06D1006D7EEB /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = E13D21441B4C06D1006D7EEB /* main.mm */; };
 		E13D21481B4C06D1006D7EEB /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = E13D21471B4C06D1006D7EEB /* AppDelegate.mm */; };
 		E13D214B1B4C06D1006D7EEB /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E13D214A1B4C06D1006D7EEB /* ViewController.mm */; };
@@ -103,6 +104,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		83E606B81BA2B02E0030AE2E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		E13D213F1B4C06D1006D7EEB /* eyes2drive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eyes2drive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E13D21431B4C06D1006D7EEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E13D21441B4C06D1006D7EEB /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 		E13D21361B4C06D1006D7EEB = {
 			isa = PBXGroup;
 			children = (
+				83E606B81BA2B02E0030AE2E /* Settings.bundle */,
 				E13D21971B4CC005006D7EEB /* Frameworks */,
 				E13D21411B4C06D1006D7EEB /* eyes2drive */,
 				E13D215B1B4C06D1006D7EEB /* eyes2driveTests */,
@@ -547,6 +550,7 @@
 				E13D21531B4C06D1006D7EEB /* LaunchScreen.xib in Resources */,
 				E1CAB3D61B4F463E006F42EA /* haarcascade_frontalface_alt2.xml in Resources */,
 				E13D21501B4C06D1006D7EEB /* Images.xcassets in Resources */,
+				83E606B91BA2B02E0030AE2E /* Settings.bundle in Resources */,
 				E1CAB3D91B4F463E006F42EA /* haarcascade_lefteye_2splits.xml in Resources */,
 				E1CAB3D11B4F463E006F42EA /* haarcascade_eye.xml in Resources */,
 				E1CAB3DC1B4F463E006F42EA /* haarcascade_profileface.xml in Resources */,

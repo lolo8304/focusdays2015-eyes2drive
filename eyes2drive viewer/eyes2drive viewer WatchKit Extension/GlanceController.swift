@@ -26,24 +26,28 @@ class GlanceController: WKInterfaceController {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
-        /*
-        var dashboard = Dashboard(trip: Trip());
-        var score = dashboard.scoreInPercent
-        var green = dashboard.greenDurationInPercent
-        var orange = dashboard.orangeDurationInPercent
-        var red = dashboard.redDurationInPercent
-        */
         
+        WKInterfaceController.openParentApplication(["glanceValues":"yes"],
+            reply: {(reply, error) -> Void in
+                
+                if let score = reply?["score"] as? NSNumber {
+                    self.lblScoreInPercent.setText("\(score.integerValue)%")
+                }
+                if let green = reply?["green"] as? NSNumber {
+                    self.lblGreenDurationInPercent.setText("Green: \(green.integerValue)%")
+                }
+                if let orange = reply?["orange"] as? NSNumber {
+                    self.lblOrangeDurationInPercent.setText("Orange: \(orange.integerValue)%")
+                }
+                if let red = reply?["red"] as? NSNumber {
+                    self.lblRedDurationInPercent.setText("Red: \(red.integerValue)%")
+                }
+        })
         
-        var score = 77
-        var green = 85
-        var orange = 14
-        var red = 1
-        
-        lblScoreInPercent.setText("\(score)%")
-        lblGreenDurationInPercent.setText("Green: \(green)%")
-        lblOrangeDurationInPercent.setText("Orange: \(orange)%")
-        lblRedDurationInPercent.setText("Red: \(red)%")
+//        lblScoreInPercent.setText("\(score)%")
+//        lblGreenDurationInPercent.setText("Green: \(green)%")
+//        lblOrangeDurationInPercent.setText("Orange: \(orange)%")
+//        lblRedDurationInPercent.setText("Red: \(red)%")
     }
     
     override func didDeactivate() {

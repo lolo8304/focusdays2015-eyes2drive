@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "TransferService.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +21,7 @@
     if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
         [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
     }
+    [self initBTLE];
     return YES;
 }
 
@@ -39,10 +41,19 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [self initBTLE];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+- (void) initBTLE {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    int channelIndex = [[defaults objectForKey:@"btleChannelIndex"] intValue];
+    [TransferService setValue:(channelIndex)];
+}
+
 
 @end

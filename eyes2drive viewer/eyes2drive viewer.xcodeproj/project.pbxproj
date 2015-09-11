@@ -13,6 +13,7 @@
 		4CBF9EAD1BA1EA8200907F87 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF9EAC1BA1EA8200907F87 /* Model.swift */; };
 		4CBF9EAE1BA1EA8200907F87 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBF9EAC1BA1EA8200907F87 /* Model.swift */; };
 		7237A4DBD70F0F72FD8F7A51 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD6427CE41B98FE54DBF125 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		827D85351BA2BE240087922D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 827D85341BA2BE240087922D /* Settings.bundle */; };
 		82BBBC741BA1CB9C004CEE32 /* BluetoothReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BBBC731BA1CB9C004CEE32 /* BluetoothReceiver.swift */; };
 		82C963B91BA232D000990F2A /* BTLECentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C963B61BA232D000990F2A /* BTLECentral.m */; };
 		82C963BA1BA232D000990F2A /* TransferService.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C963B81BA232D000990F2A /* TransferService.m */; };
@@ -74,6 +75,7 @@
 		4C21D7591BA1AD3700CE31FB /* EyeEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EyeEventHandler.swift; sourceTree = "<group>"; };
 		4CBF9EAC1BA1EA8200907F87 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		6F712075F1D9575764A40723 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		827D85341BA2BE240087922D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		82BBBC731BA1CB9C004CEE32 /* BluetoothReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothReceiver.swift; sourceTree = "<group>"; };
 		82C963B41BA232D000990F2A /* eyes2drive viewer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "eyes2drive viewer-Bridging-Header.h"; sourceTree = "<group>"; };
 		82C963B51BA232D000990F2A /* BTLECentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLECentral.h; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 		E1FDF2FE1B5A19E700DCC037 = {
 			isa = PBXGroup;
 			children = (
+				827D85341BA2BE240087922D /* Settings.bundle */,
 				E1C7A6651B5B3270002756B0 /* SwiftyJSON.swift */,
 				E1FDF3091B5A19E700DCC037 /* eyes2drive viewer */,
 				E1FDF3211B5A19E700DCC037 /* eyes2drive viewerTests */,
@@ -373,6 +376,7 @@
 			files = (
 				E1FDF3141B5A19E700DCC037 /* Main.storyboard in Resources */,
 				E1FDF3191B5A19E700DCC037 /* LaunchScreen.xib in Resources */,
+				827D85351BA2BE240087922D /* Settings.bundle in Resources */,
 				E1342C101B5B14C1006AD354 /* Podfile in Resources */,
 				E1FDF3161B5A19E700DCC037 /* Images.xcassets in Resources */,
 			);
