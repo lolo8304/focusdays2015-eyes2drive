@@ -10,7 +10,7 @@
 @protocol ReceiverDelegate <NSObject>
 
 @required
-- (void) dataReceived: (NSData *) data;
+- (void) dataReceived: (NSString *) data;
 - (void) strengthRSSI: (int) RSSI;
 - (BOOL) isRSSIAllowed: (int) RSSI;
 - (void) isConnected;
@@ -21,6 +21,7 @@
 
 @interface BTLECentral : NSObject
 - (id) initWith: (id<ReceiverDelegate>)delegate;
+- (void) assignDataDelegate:(id<ReceiverDelegate>)dataDelegate;
 - (void) startBluetooth;
 - (void) stopBluetooth;
 

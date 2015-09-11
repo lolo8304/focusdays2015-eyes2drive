@@ -17,7 +17,7 @@
     @property (strong, nonatomic) CBPeripheral          *discoveredPeripheral;
     @property (strong, nonatomic) NSMutableData         *data;
 
-    @property (nonatomic, assign) id<ReceiverDelegate>        dataDelegate;
+    @property (nonatomic, assign) id<ReceiverDelegate>  dataDelegate;
 
 @end
 
@@ -34,6 +34,13 @@
         return self;
     }
     return nil;
+}
+
+- (void) assignDataDelegate:(id<ReceiverDelegate>)dataDelegate{
+    if (self.dataDelegate==nil) {
+        self.dataDelegate = dataDelegate;
+    }
+    
 }
 
 - (void) startBluetooth {
@@ -203,9 +210,9 @@
     if ([stringFromData isEqualToString:@"EOM"]) {
         
         // We have, so show the data,
-        NSString *data = [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
-        if (![data  isEqual: @"BL"]) {
-            [self.dataDelegate dataReceived: self.data];
+        NSString *dataString = [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
+        if (![dataString  isEqual: @"BL"]) {
+            [self.dataDelegate dataReceived: dataString];
         }
         
         // Cancel our subscription to the characteristic
