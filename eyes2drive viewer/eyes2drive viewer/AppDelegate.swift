@@ -56,24 +56,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?,
         reply: (([NSObject : AnyObject]!) -> Void)!) {
             
-            var score = NSNumber(integer: 0)
-            var green = NSNumber(integer: 0)
-            var orange = NSNumber(integer: 0)
-            var red = NSNumber(integer: 0)
-            var duration = NSNumber(integer: 0)
+            if ((userInfo?["glanceValues"]) != nil) {
+                var score = NSNumber(integer: 0)
+                var green = NSNumber(integer: 0)
+                var orange = NSNumber(integer: 0)
+                var red = NSNumber(integer: 0)
+                var duration = NSNumber(integer: 0)
 
-            if (eyeHandler.tripsRepo.trips.count > 0) {
-                let trip = eyeHandler.tripsRepo.getCurrentTrip()
-                let dashboard = trip.generateDashboard()
+                if (eyeHandler.tripsRepo.trips.count > 0) {
+                    let trip = eyeHandler.tripsRepo.getCurrentTrip()
+                    let dashboard = trip.generateDashboard()
                 
-                score = NSNumber(integer: dashboard.scoreInPercent)
-                green = NSNumber(integer: dashboard.greenDurationInPercent)
-                orange = NSNumber(integer: dashboard.orangeDurationInPercent)
-                red = NSNumber(integer: dashboard.redDurationInPercent)
-                duration = NSNumber(double: dashboard.totalS)
-            }
+                    score = NSNumber(integer: dashboard.scoreInPercent)
+                    green = NSNumber(integer: dashboard.greenDurationInPercent)
+                    orange = NSNumber(integer: dashboard.orangeDurationInPercent)
+                    red = NSNumber(integer: dashboard.redDurationInPercent)
+                    duration = NSNumber(double: dashboard.totalS)
+                }
             
-            reply(["score":score, "green":green, "orange":orange, "red":red, "duration":duration])
+                reply(["score":score, "green":green, "orange":orange, "red":red, "duration":duration])
+            } else if ((userInfo?["graphValues"]) != nil) {
+                if (eyeHandler.tripsRepo.trips.count > 0) {
+                    let trip = eyeHandler.tripsRepo.getCurrentTrip()
+                    reply(["trip":trip])
+
+                }
+                
+            }
     }
     
     

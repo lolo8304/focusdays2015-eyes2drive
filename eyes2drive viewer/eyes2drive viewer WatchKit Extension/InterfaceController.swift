@@ -31,7 +31,6 @@ class InterfaceController: WKInterfaceController {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        self.showGraph()
         // Configure interface objects here.
     }
     
@@ -70,6 +69,18 @@ class InterfaceController: WKInterfaceController {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        //Holt von der Parent-App neue Daten - wird vom obigen NSTimer getriggert.
+        //Siehe AppDelegate func application(application: UIApplication, handleWatchKitExtensionRequest....
+        WKInterfaceController.openParentApplication(["graphValues":"yes"],
+            reply: {(reply, error) -> Void in
+                
+                let trip = reply?["trip"] as? Trip
+                
+                self.showGraph()
+                /* write code here to add graph */
+                
+        })
+
     }
 
     override func didDeactivate() {
