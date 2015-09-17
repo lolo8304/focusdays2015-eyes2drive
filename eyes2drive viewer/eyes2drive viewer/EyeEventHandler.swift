@@ -35,19 +35,19 @@ class EyeEventHandler : EyeEventHandlerProtocol {
         
             notification.soundName = UILocalNotificationDefaultSoundName // play default sound
             notification.userInfo = ["UUID": 12345, ] // assign a unique identifier to the notification so that we can retrieve it later
-            //notification.category = "TODO_CATEGORY"
+            //notification.category = "redAlertWarning"
             UIApplication.sharedApplication().scheduleLocalNotification(notification)
         }
         return "Status changed : "+type.getNotifcationBodyText()
     }
     
     func startTrip(){
-        tripsRepo.startAndAddNewTrip()
+        tripsRepo.startTrip()
         
     }
     
     func endTrip(){
-        tripsRepo.stopCurrentTrip()
+        tripsRepo.stopTrip()
         
     }
 }

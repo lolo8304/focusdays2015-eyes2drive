@@ -10,21 +10,20 @@ import Foundation
 
 
 class Trips {
-    var trips: [Trip] = [Trip]();
-
+    var trips: [Trip] = [Trip]()
     
-    func startAndAddNewTrip(){
+    func startTrip(){
         var neuerTrip = Trip();
         trips.append(neuerTrip);
     }
     
-    func stopCurrentTrip(){
+    func stopTrip(){
         getCurrentTrip().stopTrip()
     }
     
     func getCurrentTrip() -> Trip{
         if (trips.count == 0) {
-            startAndAddNewTrip()
+            startTrip()
         }
         return trips[trips.count-1]
     }
@@ -33,19 +32,29 @@ class Trips {
 
 class Trip {
     var events = [Event]()
-    let start = NSDate()
-    var end = NSDate()
+    let start: NSDate = NSDate()
+    var end: NSDate = NSDate()
+    var stopped = false
+    
     init(){
         events.append(EventGreen())
     }
     func stopTrip(){
         end = NSDate()
+        stopped = true
     }
     func addEvent(event:Event) {
         self.events.append(event)
     }
     func generateDashboard()->Dashboard{
         return Dashboard(trip:self)
+    }
+    func getEndTrip()->NSDate {
+        if (self.stopped) {
+            return self.end
+        } else {
+            return NSDate()
+        }
     }
 }
 
