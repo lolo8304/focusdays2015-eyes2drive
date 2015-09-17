@@ -10,7 +10,8 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
-                        <imageView alignment="left" image="logo-230x230" id="e2W-RX-esw"/>
+                        <imageView alignment="center" image="logo-230x230a" contentMode="scaleAspectFit" id="xay-XI-B0e"/>
+                        <label width="1" alignment="left" text="eyes2drive team" textAlignment="center" id="F5W-rs-YwU"/>
                     </items>
                     <connections>
                         <segue destination="aDC-7c-TUn" kind="relationship" relationship="nextPage" id="frG-x0-YLD"/>
@@ -24,7 +25,8 @@
             <objects>
                 <controller id="aDC-7c-TUn" customClass="Interface2Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
-                        <imageView alignment="left" image="team1" id="OQY-Kg-kyl"/>
+                        <imageView width="1" alignment="left" image="team1a" id="OQY-Kg-kyl"/>
+                        <label width="1" alignment="left" text="Daniel + Michael" textAlignment="center" id="lVO-BY-tbn"/>
                     </items>
                     <connections>
                         <segue destination="y6U-8O-GYf" kind="relationship" relationship="nextPage" id="Jzv-HG-M7S"/>
@@ -38,7 +40,8 @@
             <objects>
                 <controller id="y6U-8O-GYf" customClass="Interface3Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
-                        <imageView alignment="left" image="team2" id="ghB-yl-GOR"/>
+                        <imageView width="1" alignment="left" image="team2a" id="ghB-yl-GOR"/>
+                        <label width="1" alignment="left" text="Rémy + Bernhard" textAlignment="center" id="IqA-Mj-PSR"/>
                     </items>
                     <connections>
                         <segue destination="VsJ-aT-WFi" kind="relationship" relationship="nextPage" id="v7D-bM-RBK"/>
@@ -52,7 +55,8 @@
             <objects>
                 <controller id="VsJ-aT-WFi" customClass="Interface3Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
-                        <imageView alignment="left" image="team3" id="3Wu-YP-u0O"/>
+                        <imageView width="1" alignment="left" image="team3a" id="3Wu-YP-u0O"/>
+                        <label width="1" alignment="left" text="Anton + Lolo" textAlignment="center" id="wIb-vk-3JL"/>
                     </items>
                 </controller>
             </objects>
