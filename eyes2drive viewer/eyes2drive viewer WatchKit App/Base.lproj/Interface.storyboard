@@ -10,10 +10,10 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
-                        <imageView alignment="center" image="logo-230x230a" contentMode="scaleAspectFit" id="xay-XI-B0e"/>
-                        <label width="1" alignment="left" text="eyes2drive team" textAlignment="center" id="F5W-rs-YwU"/>
+                        <imageView width="1" height="1" alignment="left" id="Hma-eb-iEi"/>
                     </items>
                     <connections>
+                        <outlet property="graph" destination="Hma-eb-iEi" id="37u-8e-Mua"/>
                         <segue destination="aDC-7c-TUn" kind="relationship" relationship="nextPage" id="frG-x0-YLD"/>
                     </connections>
                 </controller>
@@ -68,20 +68,20 @@
                 <glanceController topTemplateType="body1Large" id="wd4-6C-ra0" customClass="GlanceController" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
                         <label alignment="left" text="eyes2drive" id="Om2-ua-lDW"/>
-                        <label alignment="left" text="66%" id="SzL-BW-uUe"/>
+                        <label alignment="left" text="0%" id="SzL-BW-uUe"/>
                         <group alignment="left" layout="vertical" id="cIw-sT-lEJ">
                             <items>
-                                <label width="1" alignment="left" text="Duration: " id="JW4-Q9-JbK">
+                                <label width="1" alignment="left" text="⌚️ 0s" id="JW4-Q9-JbK">
                                     <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                 </label>
                                 <separator alignment="left" id="c7l-Av-Af6"/>
-                                <label width="1" alignment="left" text="Green: ...%" id="Kxe-kv-2Ls">
+                                <label width="1" alignment="left" text="Green: 0%" id="Kxe-kv-2Ls">
                                     <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                 </label>
-                                <label width="1" alignment="left" text="Orange: ...%" id="sHe-Id-5Jk">
+                                <label width="1" alignment="left" text="Orange: 0%" id="sHe-Id-5Jk">
                                     <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                 </label>
-                                <label width="1" height="17" alignment="left" text="Red: ...%" id="NNV-De-bRY">
+                                <label width="1" height="17" alignment="left" text="Red: 0%" id="NNV-De-bRY">
                                     <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                 </label>
                                 <separator alignment="left" id="unG-KQ-TdO"/>
