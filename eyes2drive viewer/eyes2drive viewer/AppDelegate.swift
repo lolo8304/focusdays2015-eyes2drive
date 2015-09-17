@@ -60,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var green = NSNumber(integer: 0)
             var orange = NSNumber(integer: 0)
             var red = NSNumber(integer: 0)
+            var duration = NSNumber(integer: 0)
 
             if (eyeHandler.tripsRepo.trips.count > 0) {
                 let trip = eyeHandler.tripsRepo.getCurrentTrip()
@@ -69,9 +70,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 green = NSNumber(integer: dashboard.greenDurationInPercent)
                 orange = NSNumber(integer: dashboard.orangeDurationInPercent)
                 red = NSNumber(integer: dashboard.redDurationInPercent)
+                duration = NSNumber(double: dashboard.totalS)
             }
             
-            reply(["score":score, "green":green, "orange":orange, "red":red])
+            reply(["score":score, "green":green, "orange":orange, "red":red, "duration":duration])
     }
     
     

@@ -67,18 +67,20 @@
                         <label alignment="left" text="66%" id="SzL-BW-uUe"/>
                         <group alignment="left" layout="vertical" id="cIw-sT-lEJ">
                             <items>
-                                <label alignment="left" text="Summary:" id="JW4-Q9-JbK">
+                                <label width="1" alignment="left" text="Duration: " id="JW4-Q9-JbK">
                                     <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                 </label>
-                                <label alignment="left" text="Green: ...%" id="Kxe-kv-2Ls">
+                                <separator alignment="left" id="c7l-Av-Af6"/>
+                                <label width="1" alignment="left" text="Green: ...%" id="Kxe-kv-2Ls">
                                     <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                 </label>
-                                <label alignment="left" text="Orange: ...%" id="sHe-Id-5Jk">
+                                <label width="1" alignment="left" text="Orange: ...%" id="sHe-Id-5Jk">
                                     <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                 </label>
-                                <label height="17" alignment="left" text="Red: ...%" id="NNV-De-bRY">
+                                <label width="1" height="17" alignment="left" text="Red: ...%" id="NNV-De-bRY">
                                     <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                 </label>
+                                <separator alignment="left" id="unG-KQ-TdO"/>
                             </items>
                         </group>
                     </items>
@@ -87,6 +89,7 @@
                         <outlet property="lblOrangeDurationInPercent" destination="sHe-Id-5Jk" id="s1o-p3-18u"/>
                         <outlet property="lblRedDurationInPercent" destination="NNV-De-bRY" id="xuN-3P-yb9"/>
                         <outlet property="lblScoreInPercent" destination="SzL-BW-uUe" id="qRY-SP-NcJ"/>
+                        <outlet property="lblTripDuration" destination="JW4-Q9-JbK" id="ZFd-Hm-NRJ"/>
                     </connections>
                 </glanceController>
             </objects>

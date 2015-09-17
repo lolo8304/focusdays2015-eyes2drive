@@ -17,6 +17,7 @@ class GlanceController: WKInterfaceController {
     @IBOutlet weak var lblOrangeDurationInPercent: WKInterfaceLabel!
     @IBOutlet weak var lblRedDurationInPercent: WKInterfaceLabel!
     
+    @IBOutlet weak var lblTripDuration: WKInterfaceLabel!
     
     //interval timer
     var updateGlanceTimer = NSTimer()
@@ -34,10 +35,51 @@ class GlanceController: WKInterfaceController {
         // Configure interface objects here.
     }
     
+    static func niceTimeString(time: Int)->String {
+        let DAY_IN_S = 60*60*24
+        let HOURS_IN_S = 60*60
+        let MIN_IN_S = 60
+        var t: Int = time
+        
+        if (t >= DAY_IN_S) {
+            var days = t / DAY_IN_S
+            
+            t = t % DAY_IN_S
+            var h = t / HOURS_IN_S
+            
+            t = t % HOURS_IN_S
+            var min = t / MIN_IN_S
+            
+            t = t % MIN_IN_S
+            var s = t
+            
+            return "\(days)d \(h)h \(min)m \(s)s"
+        }
+        if (t >= 60*60) {
+            var h = t / HOURS_IN_S
+            
+            t = t % HOURS_IN_S
+            var min = t / MIN_IN_S
+            
+            t = t % MIN_IN_S
+            var s = t
+            
+            return "\(h)h \(min)m \(s)s"
+        }
+        if (t > 60) {
+            var min = t / MIN_IN_S
+            
+            t = t % MIN_IN_S
+            var s = t
+            
+            return "\(min)m \(s)s"
+        }
+        return "\(t)s"
+    }
+    
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
-        NSLog("Glance willActivate *********");
         
         //Holt von der Parent-App neue Daten - wird vom obigen NSTimer getriggert. 
         //Siehe AppDelegate func application(application: UIApplication, handleWatchKitExtensionRequest.... 
@@ -55,6 +97,10 @@ class GlanceController: WKInterfaceController {
                 }
                 if let red = reply?["red"] as? NSNumber {
                     self.lblRedDurationInPercent.setText("Red: \(red.integerValue)%")
+                }
+                if let duration = reply?["duration"] as? NSNumber {
+                    var durationString = GlanceController.niceTimeString(duration.integerValue)
+                    self.lblTripDuration.setText("⌚️ \(durationString)")
                 }
         })
         

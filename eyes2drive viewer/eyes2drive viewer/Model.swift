@@ -49,6 +49,15 @@ class Trip {
     func generateDashboard()->Dashboard{
         return Dashboard(trip:self)
     }
+    func durationInS()->Double {
+        var timeInS = 0.0
+        if (self.stopped) {
+            timeInS = (end.timeIntervalSinceDate(start))
+        } else {
+            timeInS = (NSDate().timeIntervalSinceDate(start))
+        }
+        return timeInS
+    }
     func getEndTrip()->NSDate {
         if (self.stopped) {
             return self.end
@@ -63,37 +72,38 @@ class Dashboard {
     var greenDurationInPercent = 0
     var orangeDurationInPercent = 0
     var redDurationInPercent = 0
+    var totalS = 0.0
     
     init(trip:Trip){
         var greenDurationInMs = 0.0
         var orangeDurationInMs = 0.0
         var redDurationInMs = 0.0
-        var totalMs = 0.0
+        var deltaTotalMs = 0.0
         var lastEvent:Event
         var currentEvent:Event?
-        var durationInMs:Double
         
+        currentEvent = trip.events[0] // Green Event is the first Event as Base
         for i in 1..<trip.events.count {
             lastEvent = trip.events[i-1]
             currentEvent = trip.events[i]
-            durationInMs = (currentEvent!.timestamp.timeIntervalSinceDate(lastEvent.timestamp)*1000)
-            lastEvent.setMs(&greenDurationInMs, &orangeDurationInMs, &redDurationInMs, durationInMs)
+            var deltaDurationInMs = (currentEvent!.timestamp.timeIntervalSinceDate(lastEvent.timestamp)*1000)
+            lastEvent.setMs(&greenDurationInMs, &orangeDurationInMs, &redDurationInMs, deltaDurationInMs)
         }
-        if trip.events.count > 1 {
-            durationInMs = (NSDate().timeIntervalSinceDate(currentEvent!.timestamp)*1000)
-            currentEvent!.setMs(&greenDurationInMs, &orangeDurationInMs, &redDurationInMs, durationInMs)
-        }
+        var deltaDurationInMs = (trip.getEndTrip().timeIntervalSinceDate(currentEvent!.timestamp)*1000)
+        currentEvent!.setMs(&greenDurationInMs, &orangeDurationInMs, &redDurationInMs, deltaDurationInMs)
         
-        totalMs = greenDurationInMs + orangeDurationInMs + redDurationInMs
-        if (totalMs > 0) {
-            greenDurationInPercent = Int(greenDurationInMs / totalMs * 100)
-            orangeDurationInPercent = Int(orangeDurationInMs / totalMs * 100)
-            redDurationInPercent = Int(redDurationInMs / totalMs * 100)
+        deltaTotalMs = greenDurationInMs + orangeDurationInMs + redDurationInMs
+        if (deltaTotalMs > 0) {
+            greenDurationInPercent = Int(greenDurationInMs / deltaTotalMs * 100)
+            orangeDurationInPercent = Int(orangeDurationInMs / deltaTotalMs * 100)
+            redDurationInPercent = Int(redDurationInMs / deltaTotalMs * 100)
             scoreInPercent = greenDurationInPercent + orangeDurationInPercent / 2 + redDurationInPercent / 4
             //greenDurationInPercent=Int(greenDurationInMs)
             //orangeDurationInPercent=Int(orangeDurationInMs)
             //redDurationInPercent=Int(redDurationInMs)
         }
+        self.totalS = trip.durationInS()
+        NSLog("total time in S = %s", self.totalS)
     }
 }
 
