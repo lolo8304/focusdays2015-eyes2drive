@@ -78,9 +78,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } else if ((userInfo?["graphValues"]) != nil) {
                 if (eyeHandler.tripsRepo.trips.count > 0) {
                     let trip = eyeHandler.tripsRepo.getCurrentTrip()
-                    reply(["trip":trip])
 
                 }
+                reply(["trip":"aaaa"])
                 
             }
     }

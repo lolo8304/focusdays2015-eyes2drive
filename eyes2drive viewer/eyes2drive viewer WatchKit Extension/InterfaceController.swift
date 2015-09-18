@@ -28,15 +28,21 @@ https://github.com/shu223/watchOS-2-Sampler/blob/master/watchOS2Sampler%20WatchK
 class InterfaceController: WKInterfaceController {
     @IBOutlet weak var graph: WKInterfaceImage!
 
+    
+    //interval timer
+    var updateGlanceTimer = NSTimer()
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        // Configure interface objects here.
+        updateGlanceTimer = NSTimer.scheduledTimerWithTimeInterval(1.0 ,
+            target: self,
+            selector: "willActivate",
+            userInfo: nil,
+            repeats: true)
+
     }
-    
-    
-    
-    func showGraph() {
+    func showGraph(obj: NSObject?) {
         // Create a graphics context
         let size = CGSizeMake(100, 100)
         UIGraphicsBeginImageContext(size)
@@ -44,7 +50,8 @@ class InterfaceController: WKInterfaceController {
         
         // Setup for the path appearance
         CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
-        CGContextSetLineWidth(context, 4.0)
+        var width:CGFloat = 4.0
+        CGContextSetLineWidth(context, width)
         
         // Draw lines
         CGContextBeginPath (context);
@@ -74,9 +81,7 @@ class InterfaceController: WKInterfaceController {
         WKInterfaceController.openParentApplication(["graphValues":"yes"],
             reply: {(reply, error) -> Void in
                 
-                let trip = reply?["trip"] as? Trip
-                
-                self.showGraph()
+                self.showGraph(reply?["trip"] as? NSObject)
                 /* write code here to add graph */
                 
         })
@@ -86,6 +91,7 @@ class InterfaceController: WKInterfaceController {
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+        updateGlanceTimer.invalidate()
     }
 
 }
