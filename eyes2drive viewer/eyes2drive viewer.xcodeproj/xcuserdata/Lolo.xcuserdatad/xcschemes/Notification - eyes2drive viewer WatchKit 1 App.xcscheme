@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E1FDF33E1B5A1A3100DCC037"
-               BuildableName = "eyes2drive viewer WatchKit App.app"
-               BlueprintName = "eyes2drive viewer WatchKit App"
-               ReferencedContainer = "container:eyes2drive viewer.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E1FDF3061B5A19E700DCC037"
-               BuildableName = "eyes2drive viewer.app"
-               BlueprintName = "eyes2drive viewer"
+               BlueprintIdentifier = "E124CFED1BAD496F00A6592D"
+               BuildableName = "eyes2drive viewer WatchKit 1 App.app"
+               BlueprintName = "eyes2drive viewer WatchKit 1 App"
                ReferencedContainer = "container:eyes2drive viewer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -48,6 +34,34 @@
                ReferencedContainer = "container:eyes2drive viewer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E124CFDE1BAD496F00A6592D"
+               BuildableName = "eyes2drive viewer WatchKit 1 Extension.appex"
+               BlueprintName = "eyes2drive viewer WatchKit 1 Extension"
+               ReferencedContainer = "container:eyes2drive viewer.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E1FDF3061B5A19E700DCC037"
+               BuildableName = "eyes2drive viewer.app"
+               BlueprintName = "eyes2drive viewer"
+               ReferencedContainer = "container:eyes2drive viewer.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -60,9 +74,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E1FDF33E1B5A1A3100DCC037"
-            BuildableName = "eyes2drive viewer WatchKit App.app"
-            BlueprintName = "eyes2drive viewer WatchKit App"
+            BlueprintIdentifier = "E124CFED1BAD496F00A6592D"
+            BuildableName = "eyes2drive viewer WatchKit 1 App.app"
+            BlueprintName = "eyes2drive viewer WatchKit 1 App"
             ReferencedContainer = "container:eyes2drive viewer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -79,26 +93,26 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
-      launchAutomaticallySubstyle = "4"
+      launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "eyes2drive viewer WatchKit Extension/PushNotificationPayload.apns">
       <RemoteRunnable
          runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.springboard"
+         BundleIdentifier = "com.apple.carousel"
          RemotePath = "/eyes2drive viewer">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E1FDF33E1B5A1A3100DCC037"
-            BuildableName = "eyes2drive viewer WatchKit App.app"
-            BlueprintName = "eyes2drive viewer WatchKit App"
+            BlueprintIdentifier = "E124CFED1BAD496F00A6592D"
+            BuildableName = "eyes2drive viewer WatchKit 1 App.app"
+            BlueprintName = "eyes2drive viewer WatchKit 1 App"
             ReferencedContainer = "container:eyes2drive viewer.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E1FDF33E1B5A1A3100DCC037"
-            BuildableName = "eyes2drive viewer WatchKit App.app"
-            BlueprintName = "eyes2drive viewer WatchKit App"
+            BlueprintIdentifier = "E124CFED1BAD496F00A6592D"
+            BuildableName = "eyes2drive viewer WatchKit 1 App.app"
+            BlueprintName = "eyes2drive viewer WatchKit 1 App"
             ReferencedContainer = "container:eyes2drive viewer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -110,25 +124,27 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES">
+      debugDocumentVersioning = "YES"
+      launchAutomaticallySubstyle = "8"
+      notificationPayloadFile = "eyes2drive viewer WatchKit Extension/PushNotificationPayload.apns">
       <RemoteRunnable
          runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.springboard"
+         BundleIdentifier = "com.apple.carousel"
          RemotePath = "/eyes2drive viewer">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E1FDF33E1B5A1A3100DCC037"
-            BuildableName = "eyes2drive viewer WatchKit App.app"
-            BlueprintName = "eyes2drive viewer WatchKit App"
+            BlueprintIdentifier = "E124CFED1BAD496F00A6592D"
+            BuildableName = "eyes2drive viewer WatchKit 1 App.app"
+            BlueprintName = "eyes2drive viewer WatchKit 1 App"
             ReferencedContainer = "container:eyes2drive viewer.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E1FDF33E1B5A1A3100DCC037"
-            BuildableName = "eyes2drive viewer WatchKit App.app"
-            BlueprintName = "eyes2drive viewer WatchKit App"
+            BlueprintIdentifier = "E124CFED1BAD496F00A6592D"
+            BuildableName = "eyes2drive viewer WatchKit 1 App.app"
+            BlueprintName = "eyes2drive viewer WatchKit 1 App"
             ReferencedContainer = "container:eyes2drive viewer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

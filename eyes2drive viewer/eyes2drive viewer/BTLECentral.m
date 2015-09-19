@@ -7,7 +7,6 @@
 //
 
 
-#import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "TransferService.h"
 #import "BTLECentral.h"
@@ -277,11 +276,6 @@
  */
 - (void)cleanup
 {
-    // Don't do anything if we're not connected
-    if (!self.discoveredPeripheral.isConnected) {
-        return;
-    }
-    
     // See if we are subscribed to a characteristic on the peripheral
     if (self.discoveredPeripheral.services != nil) {
         for (CBService *service in self.discoveredPeripheral.services) {

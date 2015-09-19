@@ -8,9 +8,9 @@
 
 import WatchKit
 import Foundation
+import WatchConnectivity
 
 /* help information
-
 
 http://stackoverflow.com/questions/31256603/render-a-line-graph-on-apple-watch-using-watchos-2
 
@@ -21,16 +21,20 @@ and
 https://github.com/shu223/watchOS-2-Sampler/blob/master/watchOS2Sampler%20WatchKit%20Extension/DrawPathsInterfaceController.swift
 
 
+new WATCHOS2 connectivity
+http://www.kristinathai.com/watchos-2-tutorial-using-sendmessage-for-instantaneous-data-transfer-watch-connectivity-1/
+
 
 */
 
 
-class InterfaceController: WKInterfaceController {
+class InterfaceController: WKInterfaceController, WCSessionDelegate {
     @IBOutlet weak var graph: WKInterfaceImage!
 
     
     //interval timer
     var updateGlanceTimer = NSTimer()
+    var session : WCSession!
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -42,7 +46,7 @@ class InterfaceController: WKInterfaceController {
             repeats: true)
 
     }
-    func showGraph(obj: NSObject?) {
+    func showGraph() {
         // Create a graphics context
         let size = CGSizeMake(100, 100)
         UIGraphicsBeginImageContext(size)
@@ -50,7 +54,7 @@ class InterfaceController: WKInterfaceController {
         
         // Setup for the path appearance
         CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
-        var width:CGFloat = 4.0
+        let width:CGFloat = 4.0
         CGContextSetLineWidth(context, width)
         
         // Draw lines
@@ -76,15 +80,31 @@ class InterfaceController: WKInterfaceController {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        
+        if (WCSession.isSupported() && session == nil) {
+            session = WCSession.defaultSession()
+            session.delegate = self
+            session.activateSession()
+        }
+        
         //Holt von der Parent-App neue Daten - wird vom obigen NSTimer getriggert.
         //Siehe AppDelegate func application(application: UIApplication, handleWatchKitExtensionRequest....
+        /* watch OS 1
         WKInterfaceController.openParentApplication(["graphValues":"yes"],
             reply: {(reply, error) -> Void in
                 
-                self.showGraph(reply?["trip"] as? NSObject)
+                self.showGraph()
                 /* write code here to add graph */
                 
         })
+        */
+        
+        let applicationData = ["graphValues":"yes"]
+        session.sendMessage(applicationData, replyHandler: {(_: [String : AnyObject]) -> Void in
+                self.showGraph()
+            }, errorHandler: {(error ) -> Void in
+        })
+        
 
     }
 

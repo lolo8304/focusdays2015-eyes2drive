@@ -13,7 +13,7 @@ class Trips {
     var trips: [Trip] = [Trip]()
     
     func startTrip(){
-        var neuerTrip = Trip();
+        let neuerTrip = Trip();
         trips.append(neuerTrip);
     }
     
@@ -86,10 +86,10 @@ class Dashboard {
         for i in 1..<trip.events.count {
             lastEvent = trip.events[i-1]
             currentEvent = trip.events[i]
-            var deltaDurationInMs = (currentEvent!.timestamp.timeIntervalSinceDate(lastEvent.timestamp)*1000)
+            let deltaDurationInMs = (currentEvent!.timestamp.timeIntervalSinceDate(lastEvent.timestamp)*1000)
             lastEvent.setMs(&greenDurationInMs, &orangeDurationInMs, &redDurationInMs, deltaDurationInMs)
         }
-        var deltaDurationInMs = (trip.getEndTrip().timeIntervalSinceDate(currentEvent!.timestamp)*1000)
+        let deltaDurationInMs = (trip.getEndTrip().timeIntervalSinceDate(currentEvent!.timestamp)*1000)
         currentEvent!.setMs(&greenDurationInMs, &orangeDurationInMs, &redDurationInMs, deltaDurationInMs)
         
         deltaTotalMs = greenDurationInMs + orangeDurationInMs + redDurationInMs

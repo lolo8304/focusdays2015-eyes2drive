@@ -38,7 +38,7 @@ class FirstViewController: UIViewController, ReceiverDelegate {
     
     
     func dataReceived(data: String) {
-        var dataStringArr=split(data){$0=="-"}
+        var dataStringArr=data.characters.split{$0=="-"}.map { String($0) }
         var event: Event
         if dataStringArr[0]=="1"{
             switch dataStringArr[1]{
@@ -48,7 +48,7 @@ class FirstViewController: UIViewController, ReceiverDelegate {
                 default : event = EventRed()  //eigentlich Dark Red
 
             }
-            var logText = eyeHandler.addEvent(event, delay:false)
+            let logText = eyeHandler.addEvent(event, delay:false)
             sendNotification(logText)
             NSLog(logText)
 

@@ -4,5 +4,7 @@
 
 // https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html
 
-#import "TransferService.h" 
+
+#import <Foundation/Foundation.h>
+#import "TransferService.h"
 #import "BTLECentral.h"

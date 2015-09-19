@@ -25,7 +25,7 @@ class SecondViewController: UIViewController{
     }
     
     func onLogEvent(notification: NSNotification){
-        var text = notification.object as! String
+        let text = notification.object as! String
         addLogText(text)
     }
 

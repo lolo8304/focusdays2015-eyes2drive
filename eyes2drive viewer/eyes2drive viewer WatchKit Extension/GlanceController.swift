@@ -8,9 +8,9 @@
 
 import WatchKit
 import Foundation
+import WatchConnectivity
 
-
-class GlanceController: WKInterfaceController {
+class GlanceController: WKInterfaceController, WCSessionDelegate {
     
     @IBOutlet weak var lblScoreInPercent: WKInterfaceLabel!
     @IBOutlet weak var lblGreenDurationInPercent: WKInterfaceLabel!
@@ -21,6 +21,8 @@ class GlanceController: WKInterfaceController {
     
     //interval timer
     var updateGlanceTimer = NSTimer()
+    var session : WCSession!
+
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -42,35 +44,35 @@ class GlanceController: WKInterfaceController {
         var t: Int = time
         
         if (t >= DAY_IN_S) {
-            var days = t / DAY_IN_S
+            let days = t / DAY_IN_S
             
             t = t % DAY_IN_S
-            var h = t / HOURS_IN_S
+            let h = t / HOURS_IN_S
             
             t = t % HOURS_IN_S
-            var min = t / MIN_IN_S
+            let min = t / MIN_IN_S
             
             t = t % MIN_IN_S
-            var s = t
+            let s = t
             
             return "\(days)d \(h)h \(min)m \(s)s"
         }
         if (t >= 60*60) {
-            var h = t / HOURS_IN_S
+            let h = t / HOURS_IN_S
             
             t = t % HOURS_IN_S
-            var min = t / MIN_IN_S
+            let min = t / MIN_IN_S
             
             t = t % MIN_IN_S
-            var s = t
+            let s = t
             
             return "\(h)h \(min)m \(s)s"
         }
         if (t > 60) {
-            var min = t / MIN_IN_S
+            let min = t / MIN_IN_S
             
             t = t % MIN_IN_S
-            var s = t
+            let s = t
             
             return "\(min)m \(s)s"
         }
@@ -81,28 +83,44 @@ class GlanceController: WKInterfaceController {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
+        if (WCSession.isSupported() && session == nil) {
+            session = WCSession.defaultSession()
+            session.delegate = self
+            session.activateSession()
+        }
+
+        let applicationData = ["glanceValues":"yes"]
+        session.sendMessage(applicationData, replyHandler: {(reply: [String : AnyObject]) -> Void in
+            if let score = reply["score"] as? NSNumber {
+                self.lblScoreInPercent.setText("\(score.integerValue)%")
+            }
+            if let green = reply["green"] as? NSNumber {
+                self.lblGreenDurationInPercent.setText("Green: \(green.integerValue)%")
+            }
+            if let orange = reply["orange"] as? NSNumber {
+                self.lblOrangeDurationInPercent.setText("Orange: \(orange.integerValue)%")
+            }
+            if let red = reply["red"] as? NSNumber {
+                self.lblRedDurationInPercent.setText("Red: \(red.integerValue)%")
+            }
+            if let duration = reply["duration"] as? NSNumber {
+                let durationString = GlanceController.niceTimeString(duration.integerValue)
+                self.lblTripDuration.setText("⌚️ \(durationString)")
+            }
+            }, errorHandler: {(error ) -> Void in
+        })
+
+        
+        
         //Holt von der Parent-App neue Daten - wird vom obigen NSTimer getriggert. 
         //Siehe AppDelegate func application(application: UIApplication, handleWatchKitExtensionRequest.... 
+        /* watchOS1 interface
+        
         WKInterfaceController.openParentApplication(["glanceValues":"yes"],
             reply: {(reply, error) -> Void in
                 
-                if let score = reply?["score"] as? NSNumber {
-                    self.lblScoreInPercent.setText("\(score.integerValue)%")
-                }
-                if let green = reply?["green"] as? NSNumber {
-                    self.lblGreenDurationInPercent.setText("Green: \(green.integerValue)%")
-                }
-                if let orange = reply?["orange"] as? NSNumber {
-                    self.lblOrangeDurationInPercent.setText("Orange: \(orange.integerValue)%")
-                }
-                if let red = reply?["red"] as? NSNumber {
-                    self.lblRedDurationInPercent.setText("Red: \(red.integerValue)%")
-                }
-                if let duration = reply?["duration"] as? NSNumber {
-                    var durationString = GlanceController.niceTimeString(duration.integerValue)
-                    self.lblTripDuration.setText("⌚️ \(durationString)")
-                }
         })
+        */
         
 //        lblScoreInPercent.setText("\(score)%")
 //        lblGreenDurationInPercent.setText("Green: \(green)%")

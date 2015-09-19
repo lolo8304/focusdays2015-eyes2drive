@@ -8,16 +8,21 @@
 
 import UIKit
 import Foundation
+import WatchConnectivity
 
+/* watch OS2 connectivity
+http://www.kristinathai.com/watchos-2-tutorial-using-sendmessage-for-instantaneous-data-transfer-watch-connectivity-1/
+*/
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 
     var window: UIWindow?
+    var session: WCSession!
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let settings = UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil)
+        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         initBTLE()
         return true
@@ -40,6 +45,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         initBTLE()
+        if (WCSession.isSupported()) {
+            session = WCSession.defaultSession()
+            session.delegate = self;
+            session.activateSession()
+        }
+        
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -49,48 +60,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
         application.registerForRemoteNotifications()
     }
+    
+    func getGlanceValues()->[String : AnyObject]{
+        var score = NSNumber(integer: 0)
+        var green = NSNumber(integer: 0)
+        var orange = NSNumber(integer: 0)
+        var red = NSNumber(integer: 0)
+        var duration = NSNumber(integer: 0)
+        
+        if (eyeHandler.tripsRepo.trips.count > 0) {
+            let trip = eyeHandler.tripsRepo.getCurrentTrip()
+            let dashboard = trip.generateDashboard()
+            
+            score = NSNumber(integer: dashboard.scoreInPercent)
+            green = NSNumber(integer: dashboard.greenDurationInPercent)
+            orange = NSNumber(integer: dashboard.orangeDurationInPercent)
+            red = NSNumber(integer: dashboard.redDurationInPercent)
+            duration = NSNumber(double: dashboard.totalS)
+        }
+        return ["score":score, "green":green, "orange":orange, "red":red, "duration":duration]
+    }
 
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
+        if ((message["glanceValues"]) != nil) {
+            replyHandler(self.getGlanceValues())
+        }  else if ((message["graphValues"]) != nil) {
+        }
+    }
+    
     
     //Aus dem Delegate der WatchKit-App: antwortet auf einen Request von der WatchKit App
     //siehe GlanceController willActivate
     func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?,
-        reply: (([NSObject : AnyObject]!) -> Void)!) {
-            
+        reply: (([NSObject : AnyObject]?) -> Void)) {
             if ((userInfo?["glanceValues"]) != nil) {
-                var score = NSNumber(integer: 0)
-                var green = NSNumber(integer: 0)
-                var orange = NSNumber(integer: 0)
-                var red = NSNumber(integer: 0)
-                var duration = NSNumber(integer: 0)
-
-                if (eyeHandler.tripsRepo.trips.count > 0) {
-                    let trip = eyeHandler.tripsRepo.getCurrentTrip()
-                    let dashboard = trip.generateDashboard()
-                
-                    score = NSNumber(integer: dashboard.scoreInPercent)
-                    green = NSNumber(integer: dashboard.greenDurationInPercent)
-                    orange = NSNumber(integer: dashboard.orangeDurationInPercent)
-                    red = NSNumber(integer: dashboard.redDurationInPercent)
-                    duration = NSNumber(double: dashboard.totalS)
-                }
-            
-                reply(["score":score, "green":green, "orange":orange, "red":red, "duration":duration])
+                reply(self.getGlanceValues())
             } else if ((userInfo?["graphValues"]) != nil) {
-                if (eyeHandler.tripsRepo.trips.count > 0) {
-                    let trip = eyeHandler.tripsRepo.getCurrentTrip()
-
-                }
                 reply(["trip":"aaaa"])
-                
             }
     }
     
     
     
     func initBTLE(){
-        var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        var channelIndex: Int = defaults.integerForKey("btleChannelIndex")
-        var chan32: Int32 = Int32(channelIndex)
+        let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let channelIndex: Int = defaults.integerForKey("btleChannelIndex")
+        let chan32: Int32 = Int32(channelIndex)
         TransferService.setValue(chan32);
     }
 }

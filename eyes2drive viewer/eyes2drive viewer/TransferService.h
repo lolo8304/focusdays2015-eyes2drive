@@ -49,9 +49,6 @@
  
  */
 
-
-#import <CoreBluetooth/CoreBluetooth.h>
-
 #ifndef LE_Transfer_TransferService_h
 #define LE_Transfer_TransferService_h
 
@@ -64,7 +61,9 @@
 + (void) setValue:(int)val;
 
 +(NSString*) getTRANSFER_SERVICE_UUID;
-+(CBUUID*) getTRANSFER_SERVICE_CBUUID;
+
+/*downgrade to object in swift, because Bluetooth framework imoport issues */
++(NSObject*) getTRANSFER_SERVICE_CBUUID;
 
 @end
 

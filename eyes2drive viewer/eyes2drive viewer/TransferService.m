@@ -58,7 +58,7 @@ static NSString *valueString = @"0";
     return uuid;
 }
 
-+(CBUUID*) getTRANSFER_SERVICE_CBUUID {
++(NSObject*) getTRANSFER_SERVICE_CBUUID {
     return [CBUUID UUIDWithString: [self getTRANSFER_SERVICE_UUID]];
 }
 

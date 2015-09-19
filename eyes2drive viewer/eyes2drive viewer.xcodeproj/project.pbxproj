@@ -16,11 +16,12 @@
 		827D85351BA2BE240087922D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 827D85341BA2BE240087922D /* Settings.bundle */; };
 		827D85461BA2F18F0087922D /* Interface2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827D85451BA2F18F0087922D /* Interface2Controller.swift */; };
 		827D85481BA2F1B50087922D /* Interface3Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827D85471BA2F1B50087922D /* Interface3Controller.swift */; };
-		82BBBC741BA1CB9C004CEE32 /* BluetoothReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BBBC731BA1CB9C004CEE32 /* BluetoothReceiver.swift */; };
-		82C963B91BA232D000990F2A /* BTLECentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C963B61BA232D000990F2A /* BTLECentral.m */; };
-		82C963BA1BA232D000990F2A /* TransferService.m in Sources */ = {isa = PBXBuildFile; fileRef = 82C963B81BA232D000990F2A /* TransferService.m */; };
+		E124CFCB1BABA59C00A6592D /* eyes2drive viewer WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E1FDF3321B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E124CFCE1BABA59C00A6592D /* eyes2drive viewer WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = E1FDF33F1B5A1A3100DCC037 /* eyes2drive viewer WatchKit App.app */; };
+		E124CFD31BAD44B700A6592D /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E124CFD11BAD443E00A6592D /* CoreBluetooth.framework */; };
+		E124CFD81BAD46CF00A6592D /* BTLECentral.m in Sources */ = {isa = PBXBuildFile; fileRef = E124CFD51BAD46CF00A6592D /* BTLECentral.m */; settings = {ASSET_TAGS = (); }; };
+		E124CFD91BAD46CF00A6592D /* TransferService.m in Sources */ = {isa = PBXBuildFile; fileRef = E124CFD71BAD46CF00A6592D /* TransferService.m */; settings = {ASSET_TAGS = (); }; };
 		E1342C101B5B14C1006AD354 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E1342C0F1B5B14C1006AD354 /* Podfile */; };
-		E19FCD341B5D90860000E1DA /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19FCD331B5D90860000E1DA /* Agent.swift */; };
 		E1C7A6601B5B2300002756B0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C7A65F1B5B2300002756B0 /* Security.framework */; };
 		E1C7A6661B5B3270002756B0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C7A6651B5B3270002756B0 /* SwiftyJSON.swift */; };
 		E1FDF30D1B5A19E700DCC037 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF30C1B5A19E700DCC037 /* AppDelegate.swift */; };
@@ -31,38 +32,57 @@
 		E1FDF3191B5A19E700DCC037 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3171B5A19E700DCC037 /* LaunchScreen.xib */; };
 		E1FDF3381B5A1A3100DCC037 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF3371B5A1A3100DCC037 /* InterfaceController.swift */; };
 		E1FDF33A1B5A1A3100DCC037 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF3391B5A1A3100DCC037 /* NotificationController.swift */; };
-		E1FDF3401B5A1A3100DCC037 /* eyes2drive viewer WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF33F1B5A1A3100DCC037 /* eyes2drive viewer WatchKit App.app */; };
 		E1FDF3481B5A1A3100DCC037 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3461B5A1A3100DCC037 /* Interface.storyboard */; };
 		E1FDF34A1B5A1A3100DCC037 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3491B5A1A3100DCC037 /* Images.xcassets */; };
-		E1FDF34D1B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E1FDF3321B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E1FDF3561B5A1CD000DCC037 /* OrangeNotificationPayload.apns in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3551B5A1CD000DCC037 /* OrangeNotificationPayload.apns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E1FDF3411B5A1A3100DCC037 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E1FDF2FF1B5A19E700DCC037 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E1FDF33E1B5A1A3100DCC037;
-			remoteInfo = "eyes2drive viewer WatchKit App";
-		};
-		E1FDF34B1B5A1A3100DCC037 /* PBXContainerItemProxy */ = {
+		E124CFC91BABA59C00A6592D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E1FDF2FF1B5A19E700DCC037 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E1FDF3311B5A1A3100DCC037;
 			remoteInfo = "eyes2drive viewer WatchKit Extension";
 		};
+		E124CFCC1BABA59C00A6592D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1FDF2FF1B5A19E700DCC037 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1FDF33E1B5A1A3100DCC037;
+			remoteInfo = "eyes2drive viewer WatchKit App";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		E1FDF3541B5A1A3100DCC037 /* Embed App Extensions */ = {
+		E124CFCF1BABA59C00A6592D /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				E1FDF34D1B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension.appex in Embed App Extensions */,
+				E124CFCB1BABA59C00A6592D /* eyes2drive viewer WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E124CFD01BABA59C00A6592D /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				E124CFCE1BABA59C00A6592D /* eyes2drive viewer WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E124D0021BAD497000A6592D /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,14 +99,13 @@
 		827D85341BA2BE240087922D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		827D85451BA2F18F0087922D /* Interface2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interface2Controller.swift; sourceTree = "<group>"; };
 		827D85471BA2F1B50087922D /* Interface3Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interface3Controller.swift; sourceTree = "<group>"; };
-		82BBBC731BA1CB9C004CEE32 /* BluetoothReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothReceiver.swift; sourceTree = "<group>"; };
-		82C963B41BA232D000990F2A /* eyes2drive viewer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "eyes2drive viewer-Bridging-Header.h"; sourceTree = "<group>"; };
-		82C963B51BA232D000990F2A /* BTLECentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLECentral.h; sourceTree = "<group>"; };
-		82C963B61BA232D000990F2A /* BTLECentral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLECentral.m; sourceTree = "<group>"; };
-		82C963B71BA232D000990F2A /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
-		82C963B81BA232D000990F2A /* TransferService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferService.m; sourceTree = "<group>"; };
+		E124CFD11BAD443E00A6592D /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		E124CFD41BAD46CF00A6592D /* BTLECentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLECentral.h; sourceTree = "<group>"; };
+		E124CFD51BAD46CF00A6592D /* BTLECentral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLECentral.m; sourceTree = "<group>"; };
+		E124CFD61BAD46CF00A6592D /* TransferService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferService.h; sourceTree = "<group>"; };
+		E124CFD71BAD46CF00A6592D /* TransferService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferService.m; sourceTree = "<group>"; };
+		E124CFDA1BAD475900A6592D /* eyes2drive viewer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "eyes2drive viewer-Bridging-Header.h"; sourceTree = "<group>"; };
 		E1342C0F1B5B14C1006AD354 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		E19FCD331B5D90860000E1DA /* Agent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
 		E1C7A65F1B5B2300002756B0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E1C7A6611B5B278B002756B0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E1C7A6651B5B3270002756B0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = "eyes2drive viewer/SwiftyJSON.swift"; sourceTree = "<group>"; };
@@ -118,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E124CFD31BAD44B700A6592D /* CoreBluetooth.framework in Frameworks */,
 				E1C7A6601B5B2300002756B0 /* Security.framework in Frameworks */,
 				7237A4DBD70F0F72FD8F7A51 /* Pods.framework in Frameworks */,
 			);
@@ -145,6 +165,7 @@
 		461AEC8A611FE931C2B5AED2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E124CFD11BAD443E00A6592D /* CoreBluetooth.framework */,
 				E1C7A6611B5B278B002756B0 /* QuartzCore.framework */,
 				E1C7A65F1B5B2300002756B0 /* Security.framework */,
 				FAD6427CE41B98FE54DBF125 /* Pods.framework */,
@@ -180,14 +201,13 @@
 		E1FDF3091B5A19E700DCC037 /* eyes2drive viewer */ = {
 			isa = PBXGroup;
 			children = (
-				82C963B41BA232D000990F2A /* eyes2drive viewer-Bridging-Header.h */,
-				82C963B51BA232D000990F2A /* BTLECentral.h */,
-				82C963B61BA232D000990F2A /* BTLECentral.m */,
-				82C963B71BA232D000990F2A /* TransferService.h */,
-				82C963B81BA232D000990F2A /* TransferService.m */,
+				E124CFDA1BAD475900A6592D /* eyes2drive viewer-Bridging-Header.h */,
+				E124CFD41BAD46CF00A6592D /* BTLECentral.h */,
+				E124CFD51BAD46CF00A6592D /* BTLECentral.m */,
+				E124CFD61BAD46CF00A6592D /* TransferService.h */,
+				E124CFD71BAD46CF00A6592D /* TransferService.m */,
 				4CBF9EAC1BA1EA8200907F87 /* Model.swift */,
 				4C21D7571BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift */,
-				E19FCD331B5D90860000E1DA /* Agent.swift */,
 				E1FDF30C1B5A19E700DCC037 /* AppDelegate.swift */,
 				E1FDF30E1B5A19E700DCC037 /* FirstViewController.swift */,
 				E1FDF3101B5A19E700DCC037 /* SecondViewController.swift */,
@@ -196,7 +216,6 @@
 				E1FDF3171B5A19E700DCC037 /* LaunchScreen.xib */,
 				E1FDF30A1B5A19E700DCC037 /* Supporting Files */,
 				4C21D7591BA1AD3700CE31FB /* EyeEventHandler.swift */,
-				82BBBC731BA1CB9C004CEE32 /* BluetoothReceiver.swift */,
 			);
 			path = "eyes2drive viewer";
 			sourceTree = "<group>";
@@ -279,14 +298,15 @@
 				E1FDF3031B5A19E700DCC037 /* Sources */,
 				E1FDF3041B5A19E700DCC037 /* Frameworks */,
 				E1FDF3051B5A19E700DCC037 /* Resources */,
-				E1FDF3541B5A1A3100DCC037 /* Embed App Extensions */,
 				933B1AB11B8CC51193E91965 /* Embed Pods Frameworks */,
 				87300FB66E57BC3D2D4D2BA5 /* Copy Pods Resources */,
+				E124CFD01BABA59C00A6592D /* Embed Watch Content */,
+				E124D0021BAD497000A6592D /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E1FDF34C1B5A1A3100DCC037 /* PBXTargetDependency */,
+				E124CFCD1BABA59C00A6592D /* PBXTargetDependency */,
 			);
 			name = "eyes2drive viewer";
 			productName = "eyes2drive viewer";
@@ -304,27 +324,28 @@
 			buildRules = (
 			);
 			dependencies = (
-				E1FDF3421B5A1A3100DCC037 /* PBXTargetDependency */,
 			);
 			name = "eyes2drive viewer WatchKit Extension";
 			productName = "eyes2drive viewer WatchKit Extension";
 			productReference = E1FDF3321B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension.appex */;
-			productType = "com.apple.product-type.watchkit-extension";
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 		E1FDF33E1B5A1A3100DCC037 /* eyes2drive viewer WatchKit App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E1FDF34E1B5A1A3100DCC037 /* Build configuration list for PBXNativeTarget "eyes2drive viewer WatchKit App" */;
 			buildPhases = (
 				E1FDF33D1B5A1A3100DCC037 /* Resources */,
+				E124CFCF1BABA59C00A6592D /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E124CFCA1BABA59C00A6592D /* PBXTargetDependency */,
 			);
 			name = "eyes2drive viewer WatchKit App";
 			productName = "eyes2drive viewer WatchKit App";
 			productReference = E1FDF33F1B5A1A3100DCC037 /* eyes2drive viewer WatchKit App.app */;
-			productType = "com.apple.product-type.application.watchapp";
+			productType = "com.apple.product-type.application.watchapp2";
 		};
 /* End PBXNativeTarget section */
 
@@ -332,7 +353,9 @@
 		E1FDF2FF1B5A19E700DCC037 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Focusdays2015;
 				TargetAttributes = {
 					E1FDF3061B5A19E700DCC037 = {
@@ -346,9 +369,11 @@
 					};
 					E1FDF3311B5A1A3100DCC037 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = W3U24WE3R3;
 					};
 					E1FDF33E1B5A1A3100DCC037 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = W3U24WE3R3;
 					};
 				};
 			};
@@ -389,7 +414,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1FDF3401B5A1A3100DCC037 /* eyes2drive viewer WatchKit App.app in Resources */,
 				E1FDF3561B5A1CD000DCC037 /* OrangeNotificationPayload.apns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,16 +482,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E124CFD81BAD46CF00A6592D /* BTLECentral.m in Sources */,
 				4CBF9EAD1BA1EA8200907F87 /* Model.swift in Sources */,
 				E1FDF3111B5A19E700DCC037 /* SecondViewController.swift in Sources */,
-				E19FCD341B5D90860000E1DA /* Agent.swift in Sources */,
-				82C963BA1BA232D000990F2A /* TransferService.m in Sources */,
 				4C21D7581BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift in Sources */,
 				4C21D75A1BA1AD3700CE31FB /* EyeEventHandler.swift in Sources */,
-				82BBBC741BA1CB9C004CEE32 /* BluetoothReceiver.swift in Sources */,
-				82C963B91BA232D000990F2A /* BTLECentral.m in Sources */,
 				E1FDF30D1B5A19E700DCC037 /* AppDelegate.swift in Sources */,
 				E1FDF30F1B5A19E700DCC037 /* FirstViewController.swift in Sources */,
+				E124CFD91BAD46CF00A6592D /* TransferService.m in Sources */,
 				E1C7A6661B5B3270002756B0 /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,15 +510,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E1FDF3421B5A1A3100DCC037 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E1FDF33E1B5A1A3100DCC037 /* eyes2drive viewer WatchKit App */;
-			targetProxy = E1FDF3411B5A1A3100DCC037 /* PBXContainerItemProxy */;
-		};
-		E1FDF34C1B5A1A3100DCC037 /* PBXTargetDependency */ = {
+		E124CFCA1BABA59C00A6592D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E1FDF3311B5A1A3100DCC037 /* eyes2drive viewer WatchKit Extension */;
-			targetProxy = E1FDF34B1B5A1A3100DCC037 /* PBXContainerItemProxy */;
+			targetProxy = E124CFC91BABA59C00A6592D /* PBXContainerItemProxy */;
+		};
+		E124CFCD1BABA59C00A6592D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E1FDF33E1B5A1A3100DCC037 /* eyes2drive viewer WatchKit App */;
+			targetProxy = E124CFCC1BABA59C00A6592D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -549,6 +571,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -620,8 +643,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "eyes2drive viewer/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.focusdays2015.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "eyes2drive viewer/eyes2drive viewer-Bridging-Header.h";
@@ -638,8 +662,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "eyes2drive viewer/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.focusdays2015.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "eyes2drive viewer/eyes2drive viewer-Bridging-Header.h";
@@ -650,17 +675,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				IBSC_MODULE = eyes2drive_viewer_WatchKit_Extension;
 				INFOPLIST_FILE = "eyes2drive viewer WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.focusdays2015.eyes2drive-viewer.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -668,37 +696,50 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = eyes2drive_viewer_WatchKit_Extension;
 				INFOPLIST_FILE = "eyes2drive viewer WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.focusdays2015.eyes2drive-viewer.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
-				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
 		E1FDF3521B5A1A3100DCC037 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "eyes2drive viewer WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.focusdays2015.eyes2drive-viewer.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
 		E1FDF3531B5A1A3100DCC037 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "eyes2drive viewer WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.focusdays2015.eyes2drive-viewer.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};

@@ -21,8 +21,8 @@ class EyeEventHandler : EyeEventHandlerProtocol {
         tripsRepo.getCurrentTrip().addEvent(type)
 
         if (type.shouldThrowNotification()) {
-            UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil))
-            var notification = UILocalNotification()
+            UIApplication.sharedApplication().registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
+            let notification = UILocalNotification()
             notification.alertBody = type.getNotifcationBodyText()// text that will be displayed in the notification
             notification.alertAction = "open" // text that is displayed after "slide to..." on the lock screen - defaults to "slide to view"
         
@@ -30,7 +30,7 @@ class EyeEventHandler : EyeEventHandlerProtocol {
             if delay {
                 offsetSec = 10;
             }
-            var now = NSDate().dateByAddingTimeInterval(NSTimeInterval(offsetSec))
+            let now = NSDate().dateByAddingTimeInterval(NSTimeInterval(offsetSec))
             notification.fireDate = now // todo item due date (when notification will be fired)
         
             notification.soundName = UILocalNotificationDefaultSoundName // play default sound
