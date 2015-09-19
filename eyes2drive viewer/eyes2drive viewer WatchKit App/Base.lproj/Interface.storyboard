@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="8092"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
@@ -62,13 +62,13 @@
             </objects>
             <point key="canvasLocation" x="635" y="194"/>
         </scene>
-        <!--Glance Interface Controller-->
+        <!--GlanceStatistic-->
         <scene sceneID="Iuv-Yq-M7N">
             <objects>
-                <glanceController topTemplateType="body1Large" id="wd4-6C-ra0" customClass="GlanceController" customModule="eyes2drive_viewer_WatchKit_Extension">
+                <glanceController identifier="GlanceStatistic" topTemplateType="body1Large" id="wd4-6C-ra0" customClass="GlanceController" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
                         <label alignment="left" text="eyes2drive" id="Om2-ua-lDW"/>
-                        <label alignment="left" text="0%" id="SzL-BW-uUe"/>
+                        <label alignment="left" text="00%" id="SzL-BW-uUe"/>
                         <group alignment="left" layout="vertical" id="cIw-sT-lEJ">
                             <items>
                                 <label width="1" alignment="left" text="⌚️ 0s" id="JW4-Q9-JbK">

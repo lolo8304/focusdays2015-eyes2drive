@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "eyes2drive/eyes2drive/FeatureDetectionTime.mm"
-            timestampString = "463581036.082967"
+            filePath = "eyes2drive viewer/eyes2drive viewer/AppDelegate.swift"
+            timestampString = "464360870.906368"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
-            landmarkName = "-featureDetected:"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "application(_:handleWatchKitExtensionRequest:reply:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,12 +25,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "eyes2drive/eyes2drive/BluetoothConnector.m"
-            timestampString = "459892734.696464"
+            filePath = "eyes2drive viewer/eyes2drive viewer/AppDelegate.swift"
+            timestampString = "464360870.906368"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14">
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "session(_:didReceiveMessage:replyHandler:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

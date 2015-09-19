@@ -18,13 +18,12 @@ http://www.kristinathai.com/watchos-2-tutorial-using-sendmessage-for-instantaneo
 class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 
     var window: UIWindow?
-    var session: WCSession!
-    
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         initBTLE()
+        initWCSession()
         return true
     }
 
@@ -45,11 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         initBTLE()
-        if (WCSession.isSupported()) {
-            session = WCSession.defaultSession()
-            session.delegate = self;
-            session.activateSession()
-        }
         
     }
 
@@ -81,16 +75,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         return ["score":score, "green":green, "orange":orange, "red":red, "duration":duration]
     }
 
+    // watchKit Version 2
+    // WCSessionDelegate
+
     func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
+        NSLog("WC session: message received")
+
         if ((message["glanceValues"]) != nil) {
+            NSLog("WC session: reply #glanceValues")
             replyHandler(self.getGlanceValues())
         }  else if ((message["graphValues"]) != nil) {
+            NSLog("WC session: reply #graphValues")
         }
     }
-    
+    func sessionWatchStateDidChange(session: WCSession) {
+        print(__FUNCTION__)
+        print(session)
+        print("reachable:\(session.reachable)")
+    }
     
     //Aus dem Delegate der WatchKit-App: antwortet auf einen Request von der WatchKit App
     //siehe GlanceController willActivate
+    // watchKit Version 1
     func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?,
         reply: (([NSObject : AnyObject]?) -> Void)) {
             if ((userInfo?["glanceValues"]) != nil) {
@@ -107,6 +113,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         let channelIndex: Int = defaults.integerForKey("btleChannelIndex")
         let chan32: Int32 = Int32(channelIndex)
         TransferService.setValue(chan32);
+    }
+    func initWCSession() {
+        if (WCSession.isSupported()) {
+            let session = WCSession.defaultSession()
+            session.delegate = self;
+            session.activateSession()
+        }
     }
 }
 
