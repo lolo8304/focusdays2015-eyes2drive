@@ -83,8 +83,25 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
         return "\(t)s"
     }
     
+    
+    func verifyIfDeviceIsRechableAndUnlocked()->Bool {
+        if (!WCSession.defaultSession().reachable) {
+            NSLog("WCsession: session is NOT reachable")
+            if (WCSession.defaultSession().iOSDeviceNeedsUnlockAfterRebootForReachability) {
+                self.lblTripDuration.setText("💤 wake up the phone!")
+            }
+            return false
+        } else {
+            NSLog("WCsession: session is reachable")
+            self.lblTripDuration.setText("⌚️ 0s")
+            return true
+        }
+    }
+    
     func updateGlance() {
         NSLog("update glance data")
+        if (!self.verifyIfDeviceIsRechableAndUnlocked()) { return }
+        
         let applicationData = ["glanceValues":"yes"]
         WCSession.defaultSession().sendMessage(applicationData, replyHandler: {(reply: [String : AnyObject]) -> Void in
                 NSLog("update glance: data received")
@@ -113,7 +130,6 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
-        
 
     }
     
