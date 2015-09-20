@@ -5,12 +5,12 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="8092"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--eyes-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="eyes2drive_viewer_WatchKit_Extension">
+                <controller title="eyes2drive" id="AgC-eL-Hgc" userLabel="eyes" customClass="InterfaceController" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
-                        <imageView width="1" height="1" alignment="left" id="Hma-eb-iEi"/>
+                        <imageView width="1" height="1" alignment="left" image="logo-230x230a" id="Hma-eb-iEi"/>
                     </items>
                     <connections>
                         <outlet property="graph" destination="Hma-eb-iEi" id="37u-8e-Mua"/>
@@ -20,10 +20,10 @@
             </objects>
             <point key="canvasLocation" x="-125" y="194"/>
         </scene>
-        <!--Interface2 Controller-->
+        <!--eyes2drive-->
         <scene sceneID="AQu-9l-GMm">
             <objects>
-                <controller id="aDC-7c-TUn" customClass="Interface2Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
+                <controller title="eyes2drive" id="aDC-7c-TUn" customClass="Interface2Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
                         <imageView width="1" alignment="left" image="team1a" id="OQY-Kg-kyl"/>
                         <label width="1" alignment="left" text="Daniel + Michael" textAlignment="center" id="lVO-BY-tbn"/>
@@ -35,10 +35,10 @@
             </objects>
             <point key="canvasLocation" x="128" y="194"/>
         </scene>
-        <!--Interface3 Controller-->
+        <!--eyes2drive-->
         <scene sceneID="r3r-nk-BLD">
             <objects>
-                <controller id="y6U-8O-GYf" customClass="Interface3Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
+                <controller title="eyes2drive" id="y6U-8O-GYf" customClass="Interface3Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
                         <imageView width="1" alignment="left" image="team2a" id="ghB-yl-GOR"/>
                         <label width="1" alignment="left" text="Rémy + Bernhard" textAlignment="center" id="IqA-Mj-PSR"/>
@@ -50,10 +50,10 @@
             </objects>
             <point key="canvasLocation" x="408" y="194"/>
         </scene>
-        <!--Interface3 Controller-->
+        <!--eyes2drive-->
         <scene sceneID="jek-c0-u94">
             <objects>
-                <controller id="VsJ-aT-WFi" customClass="Interface3Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
+                <controller title="eyes2drive" id="VsJ-aT-WFi" customClass="Interface3Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
                         <imageView width="1" alignment="left" image="team3a" id="3Wu-YP-u0O"/>
                         <label width="1" alignment="left" text="Anton + Lolo" textAlignment="center" id="wIb-vk-3JL"/>
@@ -68,23 +68,28 @@
                 <glanceController identifier="GlanceStatistic" topTemplateType="body1Large" id="wd4-6C-ra0" customClass="GlanceController" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
                         <label alignment="left" text="eyes2drive" id="Om2-ua-lDW"/>
-                        <label alignment="left" text="00%" id="SzL-BW-uUe"/>
+                        <label alignment="left" text="0%" id="SzL-BW-uUe">
+                            <color key="textColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
                         <group alignment="left" layout="vertical" id="cIw-sT-lEJ">
                             <items>
                                 <label width="1" alignment="left" text="⌚️ 0s" id="JW4-Q9-JbK">
                                     <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                 </label>
-                                <separator alignment="left" id="c7l-Av-Af6"/>
-                                <label width="1" alignment="left" text="Green: 0%" id="Kxe-kv-2Ls">
+                                <separator alignment="left" alpha="0.5" id="c7l-Av-Af6"/>
+                                <label width="1" alignment="left" text="🍏 0%" id="Kxe-kv-2Ls">
+                                    <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                 </label>
-                                <label width="1" alignment="left" text="Orange: 0%" id="sHe-Id-5Jk">
+                                <label width="1" alignment="left" text="🍊 0%" id="sHe-Id-5Jk">
+                                    <color key="textColor" red="1" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                 </label>
-                                <label width="1" height="17" alignment="left" text="Red: 0%" id="NNV-De-bRY">
+                                <label width="1" height="17" alignment="left" text="🍎 0%" id="NNV-De-bRY">
+                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                 </label>
-                                <separator alignment="left" id="unG-KQ-TdO"/>
+                                <separator alignment="left" alpha="0.5" id="unG-KQ-TdO"/>
                             </items>
                         </group>
                     </items>
