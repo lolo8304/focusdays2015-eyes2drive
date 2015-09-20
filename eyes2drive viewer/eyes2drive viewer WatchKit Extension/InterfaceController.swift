@@ -33,21 +33,16 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
     
     //interval timer
-    var updateGlanceTimer = NSTimer()
+    var updateGlanceTimer: NSTimer?
     var session : WCSession!
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        
-        updateGlanceTimer = NSTimer.scheduledTimerWithTimeInterval(1.0 ,
-            target: self,
-            selector: "willActivate",
-            userInfo: nil,
-            repeats: true)
-
     }
+    
     func showGraph() {
         // Create a graphics context
+        NSLog("*** showGraph")
         let size = CGSizeMake(100, 100)
         UIGraphicsBeginImageContext(size)
         let context = UIGraphicsGetCurrentContext()
@@ -81,6 +76,14 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
+        if updateGlanceTimer == nil {
+            updateGlanceTimer = NSTimer.scheduledTimerWithTimeInterval(1.0,
+                target: self,
+                selector: "willActivate",
+                userInfo: nil,
+                repeats: true)
+        }
+
         if (WCSession.isSupported() && session == nil) {
             session = WCSession.defaultSession()
             session.delegate = self
@@ -100,18 +103,24 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         */
         
         let applicationData = ["graphValues":"yes"]
-        session.sendMessage(applicationData, replyHandler: {(_: [String : AnyObject]) -> Void in
+        session.sendMessage(applicationData,
+            replyHandler: {
+                [unowned self]
+                (_: [String : AnyObject]) -> Void in
                 self.showGraph()
-            }, errorHandler: {(error ) -> Void in
-        })
-        
-
+            },
+            errorHandler: {(error ) -> Void in
+                // do nothing
+            }
+        )
     }
 
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
-        updateGlanceTimer.invalidate()
+        
+        updateGlanceTimer?.invalidate()
+        updateGlanceTimer = nil
     }
 
 }
