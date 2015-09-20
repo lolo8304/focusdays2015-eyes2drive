@@ -20,8 +20,7 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
     @IBOutlet weak var lblTripDuration: WKInterfaceLabel!
     
     //interval timer
-    var updateGlanceTimer = NSTimer()
-
+    var updateGlanceTimer: NSTimer?
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -33,12 +32,6 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
             session.activateSession()
             NSLog("WC session is activated")
         }
-        updateGlanceTimer = NSTimer.scheduledTimerWithTimeInterval(1.0 ,
-            target: self,
-            selector: "updateGlance",
-            userInfo: nil,
-            repeats: true)
-
     }
     
     static func niceTimeString(time: Int)->String {
@@ -93,7 +86,7 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
             return false
         } else {
             NSLog("WCsession: session is reachable")
-            self.lblTripDuration.setText("⌚️ 0s")
+//            self.lblTripDuration.setText("⌚️ 0s")
             return true
         }
     }
@@ -103,40 +96,55 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
         if (!self.verifyIfDeviceIsRechableAndUnlocked()) { return }
         
         let applicationData = ["glanceValues":"yes"]
-        WCSession.defaultSession().sendMessage(applicationData, replyHandler: {(reply: [String : AnyObject]) -> Void in
+        WCSession.defaultSession().sendMessage(applicationData,
+            replyHandler: {
+                [unowned self]
+                (reply: [String : AnyObject]) -> Void in
+                
                 NSLog("update glance: data received")
                 if let score = reply["score"] as? NSNumber {
                     self.lblScoreInPercent.setText("\(score.integerValue)%")
                 }
                 if let green = reply["green"] as? NSNumber {
-                    self.lblGreenDurationInPercent.setText("Green: \(green.integerValue)%")
+                    self.lblGreenDurationInPercent.setText("🍏 \(green.integerValue)%")
                 }
                 if let orange = reply["orange"] as? NSNumber {
-                    self.lblOrangeDurationInPercent.setText("Orange: \(orange.integerValue)%")
+                    self.lblOrangeDurationInPercent.setText("🍊 \(orange.integerValue)%")
                 }
                 if let red = reply["red"] as? NSNumber {
-                    self.lblRedDurationInPercent.setText("Red: \(red.integerValue)%")
+                    self.lblRedDurationInPercent.setText("🍎 \(red.integerValue)%")
                 }
                 if let duration = reply["duration"] as? NSNumber {
                     let durationString = GlanceController.niceTimeString(duration.integerValue)
                     self.lblTripDuration.setText("⌚️ \(durationString)")
                 }
-            }, errorHandler: {(error ) -> Void in
+            },
+            errorHandler: {(error ) -> Void in
                 NSLog("update glance: error \(error)")
-        })
+            }
+        )
     }
 
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
-
+        
+        if updateGlanceTimer == nil {
+            updateGlanceTimer = NSTimer.scheduledTimerWithTimeInterval(1.0 ,
+                target: self,
+                selector: "updateGlance",
+                userInfo: nil,
+                repeats: true)
+        }
     }
     
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
-        updateGlanceTimer = NSTimer()
+        
+        updateGlanceTimer?.invalidate()
+        updateGlanceTimer = nil
     }
     
     // =========================================================================
