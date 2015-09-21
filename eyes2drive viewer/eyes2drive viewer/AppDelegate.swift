@@ -97,9 +97,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     
     @available(iOS 9.0, *)
     func sessionWatchStateDidChange(session: WCSession) {
-        print(__FUNCTION__)
-        print(session)
-        print("reachable:\(session.reachable)")
+        NSLog(__FUNCTION__)
+        NSLog("\(session)")
+        NSLog("reachable:\(session.reachable)")
     }
     
     func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?,
@@ -111,20 +111,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             }
     }
     
-    
-    
     func initBTLE(){
         let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         let channelIndex: Int = defaults.integerForKey("btleChannelIndex")
         let chan32: Int32 = Int32(channelIndex)
         TransferService.setValue(chan32);
     }
+
     @available(iOS 9.0, *)
     func initWCSession2() {
         if (WCSession.isSupported()) {
             let session = WCSession.defaultSession()
             session.delegate = self;
             session.activateSession()
+            NSLog("WC session is activated")
         }
     }
     func initWCSession1() {

@@ -33,14 +33,35 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
     
     //interval timer
-    var updateGlanceTimer: NSTimer?
-    var session : WCSession!
+    var updateStatisticsTimer: NSTimer?
+    var angle:Int = 0
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
+        if (WCSession.isSupported() && !WCSession.defaultSession().reachable) {
+            let session = WCSession.defaultSession()
+            session.delegate = self
+            session.activateSession()
+            NSLog("WC session Graph is activated")
+        }
+
+    }
+    func nextPoint()->[String : CGFloat] {
+        switch angle {
+        case 0:  return ["x":0,"y":-50]
+        case 1:  return ["x":50,"y":-50]
+        case 2:  return ["x":50,"y":0]
+        case 3:  return ["x":50,"y":50]
+        case 4:  return ["x":0,"y":50]
+        case 5:  return ["x":-50,"y":50]
+        case 6:  return ["x":-50,"y":0]
+        case 7:  return ["x":-50,"y":-50]
+        default:
+            return ["x":0, "y": 0]
+        }
     }
     
-    func showGraph() {
+    func showGraph(reply: [String : AnyObject]) {
         // Create a graphics context
         NSLog("*** showGraph")
         let size = CGSizeMake(100, 100)
@@ -54,11 +75,14 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
         // Draw lines
         CGContextBeginPath (context);
-        CGContextMoveToPoint(context, 0, 0);
-        CGContextAddLineToPoint(context, 100, 100);
-        CGContextMoveToPoint(context, 0, 100);
-        CGContextAddLineToPoint(context, 100, 0);
+        let x: CGFloat = 50
+        let y: CGFloat = 50
+        let next:[String : CGFloat] = self.nextPoint()
+        CGContextMoveToPoint(context, x, y);
+        CGContextAddLineToPoint(context, x+next["x"]!, y+next["y"]!);
         CGContextStrokePath(context);
+        angle += 1
+        if (angle >= 8) { angle = 0 }
         
         // Convert to UIImage
         let cgimage = CGBitmapContextCreateImage(context);
@@ -71,56 +95,62 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         graph.setImage(uiimage)
     }
     
-
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        super.willActivate()
-        
-        if updateGlanceTimer == nil {
-            updateGlanceTimer = NSTimer.scheduledTimerWithTimeInterval(1.0,
-                target: self,
-                selector: "willActivate",
-                userInfo: nil,
-                repeats: true)
-        }
-
-        if (WCSession.isSupported() && session == nil) {
-            session = WCSession.defaultSession()
-            session.delegate = self
-            session.activateSession()
-        }
-        
+    
+    func showGraph() {
+        if (self.updateStatisticsTimer == nil) {return}
+        let applicationData = ["graphValues":"yes"]
+        WCSession.defaultSession().sendMessage(applicationData,
+            replyHandler: {
+                [unowned self]
+                (reply: [String : AnyObject]) -> Void in
+                self.showGraph(reply)
+            },
+            errorHandler: {(error) -> Void in
+                NSLog("error while getting graph values \(error)")
+            }
+        )
         //Holt von der Parent-App neue Daten - wird vom obigen NSTimer getriggert.
         //Siehe AppDelegate func application(application: UIApplication, handleWatchKitExtensionRequest....
         /* watch OS 1
         WKInterfaceController.openParentApplication(["graphValues":"yes"],
-            reply: {(reply, error) -> Void in
-                
-                self.showGraph()
-                /* write code here to add graph */
-                
+        reply: {(reply, error) -> Void in
+        
+        self.showGraph()
+        /* write code here to add graph */
+        
         })
         */
         
-        let applicationData = ["graphValues":"yes"]
-        session.sendMessage(applicationData,
-            replyHandler: {
-                [unowned self]
-                (_: [String : AnyObject]) -> Void in
-                self.showGraph()
-            },
-            errorHandler: {(error ) -> Void in
-                // do nothing
-            }
-        )
     }
 
+    override func willActivate() {
+        // This method is called when watch view controller is about to be visible to user
+        super.willActivate()
+    }
+    override func didAppear() {
+        if self.updateStatisticsTimer == nil {
+            self.updateStatisticsTimer = NSTimer.scheduledTimerWithTimeInterval(0.3,
+                target: self,
+                selector: "showGraph",
+                userInfo: nil,
+                repeats: true)
+            NSLog("install graph timer")
+        }
+    }
+    override func willDisappear() {
+        self.updateStatisticsTimer?.invalidate()
+        self.updateStatisticsTimer = nil
+        NSLog("invalidate graph timer")
+    }
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
+        // especially when home-button is pressed, there is no #willDisappear
+        if (self.updateStatisticsTimer != nil) {
+            self.updateStatisticsTimer?.invalidate()
+            self.updateStatisticsTimer = nil
+            NSLog("invalidate graph timer")
+        }
         super.didDeactivate()
-        
-        updateGlanceTimer?.invalidate()
-        updateGlanceTimer = nil
     }
 
 }

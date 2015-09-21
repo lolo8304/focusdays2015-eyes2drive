@@ -26,11 +26,11 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
         super.awakeWithContext(context)
         // Configure interface objects here.
         
-        if (WCSession.isSupported()) {
+        if (WCSession.isSupported() && !WCSession.defaultSession().reachable) {
             let session = WCSession.defaultSession()
             session.delegate = self
             session.activateSession()
-            NSLog("WC session is activated")
+            NSLog("WC session Glance is activated")
         }
     }
     
@@ -79,20 +79,18 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
     
     func verifyIfDeviceIsRechableAndUnlocked()->Bool {
         if (!WCSession.defaultSession().reachable) {
-            NSLog("WCsession: session is NOT reachable")
+            NSLog("WCsession Glance is NOT reachable")
             if (WCSession.defaultSession().iOSDeviceNeedsUnlockAfterRebootForReachability) {
                 self.lblTripDuration.setText("💤 wake up the phone!")
             }
             return false
         } else {
-            NSLog("WCsession: session is reachable")
-//            self.lblTripDuration.setText("⌚️ 0s")
             return true
         }
     }
     
     func updateGlance() {
-        NSLog("update glance data")
+        self.beginGlanceUpdates()
         if (!self.verifyIfDeviceIsRechableAndUnlocked()) { return }
         
         let applicationData = ["glanceValues":"yes"]
@@ -118,9 +116,11 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
                     let durationString = GlanceController.niceTimeString(duration.integerValue)
                     self.lblTripDuration.setText("⌚️ \(durationString)")
                 }
+                self.endGlanceUpdates()
             },
             errorHandler: {(error ) -> Void in
                 NSLog("update glance: error \(error)")
+                self.endGlanceUpdates()
             }
         )
     }
@@ -130,21 +130,26 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
+    }
+    override func didAppear() {
         if updateGlanceTimer == nil {
-            updateGlanceTimer = NSTimer.scheduledTimerWithTimeInterval(1.0 ,
+            updateGlanceTimer = NSTimer.scheduledTimerWithTimeInterval(2.0 ,
                 target: self,
                 selector: "updateGlance",
                 userInfo: nil,
                 repeats: true)
+            NSLog("install Glance timer")
         }
     }
     
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
-        
+    }
+    override func willDisappear() {
         updateGlanceTimer?.invalidate()
         updateGlanceTimer = nil
+        NSLog("invalidate Glance timer")
     }
     
     // =========================================================================

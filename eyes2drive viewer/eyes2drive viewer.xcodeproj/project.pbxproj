@@ -925,7 +925,7 @@
 				);
 				IBSC_MODULE = eyes2drive_viewer_WatchKit_Extension;
 				INFOPLIST_FILE = "eyes2drive viewer WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.focusdays2015.eyes2drive-viewer.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -943,7 +943,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = eyes2drive_viewer_WatchKit_Extension;
 				INFOPLIST_FILE = "eyes2drive viewer WatchKit App/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.focusdays2015.eyes2drive-viewer.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -962,7 +962,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "eyes2drive viewer WatchKit Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.focusdays2015.eyes2drive-viewer.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -978,7 +978,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "eyes2drive viewer WatchKit Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.focusdays2015.eyes2drive-viewer.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -999,6 +999,7 @@
 				E10B12061BB0427E00D8D6F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E10B12081BB0427E00D8D6F0 /* Build configuration list for PBXNativeTarget "eyes2drive viewer WatchKit 1 Extension" */ = {
 			isa = XCConfigurationList;
@@ -1007,6 +1008,7 @@
 				E10B12041BB0427E00D8D6F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E1FDF3021B5A19E700DCC037 /* Build configuration list for PBXProject "eyes2drive viewer" */ = {
 			isa = XCConfigurationList;

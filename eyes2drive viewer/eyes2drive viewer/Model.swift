@@ -28,6 +28,10 @@ class Trips {
         return trips[trips.count-1]
     }
     
+    func hasTrips()->Bool {
+        return trips.count > 0
+    }
+    
 }
 
 class Trip {
@@ -47,7 +51,10 @@ class Trip {
         self.events.append(event)
     }
     func generateDashboard()->Dashboard{
-        return Dashboard(trip:self)
+        return Dashboard(self)
+    }
+    func generateDashboardDetails()->DashboardDetails{
+        return DashboardDetails(self)
     }
     func durationInS()->Double {
         var timeInS = 0.0
@@ -67,6 +74,14 @@ class Trip {
     }
 }
 
+class DashboardDetails: Dashboard {
+    override init(_ trip:Trip){
+        super.init(trip)
+    }
+
+}
+
+
 class Dashboard {
     var scoreInPercent = 0
     var greenDurationInPercent = 0
@@ -74,7 +89,7 @@ class Dashboard {
     var redDurationInPercent = 0
     var totalS = 0.0
     
-    init(trip:Trip){
+    init(_ trip:Trip){
         var greenDurationInMs = 0.0
         var orangeDurationInMs = 0.0
         var redDurationInMs = 0.0
@@ -87,10 +102,10 @@ class Dashboard {
             lastEvent = trip.events[i-1]
             currentEvent = trip.events[i]
             let deltaDurationInMs = (currentEvent!.timestamp.timeIntervalSinceDate(lastEvent.timestamp)*1000)
-            lastEvent.setMs(&greenDurationInMs, &orangeDurationInMs, &redDurationInMs, deltaDurationInMs)
+            self.setMs(lastEvent, &greenDurationInMs, &orangeDurationInMs, &redDurationInMs, deltaDurationInMs)
         }
         let deltaDurationInMs = (trip.getEndTrip().timeIntervalSinceDate(currentEvent!.timestamp)*1000)
-        currentEvent!.setMs(&greenDurationInMs, &orangeDurationInMs, &redDurationInMs, deltaDurationInMs)
+        self.setMs(currentEvent!, &greenDurationInMs, &orangeDurationInMs, &redDurationInMs, deltaDurationInMs)
         
         deltaTotalMs = greenDurationInMs + orangeDurationInMs + redDurationInMs
         if (deltaTotalMs > 0) {
@@ -105,6 +120,10 @@ class Dashboard {
         self.totalS = trip.durationInS()
         NSLog("total time in S = %s", self.totalS)
     }
+    
+    func setMs(event: Event, inout _ g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
+        event.setMs(self, &g, &o, &r, delta)
+    }
 }
 
 class Event {
@@ -115,7 +134,7 @@ class Event {
     func shouldThrowNotification() -> Bool {
         return true;
     }
-    func setMs(inout g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
+    func setMs(dashboard: Dashboard, inout _ g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
     }
 }
 
@@ -126,7 +145,7 @@ class EventGreen:Event{
     override func shouldThrowNotification() -> Bool {
         return false;
     }
-    override func setMs(inout g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
+    override func setMs(dashboard: Dashboard, inout _ g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
         g += delta
     }
 }
@@ -135,7 +154,7 @@ class EventOrange:Event{
     override func getNotifcationBodyText() -> String {
         return "huhu - are you alive? but don't look at the Watch while driving"
     }
-    override func setMs(inout g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
+    override func setMs(dashboard: Dashboard, inout _ g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
         o += delta
     }
 }
@@ -144,7 +163,7 @@ class EventRed:Event{
     override func getNotifcationBodyText() -> String {
         return "HEY !!! What's up? eyes 2 drive please"
     }
-    override func setMs(inout g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
+    override func setMs(dashboard: Dashboard, inout _ g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
         r += delta
     }
 }

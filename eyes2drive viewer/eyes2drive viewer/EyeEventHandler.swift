@@ -50,4 +50,16 @@ class EyeEventHandler : EyeEventHandlerProtocol {
         tripsRepo.stopTrip()
         
     }
+    func hasTrips()->Bool {
+        return tripsRepo.hasTrips()
+    }
+    func getCurrentTrip()->Trip {
+        return tripsRepo.getCurrentTrip()
+    }
+    func currentDashboard()->Dashboard {
+        return getCurrentTrip().generateDashboard()
+    }
+    func currentDashboardDetails()->Dashboard {
+        return getCurrentTrip().generateDashboardDetails()
+    }
 }
