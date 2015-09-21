@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="8092"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="eyes2drive_viewer_WatchKit_1_App" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="235" y="347"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="XkS-y5-khE"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="XkS-y5-khE" id="49B-RR-99y"/>
+                        <segue destination="gdX-wl-uQE" kind="relationship" relationship="dynamicNotificationInterface" id="fKh-qV-3T2"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="235" y="1001"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="KIl-fV-djm">
+            <objects>
+                <controller id="gdX-wl-uQE" customClass="NotificationController" customModule="eyes2drive_viewer_WatchKit_1_App" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="553" y="1001"/>
+        </scene>
+        <!--GlanceStatistic-->
+        <scene sceneID="xOd-dS-9oY">
+            <objects>
+                <glanceController identifier="GlanceStatistic" topTemplateType="body1Large" id="N3J-vr-604" customClass="GlanceController1" customModule="eyes2drive_viewer_WatchKit_1_Extension">
+                    <items>
+                        <label alignment="left" text="eyes2drive1" id="xD7-Ug-NRx"/>
+                        <label alignment="left" text="0%" id="kCJ-jN-VjB">
+                            <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <group alignment="left" layout="vertical" id="QB8-SE-4z3">
+                            <items>
+                                <label width="1" alignment="left" text="⌚️ 0s" id="dgm-eh-Jhb">
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                </label>
+                                <separator alignment="left" alpha="0.5" id="gBj-FC-vCJ"/>
+                                <label width="1" alignment="left" text="🍏 0%" id="Nuk-Bh-6a6">
+                                    <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                </label>
+                                <label width="1" alignment="left" text="🍊 0%" id="FZQ-jT-KcN">
+                                    <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                </label>
+                                <label width="1" height="17" alignment="left" text="🍎 0%" id="CyA-SY-Vtn">
+                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                </label>
+                                <separator alignment="left" alpha="0.5" id="VCr-EW-YnG"/>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="lblGreenDurationInPercent" destination="Nuk-Bh-6a6" id="CP7-uZ-O0f"/>
+                        <outlet property="lblOrangeDurationInPercent" destination="FZQ-jT-KcN" id="M49-U2-GjB"/>
+                        <outlet property="lblRedDurationInPercent" destination="CyA-SY-Vtn" id="T0o-sa-DX4"/>
+                        <outlet property="lblScoreInPercent" destination="kCJ-jN-VjB" id="90e-gN-dAY"/>
+                        <outlet property="lblTripDuration" destination="dgm-eh-Jhb" id="2ZM-9H-USG"/>
+                    </connections>
+                </glanceController>
+            </objects>
+            <point key="canvasLocation" x="527" y="538"/>
+        </scene>
+    </scenes>
+</document>

@@ -67,7 +67,7 @@
             <objects>
                 <glanceController identifier="GlanceStatistic" topTemplateType="body1Large" id="wd4-6C-ra0" customClass="GlanceController" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
-                        <label alignment="left" text="eyes2drive" id="Om2-ua-lDW"/>
+                        <label alignment="left" text="eyes2drive2" id="Om2-ua-lDW"/>
                         <label alignment="left" text="0%" id="SzL-BW-uUe">
                             <color key="textColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </label>

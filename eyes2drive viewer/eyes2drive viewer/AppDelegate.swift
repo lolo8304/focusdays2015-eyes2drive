@@ -23,7 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         initBTLE()
-        initWCSession()
+        if #available(iOS 9.0, *) {
+            initWCSession2()
+        } else {
+            initWCSession1()
+        }
         return true
     }
 
@@ -78,6 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     // watchKit Version 2
     // WCSessionDelegate
 
+    @available(iOS 9.0, *)
     func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
         NSLog("WC session: message received")
 
@@ -88,15 +93,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             NSLog("WC session: reply #graphValues")
         }
     }
+    
+    @available(iOS 9.0, *)
     func sessionWatchStateDidChange(session: WCSession) {
         print(__FUNCTION__)
         print(session)
         print("reachable:\(session.reachable)")
     }
     
-    //Aus dem Delegate der WatchKit-App: antwortet auf einen Request von der WatchKit App
-    //siehe GlanceController willActivate
-    // watchKit Version 1
     func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?,
         reply: (([NSObject : AnyObject]?) -> Void)) {
             if ((userInfo?["glanceValues"]) != nil) {
@@ -114,12 +118,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         let chan32: Int32 = Int32(channelIndex)
         TransferService.setValue(chan32);
     }
-    func initWCSession() {
+    @available(iOS 9.0, *)
+    func initWCSession2() {
         if (WCSession.isSupported()) {
             let session = WCSession.defaultSession()
             session.delegate = self;
             session.activateSession()
         }
+    }
+    func initWCSession1() {
     }
 }
 

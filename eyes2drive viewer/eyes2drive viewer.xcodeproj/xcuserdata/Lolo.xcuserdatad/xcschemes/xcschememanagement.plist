@@ -4,18 +4,43 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Glance - eyes2drive viewer WatchKit 1 App.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>Notification - eyes2drive viewer WatchKit 1 App.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 		<key>Notification - eyes2drive viewer WatchKit App.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
+		<key>eyes2drive viewer WatchKit 1 App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 		<key>eyes2drive viewer WatchKit App Glance.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
 		<key>eyes2drive viewer WatchKit App.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
@@ -27,6 +52,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>E10B11F41BB0427E00D8D6F0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E124CFED1BAD496F00A6592D</key>
 		<dict>
 			<key>primary</key>
