@@ -34,6 +34,16 @@ class Trips {
     
 }
 
+/*
+
+list of events
+    time    event
+      0s    color, timestamp, duration = 0
+    1.5s    color, timestamp, duration = 1.5s
+    4.5s    color, timestamp, duration = 3s
+    open    color, timestamp, duration = -1 (means calculated until now or endtrip)
+*/
+
 class Trip {
     var events = [Event]()
     let start: NSDate = NSDate()
@@ -41,14 +51,26 @@ class Trip {
     var stopped = false
     
     init(){
-        events.append(EventGreen())
+        self.addEvent(EventGreen())
     }
     func stopTrip(){
         end = NSDate()
         stopped = true
+        self.lastEvent().endNow()
+    }
+    func lastEvent()->Event {
+        return self.events[self.events.count-1];
+    }
+    func firstEvent()->Event {
+        return self.events[0];
     }
     func addEvent(event:Event) {
-        self.events.append(event)
+        event.trip = self
+        if (self.events.count > 0) {
+            self.events.append(self.lastEvent().endWithEvent(event))
+        } else {
+            self.events.append(event)
+        }
     }
     func generateDashboard()->Dashboard{
         return Dashboard(self)
@@ -65,6 +87,14 @@ class Trip {
         }
         return timeInS
     }
+    
+    /* calculate the color total time with the help of a dashboard */
+    func getDeltaTimeInMs(dashboard: Dashboard, inout _ g:Double, inout _ o:Double, inout _ r:Double) {
+        for currentEvent : Event in self.events {
+            currentEvent.setMs(dashboard, &g, &o, &r)
+        }
+    }
+
     func getEndTrip()->NSDate {
         if (self.stopped) {
             return self.end
@@ -75,8 +105,16 @@ class Trip {
 }
 
 class DashboardDetails: Dashboard {
+    var eventData : Array<[String : AnyObject]> = Array<[String : AnyObject]>()
     override init(_ trip:Trip){
         super.init(trip)
+    }
+    override func setMs(event: Event, inout _ g:Double, inout _ o:Double, inout _ r:Double){
+        super.setMs(event, &g, &o, &r)
+        self.eventData.append(event.json())
+    }
+    override func json()->Array<[String : AnyObject]> {
+        return self.eventData
     }
 
 }
@@ -93,48 +131,69 @@ class Dashboard {
         var greenDurationInMs = 0.0
         var orangeDurationInMs = 0.0
         var redDurationInMs = 0.0
-        var deltaTotalMs = 0.0
-        var lastEvent:Event
-        var currentEvent:Event?
-        
-        currentEvent = trip.events[0] // Green Event is the first Event as Base
-        for i in 1..<trip.events.count {
-            lastEvent = trip.events[i-1]
-            currentEvent = trip.events[i]
-            let deltaDurationInMs = (currentEvent!.timestamp.timeIntervalSinceDate(lastEvent.timestamp)*1000)
-            self.setMs(lastEvent, &greenDurationInMs, &orangeDurationInMs, &redDurationInMs, deltaDurationInMs)
-        }
-        let deltaDurationInMs = (trip.getEndTrip().timeIntervalSinceDate(currentEvent!.timestamp)*1000)
-        self.setMs(currentEvent!, &greenDurationInMs, &orangeDurationInMs, &redDurationInMs, deltaDurationInMs)
-        
-        deltaTotalMs = greenDurationInMs + orangeDurationInMs + redDurationInMs
+        trip.getDeltaTimeInMs(self, &greenDurationInMs, &orangeDurationInMs, &redDurationInMs)
+        self.calculateScoring(trip, greenDurationInMs, orangeDurationInMs, redDurationInMs)
+        NSLog("total time in S = %d", self.totalS)
+    }
+    func calculateScoring (trip: Trip, _ greenDurationInMs:Double, _ orangeDurationInMs: Double, _ redDurationInMs:Double) {
+        let deltaTotalMs = greenDurationInMs + orangeDurationInMs + redDurationInMs
         if (deltaTotalMs > 0) {
-            greenDurationInPercent = Int(greenDurationInMs / deltaTotalMs * 100)
-            orangeDurationInPercent = Int(orangeDurationInMs / deltaTotalMs * 100)
-            redDurationInPercent = Int(redDurationInMs / deltaTotalMs * 100)
-            scoreInPercent = greenDurationInPercent + orangeDurationInPercent / 2 + redDurationInPercent / 4
-            //greenDurationInPercent=Int(greenDurationInMs)
-            //orangeDurationInPercent=Int(orangeDurationInMs)
-            //redDurationInPercent=Int(redDurationInMs)
+            self.greenDurationInPercent = Int(greenDurationInMs / deltaTotalMs * 100)
+            self.orangeDurationInPercent = Int(orangeDurationInMs / deltaTotalMs * 100)
+            self.redDurationInPercent = Int(redDurationInMs / deltaTotalMs * 100)
+            self.scoreInPercent = greenDurationInPercent + orangeDurationInPercent / 2 + redDurationInPercent / 4
         }
         self.totalS = trip.durationInS()
-        NSLog("total time in S = %s", self.totalS)
     }
-    
-    func setMs(event: Event, inout _ g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
-        event.setMs(self, &g, &o, &r, delta)
+
+    func setMs(event: Event, inout _ g:Double, inout _ o:Double, inout _ r:Double){
+        event.setMs(self, &g, &o, &r)
     }
+    func json()->Array<[String : AnyObject]> {
+        let score = NSNumber(integer: self.scoreInPercent)
+        let green = NSNumber(integer: self.greenDurationInPercent)
+        let orange = NSNumber(integer: self.orangeDurationInPercent)
+        let red = NSNumber(integer: self.redDurationInPercent)
+        let duration = NSNumber(double: self.totalS)
+        let json = ["score":score, "green":green, "orange":orange, "red":red, "duration":duration]
+        return Array<[String : AnyObject]>(arrayLiteral: json)
+    }
+
 }
 
 class Event {
     var timestamp = NSDate()
+    private var deltaInMs:Double = -1
+    weak var trip: Trip?
+    
     func getNotifcationBodyText()->String{
         return "This is a transparent message"
     }
     func shouldThrowNotification() -> Bool {
         return true;
     }
-    func setMs(dashboard: Dashboard, inout _ g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
+    func json()->[String : AnyObject] {
+        return
+            ["color": "none", "durationInMs":self.getDeltaTimeInMs()]
+    }
+    
+    /* calculate the delta time of the current event, based on the new one */
+    func endWithEvent(event:Event)->Event {
+        self.deltaInMs = event.timestamp.timeIntervalSinceDate(self.timestamp)*1000
+        return event
+    }
+    /* calculate the delta time of the current event, based on endTime of Trip */
+    func endNow() {
+        self.deltaInMs = (self.trip?.getEndTrip().timeIntervalSinceDate(self.timestamp))!*1000
+    }
+    func setMs(dashboard: Dashboard, inout _ g:Double, inout _ o:Double, inout _ r:Double){
+    }
+    func getDeltaTimeInMs()->Double {
+        if (self.deltaInMs == -1) {
+            return (self.trip?.getEndTrip().timeIntervalSinceDate(self.timestamp))!*1000
+        } else {
+            return self.deltaInMs
+        }
     }
 }
 
@@ -145,17 +204,26 @@ class EventGreen:Event{
     override func shouldThrowNotification() -> Bool {
         return false;
     }
-    override func setMs(dashboard: Dashboard, inout _ g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
-        g += delta
+    override func setMs(dashboard: Dashboard, inout _ g:Double, inout _ o:Double, inout _ r:Double) {
+        g += self.getDeltaTimeInMs()
     }
+    override func json()->[String : AnyObject] {
+        return
+            ["color": "green", "durationInMs":self.getDeltaTimeInMs()]
+    }
+
 }
 
 class EventOrange:Event{
     override func getNotifcationBodyText() -> String {
         return "huhu - are you alive? but don't look at the Watch while driving"
     }
-    override func setMs(dashboard: Dashboard, inout _ g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
-        o += delta
+    override func setMs(dashboard: Dashboard, inout _ g:Double, inout _ o:Double, inout _ r:Double){
+        o += self.getDeltaTimeInMs()
+    }
+    override func json()->[String : AnyObject] {
+        return
+            ["color": "orange", "durationInMs":self.getDeltaTimeInMs()]
     }
 }
 
@@ -163,7 +231,11 @@ class EventRed:Event{
     override func getNotifcationBodyText() -> String {
         return "HEY !!! What's up? eyes 2 drive please"
     }
-    override func setMs(dashboard: Dashboard, inout _ g:Double, inout _ o:Double, inout _ r:Double, _ delta:Double){
-        r += delta
+    override func setMs(dashboard: Dashboard, inout _ g:Double, inout _ o:Double, inout _ r:Double){
+        r += self.getDeltaTimeInMs()
+    }
+    override func json()->[String : AnyObject] {
+        return
+            ["color": "red", "durationInMs":self.getDeltaTimeInMs()]
     }
 }

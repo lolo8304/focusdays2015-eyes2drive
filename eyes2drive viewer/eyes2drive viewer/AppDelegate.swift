@@ -60,23 +60,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     }
     
     func getGlanceValues()->[String : AnyObject]{
-        var score = NSNumber(integer: 0)
-        var green = NSNumber(integer: 0)
-        var orange = NSNumber(integer: 0)
-        var red = NSNumber(integer: 0)
-        var duration = NSNumber(integer: 0)
-        
-        if (eyeHandler.tripsRepo.trips.count > 0) {
-            let trip = eyeHandler.tripsRepo.getCurrentTrip()
-            let dashboard = trip.generateDashboard()
-            
-            score = NSNumber(integer: dashboard.scoreInPercent)
-            green = NSNumber(integer: dashboard.greenDurationInPercent)
-            orange = NSNumber(integer: dashboard.orangeDurationInPercent)
-            red = NSNumber(integer: dashboard.redDurationInPercent)
-            duration = NSNumber(double: dashboard.totalS)
+        if (eyeHandler.hasTrips()) {
+            return Dashboard(eyeHandler.getCurrentTrip()).json()[0]
+        } else {
+            return ["score":0, "green":0, "orange":0, "red":0, "duration":0]
         }
-        return ["score":score, "green":green, "orange":orange, "red":red, "duration":duration]
+    }
+    func getGraphValues()->Array<[String : AnyObject]>{
+        if (eyeHandler.hasTrips()) {
+            return DashboardDetails(eyeHandler.getCurrentTrip()).json()
+        } else {
+            return Array<[String : AnyObject]>()
+        }
     }
 
     // watchKit Version 2
@@ -91,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             replyHandler(self.getGlanceValues())
         }  else if ((message["graphValues"]) != nil) {
             NSLog("WC session: reply #graphValues")
-            replyHandler(["reply" : "none"])
+            replyHandler(["reply" : self.getGraphValues()])
         }
     }
     
