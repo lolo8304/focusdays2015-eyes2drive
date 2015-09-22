@@ -129,7 +129,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     override func didAppear() {
         if self.updateStatisticsTimer == nil {
-            self.updateStatisticsTimer = NSTimer.scheduledTimerWithTimeInterval(0.3,
+            self.updateStatisticsTimer = NSTimer.scheduledTimerWithTimeInterval(2.0,
                 target: self,
                 selector: "showGraph",
                 userInfo: nil,
