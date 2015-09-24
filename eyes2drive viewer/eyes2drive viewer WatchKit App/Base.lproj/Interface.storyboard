@@ -10,7 +10,8 @@
             <objects>
                 <controller title="eyes2drive" id="AgC-eL-Hgc" userLabel="eyes" customClass="InterfaceController" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
-                        <imageView width="1" height="1" alignment="left" image="logo-230x230a" id="Hma-eb-iEi"/>
+                        <imageView width="1" height="103" alignment="left" contentMode="scaleAspectFit" id="Hma-eb-iEi"/>
+                        <button width="1" alignment="left" title="Refresh" id="ddg-2u-gGm"/>
                     </items>
                     <connections>
                         <outlet property="graph" destination="Hma-eb-iEi" id="37u-8e-Mua"/>
@@ -18,7 +19,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="-125" y="194"/>
+            <point key="canvasLocation" x="-125" y="190"/>
         </scene>
         <!--eyes2drive-->
         <scene sceneID="AQu-9l-GMm">
