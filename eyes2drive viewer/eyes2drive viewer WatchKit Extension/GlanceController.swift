@@ -12,14 +12,16 @@ import WatchConnectivity
 
 class GlanceController: WKInterfaceController, WCSessionDelegate {
     
-    @IBOutlet weak var lblScoreInPercent: WKInterfaceLabel!
-    @IBOutlet var imageScoreInPercent: WKInterfaceImage!
-    @IBOutlet weak var lblGreenDurationInPercent: WKInterfaceLabel!
-    @IBOutlet weak var lblOrangeDurationInPercent: WKInterfaceLabel!
-    @IBOutlet weak var lblRedDurationInPercent: WKInterfaceLabel!
+    @IBOutlet var groupScoreInPercent: WKInterfaceGroup?
     
-    @IBOutlet weak var lblTripDuration: WKInterfaceLabel!
-    @IBOutlet weak var lblTripState: WKInterfaceLabel!
+    @IBOutlet weak var lblScoreInPercent: WKInterfaceLabel?
+    @IBOutlet var imageScoreInPercent: WKInterfaceImage?
+    @IBOutlet weak var lblGreenDurationInPercent: WKInterfaceLabel?
+    @IBOutlet weak var lblOrangeDurationInPercent: WKInterfaceLabel?
+    @IBOutlet weak var lblRedDurationInPercent: WKInterfaceLabel?
+    
+    @IBOutlet weak var lblTripDuration: WKInterfaceLabel?
+    @IBOutlet weak var lblTripState: WKInterfaceLabel?
     
     //interval timer
     var updateGlanceTimer: NSTimer?
@@ -37,9 +39,7 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
         }
         
         for (var i=0; i<=36; i++) {
-            let name = "progress-\(i)"
-            let image: UIImage? = UIImage(named: name)
-            images.append(image!)
+            images.append(UIImage(named: "progress-\(i)")!)
         }
     }
     
@@ -49,7 +49,8 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
         if (imageScore < 0) { imageScore = 0 }
         imageScore = 36 * imageScore / 100
         dispatch_async(dispatch_get_main_queue(), {
-            self.imageScoreInPercent.setImage(self.images[imageScore])
+            self.imageScoreInPercent?.setImage(self.images[imageScore])
+            self.groupScoreInPercent?.setBackgroundImage(self.images[imageScore])
         })
     }
     
@@ -100,7 +101,7 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
         if (!WCSession.defaultSession().reachable) {
             NSLog("WCsession Glance is NOT reachable")
             if (WCSession.defaultSession().iOSDeviceNeedsUnlockAfterRebootForReachability) {
-                self.lblTripDuration.setText("💤 wake up the phone!")
+                self.lblTripDuration?.setText("💤 wake up the phone!")
             }
             return false
         } else {
@@ -109,7 +110,6 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
     }
     
     func updateGlance() {
-        self.beginGlanceUpdates()
         if (!self.verifyIfDeviceIsRechableAndUnlocked()) { return }
         
         let applicationData = ["glanceValues":"yes"]
@@ -120,26 +120,25 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
                 
                 NSLog("update glance: data received")
                 if let score = reply["score"] as? NSNumber {
-                    self.lblScoreInPercent.setText("\(score.integerValue)%")
+                    self.lblScoreInPercent?.setText("\(score.integerValue)%")
                     self.setImageToScore(score.integerValue)
                 }
                 if let green = reply["green"] as? NSNumber {
-                    self.lblGreenDurationInPercent.setText("🍏 \(green.integerValue)%")
+                    self.lblGreenDurationInPercent?.setText("🍏 \(green.integerValue)%")
                 }
                 if let orange = reply["orange"] as? NSNumber {
-                    self.lblOrangeDurationInPercent.setText("🍊 \(orange.integerValue)%")
+                    self.lblOrangeDurationInPercent?.setText("🍊 \(orange.integerValue)%")
                 }
                 if let red = reply["red"] as? NSNumber {
-                    self.lblRedDurationInPercent.setText("🍎 \(red.integerValue)%")
+                    self.lblRedDurationInPercent?.setText("🍎 \(red.integerValue)%")
                 }
                 if let duration = reply["duration"] as? NSNumber {
                     let durationString = GlanceController.niceTimeString(duration.integerValue)
-                    self.lblTripDuration.setText("⌚️ \(durationString)")
-                    self.lblTripState.setText("running")
+                    self.lblTripDuration?.setText("⌚️ \(durationString)")
+                    self.lblTripState?.setText("running")
                 } else {
-                    self.lblTripState.setText("stopped")
+                    self.lblTripState?.setText("stopped")
                 }
-                self.endGlanceUpdates()
             },
             errorHandler: {(error ) -> Void in
                 NSLog("update glance: error \(error)")

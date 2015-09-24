@@ -8,17 +8,30 @@
         <!--eyes-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="eyes2drive" id="AgC-eL-Hgc" userLabel="eyes" customClass="InterfaceController" customModule="eyes2drive_viewer_WatchKit_Extension">
+                <controller title="eyes2drive" id="AgC-eL-Hgc" userLabel="eyes" customClass="GlanceController" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
-                        <group width="1" height="131" alignment="left" backgroundImage="progress-0" contentMode="scaleAspectFit" id="8j3-Xu-iLW">
+                        <group width="1" height="100" alignment="left" backgroundImage="progress-0" contentMode="scaleAspectFit" id="8j3-Xu-iLW">
                             <items>
-                                <picker width="72" height="72" alignment="center" verticalAlignment="center" focusStyle="sequence" indicatorMode="shownWhileFocused" id="0HT-Bz-KId" userLabel="0%"/>
+                                <label alignment="center" verticalAlignment="center" text="0%" textAlignment="center" id="q59-wo-JAj">
+                                    <color key="textColor" red="0.29803921570000003" green="0.72941176470000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                </label>
                             </items>
                         </group>
+                        <group width="1" alignment="left" id="ucO-Ge-u6l">
+                            <items>
+                                <label width="1" alignment="left" text="stopped" textAlignment="center" id="6bK-Fj-Naw">
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                </label>
+                            </items>
+                        </group>
+                        <label width="1" alignment="left" text="⌚️ 0s" textAlignment="center" id="RRD-HG-ygh"/>
                     </items>
                     <connections>
-                        <outlet property="imageScoreGroup" destination="8j3-Xu-iLW" id="tp5-Nv-99N"/>
-                        <outlet property="scorePicker" destination="0HT-Bz-KId" id="8cO-vF-ApS"/>
+                        <outlet property="groupScoreInPercent" destination="8j3-Xu-iLW" id="Oyi-rf-EBq"/>
+                        <outlet property="lblScoreInPercent" destination="q59-wo-JAj" id="6SP-em-r9z"/>
+                        <outlet property="lblTripDuration" destination="RRD-HG-ygh" id="BH7-5h-ZHP"/>
+                        <outlet property="lblTripState" destination="6bK-Fj-Naw" id="Iri-Sc-IMB"/>
                         <segue destination="aDC-7c-TUn" kind="relationship" relationship="nextPage" id="frG-x0-YLD"/>
                     </connections>
                 </controller>
@@ -28,7 +41,7 @@
         <!--eyes2drive-->
         <scene sceneID="AQu-9l-GMm">
             <objects>
-                <controller title="eyes2drive" id="aDC-7c-TUn" customClass="Interface2Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
+                <controller title="eyes2drive" id="aDC-7c-TUn">
                     <items>
                         <imageView width="1" alignment="left" image="team1a" id="OQY-Kg-kyl"/>
                         <label width="1" alignment="left" text="Daniel + Michael" textAlignment="center" id="lVO-BY-tbn"/>
@@ -43,7 +56,7 @@
         <!--eyes2drive-->
         <scene sceneID="r3r-nk-BLD">
             <objects>
-                <controller title="eyes2drive" id="y6U-8O-GYf" customClass="Interface3Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
+                <controller title="eyes2drive" id="y6U-8O-GYf">
                     <items>
                         <imageView width="1" alignment="left" image="team2a" id="ghB-yl-GOR"/>
                         <label width="1" alignment="left" text="Rémy + Bernhard" textAlignment="center" id="IqA-Mj-PSR"/>
@@ -58,7 +71,7 @@
         <!--eyes2drive-->
         <scene sceneID="jek-c0-u94">
             <objects>
-                <controller title="eyes2drive" id="VsJ-aT-WFi" customClass="Interface3Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
+                <controller title="eyes2drive" id="VsJ-aT-WFi">
                     <items>
                         <imageView width="1" alignment="left" image="team3a" id="3Wu-YP-u0O"/>
                         <label width="1" alignment="left" text="Anton + Lolo" textAlignment="center" id="wIb-vk-3JL"/>

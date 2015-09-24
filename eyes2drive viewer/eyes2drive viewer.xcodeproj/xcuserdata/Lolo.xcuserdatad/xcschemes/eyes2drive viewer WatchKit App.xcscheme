@@ -82,7 +82,7 @@
       notificationPayloadFile = "eyes2drive viewer WatchKit Extension/PushNotificationPayload.apns">
       <RemoteRunnable
          runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.springboard"
+         BundleIdentifier = "com.apple.carousel"
          RemotePath = "/eyes2drive viewer">
          <BuildableReference
             BuildableIdentifier = "primary"
