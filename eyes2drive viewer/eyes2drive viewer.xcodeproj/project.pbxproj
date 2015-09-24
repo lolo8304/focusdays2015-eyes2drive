@@ -23,6 +23,8 @@
 		E124CFD81BAD46CF00A6592D /* BTLECentral.m in Sources */ = {isa = PBXBuildFile; fileRef = E124CFD51BAD46CF00A6592D /* BTLECentral.m */; settings = {ASSET_TAGS = (); }; };
 		E124CFD91BAD46CF00A6592D /* TransferService.m in Sources */ = {isa = PBXBuildFile; fileRef = E124CFD71BAD46CF00A6592D /* TransferService.m */; settings = {ASSET_TAGS = (); }; };
 		E1342C101B5B14C1006AD354 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E1342C0F1B5B14C1006AD354 /* Podfile */; };
+		E136F7451BB472DE00105DDB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3491B5A1A3100DCC037 /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
+		E136F7461BB4754800105DDB /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3461B5A1A3100DCC037 /* Interface.storyboard */; settings = {ASSET_TAGS = (); }; };
 		E1C7A6601B5B2300002756B0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C7A65F1B5B2300002756B0 /* Security.framework */; };
 		E1C7A6661B5B3270002756B0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C7A6651B5B3270002756B0 /* SwiftyJSON.swift */; };
 		E1FDF30D1B5A19E700DCC037 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF30C1B5A19E700DCC037 /* AppDelegate.swift */; };
@@ -33,7 +35,6 @@
 		E1FDF3191B5A19E700DCC037 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3171B5A19E700DCC037 /* LaunchScreen.xib */; };
 		E1FDF3381B5A1A3100DCC037 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF3371B5A1A3100DCC037 /* InterfaceController.swift */; };
 		E1FDF33A1B5A1A3100DCC037 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF3391B5A1A3100DCC037 /* NotificationController.swift */; };
-		E1FDF3481B5A1A3100DCC037 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3461B5A1A3100DCC037 /* Interface.storyboard */; };
 		E1FDF34A1B5A1A3100DCC037 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3491B5A1A3100DCC037 /* Images.xcassets */; };
 		E1FDF3561B5A1CD000DCC037 /* OrangeNotificationPayload.apns in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3551B5A1CD000DCC037 /* OrangeNotificationPayload.apns */; };
 /* End PBXBuildFile section */
@@ -415,6 +416,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E136F7451BB472DE00105DDB /* Images.xcassets in Resources */,
 				E1FDF3561B5A1CD000DCC037 /* OrangeNotificationPayload.apns in Resources */,
 				E10B120A1BB0458E00D8D6F0 /* PushNotificationPayload.apns in Resources */,
 			);
@@ -424,7 +426,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1FDF3481B5A1A3100DCC037 /* Interface.storyboard in Resources */,
+				E136F7461BB4754800105DDB /* Interface.storyboard in Resources */,
 				E1FDF34A1B5A1A3100DCC037 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,14 +13,17 @@ import WatchConnectivity
 class GlanceController: WKInterfaceController, WCSessionDelegate {
     
     @IBOutlet weak var lblScoreInPercent: WKInterfaceLabel!
+    @IBOutlet var imageScoreInPercent: WKInterfaceImage!
     @IBOutlet weak var lblGreenDurationInPercent: WKInterfaceLabel!
     @IBOutlet weak var lblOrangeDurationInPercent: WKInterfaceLabel!
     @IBOutlet weak var lblRedDurationInPercent: WKInterfaceLabel!
     
     @IBOutlet weak var lblTripDuration: WKInterfaceLabel!
+    @IBOutlet weak var lblTripState: WKInterfaceLabel!
     
     //interval timer
     var updateGlanceTimer: NSTimer?
+    var images: [UIImage]! = []
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -32,6 +35,22 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
             session.activateSession()
             NSLog("WC session Glance is activated")
         }
+        
+        for (var i=0; i<=36; i++) {
+            let name = "progress-\(i)"
+            let image: UIImage? = UIImage(named: name)
+            images.append(image!)
+        }
+    }
+    
+    func setImageToScore(score: Int) {
+        var imageScore: Int = score
+        if (imageScore > 100) { imageScore = 100 }
+        if (imageScore < 0) { imageScore = 0 }
+        imageScore = 36 * imageScore / 100
+        dispatch_async(dispatch_get_main_queue(), {
+            self.imageScoreInPercent.setImage(self.images[imageScore])
+        })
     }
     
     static func niceTimeString(time: Int)->String {
@@ -102,6 +121,7 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
                 NSLog("update glance: data received")
                 if let score = reply["score"] as? NSNumber {
                     self.lblScoreInPercent.setText("\(score.integerValue)%")
+                    self.setImageToScore(score.integerValue)
                 }
                 if let green = reply["green"] as? NSNumber {
                     self.lblGreenDurationInPercent.setText("🍏 \(green.integerValue)%")
@@ -115,6 +135,9 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
                 if let duration = reply["duration"] as? NSNumber {
                     let durationString = GlanceController.niceTimeString(duration.integerValue)
                     self.lblTripDuration.setText("⌚️ \(durationString)")
+                    self.lblTripState.setText("running")
+                } else {
+                    self.lblTripState.setText("stopped")
                 }
                 self.endGlanceUpdates()
             },

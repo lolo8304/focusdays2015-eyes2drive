@@ -30,11 +30,15 @@ http://www.kristinathai.com/watchos-2-tutorial-using-sendmessage-for-instantaneo
 
 class InterfaceController: WKInterfaceController, WCSessionDelegate {
     @IBOutlet weak var graph: WKInterfaceImage!
+    @IBOutlet var imageScoreGroup: WKInterfaceGroup!
+    @IBOutlet var scorePicker: WKInterfacePicker!
 
     
     //interval timer
     var updateStatisticsTimer: NSTimer?
     var angle:Int = 0
+    var images: [UIImage]! = []
+
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -44,8 +48,34 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             session.activateSession()
             NSLog("WC session Graph is activated")
         }
-
+        var pickerItems: [WKPickerItem]! = []
+        for (var i=0; i<=100; i++) {
+            let imageScore:Int = 36 * i / 100
+            let name = "progress-\(imageScore)"
+            let image: UIImage? = UIImage(named: name)
+            images.append(image!)
+            
+            let pickerItem = WKPickerItem()
+            pickerItem.title = "\(i)%"
+            pickerItems.append(pickerItem)
+        }
+        let progressImages = UIImage.animatedImageWithImages(images, duration: 0.0)
+        imageScoreGroup.setBackgroundImage(progressImages)
+        scorePicker.setCoordinatedAnimations([imageScoreGroup])
+    
     }
+    
+    func setImageToScore(score: Int) {
+        var imageScore: Int = score
+        if (imageScore > 100) { imageScore = 100 }
+        if (imageScore < 0) { imageScore = 0 }
+//        imageScore = 36 * imageScore / 100
+        dispatch_async(dispatch_get_main_queue(), {
+            self.imageScoreGroup.setBackgroundImage(self.images[imageScore])
+            self.scorePicker.setSelectedItemIndex(imageScore)
+        })
+    }
+
     func nextPoint()->[String : CGFloat] {
         switch angle {
         case 0:  return ["x":0,"y":-50]
@@ -126,8 +156,10 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        self.setImageToScore(68)
     }
     override func didAppear() {
+        /*
         if self.updateStatisticsTimer == nil {
             self.updateStatisticsTimer = NSTimer.scheduledTimerWithTimeInterval(10.0,
                 target: self,
@@ -136,20 +168,25 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                 repeats: true)
             NSLog("install graph timer")
         }
+        */
     }
     override func willDisappear() {
+        /*
         self.updateStatisticsTimer?.invalidate()
         self.updateStatisticsTimer = nil
+        */
         NSLog("invalidate graph timer")
     }
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         // especially when home-button is pressed, there is no #willDisappear
+        /*
         if (self.updateStatisticsTimer != nil) {
             self.updateStatisticsTimer?.invalidate()
             self.updateStatisticsTimer = nil
             NSLog("invalidate graph timer")
         }
+        */
         super.didDeactivate()
     }
 

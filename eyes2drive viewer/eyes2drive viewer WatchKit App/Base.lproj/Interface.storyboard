@@ -10,11 +10,15 @@
             <objects>
                 <controller title="eyes2drive" id="AgC-eL-Hgc" userLabel="eyes" customClass="InterfaceController" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
-                        <imageView width="1" height="103" alignment="left" contentMode="scaleAspectFit" id="Hma-eb-iEi"/>
-                        <button width="1" alignment="left" title="Refresh" id="ddg-2u-gGm"/>
+                        <group width="1" height="131" alignment="left" backgroundImage="progress-0" contentMode="scaleAspectFit" id="8j3-Xu-iLW">
+                            <items>
+                                <picker width="72" height="72" alignment="center" verticalAlignment="center" focusStyle="sequence" indicatorMode="shownWhileFocused" id="0HT-Bz-KId" userLabel="0%"/>
+                            </items>
+                        </group>
                     </items>
                     <connections>
-                        <outlet property="graph" destination="Hma-eb-iEi" id="37u-8e-Mua"/>
+                        <outlet property="imageScoreGroup" destination="8j3-Xu-iLW" id="tp5-Nv-99N"/>
+                        <outlet property="scorePicker" destination="0HT-Bz-KId" id="8cO-vF-ApS"/>
                         <segue destination="aDC-7c-TUn" kind="relationship" relationship="nextPage" id="frG-x0-YLD"/>
                     </connections>
                 </controller>
@@ -66,40 +70,50 @@
         <!--GlanceStatistic-->
         <scene sceneID="Iuv-Yq-M7N">
             <objects>
-                <glanceController identifier="GlanceStatistic" topTemplateType="body1Large" id="wd4-6C-ra0" customClass="GlanceController" customModule="eyes2drive_viewer_WatchKit_Extension">
+                <glanceController identifier="GlanceStatistic" topTemplateType="groupLeftLarge" id="wd4-6C-ra0" customClass="GlanceController" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
-                        <label alignment="left" text="eyes2drive2" id="Om2-ua-lDW"/>
-                        <label alignment="left" text="0%" id="SzL-BW-uUe">
-                            <color key="textColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <group alignment="left" id="mgR-BJ-Viy">
+                            <items>
+                                <imageView width="1" height="1" alignment="left" image="progress-0" id="gaE-I3-Dz2"/>
+                            </items>
+                        </group>
+                        <label alignment="left" text="Score" id="Om2-ua-lDW">
+                            <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
+                        <label alignment="left" text="0%" id="SzL-BW-uUe">
+                            <color key="textColor" red="0.29803921568627451" green="0.72941176470588232" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label alignment="left" text="stopped" id="pMC-aS-Dxx"/>
                         <group alignment="left" layout="vertical" id="cIw-sT-lEJ">
                             <items>
-                                <label width="1" alignment="left" text="⌚️ 0s" id="JW4-Q9-JbK">
+                                <separator alignment="left" alpha="0.5" id="5ma-ay-E7T"/>
+                                <label width="1" alignment="left" text="⌚️ 0s" textAlignment="center" id="JW4-Q9-JbK">
                                     <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                 </label>
                                 <separator alignment="left" alpha="0.5" id="c7l-Av-Af6"/>
-                                <label width="1" alignment="left" text="🍏 0%" id="Kxe-kv-2Ls">
+                                <label width="1" alignment="left" text="🍏 0%" textAlignment="center" id="Kxe-kv-2Ls">
                                     <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                 </label>
-                                <label width="1" alignment="left" text="🍊 0%" id="sHe-Id-5Jk">
+                                <label width="1" alignment="left" text="🍊 0%" textAlignment="center" id="sHe-Id-5Jk">
                                     <color key="textColor" red="1" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                 </label>
-                                <label width="1" height="17" alignment="left" text="🍎 0%" id="NNV-De-bRY">
+                                <label width="1" height="17" alignment="left" text="🍎 0%" textAlignment="center" id="NNV-De-bRY">
                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                                 </label>
-                                <separator alignment="left" alpha="0.5" id="unG-KQ-TdO"/>
                             </items>
                         </group>
                     </items>
                     <connections>
+                        <outlet property="imageScoreInPercent" destination="gaE-I3-Dz2" id="cLu-Ko-xQZ"/>
                         <outlet property="lblGreenDurationInPercent" destination="Kxe-kv-2Ls" id="9Lz-X7-4dq"/>
                         <outlet property="lblOrangeDurationInPercent" destination="sHe-Id-5Jk" id="s1o-p3-18u"/>
                         <outlet property="lblRedDurationInPercent" destination="NNV-De-bRY" id="xuN-3P-yb9"/>
                         <outlet property="lblScoreInPercent" destination="SzL-BW-uUe" id="qRY-SP-NcJ"/>
                         <outlet property="lblTripDuration" destination="JW4-Q9-JbK" id="ZFd-Hm-NRJ"/>
+                        <outlet property="lblTripState" destination="pMC-aS-Dxx" id="64o-LN-sXn"/>
                     </connections>
                 </glanceController>
             </objects>
