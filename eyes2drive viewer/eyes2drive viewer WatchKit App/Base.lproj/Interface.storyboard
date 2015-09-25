@@ -12,9 +12,9 @@
                     <items>
                         <group width="1" height="100" alignment="left" backgroundImage="progress-0" contentMode="scaleAspectFit" id="8j3-Xu-iLW">
                             <items>
-                                <label alignment="center" verticalAlignment="center" text="0%" textAlignment="center" id="q59-wo-JAj">
+                                <label alignment="center" verticalAlignment="center" text="100%" textAlignment="center" id="q59-wo-JAj">
                                     <color key="textColor" red="0.29803921570000003" green="0.72941176470000002" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
-                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                    <fontDescription key="font" type="boldSystem" pointSize="31"/>
                                 </label>
                             </items>
                         </group>
@@ -32,11 +32,95 @@
                         <outlet property="lblScoreInPercent" destination="q59-wo-JAj" id="6SP-em-r9z"/>
                         <outlet property="lblTripDuration" destination="RRD-HG-ygh" id="BH7-5h-ZHP"/>
                         <outlet property="lblTripState" destination="6bK-Fj-Naw" id="Iri-Sc-IMB"/>
-                        <segue destination="aDC-7c-TUn" kind="relationship" relationship="nextPage" id="frG-x0-YLD"/>
+                        <segue destination="bFx-e7-fHJ" kind="relationship" relationship="nextPage" id="wnk-Cv-o3U"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="-125" y="190"/>
+            <point key="canvasLocation" x="-172" y="194"/>
+        </scene>
+        <!--Glance Controller-->
+        <scene sceneID="tPj-7A-05R">
+            <objects>
+                <controller hidesWhenLoading="NO" id="bFx-e7-fHJ" customClass="GlanceController" customModule="eyes2drive_viewer_WatchKit_Extension">
+                    <items>
+                        <group width="1" alignment="left" id="jYC-vL-2b2">
+                            <items>
+                                <imageView width="43" height="39" alignment="left" image="progress-0" contentMode="scaleAspectFit" id="aJr-ho-sEd"/>
+                                <label alignment="left" verticalAlignment="center" text="0%" textAlignment="left" id="d4e-cu-3VE">
+                                    <fontDescription key="font" type="system" pointSize="24"/>
+                                </label>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                        </group>
+                        <separator alignment="left" id="Ygj-pD-4P5"/>
+                        <label width="1" alignment="left" text="stopped" textAlignment="center" id="CoS-Eb-1HF"/>
+                        <label width="1" alignment="left" text="⌚️ 0s" textAlignment="center" id="oVC-Pn-Pq1"/>
+                        <separator alignment="left" id="EX6-9D-BvG"/>
+                        <group width="1" alignment="left" id="3QF-61-5Qp">
+                            <items>
+                                <label width="1" alignment="left" text="🍏 0%" textAlignment="center" id="4fk-EN-oLk">
+                                    <color key="textColor" red="0.23921568627450981" green="1" blue="0.019607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                </label>
+                            </items>
+                        </group>
+                        <label width="1" alignment="left" text="🍊 0%" textAlignment="center" id="v5R-kS-Iz4">
+                            <color key="textColor" red="0.96862745098039216" green="0.41960784313725491" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label width="1" alignment="left" text="🍎 0%" textAlignment="center" id="CFg-ZM-APb">
+                            <color key="textColor" red="0.96078431372549022" green="0.0" blue="0.023529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <separator alignment="left" id="WD6-xF-dtn"/>
+                    </items>
+                    <connections>
+                        <outlet property="imageScoreInPercent" destination="aJr-ho-sEd" id="NZr-C7-Zow"/>
+                        <outlet property="lblGreenDurationInPercent" destination="4fk-EN-oLk" id="yoN-ft-J1H"/>
+                        <outlet property="lblOrangeDurationInPercent" destination="v5R-kS-Iz4" id="b1g-jD-Tmd"/>
+                        <outlet property="lblRedDurationInPercent" destination="CFg-ZM-APb" id="6Tw-Ab-XZM"/>
+                        <outlet property="lblScoreInPercent" destination="d4e-cu-3VE" id="Ysi-uQ-CkB"/>
+                        <outlet property="lblTripDuration" destination="oVC-Pn-Pq1" id="Ciu-xd-RvR"/>
+                        <outlet property="lblTripState" destination="CoS-Eb-1HF" id="Edi-a3-ZeZ"/>
+                        <segue destination="tLQ-G8-pd5" kind="relationship" relationship="nextPage" id="y1J-cz-Uj0"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="35" y="194"/>
+        </scene>
+        <!--Interface2 Controller-->
+        <scene sceneID="3KE-pQ-IGM">
+            <objects>
+                <controller hidesWhenLoading="NO" id="tLQ-G8-pd5" customClass="Interface2Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
+                    <items>
+                        <label width="1" alignment="left" text="stopped" textAlignment="center" id="Buw-aF-ME9"/>
+                        <label width="1" alignment="left" text="⌚️ 0s" textAlignment="center" id="BIQ-zL-bHu"/>
+                        <button width="1" alignment="left" title="Refresh" id="LSX-Wn-bcb">
+                            <connections>
+                                <action selector="rehreshBtnTapped" destination="tLQ-G8-pd5" id="Edq-1K-IJw"/>
+                            </connections>
+                        </button>
+                        <table alignment="left" id="4pM-dI-cqW">
+                            <items>
+                                <tableRow identifier="Cell" selectable="NO" id="flk-nG-K76" customClass="RowController" customModule="eyes2drive_viewer_WatchKit_Extension">
+                                    <group key="rootItem" width="1" height="24.5" alignment="left" id="G9b-iC-gqX">
+                                        <items>
+                                            <label width="60" alignment="left" text="Color" id="Uqy-8b-1lO"/>
+                                            <label width="60" alignment="left" text="0s" textAlignment="right" id="Q40-Za-WAA"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="detailLabel" destination="Q40-Za-WAA" id="0Gz-3U-xzm"/>
+                                        <outlet property="textLabel" destination="Uqy-8b-1lO" id="zgl-Rb-JPm"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="table" destination="4pM-dI-cqW" id="no8-cV-ZKV"/>
+                        <segue destination="aDC-7c-TUn" kind="relationship" relationship="nextPage" id="pzq-rc-vvM"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="302" y="181"/>
         </scene>
         <!--eyes2drive-->
         <scene sceneID="AQu-9l-GMm">
@@ -51,7 +135,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="128" y="194"/>
+            <point key="canvasLocation" x="554" y="194"/>
         </scene>
         <!--eyes2drive-->
         <scene sceneID="r3r-nk-BLD">
@@ -66,7 +150,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="408" y="194"/>
+            <point key="canvasLocation" x="756" y="194"/>
         </scene>
         <!--eyes2drive-->
         <scene sceneID="jek-c0-u94">
@@ -78,7 +162,7 @@
                     </items>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="635" y="194"/>
+            <point key="canvasLocation" x="954" y="194"/>
         </scene>
         <!--GlanceStatistic-->
         <scene sceneID="Iuv-Yq-M7N">
@@ -130,7 +214,7 @@
                     </connections>
                 </glanceController>
             </objects>
-            <point key="canvasLocation" x="527" y="538"/>
+            <point key="canvasLocation" x="449" y="695"/>
         </scene>
         <!--Alert-Orange-->
         <scene sceneID="AEw-b0-oYE">
@@ -160,7 +244,7 @@
                     </connections>
                 </notificationController>
             </objects>
-            <point key="canvasLocation" x="218" y="509"/>
+            <point key="canvasLocation" x="254" y="695"/>
         </scene>
     </scenes>
 </document>

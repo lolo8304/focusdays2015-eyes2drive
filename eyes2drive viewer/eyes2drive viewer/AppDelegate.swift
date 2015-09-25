@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             replyHandler(self.getGlanceValues())
         }  else if ((message["graphValues"]) != nil) {
             NSLog("WC session: reply #graphValues")
-            replyHandler(["reply" : self.getGraphValues()])
+            replyHandler(["reply" : self.getGraphValues(), "summary" : self.getGlanceValues()])
         }
     }
     
