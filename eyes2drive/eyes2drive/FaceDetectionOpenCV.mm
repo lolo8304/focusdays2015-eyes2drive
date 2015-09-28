@@ -171,9 +171,9 @@ cv::CascadeClassifier mouth_cascade;
     
 }
 - (void)stopTrip {
-    self.started = false;
     [[self.trip state] push: FeatureAlertRed];
     [self.trip triggerChangedEvent];
+    self.started = false;
 }
 
 - (BOOL)isStarted {
