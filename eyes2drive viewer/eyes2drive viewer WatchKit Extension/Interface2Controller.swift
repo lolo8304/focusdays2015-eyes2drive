@@ -32,7 +32,7 @@ class Interface2Controller: WKInterfaceController, WCSessionDelegate {
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        if (WCSession.isSupported() && !WCSession.defaultSession().reachable) {
+        if (WCSession.isSupported()) {
             let session = WCSession.defaultSession()
             session.delegate = self
             session.activateSession()
@@ -84,6 +84,7 @@ class Interface2Controller: WKInterfaceController, WCSessionDelegate {
                 let tableData = reply["reply"] as! Array<[String : AnyObject]>
                 let summary = reply["summary"] as! [String : AnyObject]
                 self.showTable(tableData)
+                self.showSummary(summary)
             },
             errorHandler: {(error) -> Void in
                 NSLog("error while getting graph values \(error)")
