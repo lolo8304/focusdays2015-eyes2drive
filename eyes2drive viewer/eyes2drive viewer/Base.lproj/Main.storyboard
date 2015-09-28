@@ -80,8 +80,8 @@
                                     <rect key="frame" x="0.0" y="159" width="400" height="384"/>
                                 </variation>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6a-7N-PQQ">
-                                <rect key="frame" x="226" y="117" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delay 10s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6a-7N-PQQ">
+                                <rect key="frame" x="194" y="117" width="74" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -196,7 +196,9 @@
                     <tabBarItem key="tabBarItem" title="Status" image="second" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="delaySwitch" destination="BS5-FV-cD4" id="I3P-nx-HIJ"/>
+                        <outlet property="eventSegment" destination="Jsw-qI-0OT" id="elj-EF-kd2"/>
                         <outlet property="logUI" destination="cbv-IH-jrT" id="tOI-lP-PKC"/>
+                        <outlet property="startStopSegment" destination="Kj0-kn-czc" id="wor-dI-v8W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>

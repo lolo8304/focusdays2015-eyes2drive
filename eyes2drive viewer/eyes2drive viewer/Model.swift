@@ -32,6 +32,10 @@ class Trips {
         return trips.count > 0
     }
     
+    func isStarted()->Bool {
+        return hasTrips() && self.getCurrentTrip().isStarted()
+    }
+    
 }
 
 /*
@@ -57,6 +61,9 @@ class Trip {
         end = NSDate()
         stopped = true
         self.lastEvent().endNow()
+    }
+    func startTrip(){
+        stopped = false
     }
     func lastEvent()->Event {
         return self.events[self.events.count-1];
@@ -102,6 +109,10 @@ class Trip {
             return NSDate()
         }
     }
+    func isStarted()->Bool {
+        return !stopped
+    }
+
 }
 
 class DashboardDetails: Dashboard {
@@ -199,7 +210,7 @@ class Event {
 
 class EventGreen:Event{
     override func getNotifcationBodyText() -> String {
-        return "Need some weeds - if you see this there is a bug!"
+        return "Need some weeds - if you see this there is a bug or you see it in the debug-log :-)"
     }
     override func shouldThrowNotification() -> Bool {
         return false;

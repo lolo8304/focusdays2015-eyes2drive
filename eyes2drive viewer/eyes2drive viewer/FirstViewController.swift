@@ -32,8 +32,13 @@ class FirstViewController: UIViewController, ReceiverDelegate {
     }
     
     func sendNotification(text:String){
-        
         NSNotificationCenter.defaultCenter().postNotificationName("LogEvent", object: text)
+    }
+    func sendAlertNotification(text:String){
+        NSNotificationCenter.defaultCenter().postNotificationName("AlertEvent", object: text)
+    }
+    func sendStartStopNotification(text:String){
+        NSNotificationCenter.defaultCenter().postNotificationName("StartStopEvent", object: text)
     }
     
     
@@ -45,10 +50,14 @@ class FirstViewController: UIViewController, ReceiverDelegate {
                 case "0" :  event = EventGreen()
                 case "1" :  event = EventOrange()
                 case "2" :  event = EventRed()
-                default : event = EventRed()  //eigentlich Dark Red
-
+                default :
+                    event = EventRed()  //eigentlich Dark Red
+                    NSLog("event suppressed")
+                    return
+                
             }
             let logText = eyeHandler.addEvent(event, delay:false)
+            sendAlertNotification(dataStringArr[1])
             sendNotification(logText)
             NSLog(logText)
 
@@ -59,12 +68,14 @@ class FirstViewController: UIViewController, ReceiverDelegate {
                         logText = "StartTrip"
             case "1":  eyeHandler.endTrip()//eigentlich Pause
                         logText = "EndTrip / Pause"
+                        dataStringArr[1] = "2"
             case "2":  eyeHandler.endTrip()
                         logText = "EndTrip"
             default:
                 NSLog("logText default")
             }
-           sendNotification(logText)
+            sendStartStopNotification(dataStringArr[1])
+            sendNotification(logText)
             NSLog(logText)
         }
     }

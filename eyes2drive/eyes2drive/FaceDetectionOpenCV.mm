@@ -102,9 +102,13 @@ cv::CascadeClassifier mouth_cascade;
 
 
 - (void)sendEvent:(FeatureDetection)feature changedState:(State *)state {
-        NSString * stateEvent = [state toSendEventString];
+    NSString * stateEvent = [state toSendEventString];
+    if (self.started) {
         printf("send event now %s.\n", [stateEvent UTF8String]);
-    [self.eventsToSend addObject: stateEvent];
+        [self.eventsToSend addObject: stateEvent];
+    } else {
+        printf("send event suppressed becaused stopped now %s.\n", [stateEvent UTF8String]);
+    }
 }
 
 

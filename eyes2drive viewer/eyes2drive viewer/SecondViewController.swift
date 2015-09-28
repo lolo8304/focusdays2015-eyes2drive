@@ -12,6 +12,9 @@ class SecondViewController: UIViewController{
     
     var delay: Bool = false;
 
+    @IBOutlet weak var startStopSegment: UISegmentedControl!
+    @IBOutlet weak var eventSegment: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -21,12 +24,34 @@ class SecondViewController: UIViewController{
             selector: "onLogEvent:",
             name: "LogEvent",
             object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "onStartStopEvent:",
+            name: "StartStopEvent",
+            object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "onAlertEvent:",
+            name: "AlertEvent",
+            object: nil)
         
     }
     
     func onLogEvent(notification: NSNotification){
         let text = notification.object as! String
         addLogText(text)
+    }
+    func onStartStopEvent(notification: NSNotification){
+        let event = notification.object as! String
+        if (event == "0") { // stop
+            self.startStopSegment.selectedSegmentIndex = 0
+        } else { //start
+            self.startStopSegment.selectedSegmentIndex = 1
+        }
+    }
+    func onAlertEvent(notification: NSNotification){
+        let event = notification.object as! String
+        self.eventSegment.selectedSegmentIndex = Int(event)!
     }
 
     @IBAction func fireEvent(sender: AnyObject) {
