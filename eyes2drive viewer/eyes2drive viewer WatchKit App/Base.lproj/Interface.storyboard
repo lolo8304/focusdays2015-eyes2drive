@@ -59,7 +59,7 @@
                         <group width="1" alignment="left" id="3QF-61-5Qp">
                             <items>
                                 <label width="1" alignment="left" text="🍏 0%" textAlignment="center" id="4fk-EN-oLk">
-                                    <color key="textColor" red="0.23921568627450981" green="1" blue="0.019607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </label>
                             </items>
                         </group>
@@ -90,8 +90,7 @@
             <objects>
                 <controller hidesWhenLoading="NO" id="tLQ-G8-pd5" customClass="Interface2Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
-                        <label width="1" alignment="left" text="stopped" textAlignment="center" id="Buw-aF-ME9"/>
-                        <label width="1" alignment="left" text="⌚️ 0s" textAlignment="center" id="BIQ-zL-bHu"/>
+                        <label alignment="left" text="stopped ⌚️ 0s" textAlignment="center" id="Buw-aF-ME9"/>
                         <button width="1" alignment="left" title="Refresh" id="LSX-Wn-bcb">
                             <connections>
                                 <action selector="rehreshBtnTapped" destination="tLQ-G8-pd5" id="Edq-1K-IJw"/>
@@ -100,10 +99,14 @@
                         <table alignment="left" id="4pM-dI-cqW">
                             <items>
                                 <tableRow identifier="Cell" selectable="NO" id="flk-nG-K76" customClass="RowController" customModule="eyes2drive_viewer_WatchKit_Extension">
-                                    <group key="rootItem" width="1" height="24.5" alignment="left" id="G9b-iC-gqX">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="G9b-iC-gqX">
                                         <items>
-                                            <label width="60" alignment="left" text="Color" id="Uqy-8b-1lO"/>
-                                            <label width="60" alignment="left" text="0s" textAlignment="right" id="Q40-Za-WAA"/>
+                                            <label width="52" alignment="left" text="orange" id="Uqy-8b-1lO">
+                                                <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                            </label>
+                                            <label width="70" alignment="right" text="0s" textAlignment="right" id="Q40-Za-WAA">
+                                                <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                            </label>
                                         </items>
                                     </group>
                                     <connections>
@@ -115,6 +118,7 @@
                         </table>
                     </items>
                     <connections>
+                        <outlet property="lblTripState" destination="Buw-aF-ME9" id="9HY-nk-arH"/>
                         <outlet property="table" destination="4pM-dI-cqW" id="no8-cV-ZKV"/>
                         <segue destination="aDC-7c-TUn" kind="relationship" relationship="nextPage" id="pzq-rc-vvM"/>
                     </connections>
@@ -214,7 +218,7 @@
                     </connections>
                 </glanceController>
             </objects>
-            <point key="canvasLocation" x="449" y="695"/>
+            <point key="canvasLocation" x="500" y="565"/>
         </scene>
         <!--Alert-Orange-->
         <scene sceneID="AEw-b0-oYE">

@@ -50,11 +50,10 @@ class FirstViewController: UIViewController, ReceiverDelegate {
                 case "0" :  event = EventGreen()
                 case "1" :  event = EventOrange()
                 case "2" :  event = EventRed()
+                case "3" :  event = EventDarkRed()
                 default :
-                    event = EventRed()  //eigentlich Dark Red
-                    NSLog("event suppressed")
+                    event = EventGreen()  //eigentlich gibt es nichts anderes
                     return
-                
             }
             let logText = eyeHandler.addEvent(event, delay:false)
             sendAlertNotification(dataStringArr[1])

@@ -31,7 +31,7 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
         super.awakeWithContext(context)
         // Configure interface objects here.
         
-        if (WCSession.isSupported() && !WCSession.defaultSession().reachable) {
+        if (WCSession.isSupported()) {
             let session = WCSession.defaultSession()
             session.delegate = self
             session.activateSession()
@@ -54,7 +54,7 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
         })
     }
     
-    static func niceTimeString(time: Int)->String {
+    static func niceTimeString(time: Int, _ hhmmss:Bool = false)->String {
         let DAY_IN_S = 60*60*24
         let HOURS_IN_S = 60*60
         let MIN_IN_S = 60
@@ -71,8 +71,11 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
             
             t = t % MIN_IN_S
             let s = t
-            
-            return "\(days)d \(h)h \(min)m \(s)s"
+            if (hhmmss) {
+                return String(format: "%02d:%02d:%02d", h, min, s)
+            } else {
+                return "\(days)d \(h)h \(min)m \(s)s"
+            }
         }
         if (t >= 60*60) {
             let h = t / HOURS_IN_S
@@ -83,17 +86,28 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
             t = t % MIN_IN_S
             let s = t
             
-            return "\(h)h \(min)m \(s)s"
+            if (hhmmss) {
+                return String(format: "%02d:%02d:%02d", h, min, s)
+            } else {
+                return "\(h)h \(min)m \(s)s"
+            }
         }
         if (t > 60) {
             let min = t / MIN_IN_S
             
             t = t % MIN_IN_S
             let s = t
-            
-            return "\(min)m \(s)s"
+            if (hhmmss) {
+                return String(format: "%02d:%02d:%02d", 0, min, s)
+            } else {
+                return "\(min)m \(s)s"
+            }
         }
-        return "\(t)s"
+        if (hhmmss) {
+            return String(format: "%02d:%02d:%02d", 0, 0, t)
+        } else {
+            return "\(t)s"
+        }
     }
     
     
@@ -135,6 +149,9 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
                 if let duration = reply["duration"] as? NSNumber {
                     let durationString = GlanceController.niceTimeString(duration.integerValue)
                     self.lblTripDuration?.setText("⌚️ \(durationString)")
+                }
+                let isStarted = reply["isStarted"] as? Bool
+                if (isStarted != nil && isStarted!) {
                     self.lblTripState?.setText("running")
                 } else {
                     self.lblTripState?.setText("stopped")
@@ -155,7 +172,7 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
     }
     override func didAppear() {
         if updateGlanceTimer == nil {
-            updateGlanceTimer = NSTimer.scheduledTimerWithTimeInterval(2.0 ,
+            updateGlanceTimer = NSTimer.scheduledTimerWithTimeInterval(1.0 ,
                 target: self,
                 selector: "updateGlance",
                 userInfo: nil,

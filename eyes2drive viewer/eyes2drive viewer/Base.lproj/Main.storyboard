@@ -57,11 +57,12 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Jsw-qI-0OT">
-                                <rect key="frame" x="211" y="76" width="179" height="29"/>
+                                <rect key="frame" x="159" y="76" width="283" height="29"/>
                                 <segments>
                                     <segment title="Green"/>
                                     <segment title="Orange"/>
                                     <segment title="Red"/>
+                                    <segment title="Dark Red"/>
                                 </segments>
                                 <connections>
                                     <action selector="fireEvent:" destination="8rJ-Kc-sve" eventType="valueChanged" id="zvH-hF-SaY"/>
@@ -81,7 +82,7 @@
                                 </variation>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delay 10s" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6a-7N-PQQ">
-                                <rect key="frame" x="194" y="117" width="74" height="21"/>
+                                <rect key="frame" x="194" y="117" width="73.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

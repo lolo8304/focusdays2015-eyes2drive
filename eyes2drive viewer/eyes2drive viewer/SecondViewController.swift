@@ -63,6 +63,8 @@ class SecondViewController: UIViewController{
             logText = eyeHandler.addEvent(EventOrange(),delay: delay)
         case 2:
             logText = eyeHandler.addEvent(EventRed(),delay: delay)
+        case 3:
+            logText = eyeHandler.addEvent(EventDarkRed(),delay: delay)
         default:
             logText = eyeHandler.addEvent(EventGreen(),delay:delay)
         };

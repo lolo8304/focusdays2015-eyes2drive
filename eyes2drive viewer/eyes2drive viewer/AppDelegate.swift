@@ -87,6 +87,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         }  else if ((message["graphValues"]) != nil) {
             NSLog("WC session: reply #graphValues")
             replyHandler(["reply" : self.getGraphValues(), "summary" : self.getGlanceValues()])
+        }  else if ((message["stopAction"]) != nil) {
+            NSLog("WC session: execute #stopAction")
+            eyeHandler.endTrip()
+        }  else if ((message["startAction"]) != nil) {
+            NSLog("WC session: execute #startAction")
+            eyeHandler.startTrip()
         }
     }
     

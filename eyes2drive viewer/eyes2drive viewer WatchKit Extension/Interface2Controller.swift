@@ -24,10 +24,11 @@ class Interface2Controller: WKInterfaceController, WCSessionDelegate {
     @IBOutlet weak var table: WKInterfaceTable!
     
     @IBOutlet weak var lblScoreInPercent: WKInterfaceLabel?
-    @IBOutlet weak var lblTripDuration: WKInterfaceLabel?
     @IBOutlet weak var lblTripState: WKInterfaceLabel?
 
-    var numberOfRows: Int = 3
+    var numberOfRows: Int = 0
+    var updateGlanceTimer: NSTimer?
+
     
     
     override func awakeWithContext(context: AnyObject?) {
@@ -45,6 +46,7 @@ class Interface2Controller: WKInterfaceController, WCSessionDelegate {
         super.willActivate()
         
         table.setNumberOfRows(0, withRowType: "Cell")
+        self.showTable()
     }
 
     override func didDeactivate() {
@@ -54,24 +56,29 @@ class Interface2Controller: WKInterfaceController, WCSessionDelegate {
     
     func showTable(tableData: Array<[String : AnyObject]>) {
         table.setNumberOfRows(tableData.count, withRowType: "Cell")
-        for (var i=0; i<tableData.count; i++) {
-            let currentReply = tableData[i]
+        for (var i=0; i < tableData.count; i++) {
+            let currentReply = tableData[tableData.count-1-i]
             let row = table.rowControllerAtIndex(i) as! RowController
             let color = currentReply["color"] as! String
             let durationInMs = currentReply["durationInMs"] as! Double
-            row.showItem("\(color)", detail: GlanceController.niceTimeString(Int(durationInMs / 1000)))
+            let sinceStartInMs = currentReply["sinceStartInMs"] as! Double + durationInMs
+            row.showItem("\(color)", detail: GlanceController.niceTimeString(Int(sinceStartInMs / 1000), true))
         }
     }
     func showSummary(summary:[String : AnyObject]) {
         if let score = summary["score"] as? NSNumber {
             self.lblScoreInPercent?.setText("\(score.integerValue)%")
         }
-        if let duration = summary["duration"] as? NSNumber {
-            let durationString = GlanceController.niceTimeString(duration.integerValue)
-            self.lblTripDuration?.setText("⌚️ \(durationString)")
-            self.lblTripState?.setText("running")
+        let isStarted = summary["isStarted"] as? Bool
+        if (isStarted != nil && isStarted!) {
+            if let duration = summary["duration"] as? NSNumber {
+                let durationString = GlanceController.niceTimeString(duration.integerValue)
+                self.lblTripState?.setText("running ⌚️ \(durationString)")
+            } else {
+                self.lblTripState?.setText("running")
+            }
         } else {
-            self.lblTripState?.setText("stopped")
+            self.lblTripState?.setText("stopped ⌚️ 0s")
         }
     }
 
@@ -91,13 +98,16 @@ class Interface2Controller: WKInterfaceController, WCSessionDelegate {
             }
         )
     }
-
     
     // =========================================================================
     // MARK: - Actions
     
     @IBAction func rehreshBtnTapped() {
         self.showTable()
+    }
+    @IBAction func stopBtnTapped() {
+    }
+    @IBAction func startBtnTapped() {
     }
     
 }

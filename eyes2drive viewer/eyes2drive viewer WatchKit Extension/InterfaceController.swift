@@ -42,7 +42,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        if (WCSession.isSupported() && !WCSession.defaultSession().reachable) {
+        if (WCSession.isSupported()) {
             let session = WCSession.defaultSession()
             session.delegate = self
             session.activateSession()
