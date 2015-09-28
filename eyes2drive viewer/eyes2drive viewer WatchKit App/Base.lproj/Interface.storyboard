@@ -8,7 +8,7 @@
         <!--eyes-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="eyes2drive" id="AgC-eL-Hgc" userLabel="eyes" customClass="GlanceController" customModule="eyes2drive_viewer_WatchKit_Extension">
+                <controller title="eyes2drive" alwaysBounce="YES" id="AgC-eL-Hgc" userLabel="eyes" customClass="GlanceController" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
                         <group width="1" height="100" alignment="left" backgroundImage="progress-0" contentMode="scaleAspectFit" id="8j3-Xu-iLW">
                             <items>
@@ -38,10 +38,10 @@
             </objects>
             <point key="canvasLocation" x="-172" y="194"/>
         </scene>
-        <!--Glance Controller-->
+        <!--eyes2drive-->
         <scene sceneID="tPj-7A-05R">
             <objects>
-                <controller hidesWhenLoading="NO" id="bFx-e7-fHJ" customClass="GlanceController" customModule="eyes2drive_viewer_WatchKit_Extension">
+                <controller title="eyes2drive" alwaysBounce="YES" id="bFx-e7-fHJ" customClass="GlanceController" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
                         <group width="1" alignment="left" id="jYC-vL-2b2">
                             <items>
@@ -85,10 +85,10 @@
             </objects>
             <point key="canvasLocation" x="35" y="194"/>
         </scene>
-        <!--Interface2 Controller-->
+        <!--eyes2drive-->
         <scene sceneID="3KE-pQ-IGM">
             <objects>
-                <controller hidesWhenLoading="NO" id="tLQ-G8-pd5" customClass="Interface2Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
+                <controller title="eyes2drive" id="tLQ-G8-pd5" customClass="Interface2Controller" customModule="eyes2drive_viewer_WatchKit_Extension">
                     <items>
                         <label alignment="left" text="stopped ⌚️ 0s" textAlignment="center" id="Buw-aF-ME9"/>
                         <button width="1" alignment="left" title="Refresh" id="LSX-Wn-bcb">
@@ -126,47 +126,21 @@
             </objects>
             <point key="canvasLocation" x="302" y="181"/>
         </scene>
-        <!--eyes2drive-->
+        <!--Our team-->
         <scene sceneID="AQu-9l-GMm">
             <objects>
-                <controller title="eyes2drive" id="aDC-7c-TUn">
+                <controller title="Our team" id="aDC-7c-TUn">
                     <items>
                         <imageView width="1" alignment="left" image="team1a" id="OQY-Kg-kyl"/>
                         <label width="1" alignment="left" text="Daniel + Michael" textAlignment="center" id="lVO-BY-tbn"/>
-                    </items>
-                    <connections>
-                        <segue destination="y6U-8O-GYf" kind="relationship" relationship="nextPage" id="Jzv-HG-M7S"/>
-                    </connections>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="554" y="194"/>
-        </scene>
-        <!--eyes2drive-->
-        <scene sceneID="r3r-nk-BLD">
-            <objects>
-                <controller title="eyes2drive" id="y6U-8O-GYf">
-                    <items>
                         <imageView width="1" alignment="left" image="team2a" id="ghB-yl-GOR"/>
                         <label width="1" alignment="left" text="Rémy + Bernhard" textAlignment="center" id="IqA-Mj-PSR"/>
-                    </items>
-                    <connections>
-                        <segue destination="VsJ-aT-WFi" kind="relationship" relationship="nextPage" id="v7D-bM-RBK"/>
-                    </connections>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="756" y="194"/>
-        </scene>
-        <!--eyes2drive-->
-        <scene sceneID="jek-c0-u94">
-            <objects>
-                <controller title="eyes2drive" id="VsJ-aT-WFi">
-                    <items>
                         <imageView width="1" alignment="left" image="team3a" id="3Wu-YP-u0O"/>
                         <label width="1" alignment="left" text="Anton + Lolo" textAlignment="center" id="wIb-vk-3JL"/>
                     </items>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="954" y="194"/>
+            <point key="canvasLocation" x="554" y="194"/>
         </scene>
         <!--GlanceStatistic-->
         <scene sceneID="Iuv-Yq-M7N">
@@ -178,7 +152,7 @@
                                 <imageView width="1" height="1" alignment="left" image="progress-0" id="gaE-I3-Dz2"/>
                             </items>
                         </group>
-                        <label alignment="left" text="Score" id="Om2-ua-lDW">
+                        <label alignment="left" text="Glance" id="Om2-ua-lDW">
                             <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </label>
                         <label alignment="left" text="0%" id="SzL-BW-uUe">
@@ -218,7 +192,7 @@
                     </connections>
                 </glanceController>
             </objects>
-            <point key="canvasLocation" x="500" y="565"/>
+            <point key="canvasLocation" x="-172" y="426"/>
         </scene>
         <!--Alert-Orange-->
         <scene sceneID="AEw-b0-oYE">
