@@ -48,7 +48,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             session.activateSession()
             NSLog("WC session Graph is activated")
         }
-        for (var i=0; i<=36; i++) {
+        for (var i=0; i<=36; i = i + 1) {
             let name = "progress-\(i)"
             let image: UIImage? = UIImage(named: name)
             images.append(image!)

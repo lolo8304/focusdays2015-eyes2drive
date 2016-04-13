@@ -38,7 +38,7 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
             NSLog("WC session Glance is activated")
         }
         
-        for (var i=0; i<=36; i++) {
+        for (var i=0; i<=36; i = i + 1) {
             images.append(UIImage(named: "progress-\(i)")!)
         }
     }
@@ -174,7 +174,7 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
         if updateGlanceTimer == nil {
             updateGlanceTimer = NSTimer.scheduledTimerWithTimeInterval(1.0 ,
                 target: self,
-                selector: "updateGlance",
+                selector: #selector(GlanceController.updateGlance),
                 userInfo: nil,
                 repeats: true)
             NSLog("install Glance timer")
@@ -195,9 +195,7 @@ class GlanceController: WKInterfaceController, WCSessionDelegate {
     // MARK: - WCSessionDelegate
     
     func sessionWatchStateDidChange(session: WCSession) {
-        print(__FUNCTION__)
-        print(session)
-        print("reachable:\(session.reachable)")
+        print(#function, "reachable:\(session.reachable)")
     }
     
 }

@@ -5,12 +5,14 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "DE04DE2F7DEBE78586ED25CC854B6B7553F76B75" : 0,
-    "A699DCCA741E1A497B081D6879A7C7719E32958B" : 0
+    "A699DCCA741E1A497B081D6879A7C7719E32958B" : 0,
+    "CDB82E4677B93E82FD85ABC7E60AFA1089F2C404" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "FE16758A-1526-4EA2-A382-D237506C1167",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "DE04DE2F7DEBE78586ED25CC854B6B7553F76B75" : "opencv",
-    "A699DCCA741E1A497B081D6879A7C7719E32958B" : "focusdays2015-facedetection"
+    "A699DCCA741E1A497B081D6879A7C7719E32958B" : "focusdays2015-facedetection",
+    "CDB82E4677B93E82FD85ABC7E60AFA1089F2C404" : ""
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "facedetection",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -20,6 +22,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lolo8304\/focusdays2015-facedetection.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A699DCCA741E1A497B081D6879A7C7719E32958B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lolo8304\/schnee-horn.ch.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CDB82E4677B93E82FD85ABC7E60AFA1089F2C404"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Itseez\/opencv.git",

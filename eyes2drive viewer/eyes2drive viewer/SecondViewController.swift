@@ -21,17 +21,17 @@ class SecondViewController: UIViewController{
         
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "onLogEvent:",
+            selector: #selector(SecondViewController.onLogEvent(_:)),
             name: "LogEvent",
             object: nil)
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "onStartStopEvent:",
+            selector: #selector(SecondViewController.onStartStopEvent(_:)),
             name: "StartStopEvent",
             object: nil)
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "onAlertEvent:",
+            selector: #selector(SecondViewController.onAlertEvent(_:)),
             name: "AlertEvent",
             object: nil)
         

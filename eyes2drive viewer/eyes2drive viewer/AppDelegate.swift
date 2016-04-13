@@ -98,7 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     
     @available(iOS 9.0, *)
     func sessionWatchStateDidChange(session: WCSession) {
-        NSLog(__FUNCTION__)
+        NSLog(#function)
         NSLog("\(session)")
         NSLog("reachable:\(session.reachable)")
     }

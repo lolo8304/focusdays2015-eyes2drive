@@ -56,7 +56,7 @@ class Interface2Controller: WKInterfaceController, WCSessionDelegate {
     
     func showTable(tableData: Array<[String : AnyObject]>) {
         table.setNumberOfRows(tableData.count, withRowType: "Cell")
-        for (var i=0; i < tableData.count; i++) {
+        for (var i = 0; i < tableData.count; i = i+1) {
             let currentReply = tableData[tableData.count-1-i]
             let row = table.rowControllerAtIndex(i) as! RowController
             let color = currentReply["color"] as! String
