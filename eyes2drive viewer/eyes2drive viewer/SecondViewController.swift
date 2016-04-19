@@ -37,6 +37,13 @@ class SecondViewController: UIViewController{
         
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "LogEvent", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "StartStopEvent", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "AlertEvent", object: nil)
+    }
+    
     func onLogEvent(notification: NSNotification){
         let text = notification.object as! String
         addLogText(text)
@@ -98,6 +105,7 @@ class SecondViewController: UIViewController{
         };
         NSLog(logText); 
         addLogText(logText)
+        addLogText("-----------------------------------")
     }
     
     
