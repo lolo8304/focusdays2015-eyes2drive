@@ -176,6 +176,7 @@ class Dashboard {
 
 class Event {
     var timestamp = NSDate()
+    var logged = false;
     private var deltaInMs:Double = -1
     weak var trip: Trip?
     
@@ -214,6 +215,15 @@ class Event {
     }
     func getDeltaTimeSinceStartInMs()->Double {
         return (self.timestamp.timeIntervalSinceDate((self.trip?.start)!))*1000
+    }
+    func showedInLog() {
+        self.logged = true
+    }
+    func wasShownInLog()->Bool {
+        return self.logged
+    }
+    func shouldShownInLog()->Bool {
+        return !self.logged
     }
 }
 

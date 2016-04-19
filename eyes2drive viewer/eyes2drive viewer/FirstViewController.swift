@@ -18,8 +18,8 @@ class FirstViewController: UIViewController, ReceiverDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
-        self.central.assignDataDelegate(self)
-        self.central.startBluetooth()
+        //self.central.assignDataDelegate(self)
+        //self.central.startBluetooth()
     }
 
     override func didReceiveMemoryWarning() {

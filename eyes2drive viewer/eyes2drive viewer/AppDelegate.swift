@@ -15,14 +15,16 @@ http://www.kristinathai.com/watchos-2-tutorial-using-sendmessage-for-instantaneo
 */
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate, ReceiverDelegate {
 
     var window: UIWindow?
+    var central = BTLECentral()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         initBTLE()
+        
         if #available(iOS 9.0, *) {
             initWCSession2()
         } else {
@@ -117,6 +119,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         let channelIndex: Int = defaults.integerForKey("btleChannelIndex")
         let chan32: Int32 = Int32(channelIndex)
         TransferService.setValue(chan32);
+        
+        self.central.assignDataDelegate(self)
+        self.central.startBluetooth()
+
     }
 
     @available(iOS 9.0, *)
@@ -130,5 +136,82 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     }
     func initWCSession1() {
     }
+    
+    
+    // ReceiverDelegate methods
+    
+    func strengthRSSI(RSSI: Int32) {
+        // Signalstärke
+    }
+    
+    func sendNotification(text:String){
+        NSNotificationCenter.defaultCenter().postNotificationName("LogEvent", object: text)
+    }
+    func sendAlertNotification(text:String){
+        NSNotificationCenter.defaultCenter().postNotificationName("AlertEvent", object: text)
+    }
+    func sendStartStopNotification(text:String){
+        NSNotificationCenter.defaultCenter().postNotificationName("StartStopEvent", object: text)
+    }
+    
+    
+    func dataReceived(data: String) {
+        var dataStringArr=data.characters.split{$0=="-"}.map { String($0) }
+        var event: Event
+        if dataStringArr[0]=="1"{
+            switch dataStringArr[1]{
+            case "0" :  event = EventGreen()
+            case "1" :  event = EventOrange()
+            case "2" :  event = EventRed()
+            case "3" :  event = EventDarkRed()
+            default :
+                event = EventGreen()  //eigentlich gibt es nichts anderes
+                return
+            }
+            let logText = eyeHandler.addEvent(event, delay:false)
+            sendAlertNotification(dataStringArr[1])
+            sendNotification(logText)
+            NSLog(logText)
+            
+        }else if dataStringArr[0]=="42" {
+            var logText = ""
+            switch dataStringArr[1] {
+            case "0":  eyeHandler.startTrip()
+            logText = "StartTrip"
+            case "1":  eyeHandler.endTrip()//eigentlich Pause
+            logText = "EndTrip / Pause"
+            dataStringArr[1] = "2"
+            case "2":  eyeHandler.endTrip()
+            logText = "EndTrip"
+            default:
+                NSLog("logText default")
+            }
+            sendStartStopNotification(dataStringArr[1])
+            sendNotification(logText)
+            NSLog(logText)
+        }
+    }
+    
+    func isRSSIAllowed(RSSI: Int32) -> Bool {
+        
+        return !(RSSI > -15 || RSSI < -270)
+        /*        //if RSSI >- 15 {
+         //  return false
+         }
+         if RSSI <- 270 {
+         return false
+         }
+         return true;*/
+    }
+    
+    func isConnected() {
+        
+    }
+    
+    func isDisconnected() {
+        
+    }
+    
+    
 }
 

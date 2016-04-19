@@ -19,6 +19,7 @@ class SecondViewController: UIViewController{
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: #selector(SecondViewController.onLogEvent(_:)),
@@ -34,7 +35,6 @@ class SecondViewController: UIViewController{
             selector: #selector(SecondViewController.onAlertEvent(_:)),
             name: "AlertEvent",
             object: nil)
-        
     }
     
     override func viewWillDisappear(animated: Bool) {

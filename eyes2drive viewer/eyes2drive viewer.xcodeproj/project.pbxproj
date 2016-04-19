@@ -211,6 +211,7 @@
 				E124CFD51BAD46CF00A6592D /* BTLECentral.m */,
 				E124CFD61BAD46CF00A6592D /* TransferService.h */,
 				E124CFD71BAD46CF00A6592D /* TransferService.m */,
+				4C21D7591BA1AD3700CE31FB /* EyeEventHandler.swift */,
 				4CBF9EAC1BA1EA8200907F87 /* Model.swift */,
 				4C21D7571BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift */,
 				E1FDF30C1B5A19E700DCC037 /* AppDelegate.swift */,
@@ -220,7 +221,6 @@
 				E1FDF3151B5A19E700DCC037 /* Images.xcassets */,
 				E1FDF3171B5A19E700DCC037 /* LaunchScreen.xib */,
 				E1FDF30A1B5A19E700DCC037 /* Supporting Files */,
-				4C21D7591BA1AD3700CE31FB /* EyeEventHandler.swift */,
 			);
 			path = "eyes2drive viewer";
 			sourceTree = "<group>";

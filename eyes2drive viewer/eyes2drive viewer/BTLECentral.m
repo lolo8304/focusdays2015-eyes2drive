@@ -83,7 +83,7 @@
 {
     [self.centralManager scanForPeripheralsWithServices:@[[TransferService getTRANSFER_SERVICE_CBUUID]]
                                                 options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
-    NSLog(@"Scanning started");
+    //NSLog(@"Scanning started");
 }
 
 
@@ -129,11 +129,11 @@
  */
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
-    NSLog(@"Peripheral Connected");
+    //NSLog(@"Peripheral Connected");
     
     // Stop scanning
     [self.centralManager stopScan];
-    NSLog(@"Scanning stopped");
+    //NSLog(@"Scanning stopped");
     
     // Clear the data that we may already have
     [self.data setLength:0];
@@ -244,13 +244,13 @@
     
     // Notification has started
     if (characteristic.isNotifying) {
-        NSLog(@"Notification began on %@", characteristic);
+        //NSLog(@"Notification began on %@", characteristic);
     }
     
     // Notification has stopped
     else {
         // so disconnect from the peripheral
-        NSLog(@"Notification stopped on %@.  Disconnecting", characteristic);
+        //NSLog(@"Notification stopped on %@.  Disconnecting", characteristic);
         [self.centralManager cancelPeripheralConnection:peripheral];
     }
 }
@@ -260,7 +260,7 @@
  */
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
-    NSLog(@"Peripheral Disconnected");
+    //NSLog(@"Peripheral Disconnected");
     self.discoveredPeripheral = nil;
     [self.dataDelegate isDisconnected];
     
