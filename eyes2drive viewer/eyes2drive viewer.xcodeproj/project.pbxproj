@@ -30,8 +30,8 @@
 		E1C7A6601B5B2300002756B0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C7A65F1B5B2300002756B0 /* Security.framework */; };
 		E1C7A6661B5B3270002756B0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C7A6651B5B3270002756B0 /* SwiftyJSON.swift */; };
 		E1FDF30D1B5A19E700DCC037 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF30C1B5A19E700DCC037 /* AppDelegate.swift */; };
-		E1FDF30F1B5A19E700DCC037 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF30E1B5A19E700DCC037 /* FirstViewController.swift */; };
-		E1FDF3111B5A19E700DCC037 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF3101B5A19E700DCC037 /* SecondViewController.swift */; };
+		E1FDF30F1B5A19E700DCC037 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF30E1B5A19E700DCC037 /* StatisticsViewController.swift */; };
+		E1FDF3111B5A19E700DCC037 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FDF3101B5A19E700DCC037 /* LogViewController.swift */; };
 		E1FDF3141B5A19E700DCC037 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3121B5A19E700DCC037 /* Main.storyboard */; };
 		E1FDF3161B5A19E700DCC037 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3151B5A19E700DCC037 /* Images.xcassets */; };
 		E1FDF3191B5A19E700DCC037 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1FDF3171B5A19E700DCC037 /* LaunchScreen.xib */; };
@@ -117,8 +117,8 @@
 		E1FDF3071B5A19E700DCC037 /* eyes2drive viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eyes2drive viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1FDF30B1B5A19E700DCC037 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1FDF30C1B5A19E700DCC037 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E1FDF30E1B5A19E700DCC037 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		E1FDF3101B5A19E700DCC037 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		E1FDF30E1B5A19E700DCC037 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		E1FDF3101B5A19E700DCC037 /* LogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
 		E1FDF3131B5A19E700DCC037 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E1FDF3151B5A19E700DCC037 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E1FDF3181B5A19E700DCC037 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -215,8 +215,8 @@
 				4CBF9EAC1BA1EA8200907F87 /* Model.swift */,
 				4C21D7571BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift */,
 				E1FDF30C1B5A19E700DCC037 /* AppDelegate.swift */,
-				E1FDF30E1B5A19E700DCC037 /* FirstViewController.swift */,
-				E1FDF3101B5A19E700DCC037 /* SecondViewController.swift */,
+				E1FDF30E1B5A19E700DCC037 /* StatisticsViewController.swift */,
+				E1FDF3101B5A19E700DCC037 /* LogViewController.swift */,
 				E1FDF3121B5A19E700DCC037 /* Main.storyboard */,
 				E1FDF3151B5A19E700DCC037 /* Images.xcassets */,
 				E1FDF3171B5A19E700DCC037 /* LaunchScreen.xib */,
@@ -493,11 +493,11 @@
 			files = (
 				E124CFD81BAD46CF00A6592D /* BTLECentral.m in Sources */,
 				4CBF9EAD1BA1EA8200907F87 /* Model.swift in Sources */,
-				E1FDF3111B5A19E700DCC037 /* SecondViewController.swift in Sources */,
+				E1FDF3111B5A19E700DCC037 /* LogViewController.swift in Sources */,
 				4C21D7581BA1A7C800CE31FB /* EyeEventHandlerProtocol.swift in Sources */,
 				4C21D75A1BA1AD3700CE31FB /* EyeEventHandler.swift in Sources */,
 				E1FDF30D1B5A19E700DCC037 /* AppDelegate.swift in Sources */,
-				E1FDF30F1B5A19E700DCC037 /* FirstViewController.swift in Sources */,
+				E1FDF30F1B5A19E700DCC037 /* StatisticsViewController.swift in Sources */,
 				E124CFD91BAD46CF00A6592D /* TransferService.m in Sources */,
 				E1C7A6661B5B3270002756B0 /* SwiftyJSON.swift in Sources */,
 			);

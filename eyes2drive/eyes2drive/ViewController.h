@@ -13,9 +13,9 @@
 
 #import <opencv2/videoio/cap_ios.h>
 #include <opencv2/objdetect/objdetect.hpp>
+#import <DropboxSDK/DropboxSDK.h>
 
-
-@interface ViewController : UIViewController<MKMapViewDelegate,  CLLocationManagerDelegate>
+@interface ViewController : UIViewController<MKMapViewDelegate,  CLLocationManagerDelegate, DBRestClientDelegate>
 
 @property (weak, nonatomic) IBOutlet UISlider *minSizeSlider;
 @property (weak, nonatomic) IBOutlet UILabel *minSizeLabel;
@@ -45,7 +45,8 @@
 @property(nonatomic, strong) CLLocationManager *locationManager;
 
 - (void) zoomVideoCamera: (float) zoomLevel;
-
+- (void)uploadLeftEyeImage: (UIImage*) image;
+- (void)uploadRightEyeImage: (UIImage*) image;
 
 @end
 

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "TransferService.h"
+#import <DropboxSDK/DropboxSDK.h>
 
 @interface AppDelegate ()
 
@@ -22,6 +23,13 @@
         [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
     }
     [self initBTLE];
+    
+    DBSession *dbSession = [[DBSession alloc]
+                            initWithAppKey:@"4blqly8i4waofv7"
+                            appSecret:@"p2k2bl5lra59joq"
+                            root:kDBRootAppFolder]; // either kDBRootAppFolder or kDBRootDropbox
+    [DBSession setSharedSession:dbSession];
+    
     return YES;
 }
 
@@ -53,6 +61,19 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     int channelIndex = [[defaults objectForKey:@"btleChannelIndex"] intValue];
     [TransferService setValue:(channelIndex)];
+}
+
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url sourceApplication:(NSString *)source annotation:(id)annotation {
+    if ([[DBSession sharedSession] handleOpenURL:url]) {
+        if ([[DBSession sharedSession] isLinked]) {
+            NSLog(@"App linked successfully!");
+            // At this point you can start making API calls
+        }
+        return YES;
+    }
+    // Add whatever other url handling code your app requires here
+    return NO;
 }
 
 

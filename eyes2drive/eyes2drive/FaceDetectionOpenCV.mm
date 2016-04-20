@@ -46,6 +46,12 @@ cv::CascadeClassifier eyes_opened_cascade;
 cv::CascadeClassifier nose_cascade;
 cv::CascadeClassifier mouth_cascade;
 
+CFTimeInterval ORANGE_Threshold = 500;
+CFTimeInterval RED_Threshold = 1500;
+CFTimeInterval DARKRED_Threshold = 3000;
+
+
+
 - (id) initWith: (AVCaptureVideoOrientation)orientation controller: (ViewController *)controller {
     self = [self init];
     if (self) {
@@ -69,15 +75,15 @@ cv::CascadeClassifier mouth_cascade;
 
         self.faceDetected = [[FeatureDetectionTime alloc] initWith: FeatureFaceDetected ];
         self.faceDetected.delegate = self;
-        [self.faceDetected setThreshold: false orange:2000 red:3000 darkred: 5000];
+        [self.faceDetected setThreshold: false orange:ORANGE_Threshold red:RED_Threshold darkred: DARKRED_Threshold];
         
         self.eyesDetected = [[FeatureDetectionTime alloc] initWith: FeatureEyesDetected ];
         self.eyesDetected.delegate = self;
-        [self.eyesDetected setThreshold: false orange: 2000 red: 3000 darkred: 5000];
+        [self.eyesDetected setThreshold: false orange: ORANGE_Threshold red: RED_Threshold darkred: DARKRED_Threshold];
         
         self.twoEyesDetected = [[FeatureDetectionTime alloc] initWith: Feature2EyesDetected ];
         self.twoEyesDetected.delegate = self;
-        [self.twoEyesDetected setThreshold: false orange: 3000 red: 5000 darkred: 7000];
+        [self.twoEyesDetected setThreshold: false orange: ORANGE_Threshold red: RED_Threshold darkred: DARKRED_Threshold];
 
         
         
@@ -300,6 +306,7 @@ cv::CascadeClassifier mouth_cascade;
         UIImage* faceImageUI = [self MatToUIImage: faceImageMat ];
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self.controller.faceImageView setImage: faceImageUI];
+            
         });
 
     
@@ -401,11 +408,11 @@ cv::CascadeClassifier mouth_cascade;
                 
                 if (eyeRect.x < eyeRegionRect.width/2) {
                     dispatch_sync(dispatch_get_main_queue(), ^{
-                        [self.controller.leftEyeImageView setImage: previewEyeImageUI];
+                        [self.controller uploadLeftEyeImage: previewEyeImageUI];
                     });
                 } else {
                     dispatch_sync(dispatch_get_main_queue(), ^{
-                        [self.controller.rightEyeImageView setImage: previewEyeImageUI];
+                        [self.controller uploadRightEyeImage: previewEyeImageUI];
                     });
                 }
                 return;

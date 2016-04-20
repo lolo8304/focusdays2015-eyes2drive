@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController{
+class LogViewController: UIViewController{
     
     var delay: Bool = false;
 
@@ -22,17 +22,17 @@ class SecondViewController: UIViewController{
         
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: #selector(SecondViewController.onLogEvent(_:)),
+            selector: #selector(LogViewController.onLogEvent(_:)),
             name: "LogEvent",
             object: nil)
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: #selector(SecondViewController.onStartStopEvent(_:)),
+            selector: #selector(LogViewController.onStartStopEvent(_:)),
             name: "StartStopEvent",
             object: nil)
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: #selector(SecondViewController.onAlertEvent(_:)),
+            selector: #selector(LogViewController.onAlertEvent(_:)),
             name: "AlertEvent",
             object: nil)
     }

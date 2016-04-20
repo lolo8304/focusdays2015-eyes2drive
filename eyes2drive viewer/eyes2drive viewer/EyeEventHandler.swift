@@ -17,7 +17,7 @@ class EyeEventHandler : EyeEventHandlerProtocol {
     var tripsRepo:Trips = Trips()
     
     func addEvent(type: Event, delay: Bool)->String{
-        NSLog("Event geschickt: "); 
+        //NSLog("Event geschickt: ");
         tripsRepo.getCurrentTrip().addEvent(type)
 
         if (type.shouldThrowNotification()) {

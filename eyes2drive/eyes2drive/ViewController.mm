@@ -21,7 +21,7 @@
 #import "NWPusher.h"
 #import <MapKit/MapKit.h>
 #import <MapKit/MKAnnotation.h>
-
+#import <DropboxSDK/DropboxSDK.h>
 
 #import <opencv2/videoio/cap_ios.h>
 #include <opencv2/objdetect/objdetect.hpp>
@@ -43,6 +43,8 @@
 @property (nonatomic, strong) FaceDetectionOpenCV* faceDetection;
 
 @property (weak, nonatomic) IBOutlet UISwitch *showMapSwitch;
+
+@property (nonatomic, strong) DBRestClient *dropboxClient;
 
 - (IBAction)showMapChanged:(id)sender;
     @property (nonatomic, strong) NSThread *thread;
@@ -286,6 +288,13 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (![[DBSession sharedSession] isLinked]) {
+        [[DBSession sharedSession] linkFromController:self];
+    }
+    
+    self.dropboxClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+    self.dropboxClient.delegate = self;
+    
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     
     // Do any additional setup after loading the view, typically from a nib.
@@ -376,6 +385,13 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
         printf("current video orientation = %ui\n", (unsigned int)self.currentVideoOrientation);
     }
 
+}
+
+- (void)uploadLeftEyeImage: (UIImage*) image {
+    [self.leftEyeImageView setImage: image];
+}
+- (void)uploadRightEyeImage: (UIImage*) image {
+    [self.rightEyeImageView setImage: image];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
