@@ -32,7 +32,7 @@ NSString * const C_right_eyes_cascade_name = @"haarcascade_mcs_righteye";
 //NSString * const C_left_eyes_cascade_name = @"haarcascade_lefteye_2splits";
 NSString * const C_left_eyes_cascade_name = @"haarcascade_mcs_lefteye";
 
-NSString * const C_eyes_opened_cascade_name = @"haarcascade_eye_tree_eyeglasses";
+NSString * const C_eyes_opened_cascade_name = @"visionary_EYES_01_LBP_5k_7k_30x60";
 
 NSString * const C_nose_cascade_name = @"haarcascade_mcs_nose";
 
@@ -399,8 +399,10 @@ CFTimeInterval DARKRED_Threshold = 3000;
                 cv::Rect previewRect(
                     MAX(center.x - 20, 0),
                     MAX(center.y - 10, 0),
-                    40, 20);
+                    40 , 20);
                 cv::Mat previewEyeSourceMat = imageGrayMat( previewRect ).clone();
+            
+                //cv::Mat previewEyeDestMat = previewEyeSourceMat;
                 cv::Mat previewEyeDestMat = cv::Mat::zeros( previewEyeSourceMat.size(), CV_8UC1 );
                 [self threshold: previewEyeSourceMat dest: previewEyeDestMat];
                 
@@ -439,10 +441,13 @@ CFTimeInterval DARKRED_Threshold = 3000;
 - (void)threshold: (cv::Mat&) srcImage dest:(cv::Mat&) destImage {
     int option = [self haarClassifierOption];
     if (option == 1) {
-        [self adaptiveThreshold: srcImage dest: destImage];
+        [self adaptiveGaussThreshold: srcImage dest: destImage];
     } else if (option == 2) {
-        [self otsuThreshold: srcImage dest: destImage];
+        [self houghCirclesThreshold: srcImage dest: destImage];
+        //[self adaptiveMeanThreshold: srcImage dest: destImage];
+        //[self otsuThreshold: srcImage dest: destImage];
     } else if (option == 4) {
+        //[self adaptiveGaussTriangleThreshold: srcImage dest: destImage];
         [self cannyEdgeDetect: srcImage dest: destImage];
     } else if (option == 8) {
         [self findContour: srcImage dest: destImage];
@@ -452,7 +457,7 @@ CFTimeInterval DARKRED_Threshold = 3000;
 // http://docs.opencv.org/master/d7/d4d/tutorial_py_thresholding.html
 - (void)simpleThreshold: (cv::Mat&) srcImage dest:(cv::Mat&) destImage  {
     
-    cv::equalizeHist(srcImage, destImage);
+    cv::equalizeHist(srcImage, srcImage);
     // 2.55 because maxSize range is 0..100
     int threshold = [self getMaxSize].height * 2.55;
     int threshold_type = [self haarClassifierMinNeighbours];
@@ -461,8 +466,8 @@ CFTimeInterval DARKRED_Threshold = 3000;
 
 
 // http://docs.opencv.org/master/d7/d4d/tutorial_py_thresholding.html
-- (void)adaptiveThreshold: (cv::Mat&) srcImage dest:(cv::Mat&) destImage {
-    [self gaussianBlur:srcImage dest:destImage size:5];
+- (void)adaptiveGaussThreshold: (cv::Mat&) srcImage dest:(cv::Mat&) destImage {
+    [self gaussianBlur:srcImage dest:srcImage size:5];
     /* must be ODD number */
     int threshold = [self getMinSize].height;
     if (threshold % 2 == 0) { threshold++; }
@@ -472,11 +477,45 @@ CFTimeInterval DARKRED_Threshold = 3000;
                           cv::THRESH_BINARY, threshold, 8);
 }
 
+// http://docs.opencv.org/master/d7/d4d/tutorial_py_thresholding.html
+- (void)adaptiveMeanThreshold: (cv::Mat&) srcImage dest:(cv::Mat&) destImage {
+    [self gaussianBlur:srcImage dest:srcImage size:3];
+    /* must be ODD number */
+    int threshold = [self getMinSize].height;
+    if (threshold % 2 == 0) { threshold++; }
+    //    threshold = MIN(21, threshold);
+    //    threshold = 11;
+    cv::adaptiveThreshold(srcImage, destImage, 255, cv::ADAPTIVE_THRESH_MEAN_C,
+                          cv::THRESH_TRIANGLE, threshold, 8);
+}
+
+//http://docs.opencv.org/2.4/doc/tutorials/imgproc/imgtrans/hough_circle/hough_circle.html-
+
+- (void)houghCirclesThreshold: (cv::Mat&) srcImage dest:(cv::Mat&) destImage {
+    cv::GaussianBlur(srcImage, destImage, cv::Size(3, 3), 0, 0);
+    std::vector<cv::Vec3f> circles;
+    cv::HoughCircles(destImage, circles, CV_HOUGH_GRADIENT, 1, srcImage.rows/4, 30, 15);
+    if (circles.size() > 0) {
+        for( size_t j = 0; j < circles.size(); j++ ) {
+            cv::Vec3f circle = circles[j];
+            
+            cv::Point center(cvRound(circle[0]), cvRound(circle[1]));
+            int radius = cvRound(circle[2]);
+            // circle center
+            //cv::circle( destImage, center, 1, cv::Scalar(0,255,0), 1, 8, 0 );
+            // circle outline
+            cv::circle( destImage, center, radius, cv::Scalar(0,0,255), 1, 8, 0 );
+            
+        }
+    }
+}
+
+
 
 // http://docs.opencv.org/master/d7/d4d/tutorial_py_thresholding.html
 - (void)otsuThreshold: (cv::Mat&) srcImage dest:(cv::Mat&) destImage {
     //cv::equalizeHist(srcImage, destImage);
-    [self gaussianBlur:srcImage dest:destImage size:5];
+    [self gaussianBlur:srcImage dest:srcImage size:5];
     int threshold = [self getMaxSize].height * 2.55;
     cv::threshold( srcImage, destImage, threshold , 255, cv::THRESH_OTSU | cv::THRESH_BINARY );
 }
@@ -500,15 +539,16 @@ CFTimeInterval DARKRED_Threshold = 3000;
     // 2.55 because maxSize range is 0..100
     int lowThreshold = [self getMaxSize].height;
 
-    [self blur: srcImage dest: destImage size: 3];
-    cv::Canny( srcImage, destImage, lowThreshold , lowThreshold * ratio, kernel_size );
+    cv::Mat blurredImage = cv::Mat::zeros( srcImage.size(), CV_8UC1 );
+    [self blur: srcImage dest: blurredImage size: 3];
+    cv::Canny( blurredImage, destImage, lowThreshold , lowThreshold * ratio, kernel_size );
 }
 
 
 // http://docs.opencv.org/doc/tutorials/imgproc/imgtrans/canny_detector/canny_detector.html
 - (void)findContour: (cv::Mat&) srcImage dest:(cv::Mat&) destImage {
 
-    [self adaptiveThreshold: srcImage dest: srcImage];
+    [self adaptiveGaussThreshold: srcImage dest: srcImage];
 //    [self blur: srcImage dest: srcImage size: 3];
     
     std::vector<std::vector<cv::Point>> contours;

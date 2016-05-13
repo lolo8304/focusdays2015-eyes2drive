@@ -28,6 +28,7 @@
 		E13D21851B4CA320006D7EEB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E13D217B1B4CA320006D7EEB /* QuartzCore.framework */; };
 		E13D21861B4CA320006D7EEB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E13D217C1B4CA320006D7EEB /* UIKit.framework */; };
 		E13D21951B4CBF96006D7EEB /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E13D21941B4CBF96006D7EEB /* opencv2.framework */; };
+		E1728E051CE3D65F0067243E /* DeepBelief.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1728E041CE3D65F0067243E /* DeepBelief.framework */; };
 		E173BBAF1CC786A20071A216 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E173BBAE1CC786A20071A216 /* DropboxSDK.framework */; };
 		E1742C751BA2097E00AE470B /* BTLEPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = E1742C721BA2097E00AE470B /* BTLEPeripheral.m */; };
 		E1742C761BA2097E00AE470B /* TransferService.m in Sources */ = {isa = PBXBuildFile; fileRef = E1742C741BA2097E00AE470B /* TransferService.m */; };
@@ -67,6 +68,7 @@
 		E1CAB3DE1B4F463E006F42EA /* haarcascade_russian_plate_number.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1CAB3CD1B4F463E006F42EA /* haarcascade_russian_plate_number.xml */; };
 		E1CAB3DF1B4F463E006F42EA /* haarcascade_smile.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1CAB3CE1B4F463E006F42EA /* haarcascade_smile.xml */; };
 		E1CAB3E01B4F463E006F42EA /* haarcascade_upperbody.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1CAB3CF1B4F463E006F42EA /* haarcascade_upperbody.xml */; };
+		E1E732C91CE583280092C77D /* visionary_EYES_01_LBP_5k_7k_30x60.xml in Resources */ = {isa = PBXBuildFile; fileRef = E1E732C81CE583280092C77D /* visionary_EYES_01_LBP_5k_7k_30x60.xml */; };
 		E1FAD54D1B5EEC1A003592B0 /* ioSock.c in Sources */ = {isa = PBXBuildFile; fileRef = E1FAD53D1B5EEC1A003592B0 /* ioSock.c */; };
 		E1FAD54E1B5EEC1A003592B0 /* NWHub.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FAD5401B5EEC1A003592B0 /* NWHub.m */; };
 		E1FAD54F1B5EEC1A003592B0 /* NWNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FAD5421B5EEC1A003592B0 /* NWNotification.m */; };
@@ -130,6 +132,7 @@
 		E13D217B1B4CA320006D7EEB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E13D217C1B4CA320006D7EEB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E13D21941B4CBF96006D7EEB /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../opencv2.framework; sourceTree = "<group>"; };
+		E1728E041CE3D65F0067243E /* DeepBelief.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DeepBelief.framework; sourceTree = "<group>"; };
 		E173BBAE1CC786A20071A216 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
 		E1742C711BA2097E00AE470B /* BTLEPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTLEPeripheral.h; sourceTree = "<group>"; };
 		E1742C721BA2097E00AE470B /* BTLEPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTLEPeripheral.m; sourceTree = "<group>"; };
@@ -174,6 +177,7 @@
 		E1CAB3CD1B4F463E006F42EA /* haarcascade_russian_plate_number.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_russian_plate_number.xml; sourceTree = "<group>"; };
 		E1CAB3CE1B4F463E006F42EA /* haarcascade_smile.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_smile.xml; sourceTree = "<group>"; };
 		E1CAB3CF1B4F463E006F42EA /* haarcascade_upperbody.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_upperbody.xml; sourceTree = "<group>"; };
+		E1E732C81CE583280092C77D /* visionary_EYES_01_LBP_5k_7k_30x60.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = visionary_EYES_01_LBP_5k_7k_30x60.xml; sourceTree = "<group>"; };
 		E1FAD53D1B5EEC1A003592B0 /* ioSock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioSock.c; sourceTree = "<group>"; };
 		E1FAD53E1B5EEC1A003592B0 /* ioSock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioSock.h; sourceTree = "<group>"; };
 		E1FAD53F1B5EEC1A003592B0 /* NWHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWHub.h; sourceTree = "<group>"; };
@@ -209,6 +213,7 @@
 				E13D21811B4CA320006D7EEB /* CoreImage.framework in Frameworks */,
 				E13D21831B4CA320006D7EEB /* CoreVideo.framework in Frameworks */,
 				E13D217E1B4CA320006D7EEB /* AssetsLibrary.framework in Frameworks */,
+				E1728E051CE3D65F0067243E /* DeepBelief.framework in Frameworks */,
 				E13D217F1B4CA320006D7EEB /* AVFoundation.framework in Frameworks */,
 				E13D21861B4CA320006D7EEB /* UIKit.framework in Frameworks */,
 				E13D21841B4CA320006D7EEB /* Foundation.framework in Frameworks */,
@@ -298,6 +303,7 @@
 		E13D21971B4CC005006D7EEB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E1728E041CE3D65F0067243E /* DeepBelief.framework */,
 				E173BBAE1CC786A20071A216 /* DropboxSDK.framework */,
 				E176AA251B8196DB00D8E783 /* CoreLocation.framework */,
 				E182F8791B577B0F00AC1B93 /* MapKit.framework */,
@@ -360,6 +366,7 @@
 		E1CAB39C1B4F4562006F42EA /* haarcascades */ = {
 			isa = PBXGroup;
 			children = (
+				E1E732C81CE583280092C77D /* visionary_EYES_01_LBP_5k_7k_30x60.xml */,
 				E182F8891B57ABF500AC1B93 /* haarcascade_mcs_eyepair_big.xml */,
 				E182F88A1B57ABF500AC1B93 /* haarcascade_mcs_eyepair_small.xml */,
 				E182F88B1B57ABF500AC1B93 /* haarcascade_mcs_leftear.xml */,
@@ -550,6 +557,7 @@
 				E1CAB3971B4F336E006F42EA /* haarcascade_eye_tree_eyeglasses.1.xml in Resources */,
 				E1CAB3D41B4F463E006F42EA /* haarcascade_frontalface_alt_tree.xml in Resources */,
 				E1CAB3D01B4F463E006F42EA /* haarcascade_eye_tree_eyeglasses.xml in Resources */,
+				E1E732C91CE583280092C77D /* visionary_EYES_01_LBP_5k_7k_30x60.xml in Resources */,
 				E1CAB3D81B4F463E006F42EA /* haarcascade_fullbody.xml in Resources */,
 				E182F8941B57ABF500AC1B93 /* haarcascade_mcs_leftear.xml in Resources */,
 				E182F87C1B578A5100AC1B93 /* geographic-coverage-file-Swiss-border.geojson in Resources */,

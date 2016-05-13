@@ -71,6 +71,9 @@ SystemSoundID	soundFileObjectGreen;
 CFURLRef soundFileURLRefOther;
 SystemSoundID	soundFileObjectOther;
 
+BOOL recordEyes = false;
+NSString* recordEyesSessionName;
+
 NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
 
 
@@ -88,14 +91,29 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
 }
 
 
+- (NSString*)getSessionFolderName {
+    NSDateFormatter *formatter;
+    formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd_HH-mm-ss"];
+    return  [formatter stringFromDate:[NSDate date]];
+}
+
 
 - (IBAction)showMapChanged:(id)sender {
     if ([sender isOn]) {
         [self.mapView setHidden: false];
+        if ([[DBSession sharedSession] isLinked] && [self.debugSwitch isOn]) {
+            recordEyesSessionName = [self getSessionFolderName];
+            [self.dropboxClient createFolder: recordEyesSessionName];
+            recordEyes = true;
+        }
+
     } else {
         [self.mapView setHidden: true];
+        recordEyes = false;
     }
 }
+
 
 - (NSThread *) thread
 {
@@ -291,9 +309,10 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     if (![[DBSession sharedSession] isLinked]) {
         [[DBSession sharedSession] linkFromController:self];
     }
-    
     self.dropboxClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
     self.dropboxClient.delegate = self;
+
+    [self clearTempDirectory];
     
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     
@@ -309,13 +328,13 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
     //self.videoCamera.defaultAVCaptureVideoOrientation = self.currentVideoOrientation;
     printf("current video orientation = %li\n", (long)self.currentVideoOrientation);
-    self.videoCamera.defaultFPS = 30;
+    self.videoCamera.defaultFPS = 50;
     self.videoCamera.grayscaleMode = NO;
-    [self.videoCamera lockFocus];
-    [self.videoCamera lockExposure];
-    [self.videoCamera lockBalance];
+    //[self.videoCamera lockFocus];
+    //[self.videoCamera lockExposure];
+    //[self.videoCamera lockBalance];
     [self.videoCamera rotateVideo];
-        
+    
     [self valueChangedMaxSize: self.maxSizeSlider];
     [self valueChangedMinSize: self.minSizeSlider];
     
@@ -358,6 +377,21 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     
 }
 
+- (void) zoomDevice {
+
+    AVCaptureDevice* device;
+    float zoomLevel = 2.0f;
+    if ([device respondsToSelector:@selector(setVideoZoomFactor:)]
+        && device.activeFormat.videoMaxZoomFactor >= zoomLevel) {
+        // iOS 7.x with compatible hardware
+        if ([device lockForConfiguration:nil]) {
+            [device setVideoZoomFactor:zoomLevel];
+            [device unlockForConfiguration];
+        }
+    }
+}
+
+
 - (void) zoomVideoCamera: (float) zoomLevel {
     
     AVCaptureDevice *device = [[AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
@@ -387,11 +421,40 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
 
 }
 
+- (void) clearTempDirectory {
+        NSArray* tmpDirectory = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:NSTemporaryDirectory() error:NULL];
+        for (NSString *file in tmpDirectory) {
+            [[NSFileManager defaultManager] removeItemAtPath:[NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), file] error:NULL];
+        }
+}
+
+- (void) writeImageToDropbox: (UIImage*) image named: (NSString*) name {
+    if (!recordEyes) return;
+    NSData *imageData = UIImagePNGRepresentation(image);
+    
+    
+    NSString *tempFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:[[NSUUID UUID] UUIDString]];
+    NSString* fileNameUUID = [NSString stringWithFormat: @"%@.jpg", [[NSUUID UUID] UUIDString] ];
+    /*
+    NSString* path = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,
+                                                          NSUserDomainMask,
+                                                          YES) lastObject];
+     */
+    NSString* path = NSTemporaryDirectory();
+
+    NSString* fileName = [path stringByAppendingPathComponent: fileNameUUID];
+    
+    [imageData writeToFile: fileName atomically:YES];
+    [self.dropboxClient uploadFile: fileNameUUID toPath: [NSString stringWithFormat:@"/%@/%@", recordEyesSessionName, name] withParentRev: nil fromPath: fileName];
+}
+
 - (void)uploadLeftEyeImage: (UIImage*) image {
     [self.leftEyeImageView setImage: image];
+    [self writeImageToDropbox: image named: @"leftEye"];
 }
 - (void)uploadRightEyeImage: (UIImage*) image {
     [self.rightEyeImageView setImage: image];
+    [self writeImageToDropbox: image named: @"rightEye"];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
