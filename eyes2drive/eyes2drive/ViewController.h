@@ -36,7 +36,16 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *leftEyeImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *rightEyeImageView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *faceImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *crossImageLeft;
+@property (weak, nonatomic) IBOutlet UIImageView *crossImageRight;
+@property (weak, nonatomic) IBOutlet UIImageView *greenImage;
+@property (weak, nonatomic) IBOutlet UIImageView *orangeImage;
+@property (weak, nonatomic) IBOutlet UIImageView *redImage;
+@property (weak, nonatomic) IBOutlet UIImageView *darkRedImage;
+@property (weak, nonatomic) IBOutlet UILabel *tripLabel;
+
 @property (weak, nonatomic) IBOutlet UIButton *toggleTripButton;
 
 

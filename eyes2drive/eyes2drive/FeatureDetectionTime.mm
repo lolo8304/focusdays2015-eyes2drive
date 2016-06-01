@@ -70,13 +70,22 @@ NSString * const FeatureAlertColor_toString[] = {
     [FeatureAlertGreen] = @"Green",
     [FeatureAlertOrange] = @"Orange",
     [FeatureAlertRed] = @"Red",
-    [FeatureAlertDarkRed] = @"Dark-Red"
+    [FeatureAlertDarkRed] = @"Dark-Red",
+    [FeatureEyesClosedTooLong] = @"Eyes-too-long-closed",
+    [FeatureEyesOpenedTooLong] = @"Eyes-too-long-opened",
+    [FeatureEyesHigherBlinkRate] = @"Eyes-fast-blinking"
+    
 };
 NSString * const FeatureDetection_toString[] = {
     [FeatureEyesDetected] = @"FeatureEyesDetected",
     [Feature2EyesDetected] = @"Feature2EyesDetected",
     [FeatureFaceDetected] = @"FeatureFaceDetected",
-    [FeatureTrip] = @"FeatureTrip"
+    [FeatureTrip] = @"FeatureTrip",
+    [FeatureLeftEyeOpened] = @"LeftEyeOpened",
+    [FeatureLeftEyeClosed] = @"LeftEyeClosed",
+    [FeatureRightEyeOpened] = @"RightEyeOpened",
+    [FeatureRightEyeClosed] = @"RightEyeClosed"
+
 };
 
 
@@ -194,6 +203,24 @@ CFTimeInterval orangeThresholdOff = 0;
     
 }
 
+
+@end
+
+
+@implementation FeatureEyesClosedTime
+
+- (void)leftEyeOpenedDetected {
+    
+}
+- (void)leftEyeClosedDetected {
+    
+}
+- (void)rightEyeOpenedDetected {
+    
+}
+- (void)rightEyeClosedDetected {
+    
+}
 
 
 @end

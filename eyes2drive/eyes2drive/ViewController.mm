@@ -98,16 +98,26 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     return  [formatter stringFromDate:[NSDate date]];
 }
 
+- (bool)isDropboxCapturing {
+    
+    /* uncomment to switch dropbox on */
+    if (true) return false;
+    
+    if ([[DBSession sharedSession] isLinked] && [self.debugSwitch isOn]) {
+        recordEyesSessionName = [self getSessionFolderName];
+        [self.dropboxClient createFolder: recordEyesSessionName];
+        return true;
+    }
+    return false;
+}
+
 
 - (IBAction)showMapChanged:(id)sender {
     if ([sender isOn]) {
         [self.mapView setHidden: false];
-        if ([[DBSession sharedSession] isLinked] && [self.debugSwitch isOn]) {
-            recordEyesSessionName = [self getSessionFolderName];
-            [self.dropboxClient createFolder: recordEyesSessionName];
+        if ([self isDropboxCapturing]) {
             recordEyes = true;
         }
-
     } else {
         [self.mapView setHidden: true];
         recordEyes = false;
@@ -275,16 +285,16 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     [self.videoCamera start];
     [self setFaceAlertImage: FeatureAlertGreen];
     if ([self.thread isExecuting]) {
-        NSLog(@"Thread is already running");
+        //NSLog(@"Thread is already running");
     } else {
-        NSLog(@"Starting thread");
+        //NSLog(@"Starting thread");
         [self.thread start];
     }
 
 }
 - (void)exitStop {
     [self.videoCamera stop];
-    NSLog(@"Stopping thread");
+    //NSLog(@"Stopping thread");
     [self.thread cancel];
     [self setFaceAlertImage: FeatureAlertGreen];
     [self.locationManager stopUpdatingLocation];
@@ -327,13 +337,15 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
 
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
     //self.videoCamera.defaultAVCaptureVideoOrientation = self.currentVideoOrientation;
-    printf("current video orientation = %li\n", (long)self.currentVideoOrientation);
-    self.videoCamera.defaultFPS = 50;
+    //printf("current video orientation = %li\n", (long)self.currentVideoOrientation);
+    self.videoCamera.defaultFPS = 25;
     self.videoCamera.grayscaleMode = NO;
     //[self.videoCamera lockFocus];
     //[self.videoCamera lockExposure];
     //[self.videoCamera lockBalance];
     [self.videoCamera rotateVideo];
+    
+    [self.faceImageView setHidden:true]; // hide because of performance
     
     [self valueChangedMaxSize: self.maxSizeSlider];
     [self valueChangedMinSize: self.minSizeSlider];
@@ -355,7 +367,7 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     [self.eyesSwitch setOn: true];
     [self.noseSwitch setOn: true];
     [self.debugSwitch setOn: false];
-    [self.notificationSwitch setOn: false];
+    [self debugSwitchChanged:nil];
     
     /* map view initialisation */
     self.mapView.delegate = self;
@@ -416,7 +428,7 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     if (self.videoCamera) {
         self.videoCamera.defaultAVCaptureVideoOrientation = self.currentVideoOrientation;
         self.faceDetection.orientation = self.currentVideoOrientation;
-        printf("current video orientation = %ui\n", (unsigned int)self.currentVideoOrientation);
+        //printf("current video orientation = %ui\n", (unsigned int)self.currentVideoOrientation);
     }
 
 }
@@ -456,6 +468,29 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     [self.rightEyeImageView setImage: image];
     [self writeImageToDropbox: image named: @"rightEye"];
 }
+- (IBAction)debugSwitchChanged:(id)sender {
+    BOOL isHidden =![self.debugSwitch isOn];
+    [[self faceImageView ] setHidden: isHidden];
+
+    [[self crossImageLeft] setHidden: isHidden];
+    [[self crossImageRight] setHidden: isHidden];
+    [[self leftEyeImageView] setHidden: isHidden];
+    [[self rightEyeImageView] setHidden: isHidden];
+
+    [[self greenImage] setHidden: isHidden];
+    [[self orangeImage] setHidden: isHidden];
+    [[self redImage] setHidden: isHidden];
+    [[self darkRedImage] setHidden: isHidden];
+
+    [[self tripLabel] setHidden: isHidden];
+    [[self nofEvents] setHidden: isHidden];
+
+    [[self nofGreenEvents] setHidden: isHidden];
+    [[self nofOrangeEvents] setHidden: isHidden];
+    [[self nofRedEvents] setHidden: isHidden];
+    [[self nofDarkRedEvents] setHidden: isHidden];
+    
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // We support only Portrait.
@@ -474,7 +509,7 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager startUpdatingLocation];
-    NSLog(@"%@", [self deviceLocation]);
+    //NSLog(@"%@", [self deviceLocation]);
     
     //View Area
     MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };

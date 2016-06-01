@@ -20,6 +20,8 @@
 @property (nonatomic, strong) FeatureDetectionTime * eyesDetected;
 @property (nonatomic, strong) FeatureDetectionTime * twoEyesDetected;
 @property (nonatomic, strong) FeatureDetectionTime * trip;
+@property (nonatomic, strong) FeatureEyesClosedTime * eyesClosed;
+
 @property (nonatomic) BOOL started;
 
 @property (atomic, strong) NSDictionary *events;

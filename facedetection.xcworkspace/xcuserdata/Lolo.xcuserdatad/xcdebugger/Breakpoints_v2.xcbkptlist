@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "eyes2drive/eyes2drive/FaceDetectionOpenCV.mm"
-            timestampString = "484814033.389634"
+            timestampString = "486504807.71546"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "501"
-            endingLineNumber = "501"
+            startingLineNumber = "622"
+            endingLineNumber = "622"
             landmarkName = "-houghCirclesThreshold:dest:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,12 +42,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "eyes2drive/eyes2drive/FaceDetectionOpenCV.mm"
-            timestampString = "484814033.389634"
+            timestampString = "486504807.71546"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "497"
-            endingLineNumber = "497"
-            landmarkName = "-houghCirclesThreshold:dest:"
+            startingLineNumber = "604"
+            endingLineNumber = "604"
+            landmarkName = "@implementation FaceDetectionOpenCV"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "eyes2drive/eyes2drive/FaceDetectionOpenCV.mm"
+            timestampString = "486504807.71546"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "430"
+            endingLineNumber = "430"
+            landmarkName = "-showEyes:region:image:gray:faceImage:minSize:maxSize:leftEye:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "eyes2drive/eyes2drive/FaceDetectionOpenCV.mm"
+            timestampString = "486504807.71546"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "436"
+            endingLineNumber = "436"
+            landmarkName = "-showEyes:region:image:gray:faceImage:minSize:maxSize:leftEye:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

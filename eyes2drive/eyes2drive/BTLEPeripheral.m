@@ -71,12 +71,12 @@ CBMutableService *transferService;
 {
     // Opt out from any other state
     if (peripheral.state != CBPeripheralManagerStatePoweredOn) {
-        NSLog(@"self.peripheralManager state change to %ld", (long)peripheral.state);
+        //NSLog(@"self.peripheralManager state change to %ld", (long)peripheral.state);
         return;
     }
     
     // We're in CBPeripheralManagerStatePoweredOn state...
-    NSLog(@"self.peripheralManager powered on.");
+    //NSLog(@"self.peripheralManager powered on.");
     
     // ... so build our service.
     
@@ -105,7 +105,7 @@ CBMutableService *transferService;
  */
 - (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didSubscribeToCharacteristic:(CBCharacteristic *)characteristic
 {
-    NSLog(@"Central subscribed to characteristic");
+    //NSLog(@"Central subscribed to characteristic");
     
     // Get the data
     self.dataToSend = [self.dataDelegate dataToSend];
@@ -125,7 +125,7 @@ CBMutableService *transferService;
  */
 - (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic
 {
-    NSLog(@"Central unsubscribed from characteristic");
+    //NSLog(@"Central unsubscribed from characteristic");
 }
 
 
@@ -147,7 +147,7 @@ CBMutableService *transferService;
             // It did, so mark it as sent
             sendingEOM = NO;
             
-            NSLog(@"Sent: EOM");
+            //NSLog(@"Sent: EOM");
         }
         
         // It didn't send, so we'll exit and wait for peripheralManagerIsReadyToUpdateSubscribers to call sendData again
@@ -190,7 +190,7 @@ CBMutableService *transferService;
         }
         
         NSString *stringFromData = [[NSString alloc] initWithData:chunk encoding:NSUTF8StringEncoding];
-        NSLog(@"Sent: %@", stringFromData);
+        //NSLog(@"Sent: %@", stringFromData);
         
         // It did send, so update our index
         self.sendDataIndex += amountToSend;
@@ -210,7 +210,7 @@ CBMutableService *transferService;
                 // It sent, we're all done
                 sendingEOM = NO;
                 
-                NSLog(@"Sent: EOM");
+                //NSLog(@"Sent: EOM");
             }
             
             return;

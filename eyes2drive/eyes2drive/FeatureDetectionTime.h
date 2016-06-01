@@ -10,10 +10,14 @@
 
 
 typedef NS_ENUM (NSInteger, FeatureDetection) {
-    FeatureFaceDetected       = 1,
-    FeatureEyesDetected       = 10,
-    Feature2EyesDetected       = 20,
-    FeatureTrip             = 42
+    FeatureFaceDetected     =  1,
+    FeatureEyesDetected     = 10,
+    Feature2EyesDetected    = 20,
+    FeatureTrip             = 42,
+    FeatureLeftEyeOpened    = 50,
+    FeatureLeftEyeClosed    = 51,
+    FeatureRightEyeOpened   = 60,
+    FeatureRightEyeClosed   = 61
 };
 extern NSString * const FeatureDetection_toString[];
 
@@ -22,7 +26,10 @@ typedef NS_ENUM (NSInteger, FeatureAlertColor) {
     FeatureAlertGreen     = 0, // used for start trip, too
     FeatureAlertOrange    = 1, // used for pause
     FeatureAlertRed       = 2, // used for stop trip
-    FeatureAlertDarkRed   = 3
+    FeatureAlertDarkRed   = 3,
+    FeatureEyesClosedTooLong = 4,
+    FeatureEyesOpenedTooLong = 5,
+    FeatureEyesHigherBlinkRate = 6
 };
 extern NSString * const FeatureAlertColor_toString[];
 
@@ -68,5 +75,15 @@ extern NSString * const FeatureAlertColor_toString[];
 - (void)featureDetected: (BOOL) found;
 - (void)triggerChangedEvent;
 
+
+@end
+
+
+@interface FeatureEyesClosedTime : FeatureDetectionTime
+
+- (void)leftEyeOpenedDetected;
+- (void)leftEyeClosedDetected;
+- (void)rightEyeOpenedDetected;
+- (void)rightEyeClosedDetected;
 
 @end
