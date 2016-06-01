@@ -295,8 +295,8 @@ CFTimeInterval DARKRED_Threshold = 3000;
     if (facesRect.size() > 0) {
         cv::Rect faceRect = [self getBiggestRect: facesRect];
 
+        rectangle(imageMat, faceRect, cvScalar(0,0, 255), 1);
         if ([self faceDebugOn]) {
-            rectangle(imageMat, faceRect, cvScalar(0,0, 255), 1);
             cv::Rect minRect(
                          MAX(faceRect.x + faceRect.width/2 - minSize.width / 2, 0),
                          MAX(faceRect.y + faceRect.height/2 - minSize.height / 2, 0),
@@ -356,8 +356,8 @@ CFTimeInterval DARKRED_Threshold = 3000;
                 [self haarClassifierOption], minSize );
     
     //[self showEyes: eyes region: eyeRegion image: image gray: imageGray minSize: minSize maxSize: maxSize];
-    [self showEyes: rightEyesRect region: faceRect image: imageMat gray: imageGrayMat faceImage:(cv::Mat&)faceImageMat  minSize: minSize maxSize: maxSize leftEye: false];
-    [self showEyes: leftEyesRect region: faceRect image: imageMat gray: imageGrayMat faceImage:(cv::Mat&)faceImageMat minSize: minSize maxSize: maxSize leftEye: true];
+    [self showEyes: rightEyesRect region: faceRect image: imageMat gray: imageGrayMat minSize: minSize maxSize: maxSize leftEye: false];
+    [self showEyes: leftEyesRect region: faceRect image: imageMat gray: imageGrayMat minSize: minSize maxSize: maxSize leftEye: true];
 
 }
 
@@ -383,44 +383,22 @@ CFTimeInterval DARKRED_Threshold = 3000;
 }
 
 
-- (void)showEyes: (std::vector<cv::Rect>&) eyesRect region: (cv::Rect&) faceRect image: (cv::Mat&)imageMat gray: (cv::Mat&)imageGrayMat faceImage:(cv::Mat&)faceImageMat minSize: (cv::Size&) minSize maxSize: (cv::Size) maxSize leftEye: (BOOL) isLeftEye {
+- (void)showEyes: (std::vector<cv::Rect>&) eyesRect region: (cv::Rect&) faceRect image: (cv::Mat&)imageMat gray: (cv::Mat&)imageGrayMat minSize: (cv::Size&) minSize maxSize: (cv::Size) maxSize leftEye: (BOOL) isLeftEye {
     
-    if (eyesRect.size() > 0) {
         cv::Rect eyeRect = [self chooseEye: eyesRect face: faceRect leftEye: isLeftEye];
         if (eyeRect.width > 0 && eyeRect.height > 0) {
             cv::Point center( faceRect.x + eyeRect.x + eyeRect.width*0.5, faceRect.y + eyeRect.y + eyeRect.height*0.5 );
 
             circle( imageMat, center, [self radius], cv::Scalar( 153, 255, 51 ), 1);
-            cv::Point previewCenter( eyeRect.x + eyeRect.width*0.5, eyeRect.y + eyeRect.height*0.5 );
-            cv::Point previewTop  ( previewCenter.x, previewCenter.y-10 );
-            cv::Point previewDown ( previewCenter.x, previewCenter.y+10);
-            cv::Point previewLeft ( previewCenter.x-10, previewCenter.y );
-            cv::Point previewRight( previewCenter.x+10, previewCenter.y );
             cv::Rect previewRect(
-                                    MAX(center.x - 30, 0),
-                                    MAX(center.y - 15, 0),
-                                    60 , 30);
-            cv::Mat previewEyeSourceMat = imageGrayMat( previewRect ).clone();
-            cv::Rect openedEyesRect = [self detectOpenEyes:eyeRect region:faceRect image: imageMat gray:imageGrayMat faceImage:faceImageMat previewEyeMat: previewEyeSourceMat leftEye: isLeftEye];
-                    
-            if ([self eyesDebugOn]) {
-                line( faceImageMat, previewLeft, previewRight, cv::Scalar( 255, 255, 255 ), 1);
-                line( faceImageMat, previewTop, previewDown, cv::Scalar( 255, 255, 255 ), 1);
-                cv::Rect minRect(
-                                    MAX(center.x - minSize.width / 2, 0),
-                                    MAX(center.y - minSize.height / 2, 0),
-                                    minSize.width, minSize.height);
-                cv::Rect maxRect(
-                                    MAX(center.x - maxSize.width / 2, 0),
-                                    MAX(center.y - maxSize.height / 2, 0),
-                                    maxSize.width, maxSize.height);
-                cv::Rect centerEyeRect(
                                     MAX(center.x - eyeRect.width / 2, 0),
                                     MAX(center.y - eyeRect.height / 2, 0),
-                                    eyeRect.width, eyeRect.height);
-                rectangle(imageMat, centerEyeRect, cv::Scalar(255,255,255));
+                                    eyeRect.width , eyeRect.height);
+            cv::Mat previewEyeSourceMat = imageGrayMat( previewRect ).clone();
+            cv::Rect openedEyesRect = [self detectOpenEyes:eyeRect region:faceRect image: imageMat gray:imageGrayMat  previewEyeMat: previewEyeSourceMat leftEye: isLeftEye];
                     
-                    
+            if ([self eyesDebugOn]) {
+                rectangle(imageMat, previewRect, cv::Scalar(255,255,255));
                 //cv::Mat previewEyeDestMat = previewEyeSourceMat;
                 cv::Mat previewEyeDestMat = cv::Mat::zeros( previewEyeSourceMat.size(), CV_8UC1 );
                 [self threshold: previewEyeSourceMat dest: previewEyeDestMat];
@@ -448,26 +426,12 @@ CFTimeInterval DARKRED_Threshold = 3000;
                 }
             }
         }
-        /*
-         [self eyesDetected: true];
-         if (eyes.size() == 2) {
-         [self twoEyesDetected: true];
-         } else {
-         [self twoEyesDetected: false];
-         }
-         */
-    } else {
-        /*
-         [self eyesDetected: false];
-         [self twoEyesDetected: false];
-         */
-    }
 }
 
 
-- (cv::Rect)detectOpenEyes: (cv::Rect&) eyeRect region: (cv::Rect&) eyeRegionRect image: (cv::Mat&)imageMat gray: (cv::Mat&)imageGrayMat faceImage:(cv::Mat&)faceImageMat previewEyeMat: (cv::Mat&)previewEyeSourceMat leftEye: (BOOL) isLeftEye {
+- (cv::Rect)detectOpenEyes: (cv::Rect&) eyeRect region: (cv::Rect&) eyeRegionRect image: (cv::Mat&)imageMat gray: (cv::Mat&)imageGrayMat previewEyeMat: (cv::Mat&)previewEyeSourceMat leftEye: (BOOL) isLeftEye {
     
-    if (isLeftEye) return cv::Rect(0,0,0,0);
+    if (!isLeftEye) return cv::Rect(0,0,0,0);
     
     std::vector<cv::Rect> openEyesRect;
     
@@ -483,12 +447,12 @@ CFTimeInterval DARKRED_Threshold = 3000;
                                          );
     
     if (openEyesRect.size() > 0) {
-        cv::Rect eyeDetected;
+        cv::Rect eye_template2;
         for (int i = 0; i < openEyesRect.size();i++) {
-            eyeDetected = openEyesRect[i];
+            cv::Rect eyeDetected = openEyesRect[i];
         
-            eyeDetected.x = eyeRect.x + eyeDetected.x;
-            eyeDetected.y = eyeRect.y + eyeDetected.y;
+            //eyeDetected.x = eyeRect.x + eyeDetected.x;
+            //eyeDetected.y = eyeRect.y + eyeDetected.y;
         
             cv::Rect eye_template(
                                   (int) eyeDetected.x -  eyeDetected.width/2,
@@ -496,8 +460,9 @@ CFTimeInterval DARKRED_Threshold = 3000;
                                   eyeDetected.width,  eyeDetected.height);
         
             printf("%d: %s EYES OPENED\n", i, (isLeftEye ? "LEFT" : "RIGHT"));
+            eye_template2 = eye_template;
         }
-        return eyeDetected;
+        return eye_template2;
     }
     printf("%s EYES ****CLOSED**** \n", (isLeftEye ? "LEFT" : "RIGHT"));
     return cv::Rect();
@@ -724,7 +689,7 @@ CFTimeInterval DARKRED_Threshold = 3000;
 
     nose_cascade.detectMultiScale( noseROI, noses, 1.2, MAX([self haarClassifierMinNeighbours], 1), [self haarClassifierOption], minSize );
     if ([self noseDebugOn]) {
-        //rectangle(image, noseRegion, CvScalar(255,255,255));
+        rectangle(image, noseRegion, CvScalar(255,255,255));
     }
     
     if (noses.size() > 0) {
