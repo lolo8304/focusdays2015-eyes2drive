@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "eyes2drive/eyes2drive/FaceDetectionOpenCV.mm"
-            timestampString = "486517006.592029"
+            timestampString = "486598966.512021"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "587"
-            endingLineNumber = "587"
+            startingLineNumber = "585"
+            endingLineNumber = "585"
             landmarkName = "-houghCirclesThreshold:dest:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "eyes2drive/eyes2drive/FaceDetectionOpenCV.mm"
-            timestampString = "486517006.592029"
+            timestampString = "486598966.512021"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "569"
-            endingLineNumber = "569"
+            startingLineNumber = "567"
+            endingLineNumber = "567"
             landmarkName = "@implementation FaceDetectionOpenCV"
             landmarkType = "3">
          </BreakpointContent>

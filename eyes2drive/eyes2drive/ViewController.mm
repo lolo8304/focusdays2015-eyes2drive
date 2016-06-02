@@ -71,6 +71,9 @@ SystemSoundID	soundFileObjectGreen;
 CFURLRef soundFileURLRefOther;
 SystemSoundID	soundFileObjectOther;
 
+bool leftEyeIsUpdating;
+bool rightEyeIsUpdating;
+
 BOOL recordEyes = false;
 NSString* recordEyesSessionName;
 
@@ -369,6 +372,9 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     [self.debugSwitch setOn: false];
     [self debugSwitchChanged:nil];
     
+    leftEyeIsUpdating = false;
+    rightEyeIsUpdating = false;
+    
     /* map view initialisation */
     self.mapView.delegate = self;
     self.locationManager = [[CLLocationManager alloc] init];
@@ -468,6 +474,29 @@ NSMutableDictionary * sounds = [[NSMutableDictionary alloc] init];
     [self.rightEyeImageView setImage: image];
     [self writeImageToDropbox: image named: @"rightEye"];
 }
+
+- (void)setEyesClosedImage: (bool) isLeft closed: (bool) isClosed {
+    NSString* colorName = @"Alert-Green.png";
+    if (isClosed) {
+        colorName =@"Alert-Dark-Red.png";
+    }
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        if (isLeft) {
+            if (!leftEyeIsUpdating) {
+                leftEyeIsUpdating = true;
+                [[self leftEyeClosedImageView] setImage: [UIImage imageNamed: colorName]];
+                leftEyeIsUpdating = false;
+            }
+        } else {
+            if (!rightEyeIsUpdating) {
+                rightEyeIsUpdating = true;
+                [[self rightEyeClosedImageView] setImage: [UIImage imageNamed: colorName]];
+                rightEyeIsUpdating = false;
+            }
+        }
+    });
+}
+
 - (IBAction)debugSwitchChanged:(id)sender {
     BOOL isHidden =![self.debugSwitch isOn];
     [[self faceImageView ] setHidden: isHidden];

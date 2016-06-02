@@ -403,7 +403,7 @@ CFTimeInterval DARKRED_Threshold = 3000;
                 cv::Mat previewEyeDestMat = cv::Mat::zeros( previewEyeSourceMat.size(), CV_8UC1 );
                 [self threshold: previewEyeSourceMat dest: previewEyeDestMat];
 
-                if (openedEyesRect.height != 0 && openedEyesRect.width != 0) {
+                if (false && openedEyesRect.height != 0 && openedEyesRect.width != 0) {
                         //[self printMathPointsCVS: previewEyeDestMat];
                         cv::Rect openEyeImageRect (
                             previewRect.x + openedEyesRect.x,
@@ -428,10 +428,7 @@ CFTimeInterval DARKRED_Threshold = 3000;
         }
 }
 
-
 - (cv::Rect)detectOpenEyes: (cv::Rect&) eyeRect region: (cv::Rect&) eyeRegionRect image: (cv::Mat&)imageMat gray: (cv::Mat&)imageGrayMat previewEyeMat: (cv::Mat&)previewEyeSourceMat leftEye: (BOOL) isLeftEye {
-    
-    if (!isLeftEye) return cv::Rect(0,0,0,0);
     
     std::vector<cv::Rect> openEyesRect;
     
@@ -458,13 +455,14 @@ CFTimeInterval DARKRED_Threshold = 3000;
                                   (int) eyeDetected.x -  eyeDetected.width/2,
                                   (int) eyeDetected.y -  eyeDetected.height/2,
                                   eyeDetected.width,  eyeDetected.height);
-        
-            printf("%d: %s EYES OPENED\n", i, (isLeftEye ? "LEFT" : "RIGHT"));
+            [self.controller setEyesClosedImage: isLeftEye closed: false];
+            //printf("%d: %s EYES OPENED\n", i, (isLeftEye ? "LEFT" : "RIGHT"));
             eye_template2 = eye_template;
         }
         return eye_template2;
     }
-    printf("%s EYES ****CLOSED**** \n", (isLeftEye ? "LEFT" : "RIGHT"));
+    [self.controller setEyesClosedImage: isLeftEye closed: true];
+    //printf("%s EYES ****CLOSED**** \n", (isLeftEye ? "LEFT" : "RIGHT"));
     return cv::Rect();
 
 }
@@ -473,8 +471,8 @@ CFTimeInterval DARKRED_Threshold = 3000;
 - (void)threshold: (cv::Mat&) srcImage dest:(cv::Mat&) destImage {
     int option = [self haarClassifierOption];
     if (option == 1) {
-        [self equalizeHist: srcImage dest: destImage];
-        //[self adaptiveGaussThreshold: srcImage dest: destImage];
+        //[self equalizeHist: srcImage dest: destImage];
+        [self adaptiveGaussThreshold: srcImage dest: destImage];
     } else if (option == 2) {
         [self houghCirclesThreshold: srcImage dest: destImage];
         //[self adaptiveMeanThreshold: srcImage dest: destImage];
@@ -689,15 +687,15 @@ CFTimeInterval DARKRED_Threshold = 3000;
 
     nose_cascade.detectMultiScale( noseROI, noses, 1.2, MAX([self haarClassifierMinNeighbours], 1), [self haarClassifierOption], minSize );
     if ([self noseDebugOn]) {
-        rectangle(image, noseRegion, CvScalar(255,255,255));
+        //rectangle(image, noseRegion, CvScalar(255,255,255));
     }
     
     if (noses.size() > 0) {
-        for( size_t j = 0; j < noses.size(); j++ ) {
+        for( size_t j = 0; j < 1; j++ ) {
             cv::Rect nose = noses[j];
             cv::Point center( noseRegion.x + nose.x + nose.width*0.5, noseRegion.y + nose.y + nose.height*0.5 );
             circle( image, center, [self radius], CvScalar( 153, 255, 51 ), 1);
-            if ([self globalDebugOn]) {
+            if (false && [self globalDebugOn]) {
                 cv::Rect minRect(
                              noseRegion.x + nose.x + nose.width/2 - minSize.width / 2,
                              noseRegion.y + nose.y + nose.height/2 - minSize.height / 2,

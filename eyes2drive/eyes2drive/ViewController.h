@@ -36,6 +36,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *leftEyeImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *rightEyeImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *leftEyeClosedImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *rightEyeClosedImageView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *faceImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *crossImageLeft;
@@ -56,6 +58,7 @@
 - (void) zoomVideoCamera: (float) zoomLevel;
 - (void)uploadLeftEyeImage: (UIImage*) image;
 - (void)uploadRightEyeImage: (UIImage*) image;
+- (void)setEyesClosedImage: (bool) isLeft closed: (bool) isClosed;
 
 @end
 
